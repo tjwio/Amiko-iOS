@@ -36,6 +36,15 @@
 		2F6E51C42082B5C500E8D8CA /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F6E51C52082B5C500E8D8CA /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; };
 		2F6E51C62082B5C500E8D8CA /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51C82082B86E00E8D8CA /* BANetworkHandler.swift */; };
+		2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CA2082B8D000E8D8CA /* BAURLRouter.swift */; };
+		2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */; };
+		2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */; };
+		2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */; };
+		2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D52082BE4000E8D8CA /* BAAuthenticationManager.swift */; };
+		2F6E51D82082BF9B00E8D8CA /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */; };
+		2F6E51D92082BF9B00E8D8CA /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DB2082C2C000E8D8CA /* BAError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +77,7 @@
 				2F6E51BE2082B5C500E8D8CA /* Alamofire.framework in Embed Frameworks */,
 				2F6E51C02082B5C500E8D8CA /* Gloss.framework in Embed Frameworks */,
 				2F6E51C22082B5C500E8D8CA /* SocketIO.framework in Embed Frameworks */,
+				2F6E51D92082BF9B00E8D8CA /* KeychainSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +114,14 @@
 		2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = Carthage/Build/iOS/SocketIO.framework; sourceTree = "<group>"; };
 		2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		2F6E51BC2082B5C500E8D8CA /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		2F6E51C82082B86E00E8D8CA /* BANetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANetworkHandler.swift; sourceTree = "<group>"; };
+		2F6E51CA2082B8D000E8D8CA /* BAURLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAURLRouter.swift; sourceTree = "<group>"; };
+		2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppManager.swift; sourceTree = "<group>"; };
+		2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+Authentication.swift"; sourceTree = "<group>"; };
+		2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+User.swift"; sourceTree = "<group>"; };
+		2F6E51D52082BE4000E8D8CA /* BAAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAuthenticationManager.swift; sourceTree = "<group>"; };
+		2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
+		2F6E51DB2082C2C000E8D8CA /* BAError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +135,7 @@
 				2F6E51BD2082B5C500E8D8CA /* Alamofire.framework in Frameworks */,
 				2F6E51BF2082B5C500E8D8CA /* Gloss.framework in Frameworks */,
 				2F6E51C12082B5C500E8D8CA /* SocketIO.framework in Frameworks */,
+				2F6E51D82082BF9B00E8D8CA /* KeychainSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +167,7 @@
 		2F4BBB1620522A3600AAFE1A = {
 			isa = PBXGroup;
 			children = (
+				2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */,
 				2F6E51B82082B5C400E8D8CA /* Alamofire.framework */,
 				2F6E51B92082B5C400E8D8CA /* Gloss.framework */,
 				2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */,
@@ -219,11 +239,14 @@
 		2F4BBB5F20522AD400AAFE1A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F6E51D42082BE2800E8D8CA /* Authentication */,
 				2F6E51AF2082AD2A00E8D8CA /* Bump */,
-				2F6E51B52082B0F100E8D8CA /* User */,
 				2F6E51B22082AF7D00E8D8CA /* Constants */,
-				2F4BBB6120522AFF00AAFE1A /* Helper */,
+				2F6E51DA2082C2A400E8D8CA /* Error */,
 				2F4BBB6220522B1900AAFE1A /* Extensions */,
+				2F4BBB6120522AFF00AAFE1A /* Helper */,
+				2F6E51C72082B82900E8D8CA /* Network */,
+				2F6E51B52082B0F100E8D8CA /* User */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,8 +254,8 @@
 		2F4BBB6020522AE900AAFE1A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2F1312032081AEE900D462F8 /* Home */,
 				2F4BBB6520522CD500AAFE1A /* First Experience */,
+				2F1312032081AEE900D462F8 /* Home */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -240,6 +263,7 @@
 		2F4BBB6120522AFF00AAFE1A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -282,6 +306,49 @@
 				2F6E51B62082B10C00E8D8CA /* BAUser.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		2F6E51C72082B82900E8D8CA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51C82082B86E00E8D8CA /* BANetworkHandler.swift */,
+				2F6E51CA2082B8D000E8D8CA /* BAURLRouter.swift */,
+				2F6E51CE2082BBD000E8D8CA /* Authentication */,
+				2F6E51D12082BD4A00E8D8CA /* User */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2F6E51CE2082BBD000E8D8CA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		2F6E51D12082BD4A00E8D8CA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		2F6E51D42082BE2800E8D8CA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51D52082BE4000E8D8CA /* BAAuthenticationManager.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		2F6E51DA2082C2A400E8D8CA /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51DB2082C2C000E8D8CA /* BAError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,10 +492,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
+				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
 				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
+				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
+				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
+				2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */,
+				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,
+				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
+				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
 				2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */,
 				2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */,
 			);

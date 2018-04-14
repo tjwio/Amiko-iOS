@@ -8,17 +8,20 @@
 
 import Gloss
 
-class BAUser: NSObject, JSONDecodable {
+public class BAUser: NSObject, JSONDecodable {
+    var userId: String
     var name: String
     var email: String
     var phone: String
     var imageUrl: String?
     
-    required init?(json: JSON) {
+    public required init?(json: JSON) {
+        guard let userId: String = BAConstants.User.ID <~~ json else { return nil }
         guard let name: String = BAConstants.User.NAME <~~ json else { return nil }
         guard let email: String = BAConstants.User.EMAIL <~~ json else { return nil }
         guard let phone: String = BAConstants.User.PHONE <~~ json else { return nil }
         
+        self.userId = userId
         self.name = name
         self.email = email
         self.phone = phone
