@@ -1,0 +1,6 @@
+github "Alamofire/Alamofire" "4.7.1"
+github "SnapKit/SnapKit" "4.0.0"
+github "daltoniam/Starscream" "3.0.5"
+github "hkellaway/Gloss" "2.0.0"
+github "rs/SDWebImage" "4.3.3"
+github "socketio/socket.io-client-swift" "v13.1.3"

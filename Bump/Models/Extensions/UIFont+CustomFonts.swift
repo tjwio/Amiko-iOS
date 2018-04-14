@@ -11,37 +11,41 @@ import UIKit
 extension UIFont {
     //MARK: basic fonts
     
-    public func mainRegular(size: CGFloat) -> UIFont? {
+    public class func mainRegular(size: CGFloat) -> UIFont? {
         return UIFont(name: "TitilliumWeb-Regular", size: size)
     }
     
-    public func mainSemiBold(size: CGFloat) -> UIFont? {
+    public class func mainSemiBold(size: CGFloat) -> UIFont? {
         return UIFont(name: "TitilliumWeb-SemiBold", size: size)
+    }
+    
+    public class func fontAwesome(size: CGFloat) -> UIFont? {
+        return UIFont(name: "FontAwesome", size: size)
     }
     
     //MARK: headers
     
-    public func mainHeader() -> UIFont? {
+    public class func mainHeader() -> UIFont? {
         return mainSemiBold(size: 24.0)
     }
     
-    public func mediumHeader() -> UIFont? {
+    public class func mediumHeader() -> UIFont? {
         return mainSemiBold(size: 20.0)
     }
     
-    public func smallheader() -> UIFont? {
+    public class func smallheader() -> UIFont? {
         return mainSemiBold(size: 16.0)
     }
     
     //MARK: regular
     
-    public func regularText() -> UIFont? {
+    public class func regularText() -> UIFont? {
         return mainRegular(size: 16.0)
     }
     
     //MARK: detail
     
-    public func detailText() -> UIFont? {
+    public class func detailText() -> UIFont? {
         return mainRegular(size: 14.0)
     }
 }

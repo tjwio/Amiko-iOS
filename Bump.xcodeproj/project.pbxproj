@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1312042081AF2600D462F8 /* BAHomeViewController.swift */; };
+		2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */; };
+		2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; };
+		2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */; };
 		2F4BBB2A20522A3700AAFE1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2920522A3700AAFE1A /* Assets.xcassets */; };
 		2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2B20522A3700AAFE1A /* LaunchScreen.storyboard */; };
@@ -19,7 +23,19 @@
 		2F4BBB5D20522AA100AAFE1A /* TitilliumWeb-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB5620522AA000AAFE1A /* TitilliumWeb-Italic.ttf */; };
 		2F4BBB5E20522AA100AAFE1A /* TitilliumWeb-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB5720522AA000AAFE1A /* TitilliumWeb-Light.ttf */; };
 		2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */; };
-		2F4BBB6720522D3700AAFE1A /* AQFirstXPHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB6620522D3700AAFE1A /* AQFirstXPHolderViewController.swift */; };
+		2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */; };
+		2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */; };
+		2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B62082B10C00E8D8CA /* BAUser.swift */; };
+		2F6E51BD2082B5C500E8D8CA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51B82082B5C400E8D8CA /* Alamofire.framework */; };
+		2F6E51BE2082B5C500E8D8CA /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51B82082B5C400E8D8CA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E51BF2082B5C500E8D8CA /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51B92082B5C400E8D8CA /* Gloss.framework */; };
+		2F6E51C02082B5C500E8D8CA /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51B92082B5C400E8D8CA /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E51C12082B5C500E8D8CA /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */; };
+		2F6E51C22082B5C500E8D8CA /* SocketIO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E51C32082B5C500E8D8CA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */; };
+		2F6E51C42082B5C500E8D8CA /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E51C52082B5C500E8D8CA /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; };
+		2F6E51C62082B5C500E8D8CA /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +55,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2F13120B2081B36700D462F8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2F6E51C42082B5C500E8D8CA /* SDWebImage.framework in Embed Frameworks */,
+				2F6E51C62082B5C500E8D8CA /* Starscream.framework in Embed Frameworks */,
+				2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */,
+				2F6E51BE2082B5C500E8D8CA /* Alamofire.framework in Embed Frameworks */,
+				2F6E51C02082B5C500E8D8CA /* Gloss.framework in Embed Frameworks */,
+				2F6E51C22082B5C500E8D8CA /* SocketIO.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2F1312042081AF2600D462F8 /* BAHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHomeViewController.swift; sourceTree = "<group>"; };
+		2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexRGB.swift"; sourceTree = "<group>"; };
+		2F1312082081B36700D462F8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F4BBB2920522A3700AAFE1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,7 +96,14 @@
 		2F4BBB5620522AA000AAFE1A /* TitilliumWeb-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TitilliumWeb-Italic.ttf"; sourceTree = "<group>"; };
 		2F4BBB5720522AA000AAFE1A /* TitilliumWeb-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TitilliumWeb-Light.ttf"; sourceTree = "<group>"; };
 		2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
-		2F4BBB6620522D3700AAFE1A /* AQFirstXPHolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQFirstXPHolderViewController.swift; sourceTree = "<group>"; };
+		2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABumpManager.swift; sourceTree = "<group>"; };
+		2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppConstants.swift; sourceTree = "<group>"; };
+		2F6E51B62082B10C00E8D8CA /* BAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUser.swift; sourceTree = "<group>"; };
+		2F6E51B82082B5C400E8D8CA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		2F6E51B92082B5C400E8D8CA /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
+		2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = Carthage/Build/iOS/SocketIO.framework; sourceTree = "<group>"; };
+		2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		2F6E51BC2082B5C500E8D8CA /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +111,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F6E51C32082B5C500E8D8CA /* SDWebImage.framework in Frameworks */,
+				2F6E51C52082B5C500E8D8CA /* Starscream.framework in Frameworks */,
+				2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */,
+				2F6E51BD2082B5C500E8D8CA /* Alamofire.framework in Frameworks */,
+				2F6E51BF2082B5C500E8D8CA /* Gloss.framework in Frameworks */,
+				2F6E51C12082B5C500E8D8CA /* SocketIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,9 +137,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F1312032081AEE900D462F8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2F1312042081AF2600D462F8 /* BAHomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		2F4BBB1620522A3600AAFE1A = {
 			isa = PBXGroup;
 			children = (
+				2F6E51B82082B5C400E8D8CA /* Alamofire.framework */,
+				2F6E51B92082B5C400E8D8CA /* Gloss.framework */,
+				2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */,
+				2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */,
+				2F6E51BC2082B5C500E8D8CA /* Starscream.framework */,
+				2F1312082081B36700D462F8 /* SnapKit.framework */,
 				2F4BBB2120522A3700AAFE1A /* Bump */,
 				2F4BBB3620522A3700AAFE1A /* BumpTests */,
 				2F4BBB4120522A3700AAFE1A /* BumpUITests */,
@@ -154,6 +219,9 @@
 		2F4BBB5F20522AD400AAFE1A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F6E51AF2082AD2A00E8D8CA /* Bump */,
+				2F6E51B52082B0F100E8D8CA /* User */,
+				2F6E51B22082AF7D00E8D8CA /* Constants */,
 				2F4BBB6120522AFF00AAFE1A /* Helper */,
 				2F4BBB6220522B1900AAFE1A /* Extensions */,
 			);
@@ -163,6 +231,7 @@
 		2F4BBB6020522AE900AAFE1A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2F1312032081AEE900D462F8 /* Home */,
 				2F4BBB6520522CD500AAFE1A /* First Experience */,
 			);
 			path = Controllers;
@@ -179,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */,
+				2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -186,9 +256,32 @@
 		2F4BBB6520522CD500AAFE1A /* First Experience */ = {
 			isa = PBXGroup;
 			children = (
-				2F4BBB6620522D3700AAFE1A /* AQFirstXPHolderViewController.swift */,
 			);
 			path = "First Experience";
+			sourceTree = "<group>";
+		};
+		2F6E51AF2082AD2A00E8D8CA /* Bump */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */,
+			);
+			path = Bump;
+			sourceTree = "<group>";
+		};
+		2F6E51B22082AF7D00E8D8CA /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		2F6E51B52082B0F100E8D8CA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51B62082B10C00E8D8CA /* BAUser.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +294,7 @@
 				2F4BBB1B20522A3700AAFE1A /* Sources */,
 				2F4BBB1C20522A3700AAFE1A /* Frameworks */,
 				2F4BBB1D20522A3700AAFE1A /* Resources */,
+				2F13120B2081B36700D462F8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -330,9 +424,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
+				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
+				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
+				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */,
-				2F4BBB6720522D3700AAFE1A /* AQFirstXPHolderViewController.swift in Sources */,
+				2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +590,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4AC368HQ6Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Bump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.tjw.Bump;
@@ -507,6 +609,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4AC368HQ6Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Bump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.tjw.Bump;
