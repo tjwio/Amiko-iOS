@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ReactiveCocoa
+import ReactiveSwift
 import SnapKit
 
 class AQWelcomeViewController: UIViewController {
@@ -63,6 +65,13 @@ class AQWelcomeViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.mainDemi(size: 17.0)
         button.layer.cornerRadius = 4.0
+        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(1.0)
+        }
+        
+        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.9)
+        }
         
         return button
     }()
