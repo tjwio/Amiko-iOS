@@ -11,7 +11,7 @@ import UIKit
 class BALoadingButton: UIButton {
     var activityIndicator: UIActivityIndicatorView!;
     
-    public var isLoading: Bool! {
+    public var isLoading = false {
         didSet {
             if (isLoading) {
                 self.activityIndicator.isHidden = false;

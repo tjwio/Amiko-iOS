@@ -301,7 +301,13 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: login
     @objc private func login(_ sender: UIButton?) {
-        
+        BAAuthenticationManager.shared.login(email: self.emailTextField.text!, password: self.passwordTextField.text!, success: { user in
+            print("\(user)")
+        }) { error in
+            print("failed to login with error: \(error)")
+            self.loginButton.isLoading = false
+            self.showLeftMessage("Failed to login. Please try again", type: .error, options: [.height(66.0)])
+        }
     }
     
     //MARK: signup

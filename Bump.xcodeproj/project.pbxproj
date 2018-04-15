@@ -63,6 +63,9 @@
 		2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */; };
 		2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */; };
 		2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */; };
+		2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */; };
+		2F6E520F2084040E00E8D8CA /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E520E2084040E00E8D8CA /* GSMessages.framework */; };
+		2F6E52102084040E00E8D8CA /* GSMessages.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E520E2084040E00E8D8CA /* GSMessages.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,7 @@
 				2F6E52002083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Embed Frameworks */,
 				2F6E51F5208317AC00E8D8CA /* Result.framework in Embed Frameworks */,
 				2F6E51BE2082B5C500E8D8CA /* Alamofire.framework in Embed Frameworks */,
+				2F6E52102084040E00E8D8CA /* GSMessages.framework in Embed Frameworks */,
 				2F6E51C02082B5C500E8D8CA /* Gloss.framework in Embed Frameworks */,
 				2F6E51C22082B5C500E8D8CA /* SocketIO.framework in Embed Frameworks */,
 				2F6E51F9208317AC00E8D8CA /* ReactiveSwift.framework in Embed Frameworks */,
@@ -158,6 +162,8 @@
 		2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACommonUtility.swift; sourceTree = "<group>"; };
 		2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Back.swift"; sourceTree = "<group>"; };
 		2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALoadingButton.swift; sourceTree = "<group>"; };
+		2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAButtonMessage.swift; sourceTree = "<group>"; };
+		2F6E520E2084040E00E8D8CA /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = Carthage/Build/iOS/GSMessages.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +177,7 @@
 				2F6E51FF2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Frameworks */,
 				2F6E51F4208317AC00E8D8CA /* Result.framework in Frameworks */,
 				2F6E51BD2082B5C500E8D8CA /* Alamofire.framework in Frameworks */,
+				2F6E520F2084040E00E8D8CA /* GSMessages.framework in Frameworks */,
 				2F6E51BF2082B5C500E8D8CA /* Gloss.framework in Frameworks */,
 				2F6E51C12082B5C500E8D8CA /* SocketIO.framework in Frameworks */,
 				2F6E51F8208317AC00E8D8CA /* ReactiveSwift.framework in Frameworks */,
@@ -207,6 +214,7 @@
 		2F4BBB1620522A3600AAFE1A = {
 			isa = PBXGroup;
 			children = (
+				2F6E520E2084040E00E8D8CA /* GSMessages.framework */,
 				2F6E51FE2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework */,
 				2F6E51F2208317AB00E8D8CA /* ReactiveCocoa.framework */,
 				2F6E51F3208317AC00E8D8CA /* ReactiveSwift.framework */,
@@ -425,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
+				2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -582,6 +591,7 @@
 				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,
 				2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
+				2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */,
 				2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */,

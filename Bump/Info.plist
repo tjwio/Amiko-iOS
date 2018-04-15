@@ -41,6 +41,11 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is used to increase accuracy of bump matching</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AvenirNextLTPro-Bold.otf</string>
