@@ -47,6 +47,7 @@
 		2F6E51E9208308E000E8D8CA /* AvenirNextLTPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E4208308E000E8D8CA /* AvenirNextLTPro-Medium.otf */; };
 		2F6E51EA208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */; };
 		2F6E51EB208308E000E8D8CA /* AvenirNextLTPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */; };
+		2F6E51EE20830F6000E8D8CA /* AQWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		2F6E51E4208308E000E8D8CA /* AvenirNextLTPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Medium.otf"; sourceTree = "<group>"; };
 		2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-UltLt.otf"; sourceTree = "<group>"; };
 		2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Bold.otf"; sourceTree = "<group>"; };
+		2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQWelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 			children = (
 				2F4BBB6520522CD500AAFE1A /* First Experience */,
 				2F1312032081AEE900D462F8 /* Home */,
+				2F6E51EC20830F4A00E8D8CA /* Login */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -363,6 +366,14 @@
 				2F6E51E02082FF3000E8D8CA /* BALocationManager.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		2F6E51EC20830F4A00E8D8CA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,6 +522,7 @@
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
+				2F6E51EE20830F6000E8D8CA /* AQWelcomeViewController.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */,

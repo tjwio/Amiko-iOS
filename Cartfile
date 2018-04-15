@@ -4,3 +4,4 @@ github "socketio/socket.io-client-swift" ~> 13.1.0
 github "hkellaway/Gloss"
 github "rs/SDWebImage"
 github "evgenyneu/keychain-swift" ~> 11.0
+github "ReactiveCocoa/ReactiveCocoa" ~> 7.0
