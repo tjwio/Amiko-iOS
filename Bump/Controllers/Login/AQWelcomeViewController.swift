@@ -95,6 +95,11 @@ class AQWelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        createAccountButton.addTarget(self, action: #selector(self.createAccount(_:)), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(self.login(_:)), for: .touchUpInside)
+        
         let labelStackView = UIStackView(arrangedSubviews: [welcomeLabel, detailLabel])
         labelStackView.alignment = .center
         labelStackView.axis = .vertical
@@ -148,5 +153,17 @@ class AQWelcomeViewController: UIViewController {
             make.centerX.equalTo(self.view)
             make.height.equalTo(48.0)
         }
+    }
+    
+    //MARK: create account
+    @objc private func createAccount(_ sender: UIButton?) {
+        let viewController = BASignupViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    //MARK: login
+    @objc private func login(_ sender: UIButton?) {
+        let viewController = BALoginViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

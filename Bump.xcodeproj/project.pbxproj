@@ -55,6 +55,13 @@
 		2F6E51F7208317AC00E8D8CA /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51F2208317AB00E8D8CA /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F6E51F8208317AC00E8D8CA /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51F3208317AC00E8D8CA /* ReactiveSwift.framework */; };
 		2F6E51F9208317AC00E8D8CA /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51F3208317AC00E8D8CA /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51FA2083D4A300E8D8CA /* BASignupViewController.swift */; };
+		2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51FC2083D4AA00E8D8CA /* BALoginViewController.swift */; };
+		2F6E51FF2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51FE2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework */; };
+		2F6E52002083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51FE2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */; };
+		2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */; };
+		2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +91,7 @@
 				2F6E51C42082B5C500E8D8CA /* SDWebImage.framework in Embed Frameworks */,
 				2F6E51C62082B5C500E8D8CA /* Starscream.framework in Embed Frameworks */,
 				2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */,
+				2F6E52002083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Embed Frameworks */,
 				2F6E51F5208317AC00E8D8CA /* Result.framework in Embed Frameworks */,
 				2F6E51BE2082B5C500E8D8CA /* Alamofire.framework in Embed Frameworks */,
 				2F6E51C02082B5C500E8D8CA /* Gloss.framework in Embed Frameworks */,
@@ -142,6 +150,12 @@
 		2F6E51F1208317AB00E8D8CA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		2F6E51F2208317AB00E8D8CA /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		2F6E51F3208317AC00E8D8CA /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
+		2F6E51FA2083D4A300E8D8CA /* BASignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASignupViewController.swift; sourceTree = "<group>"; };
+		2F6E51FC2083D4AA00E8D8CA /* BALoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALoginViewController.swift; sourceTree = "<group>"; };
+		2F6E51FE2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyFloatingLabelTextField.framework; path = Carthage/Build/iOS/SkyFloatingLabelTextField.framework; sourceTree = "<group>"; };
+		2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Toolbar.swift"; sourceTree = "<group>"; };
+		2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACommonUtility.swift; sourceTree = "<group>"; };
+		2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Back.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +166,7 @@
 				2F6E51C32082B5C500E8D8CA /* SDWebImage.framework in Frameworks */,
 				2F6E51C52082B5C500E8D8CA /* Starscream.framework in Frameworks */,
 				2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */,
+				2F6E51FF2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Frameworks */,
 				2F6E51F4208317AC00E8D8CA /* Result.framework in Frameworks */,
 				2F6E51BD2082B5C500E8D8CA /* Alamofire.framework in Frameworks */,
 				2F6E51BF2082B5C500E8D8CA /* Gloss.framework in Frameworks */,
@@ -190,6 +205,7 @@
 		2F4BBB1620522A3600AAFE1A = {
 			isa = PBXGroup;
 			children = (
+				2F6E51FE2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework */,
 				2F6E51F2208317AB00E8D8CA /* ReactiveCocoa.framework */,
 				2F6E51F3208317AC00E8D8CA /* ReactiveSwift.framework */,
 				2F6E51F1208317AB00E8D8CA /* Result.framework */,
@@ -293,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */,
+				2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -302,6 +319,8 @@
 			children = (
 				2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */,
 				2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */,
+				2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */,
+				2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -393,6 +412,8 @@
 			isa = PBXGroup;
 			children = (
 				2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */,
+				2F6E51FA2083D4A300E8D8CA /* BASignupViewController.swift */,
+				2F6E51FC2083D4AA00E8D8CA /* BALoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -545,7 +566,11 @@
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* AQWelcomeViewController.swift in Sources */,
+				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
+				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,
+				2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
+				2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */,
 				2F6E51E12082FF3000E8D8CA /* BALocationManager.swift in Sources */,
@@ -553,6 +578,7 @@
 				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
+				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,
 				2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */,
 				2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */,
 			);
