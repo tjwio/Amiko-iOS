@@ -19,6 +19,10 @@ extension UIFont {
         return UIFont(name: "AvenirNext-Medium", size: size)
     }
     
+    public class func mainDemi(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-DemiBold", size: size)
+    }
+    
     public class func mainBold(size: CGFloat) -> UIFont? {
         return UIFont(name: "AvenirNext-Bold", size: size)
     }

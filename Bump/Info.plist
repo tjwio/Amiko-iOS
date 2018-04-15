@@ -44,6 +44,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>AvenirNextLTPro-Bold.otf</string>
+		<string>AvenirNextLTPro-Demi.otf</string>
 		<string>AvenirNextLTPro-It.otf</string>
 		<string>AvenirNextLTPro-Medium.otf</string>
 		<string>AvenirNextLTPro-Regular.otf</string>

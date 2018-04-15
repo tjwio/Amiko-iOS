@@ -48,6 +48,7 @@
 		2F6E51EA208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */; };
 		2F6E51EB208308E000E8D8CA /* AvenirNextLTPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */; };
 		2F6E51EE20830F6000E8D8CA /* AQWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */; };
+		2F6E51F0208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51EF208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-UltLt.otf"; sourceTree = "<group>"; };
 		2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Bold.otf"; sourceTree = "<group>"; };
 		2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQWelcomeViewController.swift; sourceTree = "<group>"; };
+		2F6E51EF208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Demi.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */,
+				2F6E51EF208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf */,
 				2F6E51E2208308E000E8D8CA /* AvenirNextLTPro-It.otf */,
 				2F6E51E4208308E000E8D8CA /* AvenirNextLTPro-Medium.otf */,
 				2F6E51E3208308E000E8D8CA /* AvenirNextLTPro-Regular.otf */,
@@ -485,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E51E9208308E000E8D8CA /* AvenirNextLTPro-Medium.otf in Resources */,
+				2F6E51F0208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf in Resources */,
 				2F6E51E7208308E000E8D8CA /* AvenirNextLTPro-It.otf in Resources */,
 				2F6E51EB208308E000E8D8CA /* AvenirNextLTPro-Bold.otf in Resources */,
 				2F6E51E8208308E000E8D8CA /* AvenirNextLTPro-Regular.otf in Resources */,

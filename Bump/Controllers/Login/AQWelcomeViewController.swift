@@ -40,7 +40,7 @@ class AQWelcomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Welcome"
         label.textColor = .white
-        label.font = UIFont.mainMedium(size: 28.0)
+        label.font = UIFont.mainDemi(size: 28.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -50,7 +50,7 @@ class AQWelcomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Get set up and running in seconds"
         label.textColor = .white
-        label.font = UIFont.mainMedium(size: 18.0)
+        label.font = UIFont.mainDemi(size: 18.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -61,7 +61,7 @@ class AQWelcomeViewController: UIViewController {
         button.backgroundColor = UIColor(hexColor: 0x2895F1)
         button.setTitle("CREATE ACCOUNT", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.mainMedium(size: 17.0)
+        button.titleLabel?.font = UIFont.mainDemi(size: 17.0)
         button.layer.cornerRadius = 4.0
         
         return button
@@ -74,7 +74,7 @@ class AQWelcomeViewController: UIViewController {
         
         let button = UIButton(type: .custom)
         button.setAttributedTitle(loginAttString, for: .normal)
-        button.titleLabel?.font = UIFont.mainMedium(size: 17.0)
+        button.titleLabel?.font = UIFont.mainDemi(size: 17.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
