@@ -17,7 +17,7 @@ class AQWelcomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Ciao."
         label.textColor = .white
-        label.font = UIFont.mainBold(size: 60.0)
+        label.font = UIFont.avenirBold(size: 60.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -42,7 +42,7 @@ class AQWelcomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Welcome"
         label.textColor = .white
-        label.font = UIFont.mainDemi(size: 28.0)
+        label.font = UIFont.avenirDemi(size: 28.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -52,7 +52,7 @@ class AQWelcomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Get set up and running in seconds"
         label.textColor = .white
-        label.font = UIFont.mainDemi(size: 18.0)
+        label.font = UIFont.avenirDemi(size: 18.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -63,7 +63,7 @@ class AQWelcomeViewController: UIViewController {
         button.backgroundColor = UIColor(hexColor: 0x2895F1)
         button.setTitle("CREATE ACCOUNT", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.mainDemi(size: 17.0)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.layer.cornerRadius = 4.0
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
             button.backgroundColor = button.backgroundColor?.withAlphaComponent(1.0)
@@ -83,7 +83,7 @@ class AQWelcomeViewController: UIViewController {
         
         let button = UIButton(type: .custom)
         button.setAttributedTitle(loginAttString, for: .normal)
-        button.titleLabel?.font = UIFont.mainDemi(size: 17.0)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
