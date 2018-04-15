@@ -175,8 +175,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let createAccountButton: UIButton = {
-        let button = UIButton(type: .custom)
+    let createAccountButton: BALoadingButton = {
+        let button = BALoadingButton(type: .custom)
         button.backgroundColor = UIColor(hexColor: 0x2895F1)
         button.setTitle("NEXT", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -359,6 +359,26 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return true;
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text {
+            let newText = (text as NSString).replacingCharacters(in: range, with: string);
+            if let floatingTextField = textField as? SkyFloatingLabelTextField {
+                if (newText.count == 0) {
+                    floatingTextField.errorMessage = floatingTextField.placeholder?.uppercased();
+                }
+                else {
+                    if (floatingTextField == self.emailTextField && !BACommonUtility.isValidEmail(newText)) {
+                        floatingTextField.errorMessage = "EMAIL NOT VALID";
+                    }
+                    else {
+                        floatingTextField.errorMessage = "";
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
     @objc private func userFinishedEditingFirstName(sender: Any) {
         self.firstNameTextField.resignFirstResponder()
     }
@@ -426,26 +446,6 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
             
             self.isKeyboardShowing = false;
         }
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text {
-            let newText = (text as NSString).replacingCharacters(in: range, with: string);
-            if let floatingTextField = textField as? SkyFloatingLabelTextField {
-                if (newText.count == 0) {
-                    floatingTextField.errorMessage = floatingTextField.placeholder?.uppercased();
-                }
-                else {
-                    if (floatingTextField == self.emailTextField && !BACommonUtility.isValidEmail(newText)) {
-                        floatingTextField.errorMessage = "EMAIL NOT VALID";
-                    }
-                    else {
-                        floatingTextField.errorMessage = "";
-                    }
-                }
-            }
-        }
-        return true;
     }
     
     //MARK: status bar

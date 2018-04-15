@@ -11,7 +11,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import SnapKit
 
-class AQWelcomeViewController: UIViewController {
+class BAWelcomeViewController: UIViewController {
     
     let ciaoLabel: UILabel = {
         let label = UILabel()

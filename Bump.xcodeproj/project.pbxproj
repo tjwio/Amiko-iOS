@@ -47,7 +47,7 @@
 		2F6E51E9208308E000E8D8CA /* AvenirNextLTPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E4208308E000E8D8CA /* AvenirNextLTPro-Medium.otf */; };
 		2F6E51EA208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */; };
 		2F6E51EB208308E000E8D8CA /* AvenirNextLTPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */; };
-		2F6E51EE20830F6000E8D8CA /* AQWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */; };
+		2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51ED20830F6000E8D8CA /* BAWelcomeViewController.swift */; };
 		2F6E51F0208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51EF208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf */; };
 		2F6E51F4208317AC00E8D8CA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51F1208317AB00E8D8CA /* Result.framework */; };
 		2F6E51F5208317AC00E8D8CA /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51F1208317AB00E8D8CA /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -62,6 +62,7 @@
 		2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */; };
 		2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */; };
 		2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */; };
+		2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,7 +146,7 @@
 		2F6E51E4208308E000E8D8CA /* AvenirNextLTPro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Medium.otf"; sourceTree = "<group>"; };
 		2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-UltLt.otf"; sourceTree = "<group>"; };
 		2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Bold.otf"; sourceTree = "<group>"; };
-		2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQWelcomeViewController.swift; sourceTree = "<group>"; };
+		2F6E51ED20830F6000E8D8CA /* BAWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAWelcomeViewController.swift; sourceTree = "<group>"; };
 		2F6E51EF208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Demi.otf"; sourceTree = "<group>"; };
 		2F6E51F1208317AB00E8D8CA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		2F6E51F2208317AB00E8D8CA /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Toolbar.swift"; sourceTree = "<group>"; };
 		2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACommonUtility.swift; sourceTree = "<group>"; };
 		2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Back.swift"; sourceTree = "<group>"; };
+		2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALoadingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				2F4BBB5F20522AD400AAFE1A /* Models */,
+				2F6E52092083EBD300E8D8CA /* Views */,
 				2F4BBB6020522AE900AAFE1A /* Controllers */,
 				2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */,
 				2F4BBB2920522A3700AAFE1A /* Assets.xcassets */,
@@ -411,11 +414,19 @@
 		2F6E51EC20830F4A00E8D8CA /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51ED20830F6000E8D8CA /* AQWelcomeViewController.swift */,
+				2F6E51ED20830F6000E8D8CA /* BAWelcomeViewController.swift */,
 				2F6E51FA2083D4A300E8D8CA /* BASignupViewController.swift */,
 				2F6E51FC2083D4AA00E8D8CA /* BALoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		2F6E52092083EBD300E8D8CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -559,13 +570,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
 				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
 				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
-				2F6E51EE20830F6000E8D8CA /* AQWelcomeViewController.swift in Sources */,
+				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
 				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,
 				2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */,
