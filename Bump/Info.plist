@@ -43,11 +43,11 @@
 	<string>Location is used to increase accuracy of bump matching</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>TitilliumWeb-Regular.ttf</string>
-		<string>TitilliumWeb-SemiBold.ttf</string>
-		<string>TitilliumWeb-Italic.ttf</string>
-		<string>TitilliumWeb-Light.ttf</string>
-		<string>TitilliumWeb-Bold.ttf</string>
+		<string>AvenirNextLTPro-Bold.otf</string>
+		<string>AvenirNextLTPro-It.otf</string>
+		<string>AvenirNextLTPro-Medium.otf</string>
+		<string>AvenirNextLTPro-Regular.otf</string>
+		<string>AvenirNextLTPro-UltLt.otf</string>
 		<string>FontAwesome.otf</string>
 	</array>
 </dict>

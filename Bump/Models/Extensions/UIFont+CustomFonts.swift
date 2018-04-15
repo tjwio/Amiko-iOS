@@ -12,11 +12,23 @@ extension UIFont {
     //MARK: basic fonts
     
     public class func mainRegular(size: CGFloat) -> UIFont? {
-        return UIFont(name: "TitilliumWeb-Regular", size: size)
+        return UIFont(name: "AvenirNext-Regular", size: size)
     }
     
-    public class func mainSemiBold(size: CGFloat) -> UIFont? {
-        return UIFont(name: "TitilliumWeb-SemiBold", size: size)
+    public class func mainMedium(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-Medium", size: size)
+    }
+    
+    public class func mainBold(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-Bold", size: size)
+    }
+    
+    public class func mainItalic(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-Italic", size: size)
+    }
+    
+    public class func mainLight(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-UltraLight", size: size)
     }
     
     public class func fontAwesome(size: CGFloat) -> UIFont? {
@@ -26,15 +38,15 @@ extension UIFont {
     //MARK: headers
     
     public class func mainHeader() -> UIFont? {
-        return mainSemiBold(size: 24.0)
+        return mainMedium(size: 24.0)
     }
     
     public class func mediumHeader() -> UIFont? {
-        return mainSemiBold(size: 20.0)
+        return mainMedium(size: 20.0)
     }
     
     public class func smallheader() -> UIFont? {
-        return mainSemiBold(size: 16.0)
+        return mainMedium(size: 16.0)
     }
     
     //MARK: regular
