@@ -45,6 +45,8 @@
 		2F6E51D82082BF9B00E8D8CA /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */; };
 		2F6E51D92082BF9B00E8D8CA /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DB2082C2C000E8D8CA /* BAError.swift */; };
+		2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */; };
+		2F6E51E12082FF3000E8D8CA /* BALocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51E02082FF3000E8D8CA /* BALocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,8 @@
 		2F6E51D52082BE4000E8D8CA /* BAAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAuthenticationManager.swift; sourceTree = "<group>"; };
 		2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
 		2F6E51DB2082C2C000E8D8CA /* BAError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAError.swift; sourceTree = "<group>"; };
+		2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserHolder.swift; sourceTree = "<group>"; };
+		2F6E51E02082FF3000E8D8CA /* BALocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +249,7 @@
 				2F6E51DA2082C2A400E8D8CA /* Error */,
 				2F4BBB6220522B1900AAFE1A /* Extensions */,
 				2F4BBB6120522AFF00AAFE1A /* Helper */,
+				2F6E51DF2082FF2200E8D8CA /* Location */,
 				2F6E51C72082B82900E8D8CA /* Network */,
 				2F6E51B52082B0F100E8D8CA /* User */,
 			);
@@ -304,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				2F6E51B62082B10C00E8D8CA /* BAUser.swift */,
+				2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -349,6 +355,14 @@
 				2F6E51DB2082C2C000E8D8CA /* BAError.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		2F6E51DF2082FF2200E8D8CA /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				2F6E51E02082FF3000E8D8CA /* BALocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,8 +511,10 @@
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
+				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */,
+				2F6E51E12082FF3000E8D8CA /* BALocationManager.swift in Sources */,
 				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,

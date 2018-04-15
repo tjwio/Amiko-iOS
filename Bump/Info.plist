@@ -39,6 +39,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is used to increase accuracy of bump matching</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>TitilliumWeb-Regular.ttf</string>

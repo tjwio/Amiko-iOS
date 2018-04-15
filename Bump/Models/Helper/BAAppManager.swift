@@ -11,8 +11,12 @@ import UIKit
 enum BAEnvironment {
     case development, staging, production
     
-    var baseUrl: String {
-        return "http://localhost:6789"
+    var apiUrl: String {
+        return "http://localhost:5678"
+    }
+    
+    var streamUrl: String {
+        return "http://localhost:9092"
     }
 }
 
