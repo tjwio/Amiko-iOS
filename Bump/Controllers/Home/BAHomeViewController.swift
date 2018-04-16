@@ -81,7 +81,15 @@ class BAHomeViewController: UIViewController {
             avatarImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
         }
         
-        BALocationManager.shared.initialize()
+        let userHolder = BAUserHolder.shared
+        let locationManager = BALocationManager.shared
+        locationManager.initialize()
+        BABumpManager.shared.bumpHandler = { [weak userHolder, weak locationManager]  bump in
+            if let currentLocation = locationManager?.currentLocation {
+                userHolder?.sendBumpReceivedEvent(bump: bump, location: currentLocation)
+            }
+        }
+        BABumpManager.shared.start()
         
         view.addSubview(settingsButton)
         view.addSubview(accountButton)

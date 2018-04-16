@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 import SocketIO
 
 class BAUserHolder: NSObject {
@@ -48,6 +49,10 @@ class BAUserHolder: NSObject {
     //MARK: bump events
     
     private func addSocketEvents() {
+        
+    }
+    
+    func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
         
     }
 }
