@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 class BAHomeViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class BAHomeViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("\u{F013}", for: .normal)
         button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(size: 18.0)
+        button.titleLabel?.font = UIFont.fontAwesome(size: 24.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -23,9 +24,45 @@ class BAHomeViewController: UIViewController {
     
     let accountButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("\u{F0C0}", for: .normal)
+        button.setTitle("\u{F007}", for: .normal)
         button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(size: 18.0)
+        button.titleLabel?.font = UIFont.fontAwesome(size: 24.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    let avatarImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "example_avatar"))
+        imageView.layer.cornerRadius = 62.5
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(hexColor: 0x656A6F)
+        label.font = UIFont.avenirDemi(size: 22.0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let jobLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Lead Designer at Spotify"
+        label.textColor = UIColor(hexColor: 0xA7ADB6)
+        label.font = UIFont.avenirRegular(size: 16.0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let cameraButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "camera_button"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -34,21 +71,56 @@ class BAHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(hexColor: 0xFAFBFD)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         
-        self.view.addSubview(self.settingsButton)
-        self.view.addSubview(self.accountButton)
+        view.backgroundColor = UIColor(hexColor: 0xFBFCFD)
+        
+        let user = BAUserHolder.shared.user
+        nameLabel.text = "\(user.firstName) \(user.lastName)"
+        if let imageUrl = user.imageUrl {
+            avatarImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
+        }
+        
+        view.addSubview(settingsButton)
+        view.addSubview(accountButton)
+        view.addSubview(avatarImageView)
+        view.addSubview(nameLabel)
+        view.addSubview(jobLabel)
+        view.addSubview(cameraButton)
+        
+        setupConstraints()
     }
     
     private func setupConstraints() {
-        self.settingsButton.snp.makeConstraints { make in
+        settingsButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view).offset(36.0)
             make.leading.equalTo(self.view).offset(16.0)
-            make.top.equalTo(self.view).offset(16.0)
         }
         
-        self.accountButton.snp.makeConstraints { make in
+        accountButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view).offset(36.0)
             make.trailing.equalTo(self.view).offset(-16.0)
-            make.top.equalTo(self.view).offset(16.0)
+        }
+        
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.view).offset(60.0)
+            make.centerX.equalTo(self.view)
+            make.width.height.equalTo(125.0)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.avatarImageView.snp.bottom).offset(20.0)
+            make.centerX.equalTo(self.view)
+        }
+        
+        jobLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(4.0)
+            make.centerX.equalTo(self.view)
+        }
+        
+        cameraButton.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view).offset(-30.0)
+            make.centerX.equalTo(self.view)
         }
     }
 }

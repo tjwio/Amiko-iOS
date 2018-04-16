@@ -66,6 +66,7 @@
 		2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */; };
 		2F6E520F2084040E00E8D8CA /* GSMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E520E2084040E00E8D8CA /* GSMessages.framework */; };
 		2F6E52102084040E00E8D8CA /* GSMessages.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E520E2084040E00E8D8CA /* GSMessages.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F6E5212208462F100E8D8CA /* BAInitialLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,7 @@
 		2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALoadingButton.swift; sourceTree = "<group>"; };
 		2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAButtonMessage.swift; sourceTree = "<group>"; };
 		2F6E520E2084040E00E8D8CA /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = Carthage/Build/iOS/GSMessages.framework; sourceTree = "<group>"; };
+		2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAInitialLoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				2F1312042081AF2600D462F8 /* BAHomeViewController.swift */,
+				2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
+				2F6E5212208462F100E8D8CA /* BAInitialLoadingViewController.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,

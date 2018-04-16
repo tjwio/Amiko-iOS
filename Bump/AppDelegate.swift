@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         BACommonUtility.configureMessages()
         
-        let navigationController = UINavigationController(rootViewController: BAWelcomeViewController())
-        self.window?.rootViewController = navigationController
+        self.loadInitialViewController()
         self.window?.makeKeyAndVisible()
         
         return true
@@ -46,6 +45,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    private func loadWelcomeViewController() {
+        let navigationController = UINavigationController(rootViewController: BAWelcomeViewController())
+        self.window?.rootViewController = navigationController
+    }
+    
+    private func loadLoadingViewController(userId: String) {
+        let navigationController = BAInitialLoadingViewController(userId: userId)
+        self.window?.rootViewController = navigationController
+    }
+    
+    func loadHomeViewController(user: BAUser) {
+        _ = BAUserHolder.initialize(user: user)
+        let navigationController = UINavigationController(rootViewController: BAHomeViewController())
+        self.window?.rootViewController = navigationController
+    }
+    
+    func loadInitialViewController() {
+        if let userId = BAAuthenticationManager.shared.userId, userId.count > 0 {
+            self.loadLoadingViewController(userId: userId)
+        }
+        else {
+            self.loadWelcomeViewController()
+        }
     }
     
     //MARK: debug helper font

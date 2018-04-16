@@ -71,4 +71,12 @@ class BAAuthenticationManager: NSObject {
         keychain.set(userId, forKey: BAAuthenticationManager.EMAIL_KEYCHAIN_KEY)
         keychain.set(userId, forKey: BAAuthenticationManager.PASSWORD_KEYCHAIN_KEY)
     }
+    
+    //MARK: LOG OUT
+    func logOut() {
+        userId = nil
+        keychain.delete(BAAuthenticationManager.USER_ID_KEYCHAIN_KEY)
+        keychain.delete(BAAuthenticationManager.EMAIL_KEYCHAIN_KEY)
+        keychain.delete(BAAuthenticationManager.PASSWORD_KEYCHAIN_KEY)
+    }
 }
