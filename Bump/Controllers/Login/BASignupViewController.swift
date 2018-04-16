@@ -402,7 +402,9 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     //MARK: create account
     @objc private func createAccount(_ sender: UIButton?) {
         BAAuthenticationManager.shared.signup(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, phone: self.phoneTextField.text!, password: self.passwordTextField.text!, success: { user in
-            print("\(user)")
+            DispatchQueue.main.async {
+                (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
+            }
         }) { error in
             print("failed to create account with error: \(error)")
             self.createAccountButton.isLoading = false

@@ -15,15 +15,21 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     private(set) var currentLocation: CLLocation?
     
-    class func initialize() -> BALocationManager {
-        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse && CLLocationManager.authorizationStatus() != .authorizedAlways  {
-            shared.locationManager.requestWhenInUseAuthorization()
-            shared.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            shared.locationManager.delegate = shared
-            shared.locationManager.startUpdatingLocation()
+    func initialize() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+            locationManager.startUpdatingLocation()
         }
-        
-        return shared
+        else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

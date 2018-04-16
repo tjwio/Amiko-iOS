@@ -302,7 +302,9 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: login
     @objc private func login(_ sender: UIButton?) {
         BAAuthenticationManager.shared.login(email: self.emailTextField.text!, password: self.passwordTextField.text!, success: { user in
-            print("\(user)")
+            DispatchQueue.main.async {
+                (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
+            }
         }) { error in
             print("failed to login with error: \(error)")
             self.loginButton.isLoading = false

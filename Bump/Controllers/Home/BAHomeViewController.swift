@@ -81,6 +81,8 @@ class BAHomeViewController: UIViewController {
             avatarImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
         }
         
+        BALocationManager.shared.initialize()
+        
         view.addSubview(settingsButton)
         view.addSubview(accountButton)
         view.addSubview(avatarImageView)

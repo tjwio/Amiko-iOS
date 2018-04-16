@@ -54,7 +54,7 @@ class BAAuthenticationManager: NSObject {
     
     //MARK: ACCESSORS
     private func getUserId() -> String? {
-        return keychain.get(BAAuthenticationManager.USER_ID_KEYCHAIN_KEY)
+        return UserDefaults.standard.string(forKey: BAAuthenticationManager.USER_ID_KEYCHAIN_KEY)
     }
     
     private func getEmail() -> String? {
@@ -67,15 +67,15 @@ class BAAuthenticationManager: NSObject {
     
     //MARK: SAVE
     func save(userId: String, email: String, password: String) {
-        keychain.set(userId, forKey: BAAuthenticationManager.USER_ID_KEYCHAIN_KEY)
-        keychain.set(userId, forKey: BAAuthenticationManager.EMAIL_KEYCHAIN_KEY)
-        keychain.set(userId, forKey: BAAuthenticationManager.PASSWORD_KEYCHAIN_KEY)
+        UserDefaults.standard.set(userId, forKey: BAAuthenticationManager.USER_ID_KEYCHAIN_KEY)
+        keychain.set(email, forKey: BAAuthenticationManager.EMAIL_KEYCHAIN_KEY)
+        keychain.set(password, forKey: BAAuthenticationManager.PASSWORD_KEYCHAIN_KEY)
     }
     
     //MARK: LOG OUT
     func logOut() {
         userId = nil
-        keychain.delete(BAAuthenticationManager.USER_ID_KEYCHAIN_KEY)
+        UserDefaults.standard.set(nil, forKey: BAAuthenticationManager.USER_ID_KEYCHAIN_KEY)
         keychain.delete(BAAuthenticationManager.EMAIL_KEYCHAIN_KEY)
         keychain.delete(BAAuthenticationManager.PASSWORD_KEYCHAIN_KEY)
     }
