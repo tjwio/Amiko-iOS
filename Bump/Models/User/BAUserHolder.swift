@@ -49,10 +49,19 @@ class BAUserHolder: NSObject {
     //MARK: bump events
     
     private func addSocketEvents() {
-        
+        self.socket.defaultSocket.on(BAUserHolder.BUMP_MATCHED_EVENT) { (data, ack) in
+            
+        }
     }
     
     func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
+        let params: [String : Any] = [
+            BAConstants.GeoMessage.USER_ID : user.userId,
+            BAConstants.GeoMessage.TIMESTAMP : bump.date.timeIntervalSince1970 * 1000.0,
+            BAConstants.GeoMessage.LATITUDE : location.coordinate.latitude,
+            BAConstants.GeoMessage.LONGITUDE : location.coordinate.longitude
+        ]
         
+        self.socket.defaultSocket.emit(BAUserHolder.BUMP_RECEIVED_EVENT, with: [params])
     }
 }

@@ -27,4 +27,11 @@ struct BAConstants {
         static let IMAGE_URL = "imageUrl"
         static let PASSWORD = "password"
     }
+    
+    struct GeoMessage {
+        static let USER_ID = "userId"
+        static let TIMESTAMP = "timestamp"
+        static let LATITUDE = "latitude"
+        static let LONGITUDE = "longitude"
+    }
 }
