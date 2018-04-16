@@ -20,7 +20,8 @@ public typealias BAErrorHandler = (Error) -> Void
 struct BAConstants {
     struct User {
         static let ID = "id"
-        static let NAME = "name"
+        static let FIRST_NAME = "firstName"
+        static let LAST_NAME = "lastName"
         static let EMAIL = "email"
         static let PHONE = "phone"
         static let IMAGE_URL = "imageUrl"

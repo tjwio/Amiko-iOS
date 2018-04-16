@@ -25,8 +25,8 @@ class BAAuthenticationManager: NSObject {
     }
     
     //MARK: SIGNUP
-    func signup(name: String, email: String, phone: String, password: String, success: BAUserHandler?, failure: BAErrorHandler?) {
-        BANetworkHandler.shared.signup(name: name, email: email, phone: phone, password: password, success: { response in
+    func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: BAUserHandler?, failure: BAErrorHandler?) {
+        BANetworkHandler.shared.signup(firstName: firstName, lastName: lastName, email: email, phone: phone, password: password, success: { response in
             if let user = BAUser(json: response) {
                 self.save(userId: user.userId, email: email, password: password)
                 

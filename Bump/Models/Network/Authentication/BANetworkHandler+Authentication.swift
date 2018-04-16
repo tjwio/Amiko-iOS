@@ -10,9 +10,10 @@ import Foundation
 import Gloss
 
 extension BANetworkHandler {
-    public func signup(name: String, email: String, phone: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
+    public func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
         let parameters = [
-            BAConstants.User.NAME : name,
+            BAConstants.User.FIRST_NAME : firstName,
+            BAConstants.User.LAST_NAME : lastName,
             BAConstants.User.EMAIL : email,
             BAConstants.User.PHONE : phone,
             BAConstants.User.PASSWORD : password
