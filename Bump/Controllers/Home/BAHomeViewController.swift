@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 import SnapKit
 import SDWebImage
 
@@ -86,6 +87,13 @@ class BAHomeViewController: UIViewController {
         let userHolder = BAUserHolder.shared
         let locationManager = BALocationManager.shared
         locationManager.initialize()
+        
+        BAUserHolder.shared.bumpMatchCallback = { [weak self] user in
+            DispatchQueue.main.async {
+                self?.showAddUser(user)
+            }
+        }
+        
         BABumpManager.shared.bumpHandler = { [weak userHolder, weak locationManager]  bump in
             if let currentLocation = locationManager?.currentLocation {
                 userHolder?.sendBumpReceivedEvent(bump: bump, location: currentLocation)
@@ -136,13 +144,19 @@ class BAHomeViewController: UIViewController {
         }
     }
     
-    //MARK: camera button
-    @objc private func showCamera(_ sender: UIButton?) {
-        let viewController = BAAddUserViewController(userToAdd: BAUserHolder.shared.user)
+    //MARK: add user
+    
+    private func showAddUser(_ userToAdd: BAUser) {
+        let viewController = BAAddUserViewController(userToAdd: userToAdd)
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
         viewController.modalPresentationStyle = .overCurrentContext
         
         self.present(viewController, animated: false, completion: nil)
+    }
+    
+    //MARK: camera button
+    @objc private func showCamera(_ sender: UIButton?) {
+        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
     }
 }

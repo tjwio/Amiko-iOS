@@ -13,11 +13,14 @@ import SocketIO
 class BAUserHolder: NSObject {
     private static let BUMP_RECEIVED_EVENT = "bump_received"
     private static let BUMP_MATCHED_EVENT = "bump_matched"
+    private static let BUMP_TEST_EVENT = "bump_test"
     
     private(set) static var shared: BAUserHolder!
     private(set) var user: BAUser
     
     let socket: SocketManager
+    
+    var bumpMatchCallback: BAUserHandler?
     
     init(user: BAUser) {
         self.user = user
@@ -50,7 +53,11 @@ class BAUserHolder: NSObject {
     
     private func addSocketEvents() {
         self.socket.defaultSocket.on(BAUserHolder.BUMP_MATCHED_EVENT) { (data, ack) in
-            
+            if let jsonResponse = data.first as? [String : Any], let user = BAUser(json: jsonResponse) {
+                if let bumpCallback = self.bumpMatchCallback {
+                    bumpCallback(user)
+                }
+            }
         }
     }
     
@@ -62,6 +69,6 @@ class BAUserHolder: NSObject {
             BAConstants.GeoMessage.LONGITUDE : location.coordinate.longitude
         ]
         
-        self.socket.defaultSocket.emit(BAUserHolder.BUMP_RECEIVED_EVENT, with: [params])
+        self.socket.defaultSocket.emit(BAUserHolder.BUMP_TEST_EVENT, with: [params])
     }
 }
