@@ -51,10 +51,10 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     let firstNameTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.keyboardAppearance = .dark
-        textField.keyboardType = .emailAddress
-        textField.autocorrectionType = .no
-        textField.spellCheckingType = .no
-        textField.autocapitalizationType = .none
+        textField.keyboardType = .default
+        textField.autocorrectionType = .default
+        textField.spellCheckingType = .default
+        textField.autocapitalizationType = .words
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
         textField.placeholder = "First Name"
@@ -77,10 +77,10 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     let lastNameTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.keyboardAppearance = .dark
-        textField.keyboardType = .emailAddress
-        textField.autocorrectionType = .no
-        textField.spellCheckingType = .no
-        textField.autocapitalizationType = .none
+        textField.keyboardType = .default
+        textField.autocorrectionType = .default
+        textField.spellCheckingType = .default
+        textField.autocapitalizationType = .words
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
         textField.placeholder = "Last Name"
@@ -103,10 +103,10 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     let phoneTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.keyboardAppearance = .dark
-        textField.keyboardType = .emailAddress
-        textField.autocorrectionType = .no
-        textField.spellCheckingType = .no
-        textField.autocapitalizationType = .none
+        textField.keyboardType = .phonePad
+        textField.autocorrectionType = .default
+        textField.spellCheckingType = .default
+        textField.autocapitalizationType = .words
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
         textField.placeholder = "Phone Number"
@@ -457,7 +457,6 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: status bar
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent;
     }

@@ -1,0 +1,89 @@
+//
+//  BAAddUserViewController.swift
+//  Bump
+//
+//  Created by Tim Wong on 4/16/18.
+//  Copyright © 2018 tjwio. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+class BAAddUserViewController: UIViewController {
+    
+    let userToAdd: BAUser
+    let userView: BAAddUserView
+    
+    init(userToAdd: BAUser) {
+        self.userToAdd = userToAdd
+        let fullName = userToAdd.fullName
+        let handleUsername = "@\(fullName.lowercased().replacingOccurrences(of: " ", with: ""))"
+        self.userView = BAAddUserView(contacts: [
+            (.phone, userToAdd.phone),
+            (.email, userToAdd.email),
+            (.linkedin, fullName),
+            (.facebook, fullName),
+            (.twitter, handleUsername),
+            (.instagram, handleUsername)
+        ])
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .clear
+        
+        userView.nameLabel.text = userToAdd.fullName
+        userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)
+        userView.isHidden = false
+        userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
+        userView.layer.cornerRadius = 8.0
+        userView.layer.applySketchShadow(color: UIColor(hexColor: 0x3D3F42), alpha: 0.20, x: 0.0, y: 1.0, blur: 12.0, spread: 0.0)
+        userView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(userView)
+        setupConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            self.view.backgroundColor = UIColor(hexColor: 0xA7ADB6, alpha: 0.40);
+            
+            self.userView.transform = .identity
+        }, completion: nil);
+    }
+    
+    private func setupConstraints() {
+        userView.snp.makeConstraints { make in
+            make.top.equalTo(self.view).offset(50.0)
+            make.leading.equalTo(self.view).offset(22.0)
+            make.trailing.equalTo(self.view).offset(-22.0)
+            make.bottom.equalTo(self.view).offset(-30.0)
+        }
+    }
+    
+    //MARK: done
+    
+    @objc private func done(_ sender: UIButton?) {
+        dismissViewController()
+    }
+    
+    //MARK: dismiss
+    
+    private func dismissViewController() {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            self.view.backgroundColor = .clear
+            self.userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
+        }) { completed in
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
+}

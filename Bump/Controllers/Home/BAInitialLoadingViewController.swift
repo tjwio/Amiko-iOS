@@ -22,9 +22,7 @@ class BAInitialLoadingViewController: UIViewController {
             }
         }) { error in
             print("failed to load user id: \(userId), logging out")
-            DispatchQueue.main.async {
-                (UIApplication.shared.delegate as? AppDelegate)?.loadInitialViewController()
-            }
+            BAAppManager.shared.logOut()
         }
     }
     

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */; };
+		2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F06357920853E7F00D655E7 /* BAAddUserView.swift */; };
+		2F06357D20854AAF00D655E7 /* BAAddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F06357C20854AAF00D655E7 /* BAAddUserViewController.swift */; };
+		2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F06357E2085525800D655E7 /* CALayer+Shadow.swift */; };
 		2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1312042081AF2600D462F8 /* BAHomeViewController.swift */; };
 		2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */; };
 		2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; };
@@ -112,6 +116,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASelectAccountTableViewCell.swift; sourceTree = "<group>"; };
+		2F06357920853E7F00D655E7 /* BAAddUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAddUserView.swift; sourceTree = "<group>"; };
+		2F06357C20854AAF00D655E7 /* BAAddUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAddUserViewController.swift; sourceTree = "<group>"; };
+		2F06357E2085525800D655E7 /* CALayer+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Shadow.swift"; sourceTree = "<group>"; };
 		2F1312042081AF2600D462F8 /* BAHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHomeViewController.swift; sourceTree = "<group>"; };
 		2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexRGB.swift"; sourceTree = "<group>"; };
 		2F1312082081B36700D462F8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
@@ -205,6 +213,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F0635762085395E00D655E7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2F06357B20854AA200D655E7 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				2F06357C20854AAF00D655E7 /* BAAddUserViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
 		2F1312032081AEE900D462F8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +338,7 @@
 			children = (
 				2F4BBB6520522CD500AAFE1A /* First Experience */,
 				2F1312032081AEE900D462F8 /* Home */,
+				2F06357B20854AA200D655E7 /* Add */,
 				2F6E51EC20830F4A00E8D8CA /* Login */,
 			);
 			path = Controllers;
@@ -335,6 +360,7 @@
 				2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */,
 				2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */,
 				2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */,
+				2F06357E2085525800D655E7 /* CALayer+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -435,8 +461,10 @@
 		2F6E52092083EBD300E8D8CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2F06357920853E7F00D655E7 /* BAAddUserView.swift */,
 				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
 				2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */,
+				2F0635762085395E00D655E7 /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -585,6 +613,7 @@
 				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
 				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
+				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
 				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
@@ -592,12 +621,15 @@
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
+				2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */,
+				2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */,
 				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,
 				2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
 				2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */,
 				2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
+				2F06357D20854AAF00D655E7 /* BAAddUserViewController.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */,
 				2F6E51E12082FF3000E8D8CA /* BALocationManager.swift in Sources */,
 				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,

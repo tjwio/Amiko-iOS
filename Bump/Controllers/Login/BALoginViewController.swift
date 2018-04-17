@@ -356,4 +356,9 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
             self.isKeyboardShowing = false;
         }
     }
+    
+    //MARK: status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
 }

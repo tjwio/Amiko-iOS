@@ -1,0 +1,200 @@
+//
+//  BAAddUserView.swift
+//  Bump
+//
+//  Created by Tim Wong on 4/16/18.
+//  Copyright © 2018 tjwio. All rights reserved.
+//
+
+import UIKit
+import ReactiveCocoa
+import ReactiveSwift
+
+class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
+    private static let SELECTABLE_CELL_IDENTIFIER = "BASelectableAccountTableViewCellIdentifier"
+    
+    var availableItems: [(BAAccountContact, String, Bool)]
+    
+    let contactHolderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let avatarImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "blank_avatar"))
+        imageView.layer.cornerRadius = 50.0
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(hexColor: 0x656A6F)
+        label.font = UIFont.avenirDemi(size: 20.0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let jobLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Product Designer at Tesla"
+        label.textColor = UIColor(hexColor: 0xA7ADB6)
+        label.font = UIFont.avenirRegular(size: 14.0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.backgroundColor = .clear
+        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
+    
+    let doneButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor(hexColor: 0xA7ADB6)
+        button.setTitle("DONE", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 18.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(1.0)
+        }
+        
+        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.9)
+        }
+        
+        return button
+    }()
+    
+    init(contacts: [(BAAccountContact, String)]) {
+        availableItems = contacts.map { return ($0.0, $0.1, false) }
+        super.init(frame: .zero)
+        self.commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func commonInit() {
+        backgroundColor = UIColor(hexColor: 0xFBFCFD)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        contactHolderView.addSubview(avatarImageView)
+        contactHolderView.addSubview(nameLabel)
+        contactHolderView.addSubview(jobLabel)
+        addSubview(contactHolderView)
+        addSubview(tableView)
+        addSubview(doneButton)
+        
+        setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.contactHolderView).offset(34.0)
+            make.centerX.equalTo(self.contactHolderView)
+            make.height.width.equalTo(100.0)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.avatarImageView.snp.bottom).offset(20.0)
+            make.centerX.equalTo(self.contactHolderView)
+        }
+        
+        jobLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(4.0)
+            make.centerX.equalTo(self.contactHolderView)
+        }
+        
+        contactHolderView.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(6.0)
+            make.leading.trailing.equalTo(self)
+            make.height.equalTo(self).multipliedBy(0.40)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.contactHolderView.snp.bottom).offset(20.0)
+            make.leading.equalTo(self).offset(20.0)
+            make.trailing.equalTo(self).offset(-20.0)
+            make.bottom.equalTo(self)
+        }
+        
+        doneButton.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(self)
+            make.height.equalTo(60.0)
+        }
+        
+        super.updateConstraints()
+    }
+    
+    //MARK: table view methods
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return availableItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 64.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BAAddUserView.SELECTABLE_CELL_IDENTIFIER) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: BAAddUserView.SELECTABLE_CELL_IDENTIFIER)
+        
+        let item = availableItems[indexPath.section]
+        
+        cell.accountLabel.text = item.1
+        cell.checkmarkImageView.isHidden = !item.2
+        
+        if let imageName = item.0.image, let image = UIImage(named: imageName) {
+            cell.accountImageView.image = image
+            cell.accountImageView.isHidden = false
+            cell.iconLabel.isHidden = true
+        }
+        else if let iconHex = item.0.iconHex {
+            cell.iconLabel.text = iconHex
+            cell.iconLabel.isHidden = false
+            cell.accountImageView.isHidden = true
+        }
+        
+        cell.layer.cornerRadius = 32.0
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        availableItems[indexPath.section].2 = !availableItems[indexPath.section].2
+        
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}

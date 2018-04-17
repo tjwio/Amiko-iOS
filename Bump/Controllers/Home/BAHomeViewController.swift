@@ -81,6 +81,8 @@ class BAHomeViewController: UIViewController {
             avatarImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
         }
         
+        cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
+        
         let userHolder = BAUserHolder.shared
         let locationManager = BALocationManager.shared
         locationManager.initialize()
@@ -115,7 +117,7 @@ class BAHomeViewController: UIViewController {
         avatarImageView.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(60.0)
             make.centerX.equalTo(self.view)
-            make.width.height.equalTo(125.0)
+            make.height.width.equalTo(125.0)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -132,5 +134,15 @@ class BAHomeViewController: UIViewController {
             make.bottom.equalTo(self.view).offset(-30.0)
             make.centerX.equalTo(self.view)
         }
+    }
+    
+    //MARK: camera button
+    @objc private func showCamera(_ sender: UIButton?) {
+        let viewController = BAAddUserViewController(userToAdd: BAUserHolder.shared.user)
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        
+        self.present(viewController, animated: false, completion: nil)
     }
 }

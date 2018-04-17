@@ -166,4 +166,9 @@ class BAWelcomeViewController: UIViewController {
         let viewController = BALoginViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    //MARK: status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent;
+    }
 }
