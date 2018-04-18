@@ -12,11 +12,11 @@ enum BAEnvironment {
     case development, staging, production
     
     var apiUrl: String {
-        return "http://10.138.111.83:5678/webapi"
+        return "https://ciao-api.herokuapp.com"
     }
     
     var streamUrl: String {
-        return "http://10.138.111.83:9092"
+        return "https://ciao-bump.herokuapp.com:9092"
     }
 }
 
