@@ -57,7 +57,7 @@ public class BABumpManager: NSObject {
                     self.bumpHandler?(BABumpEvent(acceleration: data.userAcceleration))
                 }
                 
-                print("x: \(abs(data.userAcceleration.x - self.prev.x).roundTo(2)), y: \(abs(data.userAcceleration.y - self.prev.y).roundTo(2)), z: \(abs(data.userAcceleration.z - self.prev.z).roundTo(2))")
+                //print("x: \(abs(data.userAcceleration.x - self.prev.x).roundTo(2)), y: \(abs(data.userAcceleration.y - self.prev.y).roundTo(2)), z: \(abs(data.userAcceleration.z - self.prev.z).roundTo(2))")
                 self.prev = data.userAcceleration
             }
             else if let error = error {

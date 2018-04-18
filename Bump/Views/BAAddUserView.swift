@@ -95,6 +95,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     private func commonInit() {
         backgroundColor = UIColor(hexColor: 0xFBFCFD)
         
+        clipsToBounds = true
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -110,7 +112,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     override func updateConstraints() {
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.contactHolderView).offset(34.0)
+            make.top.equalTo(self.contactHolderView).offset(40.0)
             make.centerX.equalTo(self.contactHolderView)
             make.height.width.equalTo(100.0)
         }
@@ -126,7 +128,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         
         contactHolderView.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(6.0)
+            make.top.equalTo(self)
             make.leading.trailing.equalTo(self)
             make.height.equalTo(self).multipliedBy(0.40)
         }

@@ -83,6 +83,7 @@ class BAHomeViewController: UIViewController {
         }
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
+        settingsButton.addTarget(self, action: #selector(self.showSettings(_:)), for: .touchUpInside)
         
         let userHolder = BAUserHolder.shared
         let locationManager = BALocationManager.shared
@@ -163,5 +164,11 @@ class BAHomeViewController: UIViewController {
     //MARK: camera button
     @objc private func showCamera(_ sender: UIButton?) {
         BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+    }
+    
+    //MARK: settings button
+    
+    @objc private func showSettings(_ sender: UIButton?) {
+        BAAppManager.shared.logOut()
     }
 }

@@ -16,7 +16,7 @@ enum BAEnvironment {
     }
     
     var streamUrl: String {
-        return "https://ciao-bump.herokuapp.com:9092"
+        return "https://ciao-bump.herokuapp.com"
     }
 }
 

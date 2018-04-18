@@ -52,6 +52,10 @@ class BAUserHolder: NSObject {
     //MARK: bump events
     
     private func addSocketEvents() {
+        self.socket.defaultSocket.on("connect") { (_, _) in
+            print("socket connected")
+        }
+        
         self.socket.defaultSocket.on(BAUserHolder.BUMP_MATCHED_EVENT) { (data, ack) in
             if let jsonResponse = data.first as? [String : Any], let user = BAUser(json: jsonResponse) {
                 if let bumpCallback = self.bumpMatchCallback {
