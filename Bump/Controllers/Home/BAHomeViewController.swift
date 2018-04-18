@@ -148,6 +148,11 @@ class BAHomeViewController: UIViewController {
     
     private func showAddUser(_ userToAdd: BAUser) {
         let viewController = BAAddUserViewController(userToAdd: userToAdd)
+        viewController.successCallback = { [weak self] in
+            DispatchQueue.main.async {
+                self?.showLeftMessage("Successfully added contact to address book and all accounts!", type: .success)
+            }
+        }
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
         viewController.modalPresentationStyle = .overCurrentContext

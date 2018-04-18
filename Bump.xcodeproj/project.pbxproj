@@ -15,6 +15,7 @@
 		2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */; };
 		2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; };
 		2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */; };
 		2F4BBB2A20522A3700AAFE1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2920522A3700AAFE1A /* Assets.xcassets */; };
 		2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2B20522A3700AAFE1A /* LaunchScreen.storyboard */; };
@@ -123,6 +124,7 @@
 		2F1312042081AF2600D462F8 /* BAHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHomeViewController.swift; sourceTree = "<group>"; };
 		2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexRGB.swift"; sourceTree = "<group>"; };
 		2F1312082081B36700D462F8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F4BBB2920522A3700AAFE1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */,
 				2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */,
 				2F06357E2085525800D655E7 /* CALayer+Shadow.swift */,
+				2F27363D2086BA7900D05238 /* Double+Round.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
+				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
 				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
@@ -803,6 +807,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Bump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.tjw.Bump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -822,6 +827,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Bump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.tjw.Bump;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -26,6 +26,7 @@ public class BABumpManager: NSObject {
     public var errorHandler: BAErrorHandler?
     
     private var prev = 0.0
+    private var prevAcceleration = CMAcceleration(x: 0.0, y: 0.0, z: 0.0)
     private var skipTimes = 0
     
     private let motionManager: CMMotionManager = {
@@ -48,10 +49,15 @@ public class BABumpManager: NSObject {
                 
                 let delta = abs(curr - self.prev)
                 
-                if delta > 4 {
+                if delta > 1.5 {
                     self.skipTimes = 20
                     self.bumpHandler?(BABumpEvent(acceleration: data.userAcceleration))
                 }
+                
+                self.prev = curr
+                
+                print("x: \(abs(data.userAcceleration.x - self.prevAcceleration.x).roundTo(2)), y: \(abs(data.userAcceleration.y - self.prevAcceleration.y).roundTo(2)), z: \(abs(data.userAcceleration.z - self.prevAcceleration.z).roundTo(2))")
+                self.prevAcceleration = data.userAcceleration
             }
             else if let error = error {
                 self.errorHandler?(error)

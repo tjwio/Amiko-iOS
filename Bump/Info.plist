@@ -41,6 +41,8 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is used to increase accuracy of bump matching</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Allow contact access to automatically add to address book</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

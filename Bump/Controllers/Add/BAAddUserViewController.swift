@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Contacts
 import SnapKit
 
 class BAAddUserViewController: UIViewController {
     
     let userToAdd: BAUser
+    let store = CNContactStore()
+    
     let userView: BAAddUserView
+    
+    var successCallback: BAEmptyHandler?
     
     init(userToAdd: BAUser) {
         self.userToAdd = userToAdd
@@ -22,8 +27,8 @@ class BAAddUserViewController: UIViewController {
             (.phone, userToAdd.phone),
             (.email, userToAdd.email),
             (.linkedin, fullName),
-            (.facebook, fullName),
             (.twitter, handleUsername),
+            (.facebook, fullName),
             (.instagram, handleUsername)
         ])
         
@@ -73,7 +78,47 @@ class BAAddUserViewController: UIViewController {
     //MARK: done
     
     @objc private func done(_ sender: UIButton?) {
+        if self.userView.availableItems.filter({ (item) -> Bool in
+            return (item.0 == .phone || item.0 == .email) && item.2 == true
+        }).count == 2 {
+            if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
+                do { try self.addNewContact() }
+                catch {
+                    print("failed to save contact")
+                }
+            }
+            else {
+                store.requestAccess(for: .contacts) { (granted, error) in
+                    if granted && error == nil {
+                        do { try self.addNewContact() }
+                        catch {
+                            print("failed to save contact")
+                        }
+                    }
+                    else if let error = error {
+                        print("failed to get contact access with error: \(error)")
+                    }
+                }
+            }
+        }
+        
         dismissViewController()
+    }
+    
+    //MARK: add new contact
+    private func addNewContact() throws {
+        let contactToAdd = CNMutableContact()
+        contactToAdd.givenName = userToAdd.firstName
+        contactToAdd.familyName = userToAdd.lastName
+        contactToAdd.phoneNumbers = [CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: userToAdd.phone))]
+        contactToAdd.emailAddresses = [CNLabeledValue<NSString>(label: CNLabelHome, value: userToAdd.email as NSString)]
+        
+        let saveRequest = CNSaveRequest()
+        saveRequest.add(contactToAdd, toContainerWithIdentifier: nil)
+        
+        try store.execute(saveRequest)
+        
+        successCallback?()
     }
     
     //MARK: dismiss

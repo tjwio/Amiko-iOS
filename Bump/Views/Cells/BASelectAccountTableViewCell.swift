@@ -20,6 +20,7 @@ class BASelectAccountTableViewCell: UITableViewCell {
     
     let checkmarkImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "checkmark_dark"))
+        imageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         imageView.isHidden = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -97,6 +98,7 @@ class BASelectAccountTableViewCell: UITableViewCell {
         
         checkmarkImageView.snp.makeConstraints { make in
             make.trailing.equalTo(self.contentView).offset(-24.0)
+            make.leading.greaterThanOrEqualTo(self.accountLabel.snp.trailing).offset(8.0)
             make.centerY.equalTo(self.contentView)
         }
         

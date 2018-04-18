@@ -12,11 +12,11 @@ enum BAEnvironment {
     case development, staging, production
     
     var apiUrl: String {
-        return "http://localhost:5678/webapi"
+        return "http://10.138.111.83:5678/webapi"
     }
     
     var streamUrl: String {
-        return "http://localhost:9092"
+        return "http://10.138.111.83:9092"
     }
 }
 

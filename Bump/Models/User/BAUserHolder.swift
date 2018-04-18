@@ -69,6 +69,8 @@ class BAUserHolder: NSObject {
             BAConstants.GeoMessage.LONGITUDE : location.coordinate.longitude
         ]
         
-        self.socket.defaultSocket.emit(BAUserHolder.BUMP_TEST_EVENT, with: [params])
+        print("bumping with params: \(params)")
+        
+        self.socket.defaultSocket.emit(BAUserHolder.BUMP_RECEIVED_EVENT, with: [params])
     }
 }
