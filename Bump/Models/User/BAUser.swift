@@ -63,6 +63,7 @@ public class BAUser: NSObject, JSONDecodable {
     var email: String
     var phone: String
     var imageUrl: String?
+    var profession: String?
     
     var fullName: String {
         return "\(firstName) \(lastName)"
@@ -81,6 +82,7 @@ public class BAUser: NSObject, JSONDecodable {
         self.email = email
         self.phone = phone
         self.imageUrl = BAConstants.User.IMAGE_URL <~~ json
+        self.profession = BAConstants.User.PROFESSION <~~ json
         
         super.init()
     }

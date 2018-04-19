@@ -78,8 +78,11 @@ class BAHomeViewController: UIViewController {
         
         let user = BAUserHolder.shared.user
         nameLabel.text = "\(user.firstName) \(user.lastName)"
+        if let profession = user.profession {
+            jobLabel.text = profession
+        }
         if let imageUrl = user.imageUrl {
-            avatarImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
+            avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: nil)
         }
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)

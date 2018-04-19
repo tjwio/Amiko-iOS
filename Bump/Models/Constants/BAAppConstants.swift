@@ -25,6 +25,7 @@ struct BAConstants {
         static let EMAIL = "email"
         static let PHONE = "phone"
         static let IMAGE_URL = "imageUrl"
+        static let PROFESSION = "profession"
         static let PASSWORD = "password"
     }
     

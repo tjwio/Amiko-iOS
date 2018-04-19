@@ -19,6 +19,8 @@ class BAAddUserViewController: UIViewController {
     
     var successCallback: BAEmptyHandler?
     
+    private var profileImage: UIImage?
+    
     init(userToAdd: BAUser) {
         self.userToAdd = userToAdd
         let fullName = userToAdd.fullName
@@ -45,6 +47,14 @@ class BAAddUserViewController: UIViewController {
         view.backgroundColor = .clear
         
         userView.nameLabel.text = userToAdd.fullName
+        if let profession = userToAdd.profession {
+            userView.jobLabel.text = profession
+        }
+        if let imageUrl = userToAdd.imageUrl {
+            userView.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: { (image, error, cache, url) in
+                self.profileImage = image
+            })
+        }
         userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)
         userView.isHidden = false
         userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
@@ -112,6 +122,12 @@ class BAAddUserViewController: UIViewController {
         contactToAdd.familyName = userToAdd.lastName
         contactToAdd.phoneNumbers = [CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: userToAdd.phone))]
         contactToAdd.emailAddresses = [CNLabeledValue<NSString>(label: CNLabelHome, value: userToAdd.email as NSString)]
+        if let profession = userToAdd.profession {
+            contactToAdd.organizationName = profession
+        }
+        if let image = self.profileImage, let data = UIImageJPEGRepresentation(image, 0.5) {
+            contactToAdd.imageData = data
+        }
         
         let saveRequest = CNSaveRequest()
         saveRequest.add(contactToAdd, toContainerWithIdentifier: nil)
