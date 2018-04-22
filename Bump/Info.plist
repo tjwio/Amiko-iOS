@@ -43,6 +43,8 @@
 	<string>Location is used to increase accuracy of bump matching</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Allow contact access to automatically add to address book</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera is used to scan user&apos;s profile to add them</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

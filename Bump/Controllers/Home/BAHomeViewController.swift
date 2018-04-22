@@ -68,6 +68,12 @@ class BAHomeViewController: UIViewController {
         
         return button
     }()
+    
+    let firstRing = UIImageView(image: UIImage(named: "interstitial-ring1"))
+    let secondRing = UIImageView(image: UIImage(named: "interstitial-ring2"))
+    let thirdRing = UIImageView(image: UIImage(named: "interstitial-ring3"))
+    let pin = UIImageView(image: UIImage(named: "interstitial-pin"))
+    let holderView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,12 +111,30 @@ class BAHomeViewController: UIViewController {
         }
         BABumpManager.shared.start()
         
+        holderView.backgroundColor = .clear
+        holderView.translatesAutoresizingMaskIntoConstraints = false
+        firstRing.alpha = 0.0;
+        firstRing.translatesAutoresizingMaskIntoConstraints = false;
+        secondRing.alpha = 0.0;
+        secondRing.translatesAutoresizingMaskIntoConstraints = false;
+        thirdRing.alpha = 0.0;
+        thirdRing.translatesAutoresizingMaskIntoConstraints = false;
+        pin.alpha = 0.0;
+        pin.translatesAutoresizingMaskIntoConstraints = false;
+        
+        self.animateRingsAndPin();
+        
+        holderView.addSubview(self.thirdRing)
+        holderView.addSubview(self.secondRing)
+        holderView.addSubview(self.firstRing)
+        holderView.addSubview(self.pin)
         view.addSubview(settingsButton)
         view.addSubview(accountButton)
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(jobLabel)
         view.addSubview(cameraButton)
+        view.addSubview(holderView)
         
         setupConstraints()
     }
@@ -146,6 +170,32 @@ class BAHomeViewController: UIViewController {
             make.bottom.equalTo(self.view).offset(-30.0)
             make.centerX.equalTo(self.view)
         }
+        
+        holderView.snp.makeConstraints { make in
+            make.top.equalTo(self.jobLabel.snp.bottom).offset(16.0)
+            make.leading.trailing.equalTo(self.view)
+            make.bottom.equalTo(self.cameraButton.snp.top).offset(-16.0)
+        }
+        
+        pin.snp.makeConstraints { make in
+            make.centerX.equalTo(self.holderView)
+            make.centerY.equalTo(self.holderView).offset(-40.0)
+        }
+        
+        firstRing.snp.makeConstraints { make in
+            make.centerX.equalTo(self.holderView)
+            make.centerY.equalTo(self.pin).offset(16.0)
+        }
+        
+        secondRing.snp.makeConstraints { make in
+            make.centerX.equalTo(self.holderView)
+            make.centerY.equalTo(self.firstRing)
+        }
+        
+        thirdRing.snp.makeConstraints { make in
+            make.centerX.equalTo(self.holderView)
+            make.centerY.equalTo(self.secondRing)
+        }
     }
     
     //MARK: add user
@@ -166,12 +216,57 @@ class BAHomeViewController: UIViewController {
     
     //MARK: camera button
     @objc private func showCamera(_ sender: UIButton?) {
-        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+        //BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+        
+        let viewController = BACameraViewController()
+        self.present(viewController, animated: true, completion: nil)
     }
     
     //MARK: settings button
     
     @objc private func showSettings(_ sender: UIButton?) {
         BAAppManager.shared.logOut()
+    }
+    
+    //MARK: animation helper
+    
+    private func animateRingsAndPin() {
+        UIView.animateKeyframes(withDuration: 1.0, delay: 0.0, options: .calculationModeLinear, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.25, animations: {
+                self.pin.alpha = 1.0;
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.15, relativeDuration: 0.25, animations: {
+                self.firstRing.alpha = 1.0;
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.30, relativeDuration: 0.25, animations: {
+                self.secondRing.alpha = 1.0;
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.45, relativeDuration: 0.25, animations: {
+                self.thirdRing.alpha = 1.0;
+            })
+        }) { _ in
+            UIView.animateKeyframes(withDuration: 1.0, delay: 0.0, options: .calculationModeLinear, animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.25, animations: {
+                    self.thirdRing.alpha = 0.0;
+                })
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.15, relativeDuration: 0.25, animations: {
+                    self.secondRing.alpha = 0.0;
+                })
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.30, relativeDuration: 0.25, animations: {
+                    self.firstRing.alpha = 0.0;
+                })
+                
+                UIView.addKeyframe(withRelativeStartTime: 0.45, relativeDuration: 0.25, animations: {
+                    self.pin.alpha = 0.0;
+                })
+            }) { _ in
+                self.animateRingsAndPin();
+            }
+        }
     }
 }

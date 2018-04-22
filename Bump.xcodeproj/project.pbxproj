@@ -23,6 +23,7 @@
 		2F4BBB4320522A3700AAFE1A /* BumpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB4220522A3700AAFE1A /* BumpUITests.swift */; };
 		2F4BBB5920522AA000AAFE1A /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB5220522AA000AAFE1A /* FontAwesome.otf */; };
 		2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */; };
+		2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6354D8208C5FC400429F72 /* BACameraViewController.swift */; };
 		2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */; };
 		2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */; };
 		2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B62082B10C00E8D8CA /* BAUser.swift */; };
@@ -138,6 +139,7 @@
 		2F4BBB4420522A3700AAFE1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F4BBB5220522AA000AAFE1A /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
+		2F6354D8208C5FC400429F72 /* BACameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACameraViewController.swift; sourceTree = "<group>"; };
 		2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABumpManager.swift; sourceTree = "<group>"; };
 		2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppConstants.swift; sourceTree = "<group>"; };
 		2F6E51B62082B10C00E8D8CA /* BAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUser.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				2F4BBB6520522CD500AAFE1A /* First Experience */,
 				2F1312032081AEE900D462F8 /* Home */,
 				2F06357B20854AA200D655E7 /* Add */,
+				2F6354D7208C5F8700429F72 /* Camera */,
 				2F6E51EC20830F4A00E8D8CA /* Login */,
 			);
 			path = Controllers;
@@ -373,6 +376,14 @@
 			children = (
 			);
 			path = "First Experience";
+			sourceTree = "<group>";
+		};
+		2F6354D7208C5F8700429F72 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				2F6354D8208C5FC400429F72 /* BACameraViewController.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		2F6E51AF2082AD2A00E8D8CA /* Bump */ = {
@@ -637,6 +648,7 @@
 				2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */,
 				2F6E51E12082FF3000E8D8CA /* BALocationManager.swift in Sources */,
 				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,
+				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
