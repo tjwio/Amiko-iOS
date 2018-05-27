@@ -1,6 +1,6 @@
 github "SnapKit/SnapKit" ~> 4.0.0
 github "Alamofire/Alamofire" ~> 4.7
-github "socketio/socket.io-client-swift" ~> 13.1.0
+github "davidstump/SwiftPhoenixClient" ~> 0.8
 github "hkellaway/Gloss"
 github "rs/SDWebImage"
 github "evgenyneu/keychain-swift" ~> 11.0

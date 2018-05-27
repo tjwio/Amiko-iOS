@@ -10,7 +10,7 @@ import Alamofire
 
 enum BAURLRouter: URLRequestConvertible {
     //MARK: GET
-    case loadUser(userId: String)
+    case loadUser()
     
     //MARK: PUT
     
@@ -31,8 +31,8 @@ enum BAURLRouter: URLRequestConvertible {
     
     var path: String {
         switch self {
-        case .loadUser(let userId):
-            return "/users/\(userId)"
+        case .loadUser():
+            return "/users/me"
         case .signup:
             return "/signup"
         case .login:
@@ -45,6 +45,9 @@ enum BAURLRouter: URLRequestConvertible {
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
+        if let authHeader = BAAuthenticationManager.shared.authToken {
+            urlRequest.setValue("Bearer \(authHeader)", forHTTPHeaderField: "Authorization");
+        }
         
         switch self {
         case .signup(let parameters):

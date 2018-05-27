@@ -8,7 +8,7 @@
 
 import Foundation
 import MapKit
-import SocketIO
+import SwiftPhoenixClient
 
 class BAUserHolder: NSObject {
     private static let BUMP_RECEIVED_EVENT = "bump_received"
@@ -18,17 +18,16 @@ class BAUserHolder: NSObject {
     private(set) static var shared: BAUserHolder!
     private(set) var user: BAUser
     
-    let socket: SocketManager
+    let socket: Socket
     
     var bumpMatchCallback: BAUserHandler?
     
     init(user: BAUser) {
         self.user = user
-        self.socket = SocketManager(socketURL: URL(string: BAAppManager.shared.environment.streamUrl)!, config: ["connectParams" : ["userId" : user.userId]])
+        socket = Socket(url: BAAppManager.shared.environment.streamUrl, params: ["token" : BAAuthenticationManager.shared.authToken ?? ""])
         super.init()
         
         self.addSocketEvents()
-        self.socket.defaultSocket.connect()
     }
     
     class func initialize(user: BAUser) -> BAUserHolder {
@@ -39,7 +38,7 @@ class BAUserHolder: NSObject {
     
     //MARK: LOAD
     class func loadUser(userId: String, success: BAUserHandler?, failure: BAErrorHandler?) {
-        BANetworkHandler.shared.loadUser(userId, success: { response in
+        BANetworkHandler.shared.loadUser(success: { response in
             if let user = BAUser(json: response) {
                 success?(user)
             }
@@ -52,17 +51,31 @@ class BAUserHolder: NSObject {
     //MARK: bump events
     
     private func addSocketEvents() {
-        self.socket.defaultSocket.on("connect") { (_, _) in
-            print("socket connected")
-        }
+        socket.onOpen = { print("socket connected") }
+        socket.onClose = { print("socket disconnected") }
+        socket.onError = { error in print("socket error: \(error)") }
         
-        self.socket.defaultSocket.on(BAUserHolder.BUMP_MATCHED_EVENT) { (data, ack) in
-            if let jsonResponse = data.first as? [String : Any], let user = BAUser(json: jsonResponse) {
-                if let bumpCallback = self.bumpMatchCallback {
+        let channel = socket.channel(BAConstants.Server.channel)
+        
+        channel.on(BAConstants.Events.matched) { [weak self] payload in
+            if let user = BAUser(json: payload) {
+                if let bumpCallback = self?.bumpMatchCallback {
                     bumpCallback(user)
                 }
             }
         }
+        
+        socket.connect()
+        _ = channel.join()
+            .receive("ok", handler: { _ in
+                print("channel connected")
+            })
+            .receive("error", handler: { error in
+                print("channel error: \(error)")
+            })
+            .receive("timeout", handler: { error in
+                print("channel timeout: \(error)")
+            })
     }
     
     func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
@@ -75,6 +88,6 @@ class BAUserHolder: NSObject {
         
         print("bumping with params: \(params)")
         
-        self.socket.defaultSocket.emit(BAUserHolder.BUMP_RECEIVED_EVENT, with: [params])
+        _ = socket.channel(BAConstants.Server.channel).push("bumped", payload: params)
     }
 }

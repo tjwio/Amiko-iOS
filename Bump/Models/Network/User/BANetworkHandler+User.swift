@@ -10,8 +10,8 @@ import Foundation
 import Gloss
 
 extension BANetworkHandler {
-    public func loadUser(_ userId: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
-        self.sessionManager.request(BAURLRouter.loadUser(userId: userId)).validate().responseJSON { response in
+    public func loadUser(success: BAJSONHandler?, failure: BAErrorHandler?) {
+        self.sessionManager.request(BAURLRouter.loadUser()).validate().responseJSON { response in
             switch response.result {
             case .success:
                 success?(response.result.value as? JSON ?? JSON())

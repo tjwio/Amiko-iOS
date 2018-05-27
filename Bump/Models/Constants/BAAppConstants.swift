@@ -20,13 +20,22 @@ public typealias BAErrorHandler = (Error) -> Void
 struct BAConstants {
     struct User {
         static let ID = "id"
-        static let FIRST_NAME = "firstName"
-        static let LAST_NAME = "lastName"
+        static let FIRST_NAME = "first_name"
+        static let LAST_NAME = "last_name"
         static let EMAIL = "email"
         static let PHONE = "phone"
-        static let IMAGE_URL = "imageUrl"
+        static let IMAGE_URL = "image_url"
         static let PROFESSION = "profession"
         static let PASSWORD = "password"
+    }
+    
+    struct Server {
+        static let channel = "bump:lobby"
+    }
+    
+    struct Events {
+        static let bumped = "bumped"
+        static let matched = "bump_matched"
     }
     
     struct GeoMessage {
