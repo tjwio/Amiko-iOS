@@ -29,13 +29,15 @@ struct BAConstants {
         static let PASSWORD = "password"
     }
     
-    struct Server {
-        static let channel = "bump:lobby"
+    struct Channel {
+        static let lobby = "bump:lobby"
+        static let privateRoom = "private_room"
     }
     
     struct Events {
         static let bumped = "bumped"
         static let matched = "bump_matched"
+        static let test = "bump_test"
     }
     
     struct GeoMessage {

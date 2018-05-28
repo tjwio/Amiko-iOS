@@ -216,7 +216,7 @@ class BAHomeViewController: UIViewController {
     
     //MARK: camera button
     @objc private func showCamera(_ sender: UIButton?) {
-        //BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+//        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
         
         let viewController = BACameraViewController()
         self.present(viewController, animated: true, completion: nil)

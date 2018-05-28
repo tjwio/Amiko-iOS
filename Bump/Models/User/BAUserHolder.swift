@@ -55,9 +55,14 @@ class BAUserHolder: NSObject {
         socket.onClose = { print("socket disconnected") }
         socket.onError = { error in print("socket error: \(error)") }
         
-        let channel = socket.channel(BAConstants.Server.channel)
+        let lobby = socket.channel(BAConstants.Channel.lobby)
+        let privateRoom = socket.channel("\(BAConstants.Channel.privateRoom):\(user.userId)")
         
-        channel.on(BAConstants.Events.matched) { [weak self] payload in
+        socket.onMessage = { payload in
+            print("socket message: \(payload)")
+        }
+        
+        privateRoom.on(BAConstants.Events.matched) { [weak self] payload in
             if let user = BAUser(json: payload) {
                 if let bumpCallback = self?.bumpMatchCallback {
                     bumpCallback(user)
@@ -66,21 +71,34 @@ class BAUserHolder: NSObject {
         }
         
         socket.connect()
-        _ = channel.join()
+        _ = lobby.join()
             .receive("ok", handler: { _ in
-                print("channel connected")
+                print("lobby connected")
             })
             .receive("error", handler: { error in
-                print("channel error: \(error)")
+                print("lobby error: \(error)")
             })
             .receive("timeout", handler: { error in
-                print("channel timeout: \(error)")
+                print("lobby timeout: \(error)")
             })
+        _ = privateRoom.join()
+            .receive("ok", handler: { _ in
+                print("private room connected")
+            })
+            .receive("error", handler: { error in
+                print("private room error: \(error)")
+            })
+            .receive("timeout", handler: { error in
+                print("private room timeout: \(error)")
+            })
+    }
+    
+    private func addPrivateRoom() {
+        
     }
     
     func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
         let params: [String : Any] = [
-            BAConstants.GeoMessage.USER_ID : user.userId,
             BAConstants.GeoMessage.TIMESTAMP : bump.date.timeIntervalSince1970 * 1000.0,
             BAConstants.GeoMessage.LATITUDE : location.coordinate.latitude,
             BAConstants.GeoMessage.LONGITUDE : location.coordinate.longitude
@@ -88,6 +106,6 @@ class BAUserHolder: NSObject {
         
         print("bumping with params: \(params)")
         
-        _ = socket.channel(BAConstants.Server.channel).push("bumped", payload: params)
+        _ = socket.channel(BAConstants.Channel.lobby).push(BAConstants.Events.test, payload: params)
     }
 }
