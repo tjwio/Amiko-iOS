@@ -76,6 +76,9 @@ class BAAuthenticationManager: NSObject {
     
     //MARK: SAVE
     func save(userId: String, email: String, password: String, authToken: String) {
+        self.userId = userId
+        self.authToken = authToken
+        
         UserDefaults.standard.set(userId, forKey: Constants.userIdKeychainKey)
         keychain.set(email, forKey: Constants.emailKeychainKey)
         keychain.set(password, forKey: Constants.passwordKeychainKey)

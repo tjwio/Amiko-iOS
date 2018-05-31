@@ -106,6 +106,6 @@ class BAUserHolder: NSObject {
         
         print("bumping with params: \(params)")
         
-        _ = socket.channel(BAConstants.Channel.lobby).push(BAConstants.Events.test, payload: params)
+        _ = socket.channel(BAConstants.Channel.lobby).push(BAConstants.Events.bumped, payload: params)
     }
 }
