@@ -1,0 +1,16 @@
+/* 
+  FirstExp.strings
+  Bump
+
+  Created by Tim Wong on 7/13/18.
+  Copyright © 2018 tjwio. All rights reserved.
+*/
+
+"bump_title" = "You're all set";
+"bump_description" = "Now you’re ready to start connecting with new people.";
+"get_started" = "get started";
+"intro_description" = "With Ciao you can connect with aquaintances in seconds. Simply bump phones to get in touch.";
+"skip_this_step" = "skip this step";
+"social_title" = "First things first";
+"social_description" = "Start by adding your contact and social information.";
+"swipe_left" = "swipe left";

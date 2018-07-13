@@ -15,4 +15,24 @@ extension UIColor {
                   blue: ((CGFloat)((hexColor & 0x0000FF) >>  0))/255.0,
                   alpha: alpha);
     }
+    
+    struct Grayscale {
+        static var dark: UIColor {
+            return UIColor(hexColor: 0x656A6F)
+        }
+        
+        static var light: UIColor {
+            return UIColor(hexColor: 0xA7ADB6)
+        }
+        
+        static var lightest: UIColor {
+            return UIColor(hexColor: 0xFBFCFD)
+        }
+    }
+    
+    struct Blue {
+        static var normal: UIColor {
+            return UIColor(hexColor: 0x77B0FD)
+        }
+    }
 }
