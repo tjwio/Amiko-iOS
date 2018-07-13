@@ -16,6 +16,10 @@
 		2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; };
 		2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
+		2F48E53020B6F11F008A970F /* SwiftPhoenixClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; };
+		2F48E53120B6F11F008A970F /* SwiftPhoenixClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F48E53220B6F11F008A970F /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; };
+		2F48E53320B6F11F008A970F /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */; };
 		2F4BBB2A20522A3700AAFE1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2920522A3700AAFE1A /* Assets.xcassets */; };
 		2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2B20522A3700AAFE1A /* LaunchScreen.storyboard */; };
@@ -31,12 +35,8 @@
 		2F6E51BE2082B5C500E8D8CA /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51B82082B5C400E8D8CA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F6E51BF2082B5C500E8D8CA /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51B92082B5C400E8D8CA /* Gloss.framework */; };
 		2F6E51C02082B5C500E8D8CA /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51B92082B5C400E8D8CA /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2F6E51C12082B5C500E8D8CA /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */; };
-		2F6E51C22082B5C500E8D8CA /* SocketIO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F6E51C32082B5C500E8D8CA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */; };
 		2F6E51C42082B5C500E8D8CA /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2F6E51C52082B5C500E8D8CA /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; };
-		2F6E51C62082B5C500E8D8CA /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F6E51C92082B86E00E8D8CA /* BANetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51C82082B86E00E8D8CA /* BANetworkHandler.swift */; };
 		2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CA2082B8D000E8D8CA /* BAURLRouter.swift */; };
 		2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */; };
@@ -100,14 +100,14 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2F6E51C42082B5C500E8D8CA /* SDWebImage.framework in Embed Frameworks */,
-				2F6E51C62082B5C500E8D8CA /* Starscream.framework in Embed Frameworks */,
+				2F48E53320B6F11F008A970F /* Starscream.framework in Embed Frameworks */,
 				2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */,
 				2F6E52002083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Embed Frameworks */,
 				2F6E51F5208317AC00E8D8CA /* Result.framework in Embed Frameworks */,
 				2F6E51BE2082B5C500E8D8CA /* Alamofire.framework in Embed Frameworks */,
 				2F6E52102084040E00E8D8CA /* GSMessages.framework in Embed Frameworks */,
 				2F6E51C02082B5C500E8D8CA /* Gloss.framework in Embed Frameworks */,
-				2F6E51C22082B5C500E8D8CA /* SocketIO.framework in Embed Frameworks */,
+				2F48E53120B6F11F008A970F /* SwiftPhoenixClient.framework in Embed Frameworks */,
 				2F6E51F9208317AC00E8D8CA /* ReactiveSwift.framework in Embed Frameworks */,
 				2F6E51F7208317AC00E8D8CA /* ReactiveCocoa.framework in Embed Frameworks */,
 				2F6E51D92082BF9B00E8D8CA /* KeychainSwift.framework in Embed Frameworks */,
@@ -126,6 +126,7 @@
 		2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexRGB.swift"; sourceTree = "<group>"; };
 		2F1312082081B36700D462F8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
+		2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPhoenixClient.framework; path = Carthage/Build/iOS/SwiftPhoenixClient.framework; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F4BBB2920522A3700AAFE1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,7 +146,6 @@
 		2F6E51B62082B10C00E8D8CA /* BAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUser.swift; sourceTree = "<group>"; };
 		2F6E51B82082B5C400E8D8CA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		2F6E51B92082B5C400E8D8CA /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
-		2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = Carthage/Build/iOS/SocketIO.framework; sourceTree = "<group>"; };
 		2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		2F6E51BC2082B5C500E8D8CA /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		2F6E51C82082B86E00E8D8CA /* BANetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANetworkHandler.swift; sourceTree = "<group>"; };
@@ -186,14 +186,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E51C32082B5C500E8D8CA /* SDWebImage.framework in Frameworks */,
-				2F6E51C52082B5C500E8D8CA /* Starscream.framework in Frameworks */,
+				2F48E53220B6F11F008A970F /* Starscream.framework in Frameworks */,
 				2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */,
 				2F6E51FF2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework in Frameworks */,
 				2F6E51F4208317AC00E8D8CA /* Result.framework in Frameworks */,
 				2F6E51BD2082B5C500E8D8CA /* Alamofire.framework in Frameworks */,
 				2F6E520F2084040E00E8D8CA /* GSMessages.framework in Frameworks */,
 				2F6E51BF2082B5C500E8D8CA /* Gloss.framework in Frameworks */,
-				2F6E51C12082B5C500E8D8CA /* SocketIO.framework in Frameworks */,
+				2F48E53020B6F11F008A970F /* SwiftPhoenixClient.framework in Frameworks */,
 				2F6E51F8208317AC00E8D8CA /* ReactiveSwift.framework in Frameworks */,
 				2F6E51F6208317AC00E8D8CA /* ReactiveCocoa.framework in Frameworks */,
 				2F6E51D82082BF9B00E8D8CA /* KeychainSwift.framework in Frameworks */,
@@ -245,6 +245,7 @@
 		2F4BBB1620522A3600AAFE1A = {
 			isa = PBXGroup;
 			children = (
+				2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */,
 				2F6E520E2084040E00E8D8CA /* GSMessages.framework */,
 				2F6E51FE2083D66E00E8D8CA /* SkyFloatingLabelTextField.framework */,
 				2F6E51F2208317AB00E8D8CA /* ReactiveCocoa.framework */,
@@ -254,7 +255,6 @@
 				2F6E51B82082B5C400E8D8CA /* Alamofire.framework */,
 				2F6E51B92082B5C400E8D8CA /* Gloss.framework */,
 				2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */,
-				2F6E51BA2082B5C400E8D8CA /* SocketIO.framework */,
 				2F6E51BC2082B5C500E8D8CA /* Starscream.framework */,
 				2F1312082081B36700D462F8 /* SnapKit.framework */,
 				2F4BBB2120522A3700AAFE1A /* Bump */,

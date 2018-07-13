@@ -8,7 +8,7 @@
 
 import Foundation
 import MapKit
-import SocketIO
+import SwiftPhoenixClient
 
 class BAUserHolder: NSObject {
     private static let BUMP_RECEIVED_EVENT = "bump_received"
@@ -18,17 +18,16 @@ class BAUserHolder: NSObject {
     private(set) static var shared: BAUserHolder!
     private(set) var user: BAUser
     
-    let socket: SocketManager
+    let socket: Socket
     
     var bumpMatchCallback: BAUserHandler?
     
     init(user: BAUser) {
         self.user = user
-        self.socket = SocketManager(socketURL: URL(string: BAAppManager.shared.environment.streamUrl)!, config: ["connectParams" : ["userId" : user.userId]])
+        socket = Socket(url: BAAppManager.shared.environment.streamUrl, params: ["token" : BAAuthenticationManager.shared.authToken ?? ""])
         super.init()
         
         self.addSocketEvents()
-        self.socket.defaultSocket.connect()
     }
     
     class func initialize(user: BAUser) -> BAUserHolder {
@@ -39,7 +38,7 @@ class BAUserHolder: NSObject {
     
     //MARK: LOAD
     class func loadUser(userId: String, success: BAUserHandler?, failure: BAErrorHandler?) {
-        BANetworkHandler.shared.loadUser(userId, success: { response in
+        BANetworkHandler.shared.loadUser(success: { response in
             if let user = BAUser(json: response) {
                 success?(user)
             }
@@ -52,22 +51,54 @@ class BAUserHolder: NSObject {
     //MARK: bump events
     
     private func addSocketEvents() {
-        self.socket.defaultSocket.on("connect") { (_, _) in
-            print("socket connected")
+        socket.onOpen = { print("socket connected") }
+        socket.onClose = { print("socket disconnected") }
+        socket.onError = { error in print("socket error: \(error)") }
+        
+        let lobby = socket.channel(BAConstants.Channel.lobby)
+        let privateRoom = socket.channel("\(BAConstants.Channel.privateRoom):\(user.userId)")
+        
+        socket.onMessage = { payload in
+            print("socket message: \(payload)")
         }
         
-        self.socket.defaultSocket.on(BAUserHolder.BUMP_MATCHED_EVENT) { (data, ack) in
-            if let jsonResponse = data.first as? [String : Any], let user = BAUser(json: jsonResponse) {
-                if let bumpCallback = self.bumpMatchCallback {
+        privateRoom.on(BAConstants.Events.matched) { [weak self] payload in
+            if let user = BAUser(json: payload) {
+                if let bumpCallback = self?.bumpMatchCallback {
                     bumpCallback(user)
                 }
             }
         }
+        
+        socket.connect()
+        _ = lobby.join()
+            .receive("ok", handler: { _ in
+                print("lobby connected")
+            })
+            .receive("error", handler: { error in
+                print("lobby error: \(error)")
+            })
+            .receive("timeout", handler: { error in
+                print("lobby timeout: \(error)")
+            })
+        _ = privateRoom.join()
+            .receive("ok", handler: { _ in
+                print("private room connected")
+            })
+            .receive("error", handler: { error in
+                print("private room error: \(error)")
+            })
+            .receive("timeout", handler: { error in
+                print("private room timeout: \(error)")
+            })
+    }
+    
+    private func addPrivateRoom() {
+        
     }
     
     func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
         let params: [String : Any] = [
-            BAConstants.GeoMessage.USER_ID : user.userId,
             BAConstants.GeoMessage.TIMESTAMP : bump.date.timeIntervalSince1970 * 1000.0,
             BAConstants.GeoMessage.LATITUDE : location.coordinate.latitude,
             BAConstants.GeoMessage.LONGITUDE : location.coordinate.longitude
@@ -75,6 +106,6 @@ class BAUserHolder: NSObject {
         
         print("bumping with params: \(params)")
         
-        self.socket.defaultSocket.emit(BAUserHolder.BUMP_RECEIVED_EVENT, with: [params])
+        _ = socket.channel(BAConstants.Channel.lobby).push(BAConstants.Events.bumped, payload: params)
     }
 }
