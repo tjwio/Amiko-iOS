@@ -65,22 +65,43 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     let doneButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor(hexColor: 0xA7ADB6)
-        button.setTitle("DONE", for: .normal)
+        button.backgroundColor = UIColor.Blue.normal
+        button.setTitle("CONNECT", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 18.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(1.0)
+            button.backgroundColor = UIColor.Blue.normal
         }
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.9)
+            button.backgroundColor = UIColor.Blue.darker
         }
         
         return button
     }()
+    
+    let cancelButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor.Grayscale.lighter
+        button.setTitle("CANCEL", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 18.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
+            button.backgroundColor = UIColor.Grayscale.lighter
+        }
+        
+        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
+            button.backgroundColor = UIColor.Grayscale.lightest
+        }
+        
+        return button
+    }()
+    
+    private var buttonStackView: UIStackView!
     
     init(contacts: [(BAAccountContact, String)]) {
         availableItems = contacts.map { return ($0.0, $0.1, false) }
@@ -100,12 +121,19 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        buttonStackView = UIStackView(arrangedSubviews: [cancelButton, doneButton])
+        buttonStackView.alignment = .center
+        buttonStackView.axis = .horizontal
+        buttonStackView.distribution = .fillEqually
+        buttonStackView.spacing = 0.0
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        
         contactHolderView.addSubview(avatarImageView)
         contactHolderView.addSubview(nameLabel)
         contactHolderView.addSubview(jobLabel)
         addSubview(contactHolderView)
         addSubview(tableView)
-        addSubview(doneButton)
+        addSubview(buttonStackView)
         
         setNeedsUpdateConstraints()
     }
@@ -140,7 +168,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
             make.bottom.equalTo(self)
         }
         
-        doneButton.snp.makeConstraints { make in
+        buttonStackView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(self)
             make.height.equalTo(60.0)
         }

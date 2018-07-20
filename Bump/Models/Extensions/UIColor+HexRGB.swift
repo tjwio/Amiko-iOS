@@ -25,6 +25,10 @@ extension UIColor {
             return UIColor(hexColor: 0xA7ADB6)
         }
         
+        static var lighter: UIColor {
+            return UIColor(hexColor: 0xD8D8D8)
+        }
+        
         static var lightest: UIColor {
             return UIColor(hexColor: 0xFBFCFD)
         }
@@ -33,6 +37,10 @@ extension UIColor {
     struct Blue {
         static var normal: UIColor {
             return UIColor(hexColor: 0x77B0FD)
+        }
+        
+        static var darker: UIColor {
+            return UIColor(hexColor: 0x658DF8)
         }
     }
 }
