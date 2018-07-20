@@ -108,4 +108,11 @@ class BAUserHolder: NSObject {
         
         _ = socket.channel(BAConstants.Channel.lobby).push(BAConstants.Events.bumped, payload: params)
     }
+    
+    //MARK: reconnect
+    
+    func reconnect() {
+        socket.disconnect()
+        addSocketEvents()
+    }
 }
