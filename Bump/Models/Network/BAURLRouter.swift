@@ -57,6 +57,8 @@ enum BAURLRouter: URLRequestConvertible {
         default: break
         }
         
+        print("\(urlRequest.cURL)")
+        
         return urlRequest
     }
 }

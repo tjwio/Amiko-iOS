@@ -15,6 +15,7 @@
 		2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */; };
 		2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; };
 		2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F48E53020B6F11F008A970F /* SwiftPhoenixClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; };
 		2F48E53120B6F11F008A970F /* SwiftPhoenixClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -132,6 +133,7 @@
 		2F1312042081AF2600D462F8 /* BAHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHomeViewController.swift; sourceTree = "<group>"; };
 		2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexRGB.swift"; sourceTree = "<group>"; };
 		2F1312082081B36700D462F8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequesst+cURL.swift"; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPhoenixClient.framework; path = Carthage/Build/iOS/SwiftPhoenixClient.framework; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -382,6 +384,7 @@
 				2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */,
 				2F06357E2085525800D655E7 /* CALayer+Shadow.swift */,
 				2F27363D2086BA7900D05238 /* Double+Round.swift */,
+				2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
 				2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */,
+				2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */,
 				2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
 				2F06357D20854AAF00D655E7 /* BAAddUserViewController.swift in Sources */,

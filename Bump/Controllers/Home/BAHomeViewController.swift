@@ -216,6 +216,8 @@ class BAHomeViewController: UIViewController {
     
     //MARK: camera button
     @objc private func showCamera(_ sender: UIButton?) {
+//        let mockLocation = CLLocation(latitude: 34.029526415497742, longitude: -118.28915680636308)
+        
         BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
         
 //        let viewController = BACameraViewController()
