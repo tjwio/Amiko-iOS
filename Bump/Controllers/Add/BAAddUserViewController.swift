@@ -85,6 +85,12 @@ class BAAddUserViewController: UIViewController {
         }
     }
     
+    //MARK: cancel
+    
+    @objc private func cancel(_ sender: UIButton?) {
+        dismissViewController()
+    }
+    
     //MARK: done
     
     @objc private func done(_ sender: UIButton?) {
