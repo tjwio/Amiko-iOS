@@ -16,6 +16,7 @@
 		2F1312092081B36700D462F8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; };
 		2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */; };
+		2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D399210539C000C97E3A /* BAAvatarView.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F48E53020B6F11F008A970F /* SwiftPhoenixClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; };
 		2F48E53120B6F11F008A970F /* SwiftPhoenixClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -134,6 +135,7 @@
 		2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexRGB.swift"; sourceTree = "<group>"; };
 		2F1312082081B36700D462F8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequesst+cURL.swift"; sourceTree = "<group>"; };
+		2F18D399210539C000C97E3A /* BAAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAvatarView.swift; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPhoenixClient.framework; path = Carthage/Build/iOS/SwiftPhoenixClient.framework; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,6 +502,7 @@
 				2F06357920853E7F00D655E7 /* BAAddUserView.swift */,
 				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
 				2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */,
+				2F18D399210539C000C97E3A /* BAAvatarView.swift */,
 				2F0635762085395E00D655E7 /* Cells */,
 			);
 			path = Views;
@@ -690,6 +693,7 @@
 				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
+				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
 				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,

@@ -33,10 +33,8 @@ class BAHomeViewController: UIViewController {
         return button
     }()
     
-    let avatarImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "example_avatar"))
-        imageView.layer.cornerRadius = 62.5
-        imageView.clipsToBounds = true
+    let avatarImageView: BAAvatarView = {
+        let imageView = BAAvatarView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -88,7 +86,7 @@ class BAHomeViewController: UIViewController {
             jobLabel.text = profession
         }
         if let imageUrl = user.imageUrl {
-            avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: nil)
+            avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: nil)
         }
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
