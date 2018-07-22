@@ -16,4 +16,8 @@ extension UIImage {
     class var upwardDoubleArrow: UIImage? {
         return UIImage(named: "upward_double_arrow")
     }
+    
+    class var blankAvatar: UIImage? {
+        return UIImage(named: "blank_avatar")
+    }
 }

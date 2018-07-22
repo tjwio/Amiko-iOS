@@ -26,6 +26,12 @@ class BAAvatarView: UIView {
         commonInit()
     }
     
+    init(image: UIImage?) {
+        super.init(frame: .zero)
+        imageView.image = image
+        commonInit()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -39,7 +45,7 @@ class BAAvatarView: UIView {
     private func commonInit() {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        layer.shadowRadius = 6.0
+        layer.shadowRadius = 4.0
         layer.shadowOpacity = 0.5
         
         addSubview(imageView)

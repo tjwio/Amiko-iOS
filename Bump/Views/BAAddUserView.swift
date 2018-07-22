@@ -11,7 +11,10 @@ import ReactiveCocoa
 import ReactiveSwift
 
 class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
-    private static let SELECTABLE_CELL_IDENTIFIER = "BASelectableAccountTableViewCellIdentifier"
+    private struct Constants {
+        static let buttonHeight: CGFloat = 54.0
+        static let selectableCellIdentifier = "BASelectableAccountTableViewCellIdentifier"
+    }
     
     var availableItems: [(BAAccountContact, String, Bool)]
     
@@ -23,10 +26,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         return view
     }()
     
-    let avatarImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "blank_avatar"))
-        imageView.layer.cornerRadius = 50.0
-        imageView.clipsToBounds = true
+    let avatarImageView: BAAvatarView = {
+        let imageView = BAAvatarView(image: .blankAvatar)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -57,7 +58,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 60.0, right: 0.0)
+        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: Constants.buttonHeight, right: 0.0)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -66,9 +67,9 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     let doneButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.Blue.normal
-        button.setTitle("CONNECT", for: .normal)
+        button.setTitle("Connect", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.avenirDemi(size: 18.0)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
@@ -85,9 +86,9 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     let cancelButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.Grayscale.lighter
-        button.setTitle("CANCEL", for: .normal)
+        button.setTitle("Not Now", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.avenirDemi(size: 18.0)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
@@ -95,7 +96,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = UIColor.Grayscale.lightest
+            button.backgroundColor = UIColor.Grayscale.light
         }
         
         return button
@@ -170,7 +171,15 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         buttonStackView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(self)
-            make.height.equalTo(60.0)
+            make.height.equalTo(Constants.buttonHeight)
+        }
+        
+        doneButton.snp.makeConstraints { make in
+            make.height.equalTo(Constants.buttonHeight)
+        }
+        
+        cancelButton.snp.makeConstraints { make in
+            make.height.equalTo(Constants.buttonHeight)
         }
         
         super.updateConstraints()
@@ -199,7 +208,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: BAAddUserView.SELECTABLE_CELL_IDENTIFIER) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: BAAddUserView.SELECTABLE_CELL_IDENTIFIER)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.selectableCellIdentifier) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: Constants.selectableCellIdentifier)
         
         let item = availableItems[indexPath.section]
         
