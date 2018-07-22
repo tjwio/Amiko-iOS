@@ -33,6 +33,13 @@ class BAHomeViewController: UIViewController {
         return button
     }()
     
+    let arrowImageView: UIImageView = {
+        let imageView = UIImageView(image: .upwardDoubleArrow)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
     let avatarImageView: BAAvatarView = {
         let imageView = BAAvatarView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -128,6 +135,7 @@ class BAHomeViewController: UIViewController {
         holderView.addSubview(self.pin)
         view.addSubview(settingsButton)
         view.addSubview(accountButton)
+        view.addSubview(arrowImageView)
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(jobLabel)
@@ -148,8 +156,13 @@ class BAHomeViewController: UIViewController {
             make.trailing.equalTo(self.view).offset(-16.0)
         }
         
+        arrowImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.view).offset(46.0)
+            make.centerX.equalTo(self.view)
+        }
+        
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.view).offset(60.0)
+            make.top.equalTo(self.arrowImageView.snp.bottom).offset(16.0)
             make.centerX.equalTo(self.view)
             make.height.width.equalTo(125.0)
         }

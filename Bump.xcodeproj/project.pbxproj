@@ -17,6 +17,7 @@
 		2F13120A2081B36700D462F8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */; };
 		2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D399210539C000C97E3A /* BAAvatarView.swift */; };
+		2F18D39C21053C5300C97E3A /* UIImage+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D39B21053C5300C97E3A /* UIImage+Constants.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F48E53020B6F11F008A970F /* SwiftPhoenixClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; };
 		2F48E53120B6F11F008A970F /* SwiftPhoenixClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -136,6 +137,7 @@
 		2F1312082081B36700D462F8 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequesst+cURL.swift"; sourceTree = "<group>"; };
 		2F18D399210539C000C97E3A /* BAAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAvatarView.swift; sourceTree = "<group>"; };
+		2F18D39B21053C5300C97E3A /* UIImage+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Constants.swift"; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPhoenixClient.framework; path = Carthage/Build/iOS/SwiftPhoenixClient.framework; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -387,6 +389,7 @@
 				2F06357E2085525800D655E7 /* CALayer+Shadow.swift */,
 				2F27363D2086BA7900D05238 /* Double+Round.swift */,
 				2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */,
+				2F18D39B21053C5300C97E3A /* UIImage+Constants.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
 				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
+				2F18D39C21053C5300C97E3A /* UIImage+Constants.swift in Sources */,
 				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
 				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
