@@ -33,10 +33,15 @@ class BAHomeViewController: UIViewController {
         return button
     }()
     
-    let avatarImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "example_avatar"))
-        imageView.layer.cornerRadius = 62.5
-        imageView.clipsToBounds = true
+    let arrowImageView: UIImageView = {
+        let imageView = UIImageView(image: .upwardDoubleArrow)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    let avatarImageView: BAAvatarView = {
+        let imageView = BAAvatarView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -88,7 +93,7 @@ class BAHomeViewController: UIViewController {
             jobLabel.text = profession
         }
         if let imageUrl = user.imageUrl {
-            avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: nil)
+            avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: nil)
         }
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
@@ -130,6 +135,7 @@ class BAHomeViewController: UIViewController {
         holderView.addSubview(self.pin)
         view.addSubview(settingsButton)
         view.addSubview(accountButton)
+        view.addSubview(arrowImageView)
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(jobLabel)
@@ -150,8 +156,13 @@ class BAHomeViewController: UIViewController {
             make.trailing.equalTo(self.view).offset(-16.0)
         }
         
+        arrowImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.view).offset(46.0)
+            make.centerX.equalTo(self.view)
+        }
+        
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.view).offset(60.0)
+            make.top.equalTo(self.arrowImageView.snp.bottom).offset(16.0)
             make.centerX.equalTo(self.view)
             make.height.width.equalTo(125.0)
         }
@@ -218,10 +229,17 @@ class BAHomeViewController: UIViewController {
     @objc private func showCamera(_ sender: UIButton?) {
 //        let mockLocation = CLLocation(latitude: 34.029526415497742, longitude: -118.28915680636308)
         
-        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+//        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
         
 //        let viewController = BACameraViewController()
 //        self.present(viewController, animated: true, completion: nil)
+        
+        let viewController = BAAddUserViewController(userToAdd: BAUserHolder.shared.user)
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        
+        self.present(viewController, animated: false, completion: nil)
     }
     
     //MARK: settings button

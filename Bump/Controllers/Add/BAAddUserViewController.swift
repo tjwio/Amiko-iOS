@@ -51,11 +51,12 @@ class BAAddUserViewController: UIViewController {
             userView.jobLabel.text = profession
         }
         if let imageUrl = userToAdd.imageUrl {
-            userView.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: { (image, error, cache, url) in
+            userView.avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed, completed: { (image, error, cache, url) in
                 self.profileImage = image
             })
         }
         userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)
+        userView.cancelButton.addTarget(self, action: #selector(self.cancel(_:)), for: .touchUpInside)
         userView.isHidden = false
         userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         userView.layer.cornerRadius = 8.0
