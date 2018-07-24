@@ -69,6 +69,8 @@ public class BAUser: NSObject, JSONDecodable {
         return "\(firstName) \(lastName)"
     }
     
+    var history = [BAHistory]()
+    
     public required init?(json: JSON) {
         guard let userId: String = BAConstants.User.ID <~~ json else { return nil }
         guard let firstName: String = BAConstants.User.FIRST_NAME <~~ json else { return nil }
@@ -85,5 +87,22 @@ public class BAUser: NSObject, JSONDecodable {
         self.profession = BAConstants.User.PROFESSION <~~ json
         
         super.init()
+    }
+    
+    func loadHistory(success: BAHistoryListHandler?, failure: BAErrorHandler?) {
+        BANetworkHandler.shared.loadHistory(success: { response in
+            guard let historyList = [BAHistory].from(jsonArray: response) else {
+                self.history = []
+                failure?(BAError.invalidJson)
+                return
+            }
+            
+            self.history = historyList
+            
+            success?(historyList)
+        }) { error in
+            BALogger.log("failed to parse history with error: \(error)")
+            failure?(error)
+        }
     }
 }

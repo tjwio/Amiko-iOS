@@ -11,10 +11,21 @@ import Gloss
 
 extension BANetworkHandler {
     public func loadUser(success: BAJSONHandler?, failure: BAErrorHandler?) {
-        self.sessionManager.request(BAURLRouter.loadUser()).validate().responseJSON { response in
+        self.sessionManager.request(BAURLRouter.loadUser).validate().responseJSON { response in
             switch response.result {
             case .success:
                 success?(response.result.value as? JSON ?? JSON())
+            case .failure(let error):
+                failure?(error)
+            }
+        }
+    }
+    
+    public func loadHistory(success: BAJSONListHandler?, failure: BAErrorHandler?) {
+        self.sessionManager.request(BAURLRouter.loadHistory).validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                success?(response.result.value as? [JSON] ?? [JSON]())
             case .failure(let error):
                 failure?(error)
             }

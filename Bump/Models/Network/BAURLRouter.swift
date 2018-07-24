@@ -10,7 +10,8 @@ import Alamofire
 
 enum BAURLRouter: URLRequestConvertible {
     //MARK: GET
-    case loadUser()
+    case loadUser
+    case loadHistory
     
     //MARK: PUT
     
@@ -22,7 +23,7 @@ enum BAURLRouter: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .loadUser:
+        case .loadUser, .loadHistory:
             return .get
         case .signup, .login:
             return .post
@@ -31,8 +32,10 @@ enum BAURLRouter: URLRequestConvertible {
     
     var path: String {
         switch self {
-        case .loadUser():
+        case .loadUser:
             return "/users/me"
+        case .loadHistory:
+            return "/users/connections"
         case .signup:
             return "/signup"
         case .login:
