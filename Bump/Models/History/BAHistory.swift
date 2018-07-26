@@ -16,12 +16,14 @@ public class BAHistory: NSObject, JSONDecodable {
     var id: String
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
+    var date: Date
     var addedUser: BAUser
     
     struct Constants {
         static let id = "id"
         static let latitude = "latitude"
         static let longitude = "longitude"
+        static let insertedAt = "inserted_at"
         static let addedUser = "added_user"
     }
     
@@ -29,6 +31,7 @@ public class BAHistory: NSObject, JSONDecodable {
         guard let id: String = Constants.id <~~ json,
             let latitude: Double = Constants.latitude <~~ json,
             let longitude: Double = Constants.longitude <~~ json,
+            let date = Gloss.Decoder.decode(dateForKey: Constants.insertedAt, dateFormatter: .iso861)(json),
             let addedUserJson: JSON = Constants.addedUser <~~ json,
             let addedUser = BAUser(json: addedUserJson)
             else { return nil}
@@ -36,6 +39,7 @@ public class BAHistory: NSObject, JSONDecodable {
         self.id = id
         self.latitude = latitude
         self.longitude = longitude
+        self.date = date
         self.addedUser = addedUser
     }
     

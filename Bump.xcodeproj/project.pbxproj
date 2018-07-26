@@ -22,6 +22,8 @@
 		2F18D3A12105650600C97E3A /* BAHistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D3A02105650600C97E3A /* BAHistoryListViewController.swift */; };
 		2F18D3A421056A5B00C97E3A /* BAHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D3A321056A5B00C97E3A /* BAHistory.swift */; };
 		2F18D3A62106F54E00C97E3A /* BALogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D3A52106F54E00C97E3A /* BALogger.swift */; };
+		2F18D3A82106F7D400C97E3A /* DateFormatter+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */; };
+		2F18D3AA2106FB9700C97E3A /* Date+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F18D3A92106FB9700C97E3A /* Date+Formatter.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F48E53020B6F11F008A970F /* SwiftPhoenixClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; };
 		2F48E53120B6F11F008A970F /* SwiftPhoenixClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -87,6 +89,7 @@
 		2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */; };
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
 		2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF920F84AB00012F1AB /* FirstExp.strings */; };
+		2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +149,8 @@
 		2F18D3A02105650600C97E3A /* BAHistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHistoryListViewController.swift; sourceTree = "<group>"; };
 		2F18D3A321056A5B00C97E3A /* BAHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHistory.swift; sourceTree = "<group>"; };
 		2F18D3A52106F54E00C97E3A /* BALogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALogger.swift; sourceTree = "<group>"; };
+		2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Constants.swift"; sourceTree = "<group>"; };
+		2F18D3A92106FB9700C97E3A /* Date+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatter.swift"; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPhoenixClient.framework; path = Carthage/Build/iOS/SwiftPhoenixClient.framework; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +211,7 @@
 		2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALocalizationStrings.swift; sourceTree = "<group>"; };
 		2FE36BF720F84A7B0012F1AB /* Global.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Global.strings; sourceTree = "<group>"; };
 		2FE36BF920F84AB00012F1AB /* FirstExp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = FirstExp.strings; sourceTree = "<group>"; };
+		2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarItem+TextAttributes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +424,9 @@
 				2F27363D2086BA7900D05238 /* Double+Round.swift */,
 				2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */,
 				2F18D39B21053C5300C97E3A /* UIImage+Constants.swift */,
+				2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */,
+				2F18D3A92106FB9700C97E3A /* Date+Formatter.swift */,
+				2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -706,6 +715,7 @@
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
+				2F18D3A82106F7D400C97E3A /* DateFormatter+Constants.swift in Sources */,
 				2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */,
 				2F18D3A421056A5B00C97E3A /* BAHistory.swift in Sources */,
 				2F18D39F2105584600C97E3A /* BAUserCardTableViewCell.swift in Sources */,
@@ -716,6 +726,7 @@
 				2FE36BF320F846770012F1AB /* BAFirstExpBumpViewController.swift in Sources */,
 				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,
 				2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */,
+				2F18D3AA2106FB9700C97E3A /* Date+Formatter.swift in Sources */,
 				2F18D3A12105650600C97E3A /* BAHistoryListViewController.swift in Sources */,
 				2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
@@ -730,6 +741,7 @@
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
+				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
 				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,

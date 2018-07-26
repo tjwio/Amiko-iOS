@@ -19,6 +19,9 @@ class BAUserCardTableViewCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.borderColor = Constants.borderColor.cgColor
+        view.layer.borderWidth = 0.30
+        view.layer.cornerRadius = 6.0
         
         return view
     }()
@@ -101,15 +104,16 @@ class BAUserCardTableViewCell: UITableViewCell {
     private func commonInit() {
         backgroundColor = .clear
         
-        layer.borderColor = Constants.borderColor.cgColor
-        layer.cornerRadius = 6.0
-        
         labelStackView = UIStackView(arrangedSubviews: [nameLabel, jobLabel, phoneLabel, dateLabel, locationLabel])
         labelStackView.alignment = .leading
         labelStackView.axis = .vertical
         labelStackView.distribution = .fill
         labelStackView.spacing = 0.0
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        phoneLabel.isHidden = true
+        dateLabel.isHidden = true
+        locationLabel.isHidden = true
         
         holderView.addSubview(labelStackView)
         contentView.addSubview(holderView)

@@ -97,6 +97,7 @@ class BAHomeViewController: UIViewController {
         }
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
+        accountButton.addTarget(self, action: #selector(self.showAccount(_:)), for: .touchUpInside)
         settingsButton.addTarget(self, action: #selector(self.showSettings(_:)), for: .touchUpInside)
         
         let userHolder = BAUserHolder.shared
@@ -240,6 +241,14 @@ class BAHomeViewController: UIViewController {
         viewController.modalPresentationStyle = .overCurrentContext
         
         self.present(viewController, animated: false, completion: nil)
+    }
+    
+    //MARK: account button
+    
+    @objc private func showAccount(_ sender: UIButton?) {
+        let viewController = BAHistoryListViewController(user: BAUserHolder.shared.user)
+        let navController = UINavigationController(rootViewController: viewController)
+        present(navController, animated: true, completion: nil)
     }
     
     //MARK: settings button
