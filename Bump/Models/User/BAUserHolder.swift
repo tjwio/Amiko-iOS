@@ -103,9 +103,9 @@ class BAUserHolder: NSObject {
     
     func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
         let params: [String : Any] = [
-            BAConstants.GeoMessage.TIMESTAMP : bump.date.timeIntervalSince1970 * 1000.0,
-            BAConstants.GeoMessage.LATITUDE : location.coordinate.latitude,
-            BAConstants.GeoMessage.LONGITUDE : location.coordinate.longitude
+            BAConstants.GeoMessage.timestamp : bump.date.timeIntervalSince1970 * 1000.0,
+            BAConstants.GeoMessage.latitude : location.coordinate.latitude,
+            BAConstants.GeoMessage.longitude : location.coordinate.longitude
         ]
         
         print("bumping with params: \(params)")

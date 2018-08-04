@@ -12,11 +12,11 @@ import Gloss
 extension BANetworkHandler {
     public func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
         let parameters = [
-            BAConstants.User.FIRST_NAME : firstName,
-            BAConstants.User.LAST_NAME : lastName,
-            BAConstants.User.EMAIL : email,
-            BAConstants.User.PHONE : phone,
-            BAConstants.User.PASSWORD : password
+            BAConstants.User.firstName : firstName,
+            BAConstants.User.lastName : lastName,
+            BAConstants.User.email : email,
+            BAConstants.User.phone : phone,
+            BAConstants.User.password : password
         ]
         
         self.sessionManager.request(BAURLRouter.signup(parameters: parameters)).validate().responseJSON { response in
@@ -31,8 +31,8 @@ extension BANetworkHandler {
     
     public func login(email: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
         let parameters = [
-            BAConstants.User.EMAIL : email,
-            BAConstants.User.PASSWORD : password
+            BAConstants.User.email : email,
+            BAConstants.User.password : password
         ]
         
         self.sessionManager.request(BAURLRouter.login(parameters: parameters)).validate().responseJSON { response in

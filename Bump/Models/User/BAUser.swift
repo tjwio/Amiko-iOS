@@ -72,19 +72,19 @@ public class BAUser: NSObject, JSONDecodable {
     var history = [BAHistory]()
     
     public required init?(json: JSON) {
-        guard let userId: String = BAConstants.User.ID <~~ json else { return nil }
-        guard let firstName: String = BAConstants.User.FIRST_NAME <~~ json else { return nil }
-        guard let lastName: String = BAConstants.User.LAST_NAME <~~ json else { return nil }
-        guard let email: String = BAConstants.User.EMAIL <~~ json else { return nil }
-        guard let phone: String = BAConstants.User.PHONE <~~ json else { return nil }
+        guard let userId: String = BAConstants.User.id <~~ json else { return nil }
+        guard let firstName: String = BAConstants.User.firstName <~~ json else { return nil }
+        guard let lastName: String = BAConstants.User.lastName <~~ json else { return nil }
+        guard let email: String = BAConstants.User.email <~~ json else { return nil }
+        guard let phone: String = BAConstants.User.phone <~~ json else { return nil }
         
         self.userId = userId
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.phone = phone
-        self.imageUrl = BAConstants.User.IMAGE_URL <~~ json
-        self.profession = BAConstants.User.PROFESSION <~~ json
+        self.imageUrl = BAConstants.User.imageUrl <~~ json
+        self.profession = BAConstants.User.profession <~~ json
         
         super.init()
     }
