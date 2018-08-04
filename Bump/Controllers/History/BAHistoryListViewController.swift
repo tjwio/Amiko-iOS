@@ -19,7 +19,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.estimatedRowHeight = 75.0
+        tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
@@ -69,7 +69,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(20.0)
-            make.leading.equalTo(self.view).offset(30.0)
+            make.leading.equalTo(self.view).offset(20.0)
             make.trailing.bottom.equalTo(self.view).offset(-20.0)
         }
     }
@@ -104,6 +104,8 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         cell.locationLabel.text = "at San Francisco Convention Center"
         cell.nameLabel.text = history.addedUser.fullName
         cell.phoneLabel.text = history.addedUser.phone
+        
+        cell.isMain = true
         
         return cell
     }

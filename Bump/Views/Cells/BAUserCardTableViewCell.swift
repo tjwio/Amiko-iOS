@@ -15,6 +15,12 @@ class BAUserCardTableViewCell: UITableViewCell {
         static let shadowOpacity: Float = 0.5
     }
     
+    var isMain = false {
+        didSet {
+            didSetIsMain(isMain)
+        }
+    }
+    
     private let holderView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -22,6 +28,7 @@ class BAUserCardTableViewCell: UITableViewCell {
         view.layer.borderColor = Constants.borderColor.cgColor
         view.layer.borderWidth = 0.30
         view.layer.cornerRadius = 6.0
+        view.clipsToBounds = true
         
         return view
     }()
@@ -46,7 +53,7 @@ class BAUserCardTableViewCell: UITableViewCell {
     let jobLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.Grayscale.dark
-        label.font = UIFont.avenirMedium(size: 10.0)
+        label.font = UIFont.avenirMedium(size: 12.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -55,7 +62,7 @@ class BAUserCardTableViewCell: UITableViewCell {
     let phoneLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.Grayscale.dark
-        label.font = UIFont.avenirMedium(size: 10.0)
+        label.font = UIFont.avenirMedium(size: 12.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -64,7 +71,7 @@ class BAUserCardTableViewCell: UITableViewCell {
     let dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.Grayscale.light
-        label.font = UIFont.avenirDemi(size: 10.0)
+        label.font = UIFont.avenirDemi(size: 12.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -73,7 +80,7 @@ class BAUserCardTableViewCell: UITableViewCell {
     let locationLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.Grayscale.light
-        label.font = UIFont.avenirDemi(size: 10.0)
+        label.font = UIFont.avenirDemi(size: 12.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -88,8 +95,6 @@ class BAUserCardTableViewCell: UITableViewCell {
     }()
     
     private var labelStackView: UIStackView!
-    
-    private var didSetupInitialConstraints = false
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -123,91 +128,108 @@ class BAUserCardTableViewCell: UITableViewCell {
     }
     
     override func updateConstraints() {
-        if !didSetupInitialConstraints {
-            avatarView.snp.makeConstraints { make in
-                make.leading.equalTo(self.contentView).offset(15.0)
+        if isMain {
+            self.headerView.snp.makeConstraints({ make in
+                make.top.leading.trailing.equalTo(self.holderView)
+                make.height.equalTo(30.0)
+            })
+            
+            avatarView.snp.remakeConstraints({ make in
+                make.leading.equalTo(self.contentView).offset(10.0)
                 make.centerY.equalTo(self.contentView)
-                make.height.width.equalTo(30.0)
+                make.height.width.equalTo(70.0)
+            })
+            
+            labelStackView.snp.remakeConstraints({ make in
+                make.top.equalTo(self.holderView).offset(40.0)
+                make.leading.equalTo(holderView).offset(50.0)
+                make.trailing.equalTo(self.holderView).offset(-20.0)
+                make.bottom.equalTo(self.holderView).offset(-25.0)
+            })
+        }
+        else {
+            avatarView.snp.remakeConstraints { make in
+                make.leading.equalTo(self.contentView).offset(25.0)
+                make.centerY.equalTo(self.contentView)
+                make.height.width.equalTo(35.0)
             }
             
-            labelStackView.snp.makeConstraints { make in
+            labelStackView.snp.remakeConstraints { make in
                 make.top.equalTo(self.holderView).offset(20.0)
                 make.leading.equalTo(holderView).offset(40.0)
                 make.trailing.equalTo(self.holderView).offset(-20.0)
                 make.bottom.equalTo(self.holderView).offset(-20.0)
             }
-            
-            holderView.snp.makeConstraints { make in
-                make.top.trailing.bottom.equalTo(self.contentView)
-                make.leading.equalTo(self.avatarView.snp.centerX)
-            }
-            
-            didSetupInitialConstraints = true
+        }
+        
+        holderView.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalTo(self.contentView)
+            make.leading.equalTo(self.avatarView.snp.centerX)
         }
         
         super.updateConstraints()
     }
     
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        super.didUpdateFocus(in: context, with: coordinator)
-        
-        coordinator.addCoordinatedFocusingAnimations({ [weak self] context in
-            guard let strongSelf = self else { return }
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.5) {
+                self.setHolderBackgroundColor(selected: highlighted)
+            }
+        }
+        else {
+            setHolderBackgroundColor(selected: highlighted)
+        }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.5) {
+                self.setHolderBackgroundColor(selected: selected)
+            }
+        }
+        else {
+            setHolderBackgroundColor(selected: selected)
+        }
+    }
+    
+    //MARK: layout helper
+    
+    private func didSetIsMain(_ isMain: Bool) {
+        if isMain {
+            self.phoneLabel.isHidden = false
+            self.dateLabel.isHidden = false
+            self.locationLabel.isHidden = false
             
-            strongSelf.phoneLabel.isHidden = true
-            strongSelf.dateLabel.isHidden = true
-            strongSelf.locationLabel.isHidden = true
+            self.layer.shadowColor = Constants.shadowColor.cgColor
+            self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            self.layer.shadowOpacity = Constants.shadowOpacity
+            self.layer.shadowRadius = 4.0
             
-            strongSelf.layer.borderWidth = 0.0
-            strongSelf.layer.shadowColor = Constants.shadowColor.cgColor
-            strongSelf.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-            strongSelf.layer.shadowOpacity = Constants.shadowOpacity
-            strongSelf.layer.shadowRadius = 4.0
+            self.holderView.addSubview(self.headerView)
+
+            layoutIfNeeded()
+        }
+        else {
+            self.phoneLabel.isHidden = true
+            self.dateLabel.isHidden = true
+            self.locationLabel.isHidden = true
             
-            strongSelf.holderView.addSubview(strongSelf.headerView)
+            holderView.layer.borderWidth = 0.30
+            holderView.layer.shadowOpacity = 0.0
+            holderView.layer.shadowRadius = 0.0
             
-            strongSelf.headerView.snp.makeConstraints({ make in
-                make.top.leading.trailing.equalTo(strongSelf.holderView)
-                make.height.equalTo(30.0)
-            })
+            self.headerView.removeFromSuperview()
             
-            strongSelf.labelStackView.snp.updateConstraints({ make in
-                make.top.equalTo(strongSelf.holderView).offset(40.0)
-                make.bottom.equalTo(strongSelf.holderView).offset(-25.0)
-            })
-            
-            strongSelf.avatarView.snp.updateConstraints({ make in
-                make.leading.equalTo(strongSelf.contentView).offset(0.0)
-                make.height.width.equalTo(60.0)
-            })
-            
-            strongSelf.layoutIfNeeded()
-        }, completion: nil)
-        
-        coordinator.addCoordinatedUnfocusingAnimations({ [weak self] context in
-            guard let strongSelf = self else { return }
-            
-            strongSelf.phoneLabel.isHidden = false
-            strongSelf.dateLabel.isHidden = false
-            strongSelf.locationLabel.isHidden = false
-            
-            strongSelf.layer.borderWidth = 0.30
-            strongSelf.layer.shadowOpacity = 0.0
-            strongSelf.layer.shadowRadius = 0.0
-            
-            strongSelf.headerView.removeFromSuperview()
-            
-            strongSelf.labelStackView.snp.updateConstraints({ make in
-                make.top.equalTo(strongSelf.holderView).offset(20.0)
-                make.bottom.equalTo(strongSelf.holderView).offset(-20.0)
-            })
-            
-            strongSelf.avatarView.snp.updateConstraints({ make in
-                make.leading.equalTo(strongSelf.contentView).offset(15.0)
-                make.height.width.equalTo(30.0)
-            })
-            
-            strongSelf.layoutIfNeeded()
-        }, completion: nil)
+            layoutIfNeeded()
+        }
+    }
+    
+    private func setHolderBackgroundColor(selected: Bool) {
+        if (selected) {
+            holderView.backgroundColor = UIColor.Grayscale.lighter
+        }
+        else {
+            holderView.backgroundColor = .white
+        }
     }
 }
