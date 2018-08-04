@@ -49,4 +49,8 @@ struct BAConstants {
         static let latitude = "latitude"
         static let longitude = "longitude"
     }
+    
+    struct HockeyApp {
+        static let id = "89a0b16ec7df40e798c9dafc196235a1"
+    }
 }

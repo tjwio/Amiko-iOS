@@ -12,8 +12,19 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Builds and Uploads App to HockeyApp"
+  lane :beta do
+    increment_build_number
+  	[["Bump", "Release"]].each do |scheme_name, configuration|
+  		gym(
+			scheme: scheme_name,
+  			configuration: configuration,
+			export_method: "ad-hoc"
+    	)
+	
+		hockey(
+      		api_token: "39260d7d0f854f0880c7ef5532a0daa0"
+    	)
+  	end
   end
 end
