@@ -13,6 +13,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     
     private struct Constants {
         static let cellIdentifier = "BAHistoryCardTableViewCellIdentifier"
+        static let firstHitPoint = CGRect(x: 100.0, y: 150.0, width: 1.0, height: 1.0)
     }
     
     let user: BAUser
@@ -29,6 +30,8 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         return tableView
     }()
     
+    private var mainSection = 0
+    
     init(user: BAUser) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
@@ -42,6 +45,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "History"
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor    :    UIColor.Grayscale.dark,
@@ -61,6 +65,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, view.bounds.size.height-200.0, 0.0)
         view.addSubview(tableView)
         
         setupConstraints()
@@ -77,6 +82,8 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     @objc private func dismissViewController(_ sender: Any?) {
         dismiss(animated: true, completion: nil)
     }
+    
+    //MARK: table view
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return user.history.count
@@ -105,12 +112,66 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         cell.nameLabel.text = history.addedUser.fullName
         cell.phoneLabel.text = history.addedUser.phone
         
-        cell.isMain = true
+        if let imageUrl = history.addedUser.imageUrl, let url = URL(string: imageUrl) {
+            cell.avatarView.imageView.sd_setImage(with: url, completed: nil)
+        }
+        else {
+            cell.avatarView.imageView.image = .exampleAvatar
+        }
+        
+        if indexPath.section == mainSection && !cell.isMain {
+            cell.setIsMain(true, animted: false)
+        }
+        else if indexPath.section != mainSection && cell.isMain {
+            cell.setIsMain(false, animted: false)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    //MARK: scroll view
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let point = view.convert(Constants.firstHitPoint, to: tableView)
+        if let curr = tableView.indexPathsForRows(in: point)?.first {
+            var indexPaths = [IndexPath]()
+            
+            if let cell = tableView.cellForRow(at: curr) as? BAUserCardTableViewCell, !cell.isMain {
+                mainSection = curr.section
+                indexPaths.append(curr)
+                
+                if curr.section > 0 {
+                    let top = IndexPath(row: 0, section: curr.section-1)
+                    
+                    if let cell = tableView.cellForRow(at: top) as? BAUserCardTableViewCell, cell.isMain {
+                        indexPaths.append(top)
+                    }
+                }
+                
+                if curr.section < user.history.count - 1 {
+                    let bottom = IndexPath(row: 0, section: curr.section+1)
+                    
+                    if let cell = tableView.cellForRow(at: bottom) as? BAUserCardTableViewCell, cell.isMain {
+                        indexPaths.append(bottom)
+                    }
+                }
+                
+                tableView.reloadRows(at: indexPaths, with: .automatic)
+            }
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+//            tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
     }
 }

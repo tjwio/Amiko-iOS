@@ -15,11 +15,7 @@ class BAUserCardTableViewCell: UITableViewCell {
         static let shadowOpacity: Float = 0.5
     }
     
-    var isMain = false {
-        didSet {
-            didSetIsMain(isMain)
-        }
-    }
+    private(set) var isMain = false
     
     private let holderView: UIView = {
         let view = UIView()
@@ -194,7 +190,9 @@ class BAUserCardTableViewCell: UITableViewCell {
     
     //MARK: layout helper
     
-    private func didSetIsMain(_ isMain: Bool) {
+    func setIsMain(_ isMain: Bool, animted: Bool) {
+        self.isMain = isMain
+        
         if isMain {
             self.phoneLabel.isHidden = false
             self.dateLabel.isHidden = false
@@ -206,8 +204,6 @@ class BAUserCardTableViewCell: UITableViewCell {
             self.layer.shadowRadius = 4.0
             
             self.holderView.addSubview(self.headerView)
-
-            layoutIfNeeded()
         }
         else {
             self.phoneLabel.isHidden = true
@@ -219,7 +215,16 @@ class BAUserCardTableViewCell: UITableViewCell {
             holderView.layer.shadowRadius = 0.0
             
             self.headerView.removeFromSuperview()
-            
+        }
+        
+        setNeedsUpdateConstraints()
+        
+        if animted {
+            UIView.animate(withDuration: 0.15) {
+                self.layoutIfNeeded()
+            }
+        }
+        else {
             layoutIfNeeded()
         }
     }
