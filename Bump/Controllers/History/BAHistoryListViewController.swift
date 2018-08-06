@@ -13,7 +13,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     
     private struct Constants {
         static let cellIdentifier = "BAHistoryCardTableViewCellIdentifier"
-        static let firstHitPoint = CGRect(x: 100.0, y: 150.0, width: 1.0, height: 1.0)
+        static let firstHitPoint = CGRect(x: 100.0, y: 100.0, width: 1.0, height: 1.0)
     }
     
     let user: BAUser
@@ -65,7 +65,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, view.bounds.size.height-200.0, 0.0)
+        tableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, view.bounds.size.height-200.0, 0.0)
         view.addSubview(tableView)
         
         setupConstraints()
@@ -73,7 +73,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(self.view).offset(20.0)
+            make.top.equalTo(self.view)
             make.leading.equalTo(self.view).offset(20.0)
             make.trailing.bottom.equalTo(self.view).offset(-20.0)
         }
@@ -138,17 +138,16 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let point = view.convert(Constants.firstHitPoint, to: tableView)
         if let curr = tableView.indexPathsForRows(in: point)?.first {
-            var indexPaths = [IndexPath]()
             
             if let cell = tableView.cellForRow(at: curr) as? BAUserCardTableViewCell, !cell.isMain {
                 mainSection = curr.section
-                indexPaths.append(curr)
+                cell.setIsMain(true, animted: true)
                 
                 if curr.section > 0 {
                     let top = IndexPath(row: 0, section: curr.section-1)
                     
                     if let cell = tableView.cellForRow(at: top) as? BAUserCardTableViewCell, cell.isMain {
-                        indexPaths.append(top)
+                        cell.setIsMain(false, animted: true)
                     }
                 }
                 
@@ -156,11 +155,12 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
                     let bottom = IndexPath(row: 0, section: curr.section+1)
                     
                     if let cell = tableView.cellForRow(at: bottom) as? BAUserCardTableViewCell, cell.isMain {
-                        indexPaths.append(bottom)
+                        cell.setIsMain(false, animted: true)
                     }
                 }
                 
-                tableView.reloadRows(at: indexPaths, with: .automatic)
+                tableView.beginUpdates()
+                tableView.endUpdates()
             }
         }
     }
