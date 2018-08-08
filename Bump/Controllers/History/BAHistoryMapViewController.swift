@@ -35,6 +35,9 @@ class BAHistoryMapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
+        resetCenter()
+        addAnnotations()
+        
         view.addSubview(mapView)
         
         setupConstraints()
@@ -49,12 +52,13 @@ class BAHistoryMapViewController: UIViewController, MKMapViewDelegate {
     //MARK: map delegate
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let view = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationIdentifier) ?? MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.annotationIdentifier)
+        let view = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationIdentifier) as? BAUserAnnotationView ?? BAUserAnnotationView(annotation: annotation, reuseIdentifier: Constants.annotationIdentifier)
         
+        view.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
         view.annotation = annotation
         if let annotation = annotation as? BAUserPinAnnotation {
             annotation.user?.loadImage(success: { image in
-                view.image = image.resize(size: CGSize(width: 50.0, height: 50.0))
+                view.userImageView.imageView.image = image
             }, failure: nil)
         }
         
@@ -62,6 +66,12 @@ class BAHistoryMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     //MARK: map helper
+    
+    private func resetCenter() {
+        if let coordinate = user.history.first?.coordinate ?? BALocationManager.shared.currentLocation?.coordinate {
+            mapView.setCenter(coordinate, animated: true)
+        }
+    }
     
     private func addAnnotations() {
         for entry in user.history {
