@@ -113,7 +113,11 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         cell.phoneLabel.text = history.addedUser.phone
         
         if let imageUrl = history.addedUser.imageUrl, let url = URL(string: imageUrl) {
-            cell.avatarView.imageView.sd_setImage(with: url, completed: nil)
+            cell.avatarView.imageView.sd_setIndicatorStyle(.gray)
+            cell.avatarView.imageView.sd_showActivityIndicatorView()
+            cell.avatarView.imageView.sd_setImage(with: url, placeholderImage: .blankAvatar, options: .retryFailed) { (image, _, _, _) in
+                history.addedUser.image.value = image
+            }
         }
         else {
             cell.avatarView.imageView.image = .exampleAvatar

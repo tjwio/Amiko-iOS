@@ -6,7 +6,11 @@
 //  Copyright © 2018 tjwio. All rights reserved.
 //
 
+import UIKit
 import Gloss
+import ReactiveCocoa
+import ReactiveSwift
+import SDWebImage
 
 enum BAAccountContact: String {
     case phone = "phone"
@@ -65,6 +69,8 @@ public class BAUser: NSObject, JSONDecodable {
     var imageUrl: String?
     var profession: String?
     
+    let image = MutableProperty<UIImage?>(nil)
+    
     var fullName: String {
         return "\(firstName) \(lastName)"
     }
@@ -103,6 +109,25 @@ public class BAUser: NSObject, JSONDecodable {
         }) { error in
             BALogger.log("failed to parse history with error: \(error)")
             failure?(error)
+        }
+    }
+    
+    func loadImage(success: BAImageHandler?, failure: BAErrorHandler?) {
+        guard image.value == nil else { success?(image.value!); return; }
+        
+        if let imageUrl = self.imageUrl {
+            SDWebImageManager.shared().loadImage(with: URL(string: imageUrl), options: .retryFailed, progress: nil) { (image, _, error, _, _, _) in
+                if let image = image {
+                    self.image.value = image
+                    success?(image)
+                }
+                else {
+                    failure?(error ?? BAError.nilOrEmpty)
+                }
+            }
+        }
+        else {
+            failure?(BAError.nilOrEmpty)
         }
     }
 }

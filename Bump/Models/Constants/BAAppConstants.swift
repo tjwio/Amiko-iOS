@@ -6,7 +6,7 @@
 //  Copyright © 2018 tjwio. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Gloss
 
 public typealias BABumpHandler = (BABumpEvent) -> Void
@@ -19,6 +19,8 @@ public typealias BAEmptyHandler = () -> Void
 public typealias BAJSONHandler = (JSON) -> Void
 public typealias BAJSONListHandler = ([JSON]) -> Void
 public typealias BAErrorHandler = (Error) -> Void
+
+public typealias BAImageHandler = (UIImage) -> Void
 
 struct BAConstants {
     struct User {

@@ -19,6 +19,10 @@ public class BAHistory: NSObject, JSONDecodable {
     var date: Date
     var addedUser: BAUser
     
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
     struct Constants {
         static let id = "id"
         static let latitude = "latitude"
