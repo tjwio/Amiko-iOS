@@ -93,6 +93,8 @@ class BAHomeViewController: UIViewController {
             jobLabel.text = profession
         }
         if let imageUrl = user.imageUrl {
+            avatarImageView.imageView.sd_setIndicatorStyle(.gray)
+            avatarImageView.imageView.sd_showActivityIndicatorView()
             avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed) { (image, _, _, _) in
                 user.image.value = image
             }

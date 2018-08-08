@@ -30,6 +30,8 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         return tableView
     }()
     
+    let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     private var mainSection = 0
     
     init(user: BAUser) {
@@ -144,6 +146,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
         if let curr = tableView.indexPathsForRows(in: point)?.first {
             
             if let cell = tableView.cellForRow(at: curr) as? BAUserCardTableViewCell, !cell.isMain {
+                hapticGenerator.impactOccurred()
                 mainSection = curr.section
                 cell.setIsMain(true, animted: true)
                 
