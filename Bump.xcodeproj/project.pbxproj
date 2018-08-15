@@ -40,6 +40,9 @@
 		2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */; };
 		2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73D4211B21F300B83501 /* BAUserAnnotationView.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
+		2F3432C121243BCB00B9ED45 /* BAHistoryHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */; };
+		2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C321243F5800B9ED45 /* BANavigationController.swift */; };
+		2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C521243F7E00B9ED45 /* BANavigationBar.swift */; };
 		2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */; };
 		2F4BBB2A20522A3700AAFE1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2920522A3700AAFE1A /* Assets.xcassets */; };
 		2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2B20522A3700AAFE1A /* LaunchScreen.storyboard */; };
@@ -126,6 +129,9 @@
 		2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		2F1E73D4211B21F300B83501 /* BAUserAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserAnnotationView.swift; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
+		2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHistoryHolderViewController.swift; sourceTree = "<group>"; };
+		2F3432C321243F5800B9ED45 /* BANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANavigationController.swift; sourceTree = "<group>"; };
+		2F3432C521243F7E00B9ED45 /* BANavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANavigationBar.swift; sourceTree = "<group>"; };
 		2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPhoenixClient.framework; path = Carthage/Build/iOS/SwiftPhoenixClient.framework; sourceTree = "<group>"; };
 		2F4BBB1F20522A3700AAFE1A /* Bump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +261,7 @@
 		2F18D39D2105485300C97E3A /* History */ = {
 			isa = PBXGroup;
 			children = (
+				2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */,
 				2F18D3A02105650600C97E3A /* BAHistoryListViewController.swift */,
 				2F1E73CC2119975100B83501 /* BAHistoryMapViewController.swift */,
 			);
@@ -292,6 +299,15 @@
 				2F1E73D4211B21F300B83501 /* BAUserAnnotationView.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		2F3432C221243F3A00B9ED45 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2F3432C521243F7E00B9ED45 /* BANavigationBar.swift */,
+				2F3432C321243F5800B9ED45 /* BANavigationController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		2F4BBB1620522A3600AAFE1A = {
@@ -402,6 +418,7 @@
 				2F18D39D2105485300C97E3A /* History */,
 				2F1312032081AEE900D462F8 /* Home */,
 				2F6E51EC20830F4A00E8D8CA /* Login */,
+				2F3432C221243F3A00B9ED45 /* Navigation */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -740,7 +757,9 @@
 				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
 				2F18D39C21053C5300C97E3A /* UIImage+Constants.swift in Sources */,
+				2F3432C121243BCB00B9ED45 /* BAHistoryHolderViewController.swift in Sources */,
 				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
+				2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */,
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
 				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
@@ -757,6 +776,7 @@
 				2F18D39F2105584600C97E3A /* BAUserCardTableViewCell.swift in Sources */,
 				2FE36BEF20F846660012F1AB /* BAFirstExpIntroViewController.swift in Sources */,
 				2F18D3A62106F54E00C97E3A /* BALogger.swift in Sources */,
+				2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */,
 				2FE36BF120F8466F0012F1AB /* BAFirstExpSocialViewController.swift in Sources */,
 				2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */,
 				2FE36BF320F846770012F1AB /* BAFirstExpBumpViewController.swift in Sources */,
@@ -945,7 +965,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -970,7 +990,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

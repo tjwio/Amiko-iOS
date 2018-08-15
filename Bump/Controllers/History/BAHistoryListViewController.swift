@@ -32,6 +32,8 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     
     let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
     
+    var isListVisible = true
+    
     private var mainSection = 0
     
     init(user: BAUser) {

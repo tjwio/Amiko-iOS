@@ -257,7 +257,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         
         self.setupConstraints()
         
-        _ = self.addBackButtonToView()
+        _ = self.addBackButtonToView(dark: false)
         
         let firstNameTextFieldSignal = self.firstNameTextField.reactive.continuousTextValues
         let lastNameTextFieldSignal  = self.lastNameTextField.reactive.continuousTextValues

@@ -189,7 +189,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         
         setupConstraints()
         
-        _ = self.addBackButtonToView()
+        _ = self.addBackButtonToView(dark: false)
         
         let emailTextFieldSignal = self.emailTextField.reactive.continuousTextValues
         let passwordTextFieldSignal  = self.passwordTextField.reactive.continuousTextValues

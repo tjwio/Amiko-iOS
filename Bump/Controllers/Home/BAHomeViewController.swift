@@ -250,7 +250,7 @@ class BAHomeViewController: UIViewController {
     //MARK: account button
     
     @objc private func showAccount(_ sender: UIButton?) {
-        let viewController = BAHistoryMapViewController(user: BAUserHolder.shared.user)
+        let viewController = BAHistoryListViewController(user: BAUserHolder.shared.user)
         let navController = UINavigationController(rootViewController: viewController)
         present(navController, animated: true, completion: nil)
     }

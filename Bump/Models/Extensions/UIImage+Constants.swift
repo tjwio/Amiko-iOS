@@ -20,4 +20,12 @@ extension UIImage {
     class var blankAvatar: UIImage? {
         return UIImage(named: "blank_avatar")
     }
+    
+    class var backArrowDark: UIImage? {
+        return UIImage(named: "back_arrow_dark")
+    }
+    
+    class var backArrowWhite: UIImage? {
+        return UIImage(named: "back_arrow_white")
+    }
 }
