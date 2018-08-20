@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class BANavigationBar: UINavigationBar {
     
@@ -14,6 +15,8 @@ class BANavigationBar: UINavigationBar {
         static let barBackground = "UIBarBackground"
         static let barContentView = "UINavigationBarContentView"
     }
+    
+    let drawerImageView: UIImageView = UIImageView(image: .drawerBar)
     
     override var frame: CGRect {
         didSet {
@@ -29,6 +32,37 @@ class BANavigationBar: UINavigationBar {
     }
     
     var isTransitioning = false
+    
+    init() {
+        super.init(frame: .zero)
+        commonInit()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        drawerImageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(drawerImageView)
+        
+        setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        drawerImageView.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(6.0)
+            make.centerX.equalTo(self)
+        }
+        
+        super.updateConstraints()
+    }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var sizeThatFits = super.sizeThatFits(size)
