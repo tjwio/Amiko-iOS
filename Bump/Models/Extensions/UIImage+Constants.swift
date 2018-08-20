@@ -9,23 +9,27 @@
 import UIKit
 
 extension UIImage {
-    class var exampleAvatar: UIImage? {
-        return UIImage(named: "example_avatar")
-    }
-    
-    class var upwardDoubleArrow: UIImage? {
-        return UIImage(named: "upward_double_arrow")
-    }
-    
-    class var blankAvatar: UIImage? {
-        return UIImage(named: "blank_avatar")
-    }
-    
     class var backArrowDark: UIImage? {
         return UIImage(named: "back_arrow_dark")
     }
     
     class var backArrowWhite: UIImage? {
         return UIImage(named: "back_arrow_white")
+    }
+    
+    class var blankAvatar: UIImage? {
+        return UIImage(named: "blank_avatar")
+    }
+    
+    class var drawerBar: UIImage? {
+        return UIImage(named: "drawer_bar")
+    }
+    
+    class var exampleAvatar: UIImage? {
+        return UIImage(named: "example_avatar")
+    }
+    
+    class var upwardDoubleArrow: UIImage? {
+        return UIImage(named: "upward_double_arrow")
     }
 }

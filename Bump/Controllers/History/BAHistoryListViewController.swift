@@ -48,7 +48,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "History"
         navigationController?.navigationBar.titleTextAttributes = [
@@ -60,10 +60,17 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
             .font               :    UIFont.avenirBold(size: 30.0) ?? UIFont.preferredFont(forTextStyle: .largeTitle)
         ]
         
-        let closeBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(self.dismissViewController(_:)))
-        closeBarButtonItem.tintColor = UIColor.Grayscale.dark
-        closeBarButtonItem.setAllTitleTextAttributes([.font : UIFont.avenirRegular(size: 16.0) ?? UIFont.systemFont(ofSize: 16.0)])
-        navigationItem.leftBarButtonItem = closeBarButtonItem
+        (navigationController?.navigationBar as? BANavigationBar)?.addExtraPadding = true
+        navigationController?.view.layer.cornerRadius = 8.0
+        navigationController?.view.layer.masksToBounds = true
+        if #available(iOS 11.0, *) {
+            additionalSafeAreaInsets.top = 10.0
+        }
+        
+//        let closeBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(self.dismissViewController(_:)))
+//        closeBarButtonItem.tintColor = UIColor.Grayscale.dark
+//        closeBarButtonItem.setAllTitleTextAttributes([.font : UIFont.avenirRegular(size: 16.0) ?? UIFont.systemFont(ofSize: 16.0)])
+//        navigationItem.leftBarButtonItem = closeBarButtonItem
         
         view.backgroundColor = .white
         
@@ -172,15 +179,5 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
                 tableView.endUpdates()
             }
         }
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-//            tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
-        }
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .top, animated: true)
     }
 }

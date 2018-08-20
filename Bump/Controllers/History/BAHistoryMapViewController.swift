@@ -79,4 +79,8 @@ class BAHistoryMapViewController: UIViewController, MKMapViewDelegate {
             mapView.addAnnotation(annotation)
         }
     }
+    
+    func zoomMapOut(bottom: CGFloat, animated: Bool = true) {
+        mapView.setVisibleMapRect(self.mapView.visibleMapRect, edgePadding: UIEdgeInsets(top: 0.0, left: 0.0, bottom: bottom * 0.8, right: 0.0), animated: true)
+    }
 }
