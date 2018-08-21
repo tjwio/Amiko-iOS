@@ -8,10 +8,18 @@
 
 import UIKit
 
-class BAHistoryHolderViewController: UIViewController {
+protocol BAHistoryChangeDelegate: class {
+    func historyController(_ controller: BAHistoryViewController, didSelect entry: BAHistory)
+}
+
+protocol BAHistoryViewController: class {
+    func showEntry(_ entry: BAHistory)
+}
+
+class BAHistoryHolderViewController: UIViewController, BAHistoryChangeDelegate {
     
     private struct Constants {
-        static let defaultOriginY: CGFloat = 100.0
+        static let defaultOriginY: CGFloat = 200.0
         static let minOriginY: CGFloat = 20.0
     }
     
@@ -43,12 +51,12 @@ class BAHistoryHolderViewController: UIViewController {
         addChildHelper(listNav)
         
         listNav.view.frame.origin.y = Constants.defaultOriginY
-        mapController.zoomMapOut(bottom: view.frame.size.height - listNav.view.frame.minY)
+        mapController.bottomOffset = view.frame.size.height - Constants.defaultOriginY
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.panGestureRecognized(_:)))
         listNav.view.addGestureRecognizer(panGestureRecognizer)
         
-        _ = addBackButtonToView(dark: true)
+        _ = addBackButtonToView(dark: true, shouldAddText: false)
     }
     
     //MARK: pan gesture
@@ -72,6 +80,19 @@ class BAHistoryHolderViewController: UIViewController {
             else if velocity.y < -500 {
                 self.showList(duration: 0.25)
             }
+            
+            mapController.bottomOffset = view.frame.size.height - listNav.view.frame.minY
+        }
+    }
+    
+    //MARK: history delegate
+    
+    func historyController(_ controller: BAHistoryViewController, didSelect entry: BAHistory) {
+        if controller === listController {
+            mapController.showEntry(entry)
+        }
+        else if controller === mapController {
+            listController.showEntry(entry)
         }
     }
     

@@ -9,12 +9,14 @@
 import UIKit
 import SnapKit
 
-class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BAHistoryListViewController: UIViewController, BAHistoryViewController, UITableViewDataSource, UITableViewDelegate {
     
     private struct Constants {
         static let cellIdentifier = "BAHistoryCardTableViewCellIdentifier"
         static let firstHitPoint = CGRect(x: 100.0, y: 100.0, width: 1.0, height: 1.0)
     }
+    
+    weak var delegate: BAHistoryChangeDelegate?
     
     let user: BAUser
     
@@ -36,8 +38,9 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     
     private var mainSection = 0
     
-    init(user: BAUser) {
+    init(user: BAUser, delegate: BAHistoryChangeDelegate? = nil) {
         self.user = user
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -92,6 +95,14 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
     
     @objc private func dismissViewController(_ sender: Any?) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    ///MARK: history change delegate
+    
+    func showEntry(_ entry: BAHistory) {
+        if let index = user.history.index(of: entry) {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+        }
     }
     
     //MARK: table view
@@ -158,6 +169,7 @@ class BAHistoryListViewController: UIViewController, UITableViewDataSource, UITa
                 hapticGenerator.impactOccurred()
                 mainSection = curr.section
                 cell.setIsMain(true, animted: true)
+                delegate?.historyController(self, didSelect: user.history[curr.section])
                 
                 if curr.section > 0 {
                     let top = IndexPath(row: 0, section: curr.section-1)

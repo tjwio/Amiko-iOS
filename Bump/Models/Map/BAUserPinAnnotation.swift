@@ -10,10 +10,12 @@ import MapKit
 
 class BAUserPinAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
-    weak var user: BAUser?
+    weak var history: BAHistory?
     
-    init(coordinate: CLLocationCoordinate2D, user: BAUser) {
+    var isShowing = false
+    
+    init(coordinate: CLLocationCoordinate2D, history: BAHistory) {
         self.coordinate = coordinate
-        self.user = user
+        self.history = history
     }
 }
