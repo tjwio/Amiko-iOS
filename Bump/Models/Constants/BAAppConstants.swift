@@ -6,27 +6,32 @@
 //  Copyright © 2018 tjwio. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Gloss
 
 public typealias BABumpHandler = (BABumpEvent) -> Void
 public typealias BAUserHandler = (BAUser) -> Void
 
+public typealias BAHistoryHandler = (BAHistory) -> Void
+public typealias BAHistoryListHandler = ([BAHistory]) -> Void
+
 public typealias BAEmptyHandler = () -> Void
 public typealias BAJSONHandler = (JSON) -> Void
-public typealias BAArrayHandler = ([JSON]) -> Void
+public typealias BAJSONListHandler = ([JSON]) -> Void
 public typealias BAErrorHandler = (Error) -> Void
+
+public typealias BAImageHandler = (UIImage) -> Void
 
 struct BAConstants {
     struct User {
-        static let ID = "id"
-        static let FIRST_NAME = "first_name"
-        static let LAST_NAME = "last_name"
-        static let EMAIL = "email"
-        static let PHONE = "phone"
-        static let IMAGE_URL = "image_url"
-        static let PROFESSION = "profession"
-        static let PASSWORD = "password"
+        static let id = "id"
+        static let firstName = "first_name"
+        static let lastName = "last_name"
+        static let email = "email"
+        static let phone = "phone"
+        static let imageUrl = "image_url"
+        static let profession = "profession"
+        static let password = "password"
     }
     
     struct Channel {
@@ -41,9 +46,13 @@ struct BAConstants {
     }
     
     struct GeoMessage {
-        static let USER_ID = "userId"
-        static let TIMESTAMP = "timestamp"
-        static let LATITUDE = "latitude"
-        static let LONGITUDE = "longitude"
+        static let userId = "userId"
+        static let timestamp = "timestamp"
+        static let latitude = "latitude"
+        static let longitude = "longitude"
+    }
+    
+    struct HockeyApp {
+        static let id = "89a0b16ec7df40e798c9dafc196235a1"
     }
 }

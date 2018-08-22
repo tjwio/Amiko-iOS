@@ -36,11 +36,15 @@ class BAUserHolder: NSObject {
         return shared
     }
     
-    //MARK: LOAD
+    //MARK: load
     class func loadUser(userId: String, success: BAUserHandler?, failure: BAErrorHandler?) {
         BANetworkHandler.shared.loadUser(success: { response in
             if let user = BAUser(json: response) {
-                success?(user)
+                user.loadHistory(success: { _ in
+                    success?(user)
+                }, failure: { _ in
+                    success?(user)
+                })
             }
             else {
                 failure?(BAError.invalidJson)
@@ -99,9 +103,9 @@ class BAUserHolder: NSObject {
     
     func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
         let params: [String : Any] = [
-            BAConstants.GeoMessage.TIMESTAMP : bump.date.timeIntervalSince1970 * 1000.0,
-            BAConstants.GeoMessage.LATITUDE : location.coordinate.latitude,
-            BAConstants.GeoMessage.LONGITUDE : location.coordinate.longitude
+            BAConstants.GeoMessage.timestamp : bump.date.timeIntervalSince1970 * 1000.0,
+            BAConstants.GeoMessage.latitude : location.coordinate.latitude,
+            BAConstants.GeoMessage.longitude : location.coordinate.longitude
         ]
         
         print("bumping with params: \(params)")

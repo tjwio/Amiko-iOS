@@ -24,38 +24,19 @@ class BAWelcomeViewController: UIViewController {
     }()
     
     let backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "login_background"))
+        let imageView = UIImageView(image: .launchImageBg)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
     
-    let backgroundOverlayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(hexColor: 0x003F65, alpha: 0.80)
-        view.translatesAutoresizingMaskIntoConstraints = false
+    let launchGuyImageView: UIImageView = {
+        let imageView = UIImageViewAligned(image: .launchImageGuy)
+        imageView.alignment = .bottomLeft
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        return view
-    }()
-    
-    let welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Welcome"
-        label.textColor = .white
-        label.font = UIFont.avenirDemi(size: 28.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    let detailLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Get set up and running in seconds"
-        label.textColor = .white
-        label.font = UIFont.avenirDemi(size: 18.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
+        return imageView
     }()
     
     let createAccountButton: UIButton = {
@@ -89,34 +70,19 @@ class BAWelcomeViewController: UIViewController {
         return button
     }()
     
-    let rocketImageView = UIImageView(image: UIImage(named: "welcome_rocketship"))
-    var stackView: UIStackView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .black
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         createAccountButton.addTarget(self, action: #selector(self.createAccount(_:)), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(self.login(_:)), for: .touchUpInside)
         
-        let labelStackView = UIStackView(arrangedSubviews: [welcomeLabel, detailLabel])
-        labelStackView.alignment = .center
-        labelStackView.axis = .vertical
-        labelStackView.distribution = .fill
-        labelStackView.spacing = 6.0
-        
-        stackView = UIStackView(arrangedSubviews: [rocketImageView, labelStackView])
-        stackView.alignment = .center
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.spacing = 20.0
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        backgroundImageView.addSubview(backgroundOverlayView)
         view.addSubview(backgroundImageView)
         view.addSubview(ciaoLabel)
-        view.addSubview(stackView)
+        view.addSubview(launchGuyImageView)
         view.addSubview(createAccountButton)
         view.addSubview(loginButton)
         
@@ -124,10 +90,6 @@ class BAWelcomeViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        backgroundOverlayView.snp.makeConstraints { make in
-            make.edges.equalTo(self.backgroundImageView)
-        }
-        
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
@@ -137,8 +99,10 @@ class BAWelcomeViewController: UIViewController {
             make.centerX.equalTo(self.view)
         }
         
-        stackView.snp.makeConstraints { make in
-            make.center.equalTo(self.view)
+        launchGuyImageView.snp.makeConstraints { make in
+            make.top.greaterThanOrEqualTo(self.ciaoLabel.snp.bottom).offset(10.0)
+            make.leading.equalTo(self.view)
+            make.bottom.equalTo(self.createAccountButton.snp.top).offset(-14.0)
         }
         
         loginButton.snp.makeConstraints { make in

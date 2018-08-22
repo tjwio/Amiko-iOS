@@ -19,8 +19,6 @@ class BAAddUserViewController: UIViewController {
     
     var successCallback: BAEmptyHandler?
     
-    private var profileImage: UIImage?
-    
     init(userToAdd: BAUser) {
         self.userToAdd = userToAdd
         let fullName = userToAdd.fullName
@@ -52,7 +50,7 @@ class BAAddUserViewController: UIViewController {
         }
         if let imageUrl = userToAdd.imageUrl {
             userView.avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed, completed: { (image, error, cache, url) in
-                self.profileImage = image
+                self.userToAdd.image.value = image
             })
         }
         userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)
@@ -132,7 +130,7 @@ class BAAddUserViewController: UIViewController {
         if let profession = userToAdd.profession {
             contactToAdd.organizationName = profession
         }
-        if let image = self.profileImage, let data = UIImageJPEGRepresentation(image, 0.5) {
+        if let image = self.userToAdd.image.value, let data = UIImageJPEGRepresentation(image, 0.5) {
             contactToAdd.imageData = data
         }
         

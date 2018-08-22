@@ -24,18 +24,10 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     let backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "login_background"))
+        let imageView = UIImageView(image: .launchImageBg)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
-    }()
-    
-    let backgroundOverlayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(hexColor: 0x003F65, alpha: 0.80)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
     }()
     
     let infoLabel: UILabel = {
@@ -151,6 +143,8 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
+        
         emailTextField.delegate = self
         emailTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingEmail(sender:)), toolbarStyle: .black)
         
@@ -181,7 +175,6 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         createAccountButton.addTarget(self, action: #selector(self.goToCreateAccount(_:)), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(self.login(_:)), for: .touchUpInside)
         
-        backgroundImageView.addSubview(backgroundOverlayView)
         view.addSubview(backgroundImageView)
         view.addSubview(ciaoLabel)
         view.addSubview(fullStackView)
@@ -189,7 +182,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         
         setupConstraints()
         
-        _ = self.addBackButtonToView()
+        _ = self.addBackButtonToView(dark: false)
         
         let emailTextFieldSignal = self.emailTextField.reactive.continuousTextValues
         let passwordTextFieldSignal  = self.passwordTextField.reactive.continuousTextValues
@@ -213,10 +206,6 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setupConstraints() {
-        backgroundOverlayView.snp.makeConstraints { make in
-            make.edges.equalTo(self.backgroundImageView)
-        }
-        
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
@@ -302,9 +291,17 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: login
     @objc private func login(_ sender: UIButton?) {
         BAAuthenticationManager.shared.login(email: self.emailTextField.text!, password: self.passwordTextField.text!, success: { user in
-            DispatchQueue.main.async {
-                (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
+            let homeBlock = {
+                DispatchQueue.main.async {
+                    (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
+                }
             }
+            
+            user.loadHistory(success: { _ in
+                homeBlock()
+            }, failure: { _ in
+                homeBlock()
+            })
         }) { error in
             print("failed to login with error: \(error)")
             self.loginButton.isLoading = false

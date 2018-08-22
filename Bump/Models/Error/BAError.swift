@@ -10,11 +10,14 @@ import Foundation
 
 enum BAError: Error {
     case invalidJson
+    case nilOrEmpty
     
     var localizedDescription: String {
         switch self {
         case .invalidJson:
             return "Invalid JSON Response"
+        case .nilOrEmpty:
+            return "Response was nil or empty"
         }
     }
 }

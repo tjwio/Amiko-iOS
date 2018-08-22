@@ -7,3 +7,4 @@ github "evgenyneu/keychain-swift" ~> 11.0
 github "ReactiveCocoa/ReactiveCocoa" ~> 7.0
 github "Skyscanner/SkyFloatingLabelTextField"
 github "tw23/GSMessages" "fix/access_control"
+github "bitstadium/HockeySDK-iOS"

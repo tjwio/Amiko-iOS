@@ -24,18 +24,10 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     }()
     
     let backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "login_background"))
+        let imageView = UIImageView(image: .launchImageBg)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
-    }()
-    
-    let backgroundOverlayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(hexColor: 0x003F65, alpha: 0.80)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
     }()
     
     let infoLabel: UILabel = {
@@ -217,6 +209,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
+        
         self.firstNameTextField.delegate = self
         self.firstNameTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingFirstName(sender:)), toolbarStyle: .black)
         
@@ -249,7 +243,6 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         createAccountButton.addTarget(self, action: #selector(self.createAccount(_:)), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(self.goToLogin(_:)), for: .touchUpInside)
         
-        backgroundImageView.addSubview(backgroundOverlayView)
         view.addSubview(backgroundImageView)
         view.addSubview(ciaoLabel)
         view.addSubview(fullStackView)
@@ -257,7 +250,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         
         self.setupConstraints()
         
-        _ = self.addBackButtonToView()
+        _ = self.addBackButtonToView(dark: false)
         
         let firstNameTextFieldSignal = self.firstNameTextField.reactive.continuousTextValues
         let lastNameTextFieldSignal  = self.lastNameTextField.reactive.continuousTextValues
@@ -283,10 +276,6 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setupConstraints() {
-        backgroundOverlayView.snp.makeConstraints { make in
-            make.edges.equalTo(self.backgroundImageView)
-        }
-        
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
@@ -402,9 +391,17 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     //MARK: create account
     @objc private func createAccount(_ sender: UIButton?) {
         BAAuthenticationManager.shared.signup(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, phone: self.phoneTextField.text!, password: self.passwordTextField.text!, success: { user in
-            DispatchQueue.main.async {
-                (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
+            let homeBlock = {
+                DispatchQueue.main.async {
+                    (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
+                }
             }
+            
+            user.loadHistory(success: { _ in
+                homeBlock()
+            }, failure: { _ in
+                homeBlock()
+            })
         }) { error in
             print("failed to create account with error: \(error)")
             self.createAccountButton.isLoading = false

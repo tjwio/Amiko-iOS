@@ -26,17 +26,19 @@ extension UIViewController: UIGestureRecognizerDelegate {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     }
     
-    func addBackButtonToView() -> UIButton {
+    func addBackButtonToView(dark: Bool, shouldAddText: Bool = true) -> UIButton {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true;
         
         let backButton = UIButton(type: .custom)
-        backButton.setImage(UIImage(named: "back-white"), for: .normal)
-        backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(.white, for: .normal)
-        backButton.titleLabel?.font = UIFont.avenirRegular(size: 16.0)
+        backButton.setImage(dark ? .backArrowDark : .backArrowWhite, for: .normal)
+        if shouldAddText {
+            backButton.setTitle("Back", for: .normal)
+            backButton.setTitleColor(.white, for: .normal)
+            backButton.titleLabel?.font = UIFont.avenirRegular(size: 16.0)
+            backButton.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
+        }
         backButton.addTarget(self, action: #selector(self.goBack), for: .touchUpInside)
-        backButton.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(backButton)

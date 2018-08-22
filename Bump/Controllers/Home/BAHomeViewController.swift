@@ -93,10 +93,15 @@ class BAHomeViewController: UIViewController {
             jobLabel.text = profession
         }
         if let imageUrl = user.imageUrl {
-            avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "blank_avatar"), options: .retryFailed, completed: nil)
+            avatarImageView.imageView.sd_setIndicatorStyle(.gray)
+            avatarImageView.imageView.sd_showActivityIndicatorView()
+            avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed) { (image, _, _, _) in
+                user.image.value = image
+            }
         }
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
+        accountButton.addTarget(self, action: #selector(self.showAccount(_:)), for: .touchUpInside)
         settingsButton.addTarget(self, action: #selector(self.showSettings(_:)), for: .touchUpInside)
         
         let userHolder = BAUserHolder.shared
@@ -240,6 +245,13 @@ class BAHomeViewController: UIViewController {
         viewController.modalPresentationStyle = .overCurrentContext
         
         self.present(viewController, animated: false, completion: nil)
+    }
+    
+    //MARK: account button
+    
+    @objc private func showAccount(_ sender: UIButton?) {
+        let viewController = BAHistoryHolderViewController(user: BAUserHolder.shared.user)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     //MARK: settings button

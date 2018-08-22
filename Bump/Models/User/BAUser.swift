@@ -6,7 +6,11 @@
 //  Copyright © 2018 tjwio. All rights reserved.
 //
 
+import UIKit
 import Gloss
+import ReactiveCocoa
+import ReactiveSwift
+import SDWebImage
 
 enum BAAccountContact: String {
     case phone = "phone"
@@ -65,25 +69,65 @@ public class BAUser: NSObject, JSONDecodable {
     var imageUrl: String?
     var profession: String?
     
+    let image = MutableProperty<UIImage?>(nil)
+    
     var fullName: String {
         return "\(firstName) \(lastName)"
     }
     
+    var history = [BAHistory]()
+    
     public required init?(json: JSON) {
-        guard let userId: String = BAConstants.User.ID <~~ json else { return nil }
-        guard let firstName: String = BAConstants.User.FIRST_NAME <~~ json else { return nil }
-        guard let lastName: String = BAConstants.User.LAST_NAME <~~ json else { return nil }
-        guard let email: String = BAConstants.User.EMAIL <~~ json else { return nil }
-        guard let phone: String = BAConstants.User.PHONE <~~ json else { return nil }
+        guard let userId: String = BAConstants.User.id <~~ json else { return nil }
+        guard let firstName: String = BAConstants.User.firstName <~~ json else { return nil }
+        guard let lastName: String = BAConstants.User.lastName <~~ json else { return nil }
+        guard let email: String = BAConstants.User.email <~~ json else { return nil }
+        guard let phone: String = BAConstants.User.phone <~~ json else { return nil }
         
         self.userId = userId
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.phone = phone
-        self.imageUrl = BAConstants.User.IMAGE_URL <~~ json
-        self.profession = BAConstants.User.PROFESSION <~~ json
+        self.imageUrl = BAConstants.User.imageUrl <~~ json
+        self.profession = BAConstants.User.profession <~~ json
         
         super.init()
+    }
+    
+    func loadHistory(success: BAHistoryListHandler?, failure: BAErrorHandler?) {
+        BANetworkHandler.shared.loadHistory(success: { response in
+            guard let historyList = [BAHistory].from(jsonArray: response) else {
+                self.history = []
+                failure?(BAError.invalidJson)
+                return
+            }
+            
+            self.history = historyList
+            
+            success?(historyList)
+        }) { error in
+            BALogger.log("failed to parse history with error: \(error)")
+            failure?(error)
+        }
+    }
+    
+    func loadImage(success: BAImageHandler?, failure: BAErrorHandler?) {
+        guard image.value == nil else { success?(image.value!); return; }
+        
+        if let imageUrl = self.imageUrl {
+            SDWebImageManager.shared().loadImage(with: URL(string: imageUrl), options: .retryFailed, progress: nil) { (image, _, error, _, _, _) in
+                if let image = image {
+                    self.image.value = image
+                    success?(image)
+                }
+                else {
+                    failure?(error ?? BAError.nilOrEmpty)
+                }
+            }
+        }
+        else {
+            failure?(BAError.nilOrEmpty)
+        }
     }
 }
