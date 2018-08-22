@@ -18,6 +18,7 @@ class BAAddUserViewController: UIViewController {
     let userView: BAAddUserView
     
     var successCallback: BAEmptyHandler?
+    var failureCallback: BAErrorHandler?
     
     init(userToAdd: BAUser) {
         self.userToAdd = userToAdd
@@ -116,12 +117,24 @@ class BAAddUserViewController: UIViewController {
                 }
             }
         }
-        
-        dismissViewController()
     }
     
     //MARK: add new contact
     private func addNewContact() throws {
+        try addContactToStore()
+        
+        if let coordinate = BALocationManager.shared.currentLocation?.coordinate {
+            BAUserHolder.shared.user.addConnection(addedUserId: userToAdd.userId, latitude: coordinate.latitude, longitude: coordinate.longitude, success: { _ in
+                self.successCallback?()
+                self.dismissViewController()
+            }) { error in
+                self.failureCallback?(error)
+                self.dismissViewController()
+            }
+        }
+    }
+    
+    private func addContactToStore() throws {
         let contactToAdd = CNMutableContact()
         contactToAdd.givenName = userToAdd.firstName
         contactToAdd.familyName = userToAdd.lastName
@@ -138,8 +151,6 @@ class BAAddUserViewController: UIViewController {
         saveRequest.add(contactToAdd, toContainerWithIdentifier: nil)
         
         try store.execute(saveRequest)
-        
-        successCallback?()
     }
     
     //MARK: dismiss

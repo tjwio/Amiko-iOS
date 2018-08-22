@@ -95,6 +95,8 @@ public class BAUser: NSObject, JSONDecodable {
         super.init()
     }
     
+    //MARK: load/get
+    
     func loadHistory(success: BAHistoryListHandler?, failure: BAErrorHandler?) {
         BANetworkHandler.shared.loadHistory(success: { response in
             guard let historyList = [BAHistory].from(jsonArray: response) else {
@@ -128,6 +130,29 @@ public class BAUser: NSObject, JSONDecodable {
         }
         else {
             failure?(BAError.nilOrEmpty)
+        }
+    }
+    
+    //MARK: add/post
+    
+    func addConnection(addedUserId: String, latitude: Double, longitude: Double, success: BAHistoryHandler?, failure: BAErrorHandler?) {
+        let parameters: JSON = [
+            BAHistory.Constants.userId : addedUserId,
+            BAHistory.Constants.latitude : latitude,
+            BAHistory.Constants.longitude : longitude
+        ]
+        
+        BANetworkHandler.shared.addConnection(parameters: parameters, success: { json in
+            if let entry = BAHistory(json: json, user: self) {
+                self.history.append(entry)
+                success?(entry)
+            }
+            else {
+                failure?(BAError.invalidJson)
+            }
+        }) { error in
+            print("failed to add connection with error: \(error)")
+            failure?(error)
         }
     }
 }
