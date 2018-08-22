@@ -78,6 +78,7 @@
 		2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */; };
 		2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */; };
 		2F6E5212208462F100E8D8CA /* BAInitialLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */; };
+		2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */; };
 		2FE36BED20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BEC20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift */; };
 		2FE36BEF20F846660012F1AB /* BAFirstExpIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BEE20F846660012F1AB /* BAFirstExpIntroViewController.swift */; };
 		2FE36BF120F8466F0012F1AB /* BAFirstExpSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF020F8466F0012F1AB /* BAFirstExpSocialViewController.swift */; };
@@ -184,6 +185,7 @@
 		2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAButtonMessage.swift; sourceTree = "<group>"; };
 		2F6E520E2084040E00E8D8CA /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = Carthage/Build/iOS/GSMessages.framework; sourceTree = "<group>"; };
 		2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAInitialLoadingViewController.swift; sourceTree = "<group>"; };
+		2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alignment.swift"; sourceTree = "<group>"; };
 		2FE36BEC20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAFirstExpHomeContainerViewController.swift; sourceTree = "<group>"; };
 		2FE36BEE20F846660012F1AB /* BAFirstExpIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAFirstExpIntroViewController.swift; sourceTree = "<group>"; };
 		2FE36BF020F8466F0012F1AB /* BAFirstExpSocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAFirstExpSocialViewController.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */,
 				2F18D39B21053C5300C97E3A /* UIImage+Constants.swift */,
 				2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */,
+				2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */,
 				2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */,
 				2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */,
 				2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */,
@@ -789,6 +792,7 @@
 				2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */,
 				2F1E73CD2119975100B83501 /* BAHistoryMapViewController.swift in Sources */,
 				2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */,
+				2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */,
 				2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
 				2F06357D20854AAF00D655E7 /* BAAddUserViewController.swift in Sources */,

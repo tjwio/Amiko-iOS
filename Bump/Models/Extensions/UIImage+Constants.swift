@@ -33,6 +33,10 @@ extension UIImage {
         return UIImage(named: "launch_image_bg")
     }
     
+    class var launchImageGuy: UIImage? {
+        return UIImage(named: "launch_image_guy")
+    }
+    
     class var upwardDoubleArrow: UIImage? {
         return UIImage(named: "upward_double_arrow")
     }
