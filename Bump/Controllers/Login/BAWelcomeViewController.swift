@@ -24,18 +24,10 @@ class BAWelcomeViewController: UIViewController {
     }()
     
     let backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "login_background"))
+        let imageView = UIImageView(image: .launchImageBg)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
-    }()
-    
-    let backgroundOverlayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(hexColor: 0x003F65, alpha: 0.80)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
     }()
     
     let welcomeLabel: UILabel = {
@@ -95,6 +87,8 @@ class BAWelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         createAccountButton.addTarget(self, action: #selector(self.createAccount(_:)), for: .touchUpInside)
@@ -113,7 +107,6 @@ class BAWelcomeViewController: UIViewController {
         stackView.spacing = 20.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundImageView.addSubview(backgroundOverlayView)
         view.addSubview(backgroundImageView)
         view.addSubview(ciaoLabel)
         view.addSubview(stackView)
@@ -124,10 +117,6 @@ class BAWelcomeViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        backgroundOverlayView.snp.makeConstraints { make in
-            make.edges.equalTo(self.backgroundImageView)
-        }
-        
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
