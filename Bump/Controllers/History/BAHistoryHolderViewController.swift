@@ -36,6 +36,9 @@ class BAHistoryHolderViewController: UIViewController, BAHistoryChangeDelegate {
         mapController = BAHistoryMapViewController(user: user)
         
         super.init(nibName: nil, bundle: nil)
+        
+        listController.delegate = self
+        mapController.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
