@@ -87,6 +87,7 @@
 		2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF920F84AB00012F1AB /* FirstExp.strings */; };
 		2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3EC2131F2990045B75E /* FontAwesome.framework */; };
 		2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */; };
+		2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3F0213212050045B75E /* UIImageColors.swift */; };
 		2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +196,7 @@
 		2FE36BF920F84AB00012F1AB /* FirstExp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = FirstExp.strings; sourceTree = "<group>"; };
 		2FFAE3EC2131F2990045B75E /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
 		2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASocialDrawerTableViewCell.swift; sourceTree = "<group>"; };
+		2FFAE3F0213212050045B75E /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarItem+TextAttributes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -451,6 +453,7 @@
 				2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */,
 				2F18D39B21053C5300C97E3A /* UIImage+Constants.swift */,
 				2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */,
+				2FFAE3F0213212050045B75E /* UIImageColors.swift */,
 				2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */,
 				2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */,
 				2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */,
@@ -785,6 +788,7 @@
 				2F18D3A62106F54E00C97E3A /* BALogger.swift in Sources */,
 				2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */,
 				2FE36BF120F8466F0012F1AB /* BAFirstExpSocialViewController.swift in Sources */,
+				2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */,
 				2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */,
 				2FE36BF320F846770012F1AB /* BAFirstExpBumpViewController.swift in Sources */,
 				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,

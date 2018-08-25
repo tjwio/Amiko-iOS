@@ -16,6 +16,12 @@ class BAAddUserViewController: UIViewController {
     let store = CNContactStore()
     
     let userView: BAAddUserView
+    private let dummyShadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        
+        return view
+    }()
     
     var successCallback: BAEmptyHandler?
     var failureCallback: BAErrorHandler?
@@ -53,10 +59,10 @@ class BAAddUserViewController: UIViewController {
         userView.isHidden = false
         userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         userView.layer.cornerRadius = 8.0
-        userView.layer.applySketchShadow(color: UIColor(hexColor: 0x3D3F42), alpha: 0.40, x: 0.0, y: 1.0, blur: 12.0, spread: 0.0)
         userView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(userView)
+        view.addSubview(dummyShadowView)
+        dummyShadowView.addSubview(userView)
         setupConstraints()
     }
     
@@ -67,15 +73,20 @@ class BAAddUserViewController: UIViewController {
             self.view.backgroundColor = UIColor(hexColor: 0xA7ADB6, alpha: 0.60);
             
             self.userView.transform = .identity
+            self.dummyShadowView.layer.applySketchShadow(color: UIColor(hexColor: 0x3D3F42), alpha: 0.40, x: 0.0, y: 1.0, blur: 12.0, spread: 0.0)
         }, completion: nil);
     }
     
     private func setupConstraints() {
-        userView.snp.makeConstraints { make in
+        dummyShadowView.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(100.0)
             make.leading.equalTo(self.view).offset(22.0)
             make.trailing.equalTo(self.view).offset(-22.0)
             make.bottom.equalTo(self.view).offset(-60.0)
+        }
+        
+        userView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
