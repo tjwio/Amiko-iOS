@@ -81,7 +81,9 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
         if let annotation = annotation as? BAUserPinAnnotation {
             annotation.history?.addedUser.loadImage(success: { image in
                 view.userImageView.imageView.image = image
-            }, failure: nil)
+            }, failure: { _ in
+                view.userImageView.imageView.image = .exampleAvatar
+            })
         }
         
         if let annotation = annotation as? BAUserPinAnnotation {
@@ -101,7 +103,8 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
     
     func showEntry(_ entry: BAHistory) {
         if let annotation = getAnnotation(forEntry: entry) {
-            showAnnotations([annotation], animated: true)
+            showAnnotations([annotation], animated: false)
+            zoomMapOut(bottom: bottomOffset)
         }
     }
     
@@ -140,7 +143,7 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
     }
     
     private func showFirstAnnotation(animated: Bool = false) {
-        if let annotation = mapView.annotations.first {
+        if let entry = user.history.first, let annotation = getAnnotation(forEntry: entry) {
             showAnnotations([annotation], animated: animated)
         }
     }

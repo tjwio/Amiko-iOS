@@ -31,6 +31,10 @@ struct BAConstants {
         static let phone = "phone"
         static let imageUrl = "image_url"
         static let profession = "profession"
+        static let facebook = "facebook"
+        static let instagram = "instagram"
+        static let linkedin = "linkedin"
+        static let twitter = "twitter"
         static let password = "password"
     }
     

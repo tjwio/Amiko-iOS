@@ -35,6 +35,10 @@ extension UIColor {
     }
     
     struct Blue {
+        static var lighter: UIColor {
+            return UIColor(hexColor: 0xC4DDFF)
+        }
+        
         static var normal: UIColor {
             return UIColor(hexColor: 0x77B0FD)
         }

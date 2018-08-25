@@ -15,9 +15,9 @@ class BAHomeViewController: UIViewController {
     
     let settingsButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("\u{F013}", for: .normal)
+        button.setTitle(String.fontAwesomeIcon(name: .cog), for: .normal)
         button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(size: 24.0)
+        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -25,9 +25,9 @@ class BAHomeViewController: UIViewController {
     
     let accountButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("\u{F007}", for: .normal)
+        button.setTitle(String.fontAwesomeIcon(name: .user), for: .normal)
         button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(size: 24.0)
+        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button

@@ -29,6 +29,7 @@ public class BAHistory: NSObject, JSONDecodable {
         static let longitude = "longitude"
         static let insertedAt = "inserted_at"
         static let addedUser = "added_user"
+        static let userId = "user_id"
     }
     
     required public init?(json: JSON) {

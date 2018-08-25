@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>12</string>
+	<string>14</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera is used to scan user's profile to add them</string>
+	<string>Camera is used to scan user&apos;s profile to add them</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Allow contact access to automatically add to address book</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -61,6 +61,13 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb</string>
+		<string>linkedin</string>
+		<string>instagram</string>
+		<string>twitter</string>
 	</array>
 </dict>
 </plist>

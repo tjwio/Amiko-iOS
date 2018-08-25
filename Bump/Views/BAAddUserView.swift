@@ -14,9 +14,11 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let buttonHeight: CGFloat = 54.0
         static let selectableCellIdentifier = "BASelectableAccountTableViewCellIdentifier"
+        static let socialCellIdentifier = "BASocialDrawerTableViewCellIdentifier"
     }
     
-    var availableItems: [(BAAccountContact, String, Bool)]
+    var mainItems: [(BAAccountContact, String)]
+    var socialItems: [(BAAccountContact, String)]
     
     let contactHolderView: UIView = {
         let view = UIView()
@@ -26,8 +28,16 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         return view
     }()
     
+    let backgroundHeaderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.Blue.lighter
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     let avatarImageView: BAAvatarView = {
-        let imageView = BAAvatarView(image: .blankAvatar)
+        let imageView = BAAvatarView(image: .blankAvatar, shadowHidden: true)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -54,6 +64,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
@@ -64,8 +75,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         return tableView
     }()
     
-    let doneButton: UIButton = {
-        let button = UIButton(type: .custom)
+    let doneButton: BALoadingButton = {
+        let button = BALoadingButton(type: .custom)
         button.backgroundColor = UIColor.Blue.normal
         button.setTitle("Connect", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -104,8 +115,9 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     private var buttonStackView: UIStackView!
     
-    init(contacts: [(BAAccountContact, String)]) {
-        availableItems = contacts.map { return ($0.0, $0.1, false) }
+    init(mainItems: [(BAAccountContact, String)], socialItems: [(BAAccountContact, String)]) {
+        self.mainItems = mainItems
+        self.socialItems = socialItems
         super.init(frame: .zero)
         self.commonInit()
     }
@@ -129,6 +141,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         buttonStackView.spacing = 0.0
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        contactHolderView.addSubview(backgroundHeaderView)
         contactHolderView.addSubview(avatarImageView)
         contactHolderView.addSubview(nameLabel)
         contactHolderView.addSubview(jobLabel)
@@ -140,6 +153,11 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func updateConstraints() {
+        backgroundHeaderView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.avatarImageView.snp.centerY).offset(20.0)
+        }
+        
         avatarImageView.snp.makeConstraints { make in
             make.top.equalTo(self.contactHolderView).offset(40.0)
             make.centerX.equalTo(self.contactHolderView)
@@ -188,7 +206,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: table view methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return availableItems.count
+        return mainItems.count + (socialItems.isEmpty ? 0 : 1)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -208,32 +226,56 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.selectableCellIdentifier) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: Constants.selectableCellIdentifier)
-        
-        let item = availableItems[indexPath.section]
-        
-        cell.accountLabel.text = item.1
-        cell.checkmarkImageView.isHidden = !item.2
-        
-        if let imageName = item.0.image, let image = UIImage(named: imageName) {
-            cell.accountImageView.image = image
-            cell.accountImageView.isHidden = false
-            cell.iconLabel.isHidden = true
+        if indexPath.section < mainItems.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.selectableCellIdentifier) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: Constants.selectableCellIdentifier)
+            
+            let item = mainItems[indexPath.section]
+            
+            cell.accountLabel.text = item.1
+            
+            if let imageName = item.0.image, let image = UIImage(named: imageName) {
+                cell.accountImageView.image = image
+                cell.accountImageView.isHidden = false
+                cell.iconLabel.isHidden = true
+            }
+            else if let iconHex = item.0.icon {
+                cell.iconLabel.text = iconHex
+                cell.iconLabel.font = item.0.font
+                cell.iconLabel.isHidden = false
+                cell.accountImageView.isHidden = true
+            }
+            
+            cell.accountHolderView.backgroundColor = item.0.color
+            
+            return cell
         }
-        else if let iconHex = item.0.iconHex {
-            cell.iconLabel.text = iconHex
-            cell.iconLabel.isHidden = false
-            cell.accountImageView.isHidden = true
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.socialCellIdentifier) as? BASocialDrawerTableViewCell ?? BASocialDrawerTableViewCell(style: .default, reuseIdentifier: Constants.socialCellIdentifier)
+            
+            cell.items = socialItems
+            cell.selectCallback = { (account, value) in
+                var validUrl: URL?
+                
+                if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
+                    validUrl = url
+                }
+                else if let str = account.webUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
+                    validUrl = url
+                }
+                
+                if let url = validUrl {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            
+            return cell
         }
-        
-        cell.layer.cornerRadius = 32.0
-        
-        return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        availableItems[indexPath.section].2 = !availableItems[indexPath.section].2
-        
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .white
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor(hexColor: 0xE6E9ED).cgColor
+        cell.layer.cornerRadius = 32.0
     }
 }

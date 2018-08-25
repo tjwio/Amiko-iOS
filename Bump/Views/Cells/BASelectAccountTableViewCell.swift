@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FontAwesome
 
 class BASelectAccountTableViewCell: UITableViewCell {
     let accountHolderView: UIView = {
@@ -38,7 +39,7 @@ class BASelectAccountTableViewCell: UITableViewCell {
     let iconLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.fontAwesome(size: 24.0)
+        label.font = UIFont.fontAwesome(ofSize: 24.0, style: .brands)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label

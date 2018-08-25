@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import Alamofire
 import Gloss
 
 extension BANetworkHandler {
+    //MARK: GET
+    
     public func loadUser(success: BAJSONHandler?, failure: BAErrorHandler?) {
         self.sessionManager.request(BAURLRouter.loadUser).validate().responseJSON { response in
             switch response.result {
@@ -28,6 +31,17 @@ extension BANetworkHandler {
                 success?(response.result.value as? [JSON] ?? [JSON]())
             case .failure(let error):
                 failure?(error)
+            }
+        }
+    }
+    
+    //MARK: POST
+    
+    public func addConnection(parameters: Parameters, success: BAJSONHandler?, failure: BAErrorHandler?) {
+        self.sessionManager.request(BAURLRouter.addConnection(parameters: parameters)).validate().responseJSON { response in
+            switch response.result {
+            case .success: success?(response.result.value as? JSON ?? JSON())
+            case .failure(let error): failure?(error)
             }
         }
     }
