@@ -16,7 +16,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         static let selectableCellIdentifier = "BASelectableAccountTableViewCellIdentifier"
     }
     
-    var availableItems: [(BAAccountContact, String, Bool)]
+    var mainItems: [(BAAccountContact, String)]
+    var socialItems: [(BAAccountContact, String)]
     
     let contactHolderView: UIView = {
         let view = UIView()
@@ -104,8 +105,9 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     private var buttonStackView: UIStackView!
     
-    init(contacts: [(BAAccountContact, String)]) {
-        availableItems = contacts.map { return ($0.0, $0.1, false) }
+    init(mainItems: [(BAAccountContact, String)], socialItems: [(BAAccountContact, String)]) {
+        self.mainItems = mainItems
+        self.socialItems = socialItems
         super.init(frame: .zero)
         self.commonInit()
     }
@@ -188,7 +190,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: table view methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return availableItems.count
+        return mainItems.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -210,18 +212,18 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.selectableCellIdentifier) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: Constants.selectableCellIdentifier)
         
-        let item = availableItems[indexPath.section]
+        let item = mainItems[indexPath.section]
         
         cell.accountLabel.text = item.1
-        cell.checkmarkImageView.isHidden = !item.2
         
         if let imageName = item.0.image, let image = UIImage(named: imageName) {
             cell.accountImageView.image = image
             cell.accountImageView.isHidden = false
             cell.iconLabel.isHidden = true
         }
-        else if let iconHex = item.0.iconHex {
+        else if let iconHex = item.0.icon {
             cell.iconLabel.text = iconHex
+            cell.iconLabel.font = item.0.font
             cell.iconLabel.isHidden = false
             cell.accountImageView.isHidden = true
         }
@@ -232,7 +234,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        availableItems[indexPath.section].2 = !availableItems[indexPath.section].2
+        mainItems[indexPath.section].2 = !availableItems[indexPath.section].2
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }

@@ -24,7 +24,7 @@ class BAAddUserViewController: UIViewController {
         self.userToAdd = userToAdd
         let fullName = userToAdd.fullName
         let handleUsername = "@\(fullName.lowercased().replacingOccurrences(of: " ", with: ""))"
-        self.userView = BAAddUserView(contacts: [
+        self.userView = BAAddUserView(mainItems: [
             (.phone, userToAdd.phone),
             (.email, userToAdd.email),
             (.linkedin, fullName),

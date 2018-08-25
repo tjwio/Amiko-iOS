@@ -48,7 +48,6 @@
 		2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2B20522A3700AAFE1A /* LaunchScreen.storyboard */; };
 		2F4BBB3820522A3700AAFE1A /* BumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB3720522A3700AAFE1A /* BumpTests.swift */; };
 		2F4BBB4320522A3700AAFE1A /* BumpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB4220522A3700AAFE1A /* BumpUITests.swift */; };
-		2F4BBB5920522AA000AAFE1A /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F4BBB5220522AA000AAFE1A /* FontAwesome.otf */; };
 		2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */; };
 		2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6354D8208C5FC400429F72 /* BACameraViewController.swift */; };
 		2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */; };
@@ -86,6 +85,7 @@
 		2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */; };
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
 		2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF920F84AB00012F1AB /* FirstExp.strings */; };
+		2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3EC2131F2990045B75E /* FontAwesome.framework */; };
 		2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,7 +145,6 @@
 		2F4BBB3E20522A3700AAFE1A /* BumpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4BBB4220522A3700AAFE1A /* BumpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpUITests.swift; sourceTree = "<group>"; };
 		2F4BBB4420522A3700AAFE1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2F4BBB5220522AA000AAFE1A /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
 		2F6354D8208C5FC400429F72 /* BACameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACameraViewController.swift; sourceTree = "<group>"; };
 		2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABumpManager.swift; sourceTree = "<group>"; };
@@ -193,6 +192,7 @@
 		2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALocalizationStrings.swift; sourceTree = "<group>"; };
 		2FE36BF720F84A7B0012F1AB /* Global.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Global.strings; sourceTree = "<group>"; };
 		2FE36BF920F84AB00012F1AB /* FirstExp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = FirstExp.strings; sourceTree = "<group>"; };
+		2FFAE3EC2131F2990045B75E /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
 		2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarItem+TextAttributes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */,
 				2F1E73C521163D1800B83501 /* HockeySDK.framework in Frameworks */,
 				2F1E73B6211636BC00B83501 /* Alamofire.framework in Frameworks */,
 				2F1E73B7211636BC00B83501 /* Gloss.framework in Frameworks */,
@@ -281,6 +282,7 @@
 		2F1E73B5211636BC00B83501 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FFAE3EC2131F2990045B75E /* FontAwesome.framework */,
 				2F1E73C421163D1700B83501 /* HockeySDK.framework */,
 				2F1E73C2211636BD00B83501 /* ReactiveMapKit.framework */,
 			);
@@ -388,7 +390,6 @@
 				2F6E51E4208308E000E8D8CA /* AvenirNextLTPro-Medium.otf */,
 				2F6E51E3208308E000E8D8CA /* AvenirNextLTPro-Regular.otf */,
 				2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */,
-				2F4BBB5220522AA000AAFE1A /* FontAwesome.otf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -698,7 +699,6 @@
 				2F6E51E8208308E000E8D8CA /* AvenirNextLTPro-Regular.otf in Resources */,
 				2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */,
 				2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */,
-				2F4BBB5920522AA000AAFE1A /* FontAwesome.otf in Resources */,
 				2F6E51EA208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf in Resources */,
 				2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */,
 				2F4BBB2A20522A3700AAFE1A /* Assets.xcassets in Resources */,
@@ -741,6 +741,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
 			);
 			name = "Copy Carthage Frameworks";
 			outputPaths = (

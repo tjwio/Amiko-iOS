@@ -47,16 +47,24 @@ enum BAAccountContact: String {
         }
     }
     
-    var iconHex: String? {
+    var icon: String? {
         switch self {
-        case .email: return "\u{F0E0}"
-        case .linkedin: return "\u{F08C}"
-        case .facebook: return "\u{F09A}"
-        case .twitter: return "\u{f099}"
-        case .instagram: return "\u{F16D}"
-        case .resume: return "\u{F15C}"
+        case .email: return String.fontAwesomeIcon(name: .envelope)
+        case .facebook: return String.fontAwesomeIcon(name: .facebookF)
+        case .instagram: return String.fontAwesomeIcon(name: .instagram)
+        case .linkedin: return String.fontAwesomeIcon(name: .linkedin)
+        case .twitter: return String.fontAwesomeIcon(name: .twitter)
+        case .resume: return String.fontAwesomeIcon(name: .file)
         default: return nil
         }
+    }
+    
+    var font: UIFont? {
+        return UIFont.fontAwesome(ofSize: 24.0, style: .brands)
+    }
+    
+    var color: UIColor {
+        return .white
     }
 }
 
