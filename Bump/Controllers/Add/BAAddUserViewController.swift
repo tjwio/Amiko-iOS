@@ -53,7 +53,7 @@ class BAAddUserViewController: UIViewController {
         userView.isHidden = false
         userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         userView.layer.cornerRadius = 8.0
-        userView.layer.applySketchShadow(color: UIColor(hexColor: 0x3D3F42), alpha: 0.20, x: 0.0, y: 1.0, blur: 12.0, spread: 0.0)
+        userView.layer.applySketchShadow(color: UIColor(hexColor: 0x3D3F42), alpha: 0.40, x: 0.0, y: 1.0, blur: 12.0, spread: 0.0)
         userView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(userView)
@@ -64,7 +64,7 @@ class BAAddUserViewController: UIViewController {
         super.viewDidAppear(animated)
         
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
-            self.view.backgroundColor = UIColor(hexColor: 0xA7ADB6, alpha: 0.40);
+            self.view.backgroundColor = UIColor(hexColor: 0xA7ADB6, alpha: 0.60);
             
             self.userView.transform = .identity
         }, completion: nil);
@@ -72,10 +72,10 @@ class BAAddUserViewController: UIViewController {
     
     private func setupConstraints() {
         userView.snp.makeConstraints { make in
-            make.top.equalTo(self.view).offset(50.0)
+            make.top.equalTo(self.view).offset(100.0)
             make.leading.equalTo(self.view).offset(22.0)
             make.trailing.equalTo(self.view).offset(-22.0)
-            make.bottom.equalTo(self.view).offset(-30.0)
+            make.bottom.equalTo(self.view).offset(-60.0)
         }
     }
     
