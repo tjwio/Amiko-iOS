@@ -28,8 +28,16 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         return view
     }()
     
+    let backgroundHeaderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.Blue.lighter
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     let avatarImageView: BAAvatarView = {
-        let imageView = BAAvatarView(image: .blankAvatar)
+        let imageView = BAAvatarView(image: .blankAvatar, shadowHidden: true)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -133,6 +141,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         buttonStackView.spacing = 0.0
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        contactHolderView.addSubview(backgroundHeaderView)
         contactHolderView.addSubview(avatarImageView)
         contactHolderView.addSubview(nameLabel)
         contactHolderView.addSubview(jobLabel)
@@ -144,6 +153,11 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func updateConstraints() {
+        backgroundHeaderView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.avatarImageView.snp.centerY).offset(20.0)
+        }
+        
         avatarImageView.snp.makeConstraints { make in
             make.top.equalTo(self.contactHolderView).offset(40.0)
             make.centerX.equalTo(self.contactHolderView)

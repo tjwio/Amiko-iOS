@@ -52,6 +52,9 @@ class BAAddUserViewController: UIViewController {
         if let imageUrl = userToAdd.imageUrl {
             userView.avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed, completed: { (image, error, cache, url) in
                 self.userToAdd.image.value = image
+                image?.getColors { colors in
+                    self.userView.backgroundHeaderView.backgroundColor = colors.background
+                }
             })
         }
         userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)

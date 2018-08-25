@@ -21,12 +21,20 @@ class BAAvatarView: UIView {
         return imageView
     }()
     
+    var shadowHidden = false {
+        didSet {
+            updateShadow()
+            setNeedsLayout()
+        }
+    }
+    
     init() {
         super.init(frame: .zero)
         commonInit()
     }
     
-    init(image: UIImage?) {
+    init(image: UIImage?, shadowHidden: Bool = false) {
+        self.shadowHidden = shadowHidden
         super.init(frame: .zero)
         imageView.image = image
         commonInit()
@@ -43,10 +51,7 @@ class BAAvatarView: UIView {
     }
     
     private func commonInit() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        layer.shadowRadius = 4.0
-        layer.shadowOpacity = 0.5
+        updateShadow()
         
         addSubview(imageView)
         setNeedsUpdateConstraints()
@@ -62,7 +67,30 @@ class BAAvatarView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         imageView.layer.cornerRadius = bounds.size.height / 2.0
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.size.height / 2.0).cgPath
+        
+        if shadowHidden {
+            layer.shadowPath = nil
+        }
+        else {
+            layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: bounds.size.height / 2.0).cgPath
+        }
+        
+    }
+    
+    private func updateShadow() {
+        if shadowHidden {
+            layer.shadowColor = UIColor.clear.cgColor
+            layer.shadowOffset = .zero
+            layer.shadowRadius = 0.0
+            layer.shadowOpacity = 0.0
+        }
+        else {
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            layer.shadowRadius = 4.0
+            layer.shadowOpacity = 0.5
+        }
     }
 }
