@@ -17,7 +17,7 @@ class BAHomeViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle(String.fontAwesomeIcon(name: .cog), for: .normal)
         button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .regular)
+        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -27,7 +27,7 @@ class BAHomeViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle(String.fontAwesomeIcon(name: .user), for: .normal)
         button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .regular)
+        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button

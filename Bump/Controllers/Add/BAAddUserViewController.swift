@@ -22,7 +22,6 @@ class BAAddUserViewController: UIViewController {
     
     init(userToAdd: BAUser) {
         self.userToAdd = userToAdd
-        let fullName = userToAdd.fullName
         self.userView = BAAddUserView(mainItems: [
             (.phone, userToAdd.phone),
             (.email, userToAdd.email)

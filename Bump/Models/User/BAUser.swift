@@ -60,7 +60,10 @@ enum BAAccountContact: String {
     }
     
     var font: UIFont? {
-        return UIFont.fontAwesome(ofSize: 24.0, style: .brands)
+        switch self {
+        case .email: return UIFont.fontAwesome(ofSize: 24.0, style: .solid)
+        default: return UIFont.fontAwesome(ofSize: 24.0, style: .brands)
+        }
     }
     
     var color: UIColor {
@@ -79,6 +82,16 @@ enum BAAccountContact: String {
         case .instagram: return "instagram://user?username=\(id)"
         case .linkedin: return "linkedin://profile/\(id)"
         case .twitter: return "twitter://user?screen_name=\(id)"
+        default: return nil
+        }
+    }
+    
+    func webUrl(id: String) -> String? {
+        switch self {
+        case .facebook: return "https://www.facebook.com/\(id)"
+        case .instagram: return "https://www.instagram.com/\(id)"
+        case .linkedin: return "https://www.linkedin.com/in/\(id)"
+        case .twitter: return "https://twitter.com/\(id)"
         default: return nil
         }
     }

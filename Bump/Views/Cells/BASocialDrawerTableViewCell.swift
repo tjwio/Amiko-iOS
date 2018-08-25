@@ -8,6 +8,8 @@
 
 import UIKit
 import SnapKit
+import ReactiveCocoa
+import ReactiveSwift
 
 class BASocialDrawerTableViewCell: UITableViewCell {
     var selectCallback: ((BAAccountContact, String) -> Void)?
@@ -17,7 +19,7 @@ class BASocialDrawerTableViewCell: UITableViewCell {
         }
     }
     
-    var socialViews = [(UIView, UILabel)]()
+    var socialViews = [UIButton]()
     
     let scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -28,6 +30,9 @@ class BASocialDrawerTableViewCell: UITableViewCell {
     
     private var didSetupInitialConstraints = false
     
+    //rx
+    private var disposables = CompositeDisposable()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -36,6 +41,10 @@ class BASocialDrawerTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+    }
+    
+    deinit {
+        disposables.dispose()
     }
     
     private func commonInit() {
@@ -49,67 +58,57 @@ class BASocialDrawerTableViewCell: UITableViewCell {
                 make.edges.equalTo(self.contentView)
             }
             
-            for (index, (holder, label)) in socialViews.enumerated() {
-                label.snp.makeConstraints { make in
-                    make.center.equalTo(holder)
-                }
-                
+            didSetupInitialConstraints = true
+        }
+        
+        for (index, holder) in socialViews.enumerated() {
+            holder.snp.makeConstraints { make in
+                make.centerY.equalTo(self.scrollView)
+                make.height.width.equalTo(42.0)
+            }
+            
+            if index > 0 {
                 holder.snp.makeConstraints { make in
-                    make.centerY.equalTo(self.scrollView)
+                    make.leading.equalTo(self.socialViews[index-1].snp.trailing).offset(16.0)
                 }
-                
-                if index > 0 {
-                    holder.snp.makeConstraints { make in
-                        make.leading.equalTo(self.socialViews[index].0.snp.trailing).offset(16.0)
-                    }
-                }
-                else {
-                    holder.snp.makeConstraints { make in
-                        make.leading.equalTo(self.scrollView).offset(16.0)
-                    }
-                }
-                
-                if index == (socialViews.count - 1) {
-                    holder.snp.makeConstraints { make in
-                        make.trailing.equalTo(self.scrollView).offset(-16.0)
-                    }
+            }
+            else {
+                holder.snp.makeConstraints { make in
+                    make.leading.equalTo(self.scrollView).offset(16.0)
                 }
             }
             
-            didSetupInitialConstraints = true
+            if index == (socialViews.count - 1) {
+                holder.snp.makeConstraints { make in
+                    make.trailing.lessThanOrEqualTo(self.scrollView).offset(-16.0)
+                }
+            }
         }
         
         super.updateConstraints()
     }
     
     private func addSocialButtons() {
-        socialViews.forEach { $0.0.removeFromSuperview() }
+        socialViews.forEach { $0.removeFromSuperview() }
         socialViews = []
         
-        for socialItem in items {
-            let accountHolderView: UIView = {
-                let view = UIView()
-                view.backgroundColor = socialItem.0.color
-                view.layer.cornerRadius = 21.0
-                view.translatesAutoresizingMaskIntoConstraints = false
-                
-                return view
-            }()
+        for (index, socialItem) in items.enumerated() {
+            let button = UIButton(type: .custom)
+            button.backgroundColor = socialItem.0.color
+            button.setTitle(socialItem.0.icon, for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.titleLabel?.font = socialItem.0.font
+            button.layer.cornerRadius = 21.0
+            button.translatesAutoresizingMaskIntoConstraints = false
             
-            let iconLabel: UILabel = {
-                let label = UILabel()
-                label.text = socialItem.0.icon
-                label.textColor = .white
-                label.font = socialItem.0.font
-                label.translatesAutoresizingMaskIntoConstraints = false
-                
-                return label
-            }()
+            disposables += button.reactive.controlEvents(.touchUpInside).observeValues { [weak self] _ in
+                guard let strongSelf = self else { return }
+                strongSelf.selectCallback?(strongSelf.items[index].0, strongSelf.items[index].1)
+            }
             
-            accountHolderView.addSubview(iconLabel)
-            scrollView.addSubview(accountHolderView)
+            scrollView.addSubview(button)
             
-            socialViews.append((accountHolderView, iconLabel))
+            socialViews.append(button)
         }
         
         setNeedsUpdateConstraints()

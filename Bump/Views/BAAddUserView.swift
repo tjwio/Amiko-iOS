@@ -231,7 +231,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
                 cell.accountImageView.isHidden = true
             }
             
-            cell.layer.cornerRadius = 32.0
+            cell.accountHolderView.backgroundColor = item.0.color
             
             return cell
         }
@@ -239,8 +239,29 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.socialCellIdentifier) as? BASocialDrawerTableViewCell ?? BASocialDrawerTableViewCell(style: .default, reuseIdentifier: Constants.socialCellIdentifier)
             
             cell.items = socialItems
+            cell.selectCallback = { (account, value) in
+                var validUrl: URL?
+                
+                if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
+                    validUrl = url
+                }
+                else if let str = account.webUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
+                    validUrl = url
+                }
+                
+                if let url = validUrl {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
             
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .white
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor(hexColor: 0xE6E9ED).cgColor
+        cell.layer.cornerRadius = 32.0
     }
 }
