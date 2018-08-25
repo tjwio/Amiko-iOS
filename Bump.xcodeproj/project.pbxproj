@@ -86,6 +86,7 @@
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
 		2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF920F84AB00012F1AB /* FirstExp.strings */; };
 		2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3EC2131F2990045B75E /* FontAwesome.framework */; };
+		2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */; };
 		2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +194,7 @@
 		2FE36BF720F84A7B0012F1AB /* Global.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Global.strings; sourceTree = "<group>"; };
 		2FE36BF920F84AB00012F1AB /* FirstExp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = FirstExp.strings; sourceTree = "<group>"; };
 		2FFAE3EC2131F2990045B75E /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
+		2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASocialDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarItem+TextAttributes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */,
+				2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */,
 				2F18D39E2105584600C97E3A /* BAUserCardTableViewCell.swift */,
 			);
 			path = Cells;
@@ -807,6 +810,7 @@
 				2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */,
 				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
+				2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
 				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,
 				2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */,

@@ -14,6 +14,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let buttonHeight: CGFloat = 54.0
         static let selectableCellIdentifier = "BASelectableAccountTableViewCellIdentifier"
+        static let socialCellIdentifier = "BASocialDrawerTableViewCellIdentifier"
     }
     
     var mainItems: [(BAAccountContact, String)]
@@ -55,6 +56,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
@@ -190,7 +192,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: table view methods
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return mainItems.count
+        return mainItems.count + (socialItems.isEmpty ? 0 : 1)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -210,32 +212,35 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.selectableCellIdentifier) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: Constants.selectableCellIdentifier)
-        
-        let item = mainItems[indexPath.section]
-        
-        cell.accountLabel.text = item.1
-        
-        if let imageName = item.0.image, let image = UIImage(named: imageName) {
-            cell.accountImageView.image = image
-            cell.accountImageView.isHidden = false
-            cell.iconLabel.isHidden = true
+        if indexPath.section < mainItems.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.selectableCellIdentifier) as? BASelectAccountTableViewCell ?? BASelectAccountTableViewCell(style: .default, reuseIdentifier: Constants.selectableCellIdentifier)
+            
+            let item = mainItems[indexPath.section]
+            
+            cell.accountLabel.text = item.1
+            
+            if let imageName = item.0.image, let image = UIImage(named: imageName) {
+                cell.accountImageView.image = image
+                cell.accountImageView.isHidden = false
+                cell.iconLabel.isHidden = true
+            }
+            else if let iconHex = item.0.icon {
+                cell.iconLabel.text = iconHex
+                cell.iconLabel.font = item.0.font
+                cell.iconLabel.isHidden = false
+                cell.accountImageView.isHidden = true
+            }
+            
+            cell.layer.cornerRadius = 32.0
+            
+            return cell
         }
-        else if let iconHex = item.0.icon {
-            cell.iconLabel.text = iconHex
-            cell.iconLabel.font = item.0.font
-            cell.iconLabel.isHidden = false
-            cell.accountImageView.isHidden = true
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.socialCellIdentifier) as? BASocialDrawerTableViewCell ?? BASocialDrawerTableViewCell(style: .default, reuseIdentifier: Constants.socialCellIdentifier)
+            
+            cell.items = socialItems
+            
+            return cell
         }
-        
-        cell.layer.cornerRadius = 32.0
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        mainItems[indexPath.section].2 = !availableItems[indexPath.section].2
-        
-        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }

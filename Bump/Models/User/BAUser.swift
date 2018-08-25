@@ -64,7 +64,23 @@ enum BAAccountContact: String {
     }
     
     var color: UIColor {
-        return .white
+        switch self {
+        case .facebook: return UIColor(hexColor: 0x7B86E1)
+        case .instagram: return UIColor(hexColor: 0xD48EE8)
+        case .linkedin: return UIColor(hexColor: 0x678EC2)
+        case .twitter: return UIColor(hexColor: 0x8DBEFA)
+        default: return UIColor.Blue.normal
+        }
+    }
+    
+    func appUrl(id: String) -> String? {
+        switch self {
+        case .facebook: return "fb://profile/\(id)"
+        case .instagram: return "instagram://user?username=\(id)"
+        case .linkedin: return "linkedin://profile/\(id)"
+        case .twitter: return "twitter://user?screen_name=\(id)"
+        default: return nil
+        }
     }
 }
 
@@ -76,6 +92,7 @@ public class BAUser: NSObject, JSONDecodable {
     var phone: String
     var imageUrl: String?
     var profession: String?
+    var socialAccounts = [(BAAccountContact, String)]()
     
     let image = MutableProperty<UIImage?>(nil)
     
@@ -84,6 +101,8 @@ public class BAUser: NSObject, JSONDecodable {
     }
     
     var history = [BAHistory]()
+    
+    private let availableSocial = [BAConstants.User.facebook, BAConstants.User.instagram, BAConstants.User.linkedin, BAConstants.User.twitter]
     
     public required init?(json: JSON) {
         guard let userId: String = BAConstants.User.id <~~ json else { return nil }
@@ -99,6 +118,12 @@ public class BAUser: NSObject, JSONDecodable {
         self.phone = phone
         self.imageUrl = BAConstants.User.imageUrl <~~ json
         self.profession = BAConstants.User.profession <~~ json
+        
+        for social in availableSocial {
+            if let accountContact = BAAccountContact(rawValue: social), let value: String = social <~~ json {
+                self.socialAccounts.append((accountContact, value))
+            }
+        }
         
         super.init()
     }

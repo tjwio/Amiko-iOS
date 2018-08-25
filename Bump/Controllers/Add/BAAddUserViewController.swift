@@ -23,15 +23,10 @@ class BAAddUserViewController: UIViewController {
     init(userToAdd: BAUser) {
         self.userToAdd = userToAdd
         let fullName = userToAdd.fullName
-        let handleUsername = "@\(fullName.lowercased().replacingOccurrences(of: " ", with: ""))"
         self.userView = BAAddUserView(mainItems: [
             (.phone, userToAdd.phone),
-            (.email, userToAdd.email),
-            (.linkedin, fullName),
-            (.twitter, handleUsername),
-            (.facebook, fullName),
-            (.instagram, handleUsername)
-        ])
+            (.email, userToAdd.email)
+            ], socialItems: userToAdd.socialAccounts)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -94,26 +89,22 @@ class BAAddUserViewController: UIViewController {
     //MARK: done
     
     @objc private func done(_ sender: UIButton?) {
-        if self.userView.availableItems.filter({ (item) -> Bool in
-            return (item.0 == .phone || item.0 == .email) && item.2 == true
-        }).count == 2 {
-            if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
-                do { try self.addNewContact() }
-                catch {
-                    print("failed to save contact")
-                }
+        if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
+            do { try self.addNewContact() }
+            catch {
+                print("failed to save contact")
             }
-            else {
-                store.requestAccess(for: .contacts) { (granted, error) in
-                    if granted && error == nil {
-                        do { try self.addNewContact() }
-                        catch {
-                            print("failed to save contact")
-                        }
+        }
+        else {
+            store.requestAccess(for: .contacts) { (granted, error) in
+                if granted && error == nil {
+                    do { try self.addNewContact() }
+                    catch {
+                        print("failed to save contact")
                     }
-                    else if let error = error {
-                        print("failed to get contact access with error: \(error)")
-                    }
+                }
+                else if let error = error {
+                    print("failed to get contact access with error: \(error)")
                 }
             }
         }
