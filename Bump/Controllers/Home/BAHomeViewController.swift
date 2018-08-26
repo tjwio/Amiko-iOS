@@ -13,6 +13,11 @@ import SnapKit
 import SDWebImage
 
 class BAHomeViewController: UIViewController {
+    private struct Constants {
+        static let instructionsHold = "Hold anywhere to bump"
+        static let instructionsBump = "Bump now"
+        static let firstFrame = NSNumber(value: 36.0)
+    }
     
     let settingsButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -84,9 +89,29 @@ class BAHomeViewController: UIViewController {
         let animation = LOTAnimationView(name: "bump")
         animation.contentMode = .scaleAspectFit
         animation.loopAnimation = true
+        animation.setProgressWithFrame(Constants.firstFrame)
+        animation.isHidden = true
         animation.translatesAutoresizingMaskIntoConstraints = false
         
         return animation
+    }()
+    
+    let bumpImageView: UIImageView = {
+        let view = UIImageView(image: .bumpGray)
+        view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let bumpInstructionsLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constants.instructionsHold
+        label.textColor = UIColor.Grayscale.light
+        label.font = UIFont.avenirUltraLightItalic(size: 18.0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
     }()
     
     let holderAnimationView: UIView = {
@@ -102,6 +127,10 @@ class BAHomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         view.backgroundColor = UIColor(hexColor: 0xFBFCFD)
+        
+        let holdGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.holdGestureRecognized(_:)))
+        holdGestureRecognizer.minimumPressDuration = 0.0
+        view.addGestureRecognizer(holdGestureRecognizer)
         
         let user = BAUserHolder.shared.user
         nameLabel.text = "\(user.firstName) \(user.lastName)"
@@ -140,9 +169,9 @@ class BAHomeViewController: UIViewController {
         }
         BABumpManager.shared.start()
         
-        bumpAnimation.play()
-        
+        holderAnimationView.addSubview(bumpImageView)
         holderAnimationView.addSubview(bumpAnimation)
+        holderAnimationView.addSubview(bumpInstructionsLabel)
         view.addSubview(backgroundHeaderView)
         view.addSubview(settingsButton)
         view.addSubview(accountButton)
@@ -202,8 +231,19 @@ class BAHomeViewController: UIViewController {
         
         bumpAnimation.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.height.equalTo(300.0)
-            make.width.equalTo(300.0)
+            make.height.equalTo(250.0)
+            make.width.equalTo(250.0)
+        }
+        
+        bumpImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.equalTo(135.0)
+            make.width.equalTo(135.0)
+        }
+        
+        bumpInstructionsLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.bumpImageView.snp.top).offset(30.0)
+            make.centerX.equalToSuperview()
         }
     }
     
@@ -221,6 +261,44 @@ class BAHomeViewController: UIViewController {
         viewController.modalPresentationStyle = .overCurrentContext
         
         self.present(viewController, animated: false, completion: nil)
+    }
+    
+    //MARK: hold gesture
+    
+    @objc private func holdGestureRecognized(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            self.bumpInstructionsLabel.text = Constants.instructionsBump
+            
+            bumpAnimation.loopAnimation = true
+            bumpAnimation.isHidden = false
+            bumpAnimation.alpha = 0.0
+            bumpAnimation.setProgressWithFrame(Constants.firstFrame)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.bumpAnimation.alpha = 1.0
+                self.bumpImageView.alpha = 0.0
+            }) { _ in
+                self.bumpAnimation.play(fromProgress: 0.0, toProgress: 1.0, withCompletion: nil)
+                self.bumpImageView.isHidden = true
+            }
+        }
+        else if sender.state == .ended {
+            self.bumpInstructionsLabel.text = Constants.instructionsHold
+            bumpImageView.alpha = 0.0
+            bumpImageView.isHidden = false
+            
+            bumpAnimation.pause()
+            bumpAnimation.loopAnimation = false
+            bumpAnimation.play(toFrame: Constants.firstFrame, withCompletion: { _ in
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.bumpImageView.alpha = 1.0
+                    self.bumpAnimation.alpha = 0.0
+                }) { _ in
+                    self.bumpAnimation.isHidden = true
+                    self.bumpImageView.isHidden = false
+                }
+            })
+        }
     }
     
     //MARK: camera button
