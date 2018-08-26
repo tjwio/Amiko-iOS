@@ -17,6 +17,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         static let socialCellIdentifier = "BASocialDrawerTableViewCellIdentifier"
     }
     
+    var selectCallback: BASocialCallback?
+    
     var mainItems: [(BAAccountContact, String)]
     var socialItems: [(BAAccountContact, String)]
     
@@ -253,20 +255,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.socialCellIdentifier) as? BASocialDrawerTableViewCell ?? BASocialDrawerTableViewCell(style: .default, reuseIdentifier: Constants.socialCellIdentifier)
             
             cell.drawerView.items = socialItems
-            cell.drawerView.selectCallback = { (account, value) in
-                var validUrl: URL?
-                
-                if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
-                    validUrl = url
-                }
-                else if let str = account.webUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
-                    validUrl = url
-                }
-                
-                if let url = validUrl {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            }
+            cell.drawerView.selectCallback = selectCallback
             
             return cell
         }

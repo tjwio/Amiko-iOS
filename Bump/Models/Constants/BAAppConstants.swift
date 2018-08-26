@@ -15,6 +15,8 @@ public typealias BAUserHandler = (BAUser) -> Void
 public typealias BAHistoryHandler = (BAHistory) -> Void
 public typealias BAHistoryListHandler = ([BAHistory]) -> Void
 
+public typealias BASocialCallback = (BAAccountContact, String) -> Void
+
 public typealias BAEmptyHandler = () -> Void
 public typealias BAJSONHandler = (JSON) -> Void
 public typealias BAJSONListHandler = ([JSON]) -> Void
@@ -58,5 +60,20 @@ struct BAConstants {
     
     struct HockeyApp {
         static let id = "89a0b16ec7df40e798c9dafc196235a1"
+    }
+    
+    static let defaultSocialCallback: BASocialCallback = { (account, value) in
+        var validUrl: URL?
+        
+        if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
+            validUrl = url
+        }
+        else if let str = account.webUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
+            validUrl = url
+        }
+        
+        if let url = validUrl {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 }

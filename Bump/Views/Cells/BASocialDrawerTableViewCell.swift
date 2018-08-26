@@ -36,7 +36,9 @@ class BASocialDrawerTableViewCell: UITableViewCell {
     
     override func updateConstraints() {
         drawerView.snp.makeConstraints { make in
-            make.edges.equalTo(self.contentView)
+            make.top.bottom.equalTo(self.contentView)
+            make.leading.equalTo(self.contentView).offset(16.0)
+            make.trailing.equalTo(self.contentView).offset(-16.0)
         }
         
         super.updateConstraints()

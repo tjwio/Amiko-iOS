@@ -12,7 +12,7 @@ import ReactiveSwift
 import SnapKit
 
 class BASocialDrawerView: UIView {
-    var selectCallback: ((BAAccountContact, String) -> Void)?
+    var selectCallback: BASocialCallback?
     var items = [(BAAccountContact, String)]() {
         didSet {
             addSocialButtons()
@@ -23,10 +23,14 @@ class BASocialDrawerView: UIView {
     
     let scrollView: UIScrollView = {
         let view = UIScrollView()
+        view.showsHorizontalScrollIndicator = false
+        view.showsVerticalScrollIndicator = false
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
+    
+    var scale: CGFloat = 1.0
     
     private var didSetupInitialConstraints = false
     
@@ -38,8 +42,15 @@ class BASocialDrawerView: UIView {
         commonInit()
     }
     
-    init(items: [(BAAccountContact, String)]) {
+    init(scale: CGFloat) {
+        self.scale = scale
+        super.init(frame: .zero)
+        commonInit()
+    }
+    
+    init(items: [(BAAccountContact, String)], scale: CGFloat = 1.0) {
         self.items = items
+        self.scale = scale
         super.init(frame: .zero)
         commonInit()
     }
@@ -75,23 +86,23 @@ class BASocialDrawerView: UIView {
         for (index, holder) in socialViews.enumerated() {
             holder.snp.makeConstraints { make in
                 make.centerY.equalTo(self.scrollView)
-                make.height.width.equalTo(42.0)
+                make.height.width.equalTo(42.0*scale)
             }
             
             if index > 0 {
                 holder.snp.makeConstraints { make in
-                    make.leading.equalTo(self.socialViews[index-1].snp.trailing).offset(16.0)
+                    make.leading.equalTo(self.socialViews[index-1].snp.trailing).offset(16.0*scale)
                 }
             }
             else {
                 holder.snp.makeConstraints { make in
-                    make.leading.equalTo(self.scrollView).offset(16.0)
+                    make.leading.equalTo(self.scrollView)
                 }
             }
             
             if index == (socialViews.count - 1) {
                 holder.snp.makeConstraints { make in
-                    make.trailing.lessThanOrEqualTo(self.scrollView).offset(-16.0)
+                    make.trailing.lessThanOrEqualTo(self.scrollView)
                 }
             }
         }
@@ -108,8 +119,10 @@ class BASocialDrawerView: UIView {
             button.backgroundColor = socialItem.0.color
             button.setTitle(socialItem.0.icon, for: .normal)
             button.setTitleColor(.white, for: .normal)
-            button.titleLabel?.font = socialItem.0.font
-            button.layer.cornerRadius = 21.0
+            if let font = socialItem.0.font {
+                button.titleLabel?.font = font.withSize(font.pointSize * scale)
+            }
+            button.layer.cornerRadius = (42.0 * scale) / 2.0
             button.translatesAutoresizingMaskIntoConstraints = false
             
             disposables += button.reactive.controlEvents(.touchUpInside).observeValues { [weak self] _ in

@@ -84,7 +84,15 @@ class BAUserCardTableViewCell: UITableViewCell {
     
     let avatarView: BAAvatarView = {
         let view = BAAvatarView()
+        view.shadowHidden = true
         view.imageView.layer.cornerRadius = 2.0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let socialDrawer: BASocialDrawerView = {
+        let view = BASocialDrawerView(scale: 0.7)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -115,6 +123,7 @@ class BAUserCardTableViewCell: UITableViewCell {
         phoneLabel.isHidden = true
         dateLabel.isHidden = true
         locationLabel.isHidden = true
+        socialDrawer.isHidden = true
         
         holderView.addSubview(labelStackView)
         contentView.addSubview(holderView)
@@ -126,8 +135,8 @@ class BAUserCardTableViewCell: UITableViewCell {
     override func updateConstraints() {
         if isMain {
             self.headerView.snp.makeConstraints({ make in
-                make.top.leading.trailing.equalTo(self.holderView)
-                make.height.equalTo(30.0)
+                make.top.leading.bottom.equalTo(self.holderView)
+                make.width.equalTo(20.0)
             })
             
             avatarView.snp.remakeConstraints({ make in
@@ -137,11 +146,17 @@ class BAUserCardTableViewCell: UITableViewCell {
             })
             
             labelStackView.snp.remakeConstraints({ make in
-                make.top.equalTo(self.holderView).offset(40.0)
+                make.top.equalTo(self.holderView).offset(16.0)
                 make.leading.equalTo(holderView).offset(50.0)
                 make.trailing.equalTo(self.holderView).offset(-20.0)
-                make.bottom.equalTo(self.holderView).offset(-25.0)
             })
+            
+            socialDrawer.snp.remakeConstraints { make in
+                make.top.equalTo(self.labelStackView.snp.bottom).offset(6.0)
+                make.leading.trailing.equalTo(self.labelStackView)
+                make.height.equalTo(32.0)
+                make.bottom.equalTo(self.holderView).offset(-16.0)
+            }
         }
         else {
             avatarView.snp.remakeConstraints { make in
@@ -197,6 +212,7 @@ class BAUserCardTableViewCell: UITableViewCell {
             self.phoneLabel.isHidden = false
             self.dateLabel.isHidden = false
             self.locationLabel.isHidden = false
+            self.socialDrawer.isHidden = socialDrawer.items.isEmpty
             
             self.layer.shadowColor = Constants.shadowColor.cgColor
             self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
@@ -204,6 +220,7 @@ class BAUserCardTableViewCell: UITableViewCell {
             self.layer.shadowRadius = 4.0
             
             self.holderView.addSubview(self.headerView)
+            self.holderView.addSubview(self.socialDrawer)
         }
         else {
             self.phoneLabel.isHidden = true
@@ -215,6 +232,7 @@ class BAUserCardTableViewCell: UITableViewCell {
             holderView.layer.shadowRadius = 0.0
             
             self.headerView.removeFromSuperview()
+            self.socialDrawer.removeFromSuperview()
         }
         
         setNeedsUpdateConstraints()
