@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FontAwesome
 import ReactiveCocoa
 import ReactiveSwift
 import SkyFloatingLabelTextField
@@ -30,18 +31,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return imageView
     }()
     
-    let infoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Create an account to get started"
-        label.textColor = .white
-        label.font = UIFont.avenirDemi(size: 18.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    let firstNameTextField: SkyFloatingLabelTextField = {
-        let textField = SkyFloatingLabelTextField()
+    let firstNameTextField: SkyFloatingLabelTextFieldWithIcon = {
+        let textField = SkyFloatingLabelTextFieldWithIcon()
         textField.keyboardAppearance = .dark
         textField.keyboardType = .default
         textField.autocorrectionType = .default
@@ -49,6 +40,11 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         textField.autocapitalizationType = .words
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
+        textField.iconFont = UIFont.featherFont(size: 17.0)
+        textField.iconText = String.featherIcon(name: .user)
+        textField.iconColor = .white
+        textField.iconMarginBottom = 0.0
+        textField.selectedIconColor = .white
         textField.placeholder = "First Name"
         textField.placeholderColor = .white
         textField.placeholderFont = UIFont.avenirRegular(size: 17.0)
@@ -66,8 +62,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let lastNameTextField: SkyFloatingLabelTextField = {
-        let textField = SkyFloatingLabelTextField()
+    let lastNameTextField: SkyFloatingLabelTextFieldWithIcon = {
+        let textField = SkyFloatingLabelTextFieldWithIcon()
         textField.keyboardAppearance = .dark
         textField.keyboardType = .default
         textField.autocorrectionType = .default
@@ -75,6 +71,11 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         textField.autocapitalizationType = .words
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
+        textField.iconFont = UIFont.featherFont(size: 17.0)
+        textField.iconText = String.featherIcon(name: .user)
+        textField.iconColor = .white
+        textField.iconMarginBottom = 0.0
+        textField.selectedIconColor = .white
         textField.placeholder = "Last Name"
         textField.placeholderColor = .white
         textField.placeholderFont = UIFont.avenirRegular(size: 17.0)
@@ -92,8 +93,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let phoneTextField: SkyFloatingLabelTextField = {
-        let textField = SkyFloatingLabelTextField()
+    let phoneTextField: SkyFloatingLabelTextFieldWithIcon = {
+        let textField = SkyFloatingLabelTextFieldWithIcon()
         textField.keyboardAppearance = .dark
         textField.keyboardType = .phonePad
         textField.autocorrectionType = .default
@@ -101,6 +102,11 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         textField.autocapitalizationType = .words
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
+        textField.iconFont = UIFont.featherFont(size: 17.0)
+        textField.iconText = String.featherIcon(name: .phone)
+        textField.iconColor = .white
+        textField.iconMarginBottom = 0.0
+        textField.selectedIconColor = .white
         textField.placeholder = "Phone Number"
         textField.placeholderColor = .white
         textField.placeholderFont = UIFont.avenirRegular(size: 17.0)
@@ -118,8 +124,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let emailTextField: SkyFloatingLabelTextField = {
-        let textField = SkyFloatingLabelTextField()
+    let emailTextField: SkyFloatingLabelTextFieldWithIcon = {
+        let textField = SkyFloatingLabelTextFieldWithIcon()
         textField.keyboardAppearance = .dark
         textField.keyboardType = .emailAddress
         textField.autocorrectionType = .no
@@ -127,6 +133,11 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         textField.autocapitalizationType = .none
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
+        textField.iconFont = UIFont.featherFont(size: 17.0)
+        textField.iconText = String.featherIcon(name: .mail)
+        textField.iconColor = .white
+        textField.iconMarginBottom = 0.0
+        textField.selectedIconColor = .white
         textField.placeholder = "Email"
         textField.placeholderColor = .white
         textField.placeholderFont = UIFont.avenirRegular(size: 17.0)
@@ -144,12 +155,17 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let passwordTextField: SkyFloatingLabelTextField = {
-        let textField = SkyFloatingLabelTextField()
+    let passwordTextField: SkyFloatingLabelTextFieldWithIcon = {
+        let textField = SkyFloatingLabelTextFieldWithIcon()
         textField.isSecureTextEntry = true
         textField.keyboardAppearance = .dark
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
+        textField.iconFont = UIFont.featherFont(size: 17.0)
+        textField.iconText = String.featherIcon(name: .lock)
+        textField.iconColor = .white
+        textField.iconMarginBottom = 0.0
+        textField.selectedIconColor = .white
         textField.placeholder = "Password"
         textField.placeholderColor = .white
         textField.placeholderFont = UIFont.avenirRegular(size: 17.0)
@@ -169,17 +185,18 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     
     let createAccountButton: BALoadingButton = {
         let button = BALoadingButton(type: .custom)
-        button.backgroundColor = UIColor(hexColor: 0x2895F1)
-        button.setTitle("NEXT", for: .normal)
+        button.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
+        button.setTitle("SIGN UP", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
-        button.layer.cornerRadius = 4.0
+        button.isEnabled = false
+        button.layer.cornerRadius = 27.0
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(1.0)
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.35)
         }
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.9)
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.50)
         }
         
         return button
@@ -209,7 +226,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         
         self.firstNameTextField.delegate = self
         self.firstNameTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingFirstName(sender:)), toolbarStyle: .black)
@@ -233,7 +250,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         textFieldsStackView.spacing = 10.0
         textFieldsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        fullStackView = UIStackView(arrangedSubviews: [infoLabel, textFieldsStackView, createAccountButton])
+        fullStackView = UIStackView(arrangedSubviews: [textFieldsStackView, createAccountButton])
         fullStackView.alignment = .center
         fullStackView.axis = .vertical
         fullStackView.distribution = .fill
@@ -263,11 +280,11 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
             }.observeValues { [weak self] isEnabled in
                 if (isEnabled) {
                     self?.createAccountButton.isEnabled = true;
-                    self?.createAccountButton.backgroundColor = self?.createAccountButton.backgroundColor?.withAlphaComponent(1.0)
+                    self?.createAccountButton.backgroundColor = self?.createAccountButton.backgroundColor?.withAlphaComponent(0.35)
                 }
                 else {
                     self?.createAccountButton.isEnabled = false;
-                    self?.createAccountButton.backgroundColor = self?.createAccountButton.backgroundColor?.withAlphaComponent(0.5)
+                    self?.createAccountButton.backgroundColor = self?.createAccountButton.backgroundColor?.withAlphaComponent(0.1)
                 }
         }
         
@@ -286,8 +303,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         }
         
         fullStackView.snp.makeConstraints { make in
-            make.leading.equalTo(self.view).offset(16.0)
-            make.trailing.equalTo(self.view).offset(-16.0)
+            make.leading.equalTo(self.view).offset(48.0)
+            make.trailing.equalTo(self.view).offset(-48.0)
             make.centerY.equalTo(self.view)
         }
         
@@ -324,7 +341,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         createAccountButton.snp.makeConstraints { make in
             make.leading.equalTo(self.fullStackView)
             make.trailing.equalTo(self.fullStackView)
-            make.height.equalTo(48.0)
+            make.height.equalTo(54.0)
         }
         
         loginButton.snp.makeConstraints { make in

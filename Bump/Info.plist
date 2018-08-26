@@ -43,6 +43,7 @@
 		<string>AvenirNextLTPro-UltLt.otf</string>
 		<string>FontAwesome.otf</string>
 		<string>AvenirNextLTPro-UltLtIt.otf</string>
+		<string>feather.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

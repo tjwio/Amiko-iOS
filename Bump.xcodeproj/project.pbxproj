@@ -93,6 +93,8 @@
 		2FFAE400213230110045B75E /* BASocialDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */; };
 		2FFAE404213243780045B75E /* AvenirNextLTPro-UltLtIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2FFAE403213243730045B75E /* AvenirNextLTPro-UltLtIt.otf */; };
 		2FFAE406213253C40045B75E /* BAMainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE405213253C40045B75E /* BAMainTabBarViewController.swift */; };
+		2FFAE409213278A00045B75E /* FeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE408213278A00045B75E /* FeatherIcon.swift */; };
+		2FFAE40D21327F250045B75E /* feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FFAE40C21327F250045B75E /* feather.ttf */; };
 		2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +209,8 @@
 		2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASocialDrawerView.swift; sourceTree = "<group>"; };
 		2FFAE403213243730045B75E /* AvenirNextLTPro-UltLtIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-UltLtIt.otf"; sourceTree = "<group>"; };
 		2FFAE405213253C40045B75E /* BAMainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAMainTabBarViewController.swift; sourceTree = "<group>"; };
+		2FFAE408213278A00045B75E /* FeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatherIcon.swift; sourceTree = "<group>"; };
+		2FFAE40C21327F250045B75E /* feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = feather.ttf; sourceTree = "<group>"; };
 		2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarItem+TextAttributes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -410,6 +414,7 @@
 				2F6E51E3208308E000E8D8CA /* AvenirNextLTPro-Regular.otf */,
 				2F6E51E5208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf */,
 				2FFAE403213243730045B75E /* AvenirNextLTPro-UltLtIt.otf */,
+				2FFAE40C21327F250045B75E /* feather.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				2F6E51B22082AF7D00E8D8CA /* Constants */,
 				2F6E51DA2082C2A400E8D8CA /* Error */,
 				2F4BBB6220522B1900AAFE1A /* Extensions */,
+				2FFAE407213278880045B75E /* Font */,
 				2F4BBB6120522AFF00AAFE1A /* Helper */,
 				2F18D3A2210569E100C97E3A /* History */,
 				2F6E51DF2082FF2200E8D8CA /* Location */,
@@ -614,6 +620,14 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		2FFAE407213278880045B75E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				2FFAE408213278A00045B75E /* FeatherIcon.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -729,6 +743,7 @@
 				2F6E51EB208308E000E8D8CA /* AvenirNextLTPro-Bold.otf in Resources */,
 				2F6E51E8208308E000E8D8CA /* AvenirNextLTPro-Regular.otf in Resources */,
 				2FFAE3FC213227710045B75E /* bump.json in Resources */,
+				2FFAE40D21327F250045B75E /* feather.ttf in Resources */,
 				2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */,
 				2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */,
 				2F6E51EA208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf in Resources */,
@@ -837,6 +852,7 @@
 				2F6E51E12082FF3000E8D8CA /* BALocationManager.swift in Sources */,
 				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
+				2FFAE409213278A00045B75E /* FeatherIcon.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
 				2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */,
