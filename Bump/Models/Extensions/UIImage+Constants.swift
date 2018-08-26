@@ -21,6 +21,10 @@ extension UIImage {
         return UIImage(named: "blank_avatar")
     }
     
+    class var bumpGray: UIImage? {
+        return UIImage(named: "bump_gray")
+    }
+    
     class var drawerBar: UIImage? {
         return UIImage(named: "drawer_bar")
     }

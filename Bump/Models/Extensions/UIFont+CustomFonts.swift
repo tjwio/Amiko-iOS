@@ -35,6 +35,10 @@ extension UIFont {
         return UIFont(name: "AvenirNext-UltraLight", size: size)
     }
     
+    public class func avenirUltraLightItalic(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-UltraLightItalic", size: size)
+    }
+    
     //MARK: headers
     
     public class func mainHeader() -> UIFont? {
