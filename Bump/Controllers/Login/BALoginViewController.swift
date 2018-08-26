@@ -30,18 +30,8 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         return imageView
     }()
     
-    let infoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Create an account to get started"
-        label.textColor = .white
-        label.font = UIFont.avenirDemi(size: 18.0)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    let emailTextField: SkyFloatingLabelTextField = {
-        let textField = SkyFloatingLabelTextField()
+    let emailTextField: SkyFloatingLabelTextFieldWithIcon = {
+        let textField = SkyFloatingLabelTextFieldWithIcon()
         textField.keyboardAppearance = .dark
         textField.keyboardType = .emailAddress
         textField.autocorrectionType = .no
@@ -49,6 +39,11 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         textField.autocapitalizationType = .none
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
+        textField.iconFont = UIFont.featherFont(size: 17.0)
+        textField.iconText = String.featherIcon(name: .mail)
+        textField.iconColor = .white
+        textField.iconMarginBottom = 0.0
+        textField.selectedIconColor = .white
         textField.placeholder = "Email"
         textField.placeholderColor = .white
         textField.placeholderFont = UIFont.avenirRegular(size: 17.0)
@@ -66,12 +61,17 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let passwordTextField: SkyFloatingLabelTextField = {
-        let textField = SkyFloatingLabelTextField()
+    let passwordTextField: SkyFloatingLabelTextFieldWithIcon = {
+        let textField = SkyFloatingLabelTextFieldWithIcon()
         textField.isSecureTextEntry = true
         textField.keyboardAppearance = .dark
         textField.textColor = .white
         textField.font = UIFont.avenirRegular(size: 17.0)
+        textField.iconFont = UIFont.featherFont(size: 17.0)
+        textField.iconText = String.featherIcon(name: .lock)
+        textField.iconColor = .white
+        textField.iconMarginBottom = 0.0
+        textField.selectedIconColor = .white
         textField.placeholder = "Password"
         textField.placeholderColor = .white
         textField.placeholderFont = UIFont.avenirRegular(size: 17.0)
@@ -91,17 +91,18 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     
     let loginButton: BALoadingButton = {
         let button = BALoadingButton(type: .custom)
-        button.backgroundColor = UIColor(hexColor: 0x2895F1)
-        button.setTitle("SIGN IN", for: .normal)
+        button.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
+        button.setTitle("LOG IN", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
-        button.layer.cornerRadius = 4.0
+        button.isEnabled = false
+        button.layer.cornerRadius = 27.0
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(1.0)
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.35)
         }
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.9)
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.5)
         }
         
         return button
@@ -127,6 +128,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         button.setAttributedTitle(forgotPasswordAttString, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 16.0)
         button.backgroundColor = .clear
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -143,7 +145,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         
         emailTextField.delegate = self
         emailTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingEmail(sender:)), toolbarStyle: .black)
@@ -165,7 +167,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         buttonStackView.spacing = 10.0
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        fullStackView = UIStackView(arrangedSubviews: [infoLabel, textFieldsStackView, buttonStackView])
+        fullStackView = UIStackView(arrangedSubviews: [textFieldsStackView, buttonStackView])
         fullStackView.alignment = .center
         fullStackView.axis = .vertical
         fullStackView.distribution = .fill
@@ -193,11 +195,11 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
                 guard let strongSelf = self else { return }
                 if (isEnabled) {
                     strongSelf.loginButton.isEnabled = true;
-                    strongSelf.loginButton.backgroundColor = strongSelf.loginButton.backgroundColor?.withAlphaComponent(1.0)
+                    strongSelf.loginButton.backgroundColor = strongSelf.loginButton.backgroundColor?.withAlphaComponent(0.35)
                 }
                 else {
                     strongSelf.loginButton.isEnabled = false;
-                    strongSelf.loginButton.backgroundColor = strongSelf.loginButton.backgroundColor?.withAlphaComponent(0.5)
+                    strongSelf.loginButton.backgroundColor = strongSelf.loginButton.backgroundColor?.withAlphaComponent(0.1)
                 }
         }
         
@@ -216,8 +218,8 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         fullStackView.snp.makeConstraints { make in
-            make.leading.equalTo(self.view).offset(16.0)
-            make.trailing.equalTo(self.view).offset(-16.0)
+            make.leading.equalTo(self.view).offset(48.0)
+            make.trailing.equalTo(self.view).offset(-48.0)
             make.centerY.equalTo(self.view)
         }
         
@@ -236,7 +238,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.snp.makeConstraints { make in
             make.leading.equalTo(self.fullStackView)
             make.trailing.equalTo(self.fullStackView)
-            make.height.equalTo(48.0)
+            make.height.equalTo(54.0)
         }
         
         createAccountButton.snp.makeConstraints { make in
