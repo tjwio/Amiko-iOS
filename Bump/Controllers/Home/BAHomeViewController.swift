@@ -121,6 +121,7 @@ class BAHomeViewController: UIViewController {
         
         let holdGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.holdGestureRecognized(_:)))
         holdGestureRecognizer.minimumPressDuration = 0.0
+        holdGestureRecognizer.delegate = self
         view.addGestureRecognizer(holdGestureRecognizer)
         
         let user = BAUserHolder.shared.user
@@ -284,6 +285,14 @@ class BAHomeViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isKind(of: UIControl.classForCoder()) ?? false {
+            return false
+        }
+        
+        return true
     }
     
     //MARK: camera button
