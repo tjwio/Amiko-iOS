@@ -16,36 +16,41 @@ class BAHomeViewController: UIViewController {
     
     let settingsButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
         button.setTitle(String.fontAwesomeIcon(name: .cog), for: .normal)
-        button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 22.0
         
         return button
     }()
     
     let accountButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
         button.setTitle(String.fontAwesomeIcon(name: .user), for: .normal)
-        button.setTitleColor(UIColor(hexColor: 0x9DA3AD), for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 22.0
         
         return button
     }()
     
-    let arrowImageView: UIImageView = {
-        let imageView = UIImageView(image: .upwardDoubleArrow)
+    let avatarImageView: BAAvatarView = {
+        let imageView = BAAvatarView(image: .exampleAvatar, shadowHidden: true)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
     
-    let avatarImageView: BAAvatarView = {
-        let imageView = BAAvatarView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+    let backgroundHeaderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.Blue.lighter
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        return imageView
+        return view
     }()
     
     let nameLabel: UILabel = {
@@ -108,6 +113,9 @@ class BAHomeViewController: UIViewController {
             avatarImageView.imageView.sd_showActivityIndicatorView()
             avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed) { (image, _, _, _) in
                 user.image.value = image
+                image?.getColors { [weak self] colors in
+                    self?.backgroundHeaderView.backgroundColor = colors.background
+                }
             }
         }
         
@@ -135,9 +143,9 @@ class BAHomeViewController: UIViewController {
         bumpAnimation.play()
         
         holderAnimationView.addSubview(bumpAnimation)
+        view.addSubview(backgroundHeaderView)
         view.addSubview(settingsButton)
         view.addSubview(accountButton)
-        view.addSubview(arrowImageView)
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(jobLabel)
@@ -151,22 +159,24 @@ class BAHomeViewController: UIViewController {
         settingsButton.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(36.0)
             make.leading.equalTo(self.view).offset(16.0)
+            make.height.width.equalTo(44.0)
         }
         
         accountButton.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(36.0)
             make.trailing.equalTo(self.view).offset(-16.0)
-        }
-        
-        arrowImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.view).offset(46.0)
-            make.centerX.equalTo(self.view)
+            make.height.width.equalTo(44.0)
         }
         
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.arrowImageView.snp.bottom).offset(16.0)
+            make.top.equalTo(self.view).offset(85.0)
             make.centerX.equalTo(self.view)
             make.height.width.equalTo(125.0)
+        }
+        
+        backgroundHeaderView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(self.view)
+            make.bottom.equalTo(self.avatarImageView.snp.centerY)
         }
         
         nameLabel.snp.makeConstraints { make in
