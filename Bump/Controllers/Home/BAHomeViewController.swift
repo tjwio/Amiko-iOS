@@ -19,18 +19,6 @@ class BAHomeViewController: UIViewController {
         static let firstFrame = NSNumber(value: 36.0)
     }
     
-    let settingsButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
-        button.setTitle(String.fontAwesomeIcon(name: .cog), for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 22.0
-        
-        return button
-    }()
-    
     let accountButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
@@ -80,6 +68,7 @@ class BAHomeViewController: UIViewController {
     let cameraButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "camera_button"), for: .normal)
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -150,7 +139,6 @@ class BAHomeViewController: UIViewController {
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
         accountButton.addTarget(self, action: #selector(self.showAccount(_:)), for: .touchUpInside)
-        settingsButton.addTarget(self, action: #selector(self.showSettings(_:)), for: .touchUpInside)
         
         let userHolder = BAUserHolder.shared
         let locationManager = BALocationManager.shared
@@ -173,7 +161,6 @@ class BAHomeViewController: UIViewController {
         holderAnimationView.addSubview(bumpAnimation)
         holderAnimationView.addSubview(bumpInstructionsLabel)
         view.addSubview(backgroundHeaderView)
-        view.addSubview(settingsButton)
         view.addSubview(accountButton)
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
@@ -185,15 +172,9 @@ class BAHomeViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        settingsButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view).offset(36.0)
-            make.leading.equalTo(self.view).offset(16.0)
-            make.height.width.equalTo(44.0)
-        }
-        
         accountButton.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(36.0)
-            make.trailing.equalTo(self.view).offset(-16.0)
+            make.leading.equalTo(self.view).offset(16.0)
             make.height.width.equalTo(44.0)
         }
         
@@ -219,14 +200,14 @@ class BAHomeViewController: UIViewController {
         }
         
         cameraButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view).offset(-30.0)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-30.0)
             make.centerX.equalTo(self.view)
         }
         
         holderAnimationView.snp.makeConstraints { make in
             make.top.equalTo(self.jobLabel.snp.bottom).offset(16.0)
             make.leading.trailing.equalTo(self.view)
-            make.bottom.equalTo(self.cameraButton.snp.top).offset(-16.0)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-16.0)
         }
         
         bumpAnimation.snp.makeConstraints { make in
@@ -321,13 +302,6 @@ class BAHomeViewController: UIViewController {
     //MARK: account button
     
     @objc private func showAccount(_ sender: UIButton?) {
-        let viewController = BAHistoryHolderViewController(user: BAUserHolder.shared.user)
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    //MARK: settings button
-    
-    @objc private func showSettings(_ sender: UIButton?) {
         BAAppManager.shared.logOut()
     }
 }

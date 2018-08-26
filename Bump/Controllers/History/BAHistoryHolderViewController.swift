@@ -58,8 +58,6 @@ class BAHistoryHolderViewController: UIViewController, BAHistoryChangeDelegate {
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.panGestureRecognized(_:)))
         listNav.view.addGestureRecognizer(panGestureRecognizer)
-        
-        _ = addBackButtonToView(dark: true, shouldAddText: false)
     }
     
     //MARK: pan gesture
@@ -67,11 +65,13 @@ class BAHistoryHolderViewController: UIViewController, BAHistoryChangeDelegate {
     @objc private func panGestureRecognized(_ sender: UIPanGestureRecognizer) {
         if sender.state == .changed {
             let translatedPoint = sender.translation(in: view)
+            let tabBarHeight = (self.tabBarController?.tabBar.frame.height ?? 0.0)
+            let maxBottom = 54.0 + tabBarHeight
             
             listNav.view.frame.origin.y += translatedPoint.y
             listNav.view.frame.origin.y = max(listNav.view.frame.origin.y, Constants.defaultOriginY)
-            listNav.view.frame.origin.y = min(listNav.view.frame.origin.y, view.bounds.height - 54.0)
-            listController.isListVisible = listNav.view.frame.origin.y != view.bounds.height - 54.0
+            listNav.view.frame.origin.y = min(listNav.view.frame.origin.y, view.bounds.height - maxBottom)
+            listController.isListVisible = listNav.view.frame.origin.y != view.bounds.height - maxBottom
             sender.setTranslation(CGPoint(x: 0.0, y: 0.0), in: view)
         }
         else if sender.state == .ended {
@@ -113,7 +113,7 @@ class BAHistoryHolderViewController: UIViewController, BAHistoryChangeDelegate {
     private func hideList(duration: TimeInterval = 0.5, completion: ((Bool) -> Void)? = nil) {
         self.listController.isListVisible = false
         UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseOut, animations: {
-            self.listNav.view.frame.origin.y = self.view.bounds.height - 54.0
+            self.listNav.view.frame.origin.y = self.view.bounds.height - 54.0 - (self.tabBarController?.tabBar.frame.height ?? 0.0)
         }, completion: completion)
     }
     

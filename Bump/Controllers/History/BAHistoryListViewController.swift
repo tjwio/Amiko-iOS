@@ -13,7 +13,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     
     private struct Constants {
         static let cellIdentifier = "BAHistoryCardTableViewCellIdentifier"
-        static let firstHitPoint = CGRect(x: 100.0, y: 100.0, width: 1.0, height: 1.0)
+        static let firstHitPoint = CGRect(x: 100.0, y: 154.0, width: 1.0, height: 1.0) //+54.0 for uinavigationbar
     }
     
     weak var delegate: BAHistoryChangeDelegate?
@@ -52,7 +52,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = true
         navigationItem.title = "History"
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor    :    UIColor.Grayscale.dark,
