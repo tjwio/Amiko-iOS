@@ -9,6 +9,7 @@
 import UIKit
 import Contacts
 import SnapKit
+import SafariServices
 
 class BAAddUserViewController: UIViewController {
     
@@ -63,6 +64,7 @@ class BAAddUserViewController: UIViewController {
         userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         userView.layer.cornerRadius = 8.0
         userView.translatesAutoresizingMaskIntoConstraints = false
+        userView.selectCallback = BAConstants.defaultSocialCallback
         
         view.addSubview(dummyShadowView)
         dummyShadowView.addSubview(userView)

@@ -133,12 +133,17 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         cell.locationLabel.text = "at San Francisco Convention Center"
         cell.nameLabel.text = history.addedUser.fullName
         cell.phoneLabel.text = history.addedUser.phone
+        cell.socialDrawer.items = history.addedUser.socialAccounts
+        cell.socialDrawer.selectCallback = BAConstants.defaultSocialCallback
         
         if let imageUrl = history.addedUser.imageUrl, let url = URL(string: imageUrl) {
             cell.avatarView.imageView.sd_setIndicatorStyle(.gray)
             cell.avatarView.imageView.sd_showActivityIndicatorView()
             cell.avatarView.imageView.sd_setImage(with: url, placeholderImage: .blankAvatar, options: .retryFailed) { (image, _, _, _) in
                 history.addedUser.image.value = image
+                image?.getColors { [weak cell] colors in
+                    cell?.headerView.backgroundColor = colors.background
+                }
             }
         }
         else {
