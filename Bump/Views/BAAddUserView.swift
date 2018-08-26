@@ -252,8 +252,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.socialCellIdentifier) as? BASocialDrawerTableViewCell ?? BASocialDrawerTableViewCell(style: .default, reuseIdentifier: Constants.socialCellIdentifier)
             
-            cell.items = socialItems
-            cell.selectCallback = { (account, value) in
+            cell.drawerView.items = socialItems
+            cell.drawerView.selectCallback = { (account, value) in
                 var validUrl: URL?
                 
                 if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
