@@ -92,6 +92,7 @@
 		2FFAE3FC213227710045B75E /* bump.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FFAE3FB213227710045B75E /* bump.json */; };
 		2FFAE400213230110045B75E /* BASocialDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */; };
 		2FFAE404213243780045B75E /* AvenirNextLTPro-UltLtIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2FFAE403213243730045B75E /* AvenirNextLTPro-UltLtIt.otf */; };
+		2FFAE406213253C40045B75E /* BAMainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE405213253C40045B75E /* BAMainTabBarViewController.swift */; };
 		2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,7 @@
 		2FFAE3FB213227710045B75E /* bump.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bump.json; sourceTree = "<group>"; };
 		2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASocialDrawerView.swift; sourceTree = "<group>"; };
 		2FFAE403213243730045B75E /* AvenirNextLTPro-UltLtIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-UltLtIt.otf"; sourceTree = "<group>"; };
+		2FFAE405213253C40045B75E /* BAMainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAMainTabBarViewController.swift; sourceTree = "<group>"; };
 		2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarItem+TextAttributes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,6 +271,7 @@
 		2F1312032081AEE900D462F8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2FFAE405213253C40045B75E /* BAMainTabBarViewController.swift */,
 				2F1312042081AF2600D462F8 /* BAHomeViewController.swift */,
 				2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */,
 			);
@@ -815,6 +818,7 @@
 				2FE36BF120F8466F0012F1AB /* BAFirstExpSocialViewController.swift in Sources */,
 				2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */,
 				2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */,
+				2FFAE406213253C40045B75E /* BAMainTabBarViewController.swift in Sources */,
 				2FE36BF320F846770012F1AB /* BAFirstExpBumpViewController.swift in Sources */,
 				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,
 				2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */,
