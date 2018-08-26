@@ -88,6 +88,8 @@
 		2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3EC2131F2990045B75E /* FontAwesome.framework */; };
 		2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */; };
 		2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3F0213212050045B75E /* UIImageColors.swift */; };
+		2FFAE3F3213220060045B75E /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3F2213220060045B75E /* Lottie.framework */; };
+		2FFAE3FC213227710045B75E /* bump.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FFAE3FB213227710045B75E /* bump.json */; };
 		2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */; };
 /* End PBXBuildFile section */
 
@@ -197,6 +199,8 @@
 		2FFAE3EC2131F2990045B75E /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
 		2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASocialDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		2FFAE3F0213212050045B75E /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
+		2FFAE3F2213220060045B75E /* Lottie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lottie.framework; path = Carthage/Build/iOS/Lottie.framework; sourceTree = "<group>"; };
+		2FFAE3FB213227710045B75E /* bump.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bump.json; sourceTree = "<group>"; };
 		2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarItem+TextAttributes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FFAE3F3213220060045B75E /* Lottie.framework in Frameworks */,
 				2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */,
 				2F1E73C521163D1800B83501 /* HockeySDK.framework in Frameworks */,
 				2F1E73B6211636BC00B83501 /* Alamofire.framework in Frameworks */,
@@ -287,6 +292,7 @@
 		2F1E73B5211636BC00B83501 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FFAE3F2213220060045B75E /* Lottie.framework */,
 				2FFAE3EC2131F2990045B75E /* FontAwesome.framework */,
 				2F1E73C421163D1700B83501 /* HockeySDK.framework */,
 				2F1E73C2211636BD00B83501 /* ReactiveMapKit.framework */,
@@ -389,6 +395,7 @@
 		2F4BBB5020522AA000AAFE1A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FFAE3F4213220280045B75E /* Animations */,
 				2F6E51E6208308E000E8D8CA /* AvenirNextLTPro-Bold.otf */,
 				2F6E51EF208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf */,
 				2F6E51E2208308E000E8D8CA /* AvenirNextLTPro-It.otf */,
@@ -590,6 +597,14 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		2FFAE3F4213220280045B75E /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				2FFAE3FB213227710045B75E /* bump.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -703,6 +718,7 @@
 				2F6E51E7208308E000E8D8CA /* AvenirNextLTPro-It.otf in Resources */,
 				2F6E51EB208308E000E8D8CA /* AvenirNextLTPro-Bold.otf in Resources */,
 				2F6E51E8208308E000E8D8CA /* AvenirNextLTPro-Regular.otf in Resources */,
+				2FFAE3FC213227710045B75E /* bump.json in Resources */,
 				2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */,
 				2F4BBB2D20522A3700AAFE1A /* LaunchScreen.storyboard in Resources */,
 				2F6E51EA208308E000E8D8CA /* AvenirNextLTPro-UltLt.otf in Resources */,
@@ -748,6 +764,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 			);
 			name = "Copy Carthage Frameworks";
 			outputPaths = (
