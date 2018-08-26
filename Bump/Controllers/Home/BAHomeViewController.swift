@@ -24,7 +24,7 @@ class BAHomeViewController: UIViewController {
         button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
         button.setTitle(String.fontAwesomeIcon(name: .user), for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 24.0, style: .solid)
+        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 20.0, style: .solid)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 22.0
         
@@ -109,6 +109,8 @@ class BAHomeViewController: UIViewController {
         
         return view
     }()
+    
+    var isHoldingToBump = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +121,7 @@ class BAHomeViewController: UIViewController {
         
         let holdGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.holdGestureRecognized(_:)))
         holdGestureRecognizer.minimumPressDuration = 0.0
+        holdGestureRecognizer.delegate = self
         view.addGestureRecognizer(holdGestureRecognizer)
         
         let user = BAUserHolder.shared.user
@@ -150,8 +153,8 @@ class BAHomeViewController: UIViewController {
             }
         }
         
-        BABumpManager.shared.bumpHandler = { [weak userHolder, weak locationManager]  bump in
-            if let currentLocation = locationManager?.currentLocation {
+        BABumpManager.shared.bumpHandler = { [weak userHolder, weak locationManager, weak self]  bump in
+            if self?.isHoldingToBump ?? false, let currentLocation = locationManager?.currentLocation {
                 userHolder?.sendBumpReceivedEvent(bump: bump, location: currentLocation)
             }
         }
@@ -248,7 +251,8 @@ class BAHomeViewController: UIViewController {
     
     @objc private func holdGestureRecognized(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            self.bumpInstructionsLabel.text = Constants.instructionsBump
+            isHoldingToBump = true
+            bumpInstructionsLabel.text = Constants.instructionsBump
             
             bumpAnimation.loopAnimation = true
             bumpAnimation.isHidden = false
@@ -264,7 +268,8 @@ class BAHomeViewController: UIViewController {
             }
         }
         else if sender.state == .ended {
-            self.bumpInstructionsLabel.text = Constants.instructionsHold
+            isHoldingToBump = false
+            bumpInstructionsLabel.text = Constants.instructionsHold
             bumpImageView.alpha = 0.0
             bumpImageView.isHidden = false
             
@@ -280,6 +285,14 @@ class BAHomeViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isKind(of: UIControl.classForCoder()) ?? false {
+            return false
+        }
+        
+        return true
     }
     
     //MARK: camera button
