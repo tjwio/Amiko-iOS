@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FeatherIcon
 import ReactiveCocoa
 import ReactiveSwift
 import SkyFloatingLabelTextField
