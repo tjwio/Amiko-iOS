@@ -94,7 +94,9 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let entry = (view.annotation as? BAUserPinAnnotation)?.history {
+        if let annotation = view.annotation as? BAUserPinAnnotation, let entry = annotation.history {
+            showAnnotations([annotation], animated: false)
+            zoomMapOut(bottom: bottomOffset)
             delegate?.historyController(self, didSelect: entry)
         }
     }
