@@ -22,7 +22,7 @@ public typealias BAJSONHandler = (JSON) -> Void
 public typealias BAJSONListHandler = ([JSON]) -> Void
 public typealias BAErrorHandler = (Error) -> Void
 
-public typealias BAImageHandler = (UIImage) -> Void
+public typealias BAImageHandler = (UIImage, UIImageColors) -> Void
 
 struct BAConstants {
     struct User {

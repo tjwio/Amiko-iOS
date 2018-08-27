@@ -41,17 +41,17 @@ class BAWelcomeViewController: UIViewController {
     
     let createAccountButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor(hexColor: 0x2895F1)
-        button.setTitle("CREATE ACCOUNT", for: .normal)
+        button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
+        button.setTitle("GET STARTED", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
-        button.layer.cornerRadius = 4.0
+        button.layer.cornerRadius = 27.0
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(1.0)
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.35)
         }
         
         button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.9)
+            button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.5)
         }
         
         return button
@@ -73,7 +73,7 @@ class BAWelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -115,7 +115,7 @@ class BAWelcomeViewController: UIViewController {
             make.trailing.equalTo(self.view).offset(-48.0)
             make.bottom.equalTo(self.loginButton.snp.top).offset(-20.0)
             make.centerX.equalTo(self.view)
-            make.height.equalTo(48.0)
+            make.height.equalTo(54.0)
         }
     }
     

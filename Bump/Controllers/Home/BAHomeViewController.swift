@@ -32,7 +32,7 @@ class BAHomeViewController: UIViewController {
     }()
     
     let avatarImageView: BAAvatarView = {
-        let imageView = BAAvatarView(image: .exampleAvatar, shadowHidden: true)
+        let imageView = BAAvatarView(image: .blankAvatar, shadowHidden: true)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -40,7 +40,6 @@ class BAHomeViewController: UIViewController {
     
     let backgroundHeaderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.Blue.lighter
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -129,14 +128,17 @@ class BAHomeViewController: UIViewController {
         if let profession = user.profession {
             jobLabel.text = profession
         }
-        if let imageUrl = user.imageUrl {
+        if user.imageUrl != nil {
             avatarImageView.imageView.sd_setIndicatorStyle(.gray)
+            avatarImageView.imageView.sd_addActivityIndicator()
             avatarImageView.imageView.sd_showActivityIndicatorView()
-            avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed) { (image, _, _, _) in
-                user.image.value = image
-                image?.getColors { [weak self] colors in
-                    self?.backgroundHeaderView.backgroundColor = colors.background
-                }
+            
+            user.loadImage(success: { (image, colors) in
+                self.avatarImageView.imageView.image = image
+                self.avatarImageView.imageView.sd_removeActivityIndicator()
+                self.backgroundHeaderView.backgroundColor = colors.background
+            }) { _ in
+                self.avatarImageView.imageView.sd_removeActivityIndicator()
             }
         }
         
@@ -168,8 +170,8 @@ class BAHomeViewController: UIViewController {
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(jobLabel)
-        view.addSubview(cameraButton)
         view.addSubview(holderAnimationView)
+        view.addSubview(cameraButton)
         
         setupConstraints()
     }

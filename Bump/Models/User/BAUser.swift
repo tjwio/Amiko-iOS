@@ -108,6 +108,7 @@ public class BAUser: NSObject, JSONDecodable {
     var socialAccounts = [(BAAccountContact, String)]()
     
     let image = MutableProperty<UIImage?>(nil)
+    let imageColors = MutableProperty<UIImageColors?>(nil)
     
     var fullName: String {
         return "\(firstName) \(lastName)"
@@ -161,13 +162,19 @@ public class BAUser: NSObject, JSONDecodable {
     }
     
     func loadImage(success: BAImageHandler?, failure: BAErrorHandler?) {
-        guard image.value == nil else { success?(image.value!); return; }
+        if let image = image.value, let imageColors = imageColors.value {
+            success?(image, imageColors)
+            return
+        }
         
         if let imageUrl = self.imageUrl {
             SDWebImageManager.shared().loadImage(with: URL(string: imageUrl), options: .retryFailed, progress: nil) { (image, _, error, _, _, _) in
                 if let image = image {
-                    self.image.value = image
-                    success?(image)
+                    image.getColors { [weak self] colors in
+                        self?.image.value = image
+                        self?.imageColors.value = colors
+                        success?(image, colors)
+                    }
                 }
                 else {
                     failure?(error ?? BAError.nilOrEmpty)

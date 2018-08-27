@@ -37,6 +37,8 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     var isListVisible = true
     
     private var mainSection = 0
+    private var isScrollingFromMap = false
+    private var currentIndexPath: IndexPath?
     
     init(user: BAUser, delegate: BAHistoryChangeDelegate? = nil) {
         self.user = user
@@ -101,7 +103,26 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     
     func showEntry(_ entry: BAHistory) {
         if let index = user.history.index(of: entry) {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+            isScrollingFromMap = true
+            let indexPath = IndexPath(row: 0, section: index)
+            
+            if let curr = currentIndexPath, let cell = tableView.cellForRow(at: curr) as? BAUserCardTableViewCell {
+                cell.setIsMain(false, animted: false)
+            }
+            if let cell = tableView.cellForRow(at: indexPath) as? BAUserCardTableViewCell {
+                cell.setIsMain(true, animted: false)
+            }
+            
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            
+            currentIndexPath = indexPath
+            
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
+                self.isScrollingFromMap = false
+            }
         }
     }
     
@@ -136,18 +157,21 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         cell.socialDrawer.items = history.addedUser.socialAccounts
         cell.socialDrawer.selectCallback = BAConstants.defaultSocialCallback
         
-        if let imageUrl = history.addedUser.imageUrl, let url = URL(string: imageUrl) {
+        if history.addedUser.imageUrl != nil {
             cell.avatarView.imageView.sd_setIndicatorStyle(.gray)
+            cell.avatarView.imageView.sd_addActivityIndicator()
             cell.avatarView.imageView.sd_showActivityIndicatorView()
-            cell.avatarView.imageView.sd_setImage(with: url, placeholderImage: .blankAvatar, options: .retryFailed) { (image, _, _, _) in
-                history.addedUser.image.value = image
-                image?.getColors { [weak cell] colors in
-                    cell?.headerView.backgroundColor = colors.background
-                }
+            
+            history.addedUser.loadImage(success: { (image, colors) in
+                cell.avatarView.imageView.image = image
+                cell.avatarView.imageView.sd_removeActivityIndicator()
+                cell.headerView.backgroundColor = colors.background
+            }) { _ in
+                cell.avatarView.imageView.sd_removeActivityIndicator()
             }
         }
         else {
-            cell.avatarView.imageView.image = .exampleAvatar
+            cell.avatarView.imageView.image = .blankAvatar
         }
         
         if indexPath.section == mainSection && !cell.isMain {
@@ -167,12 +191,15 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     //MARK: scroll view
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard !isScrollingFromMap else { return }
+        
         let point = view.convert(Constants.firstHitPoint, to: tableView)
         if let curr = tableView.indexPathsForRows(in: point)?.first {
             
             if let cell = tableView.cellForRow(at: curr) as? BAUserCardTableViewCell, !cell.isMain {
                 hapticGenerator.impactOccurred()
                 mainSection = curr.section
+                currentIndexPath = curr
                 cell.setIsMain(true, animted: true)
                 delegate?.historyController(self, didSelect: user.history[curr.section])
                 

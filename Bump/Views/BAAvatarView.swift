@@ -11,7 +11,7 @@ import SnapKit
 
 class BAAvatarView: UIView {
     let imageView: UIImageView = {
-        let imageView = UIImageView(image: .exampleAvatar)
+        let imageView = UIImageView(image: .blankAvatar)
         imageView.layer.cornerRadius = 62.5
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
