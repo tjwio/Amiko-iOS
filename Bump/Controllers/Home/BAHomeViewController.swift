@@ -40,7 +40,6 @@ class BAHomeViewController: UIViewController {
     
     let backgroundHeaderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.Blue.lighter
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

@@ -356,13 +356,13 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
             self.passwordTextField.becomeFirstResponder()
         }
         else if (textField == self.passwordTextField && self.createAccountButton.isEnabled) {
-            createAccount(nil)
+            createAccount(createAccountButton)
         }
         else {
             textField.resignFirstResponder()
         }
         
-        return true;
+        return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -406,7 +406,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: create account
-    @objc private func createAccount(_ sender: UIButton?) {
+    @objc private func createAccount(_ sender: BALoadingButton?) {
+        sender?.isLoading = true
         BAAuthenticationManager.shared.signup(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, phone: self.phoneTextField.text!, password: self.passwordTextField.text!, success: { user in
             let homeBlock = {
                 DispatchQueue.main.async {

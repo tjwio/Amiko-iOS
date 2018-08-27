@@ -32,7 +32,6 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     let backgroundHeaderView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.Blue.lighter
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

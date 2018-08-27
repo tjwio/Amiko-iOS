@@ -251,16 +251,16 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: text field
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField == self.emailTextField) {
-            self.passwordTextField.becomeFirstResponder();
+            self.passwordTextField.becomeFirstResponder()
         }
         else if (textField == self.passwordTextField && self.loginButton.isEnabled) {
-            login(nil);
+            login(loginButton)
         }
         else {
-            textField.resignFirstResponder();
+            textField.resignFirstResponder()
         }
         
-        return true;
+        return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -292,7 +292,8 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: login
-    @objc private func login(_ sender: UIButton?) {
+    @objc private func login(_ sender: BALoadingButton?) {
+        sender?.isLoading = true
         BAAuthenticationManager.shared.login(email: self.emailTextField.text!, password: self.passwordTextField.text!, success: { user in
             let homeBlock = {
                 DispatchQueue.main.async {
