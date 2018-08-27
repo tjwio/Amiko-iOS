@@ -79,10 +79,10 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
         view.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
         view.annotation = annotation
         if let annotation = annotation as? BAUserPinAnnotation {
-            annotation.history?.addedUser.loadImage(success: { image in
+            annotation.history?.addedUser.loadImage(success: { (image, _) in
                 view.userImageView.imageView.image = image
             }, failure: { _ in
-                view.userImageView.imageView.image = .exampleAvatar
+                view.userImageView.imageView.image = .blankAvatar
             })
         }
         

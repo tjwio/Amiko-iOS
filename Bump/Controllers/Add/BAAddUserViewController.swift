@@ -50,13 +50,18 @@ class BAAddUserViewController: UIViewController {
         if let profession = userToAdd.profession {
             userView.jobLabel.text = profession
         }
-        if let imageUrl = userToAdd.imageUrl {
-            userView.avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar, options: .retryFailed, completed: { (image, error, cache, url) in
-                self.userToAdd.image.value = image
-                image?.getColors { colors in
-                    self.userView.backgroundHeaderView.backgroundColor = colors.background
-                }
-            })
+        if userToAdd.imageUrl != nil {
+            userView.avatarImageView.imageView.sd_setIndicatorStyle(.gray)
+            userView.avatarImageView.imageView.sd_addActivityIndicator()
+            userView.avatarImageView.imageView.sd_showActivityIndicatorView()
+            
+            userToAdd.loadImage(success: { (image, colors) in
+                self.userView.avatarImageView.imageView.image = image
+                self.userView.avatarImageView.imageView.sd_removeActivityIndicator()
+                self.userView.backgroundHeaderView.backgroundColor = colors.background
+            }) { _ in
+                self.userView.avatarImageView.imageView.sd_removeActivityIndicator()
+            }
         }
         userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)
         userView.cancelButton.addTarget(self, action: #selector(self.cancel(_:)), for: .touchUpInside)
