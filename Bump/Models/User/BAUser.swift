@@ -200,4 +200,17 @@ public class BAUser: NSObject, JSONDecodable {
             failure?(error)
         }
     }
+    
+    //MARK: delete
+    
+    func deleteConnection(history: BAHistory, success: BAEmptyHandler?, failure: BAErrorHandler?) {
+        BANetworkHandler.shared.deleteConnection(historyId: history.id, success: {
+            self.history.remove(object: history)
+            
+            success?()
+        }) { error in
+            print("failed to delete connection: \(history.id) with error: \(error)")
+            failure?(error)
+        }
+    }
 }

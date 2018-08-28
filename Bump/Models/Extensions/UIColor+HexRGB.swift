@@ -47,4 +47,14 @@ extension UIColor {
             return UIColor(hexColor: 0x658DF8)
         }
     }
+    
+    struct Red {
+        static var normal: UIColor {
+            return UIColor(hexColor: 0xD64541)
+        }
+        
+        static var darker: UIColor {
+            return UIColor(hexColor: 0xC0392B)
+        }
+    }
 }

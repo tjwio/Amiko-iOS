@@ -45,4 +45,15 @@ extension BANetworkHandler {
             }
         }
     }
+    
+    //MARK: DELETE
+    
+    public func deleteConnection(historyId: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {
+        self.sessionManager.request(BAURLRouter.deleteConnection(historyId: historyId)).validate().responseData { response in
+            switch response.result {
+            case .success: success?()
+            case .failure(let error): failure?(error)
+            }
+        }
+    }
 }

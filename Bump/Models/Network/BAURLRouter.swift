@@ -21,6 +21,7 @@ enum BAURLRouter: URLRequestConvertible {
     case addConnection(parameters: Parameters)
     
     //MARK: DELETE
+    case deleteConnection(historyId: String)
     
     var method: HTTPMethod {
         switch self {
@@ -28,6 +29,8 @@ enum BAURLRouter: URLRequestConvertible {
             return .get
         case .signup, .login, .addConnection:
             return .post
+        case .deleteConnection:
+            return .delete
         }
     }
     
@@ -43,6 +46,8 @@ enum BAURLRouter: URLRequestConvertible {
             return "/login"
         case .addConnection:
             return "/users/connections"
+        case .deleteConnection(let historyId):
+            return "/users/connections/\(historyId)"
         }
     }
     

@@ -186,6 +186,16 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let viewController = BADeleteUserViewController(user: user, history: user.history[indexPath.section])
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.successCallback = { [weak self] in
+            self?.tableView.reloadData()
+        }
+        
+        self.parent?.parent?.present(viewController, animated: true, completion: nil)
     }
     
     //MARK: scroll view
