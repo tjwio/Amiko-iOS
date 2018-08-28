@@ -74,7 +74,7 @@ class BAButtonMessage: GSMessage {
 }
 
 extension UIViewController {
-    public func showCloseMessage(_ text: String, buttonText: String?, type: GSMessageType, options: [GSMessageOption]? = nil, target: Any?, selector: Selector) {
+    public func showCloseMessage(_ text: String, buttonText: String?, type: GSMessageType, options: [GSMessageOption]? = nil, view: UIView? = nil, target: Any?, selector: Selector) {
         var optionsToSend:[GSMessageOption]? = options
         if var options = options {
             options.append(.hideOnTap(false));
@@ -84,11 +84,11 @@ extension UIViewController {
             optionsToSend = options;
         }
         
-        let message = BAButtonMessage(text: text, buttonText: buttonText, type: type, options: optionsToSend, inView: self.view, inViewController: self, target: target, selector: selector);
+        let message = BAButtonMessage(text: text, buttonText: buttonText, type: type, options: optionsToSend, inView: view ?? self.view, inViewController: self, target: target, selector: selector);
         message.show();
     }
     
-    public func showLeftMessage(_ text: String, type: GSMessageType, options: [GSMessageOption]? = nil) {
+    public func showLeftMessage(_ text: String, type: GSMessageType, options: [GSMessageOption]? = nil, view: UIView? = nil) {
         var optionsToSend = [GSMessageOption]()
         optionsToSend.append(.textAlignment(.left))
         optionsToSend.append(.textPadding(16.0))
@@ -97,6 +97,6 @@ extension UIViewController {
             optionsToSend.append(contentsOf: options)
         }
         
-        GSMessage.showMessageAddedTo(text, type: type, options: optionsToSend, inView: view, inViewController: self)
+        GSMessage.showMessageAddedTo(text, type: type, options: optionsToSend, inView: view ?? self.view, inViewController: self)
     }
 }

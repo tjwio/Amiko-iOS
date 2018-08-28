@@ -22,6 +22,21 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     var mainItems: [(BAAccountContact, String)]
     var socialItems: [(BAAccountContact, String)]
     
+    var isDelete = false {
+        didSet {
+            if isDelete {
+                doneButton.backgroundColor = UIColor.Red.normal
+                doneButton.setTitle("Remove", for: .normal)
+                cancelButton.setTitle("Cancel", for: .normal)
+            }
+            else {
+                doneButton.backgroundColor = UIColor.Blue.normal
+                doneButton.setTitle("Connect", for: .normal)
+                cancelButton.setTitle("Not Now", for: .normal)
+            }
+        }
+    }
+    
     let contactHolderView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -84,14 +99,6 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
-            button.backgroundColor = UIColor.Blue.normal
-        }
-        
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = UIColor.Blue.darker
-        }
-        
         return button
     }()
     
@@ -102,14 +109,6 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
-            button.backgroundColor = UIColor.Grayscale.lighter
-        }
-        
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = UIColor.Grayscale.light
-        }
         
         return button
     }()
@@ -134,6 +133,12 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedUp(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue))
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedDown(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue))
+        
+        doneButton.addTarget(self, action: #selector(self.doneButtonPressedUp(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue))
+        doneButton.addTarget(self, action: #selector(self.doneButtonPressedDown(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue))
         
         buttonStackView = UIStackView(arrangedSubviews: [cancelButton, doneButton])
         buttonStackView.alignment = .center
@@ -265,5 +270,25 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor(hexColor: 0xE6E9ED).cgColor
         cell.layer.cornerRadius = 32.0
+    }
+    
+    //MARK: done
+    
+    @objc func doneButtonPressedUp(_ sender: UIButton?) {
+        sender?.backgroundColor = isDelete ? UIColor.Red.normal : UIColor.Blue.normal
+    }
+    
+    @objc func doneButtonPressedDown(_ sender: UIButton?) {
+        sender?.backgroundColor = isDelete ? UIColor.Red.darker : UIColor.Blue.darker
+    }
+    
+    //MARK: cancel
+    
+    @objc func cancelButtonPressedUp(_ sender: UIButton?) {
+        sender?.backgroundColor = UIColor.Grayscale.lighter
+    }
+    
+    @objc func cancelButtonPressedDown(_ sender: UIButton?) {
+        sender?.backgroundColor = UIColor.Grayscale.light
     }
 }

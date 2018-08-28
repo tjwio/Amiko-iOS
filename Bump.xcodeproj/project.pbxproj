@@ -39,6 +39,8 @@
 		2F1E73D02119987E00B83501 /* BAUserPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73CF2119987E00B83501 /* BAUserPinAnnotation.swift */; };
 		2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */; };
 		2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73D4211B21F300B83501 /* BAUserAnnotationView.swift */; };
+		2F262EFB2134F8EF00138D4D /* BADeleteUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F262EFA2134F8EF00138D4D /* BADeleteUserViewController.swift */; };
+		2F262EFD2134FF3500138D4D /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F262EFC2134FF3500138D4D /* Array+RemoveObject.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F29454221337D1000A22C62 /* FeatherIcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F29454121337D1000A22C62 /* FeatherIcon.framework */; };
 		2F3432C121243BCB00B9ED45 /* BAHistoryHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */; };
@@ -137,6 +139,8 @@
 		2F1E73CF2119987E00B83501 /* BAUserPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserPinAnnotation.swift; sourceTree = "<group>"; };
 		2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		2F1E73D4211B21F300B83501 /* BAUserAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserAnnotationView.swift; sourceTree = "<group>"; };
+		2F262EFA2134F8EF00138D4D /* BADeleteUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BADeleteUserViewController.swift; sourceTree = "<group>"; };
+		2F262EFC2134FF3500138D4D /* Array+RemoveObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+RemoveObject.swift"; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F29454121337D1000A22C62 /* FeatherIcon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeatherIcon.framework; path = Carthage/Build/iOS/FeatherIcon.framework; sourceTree = "<group>"; };
 		2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHistoryHolderViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +331,14 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		2F262EF92134F8D300138D4D /* Delete */ = {
+			isa = PBXGroup;
+			children = (
+				2F262EFA2134F8EF00138D4D /* BADeleteUserViewController.swift */,
+			);
+			path = Delete;
+			sourceTree = "<group>";
+		};
 		2F3432C221243F3A00B9ED45 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +453,7 @@
 			children = (
 				2F06357B20854AA200D655E7 /* Add */,
 				2F6354D7208C5F8700429F72 /* Camera */,
+				2F262EF92134F8D300138D4D /* Delete */,
 				2F4BBB6520522CD500AAFE1A /* First Experience */,
 				2F18D39D2105485300C97E3A /* History */,
 				2F1312032081AEE900D462F8 /* Home */,
@@ -463,6 +476,7 @@
 		2F4BBB6220522B1900AAFE1A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2F262EFC2134FF3500138D4D /* Array+RemoveObject.swift */,
 				2F06357E2085525800D655E7 /* CALayer+Shadow.swift */,
 				2F18D3A92106FB9700C97E3A /* Date+Formatter.swift */,
 				2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */,
@@ -800,6 +814,7 @@
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
 				2F18D39C21053C5300C97E3A /* UIImage+Constants.swift in Sources */,
 				2F3432C121243BCB00B9ED45 /* BAHistoryHolderViewController.swift in Sources */,
+				2F262EFB2134F8EF00138D4D /* BADeleteUserViewController.swift in Sources */,
 				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
 				2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */,
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
@@ -820,6 +835,7 @@
 				2FE36BEF20F846660012F1AB /* BAFirstExpIntroViewController.swift in Sources */,
 				2F18D3A62106F54E00C97E3A /* BALogger.swift in Sources */,
 				2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */,
+				2F262EFD2134FF3500138D4D /* Array+RemoveObject.swift in Sources */,
 				2FE36BF120F8466F0012F1AB /* BAFirstExpSocialViewController.swift in Sources */,
 				2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */,
 				2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */,
@@ -1012,7 +1028,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1037,7 +1053,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

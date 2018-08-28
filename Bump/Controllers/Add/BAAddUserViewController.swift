@@ -108,7 +108,7 @@ class BAAddUserViewController: UIViewController {
     
     //MARK: done
     
-    @objc private func done(_ sender: UIButton?) {
+    @objc func done(_ sender: BALoadingButton?) {
         if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
             do { try self.addNewContact() }
             catch {
@@ -120,11 +120,15 @@ class BAAddUserViewController: UIViewController {
                 if granted && error == nil {
                     do { try self.addNewContact() }
                     catch {
+                        sender?.isLoading = false
                         print("failed to save contact")
+                        self.showLeftMessage("Failed to connect with \(self.userToAdd.fullName)", type: .error, view: self.userView)
                     }
                 }
                 else if let error = error {
+                    sender?.isLoading = false
                     print("failed to get contact access with error: \(error)")
+                    self.showLeftMessage("Failed to connect with \(self.userToAdd.fullName)", type: .error, view: self.userView)
                 }
             }
         }

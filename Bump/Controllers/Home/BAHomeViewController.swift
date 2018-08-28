@@ -301,17 +301,17 @@ class BAHomeViewController: UIViewController {
     @objc private func showCamera(_ sender: UIButton?) {
 //        let mockLocation = CLLocation(latitude: 34.029526415497742, longitude: -118.28915680636308)
         
-//        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
         
 //        let viewController = BACameraViewController()
 //        self.present(viewController, animated: true, completion: nil)
         
-        let viewController = BAAddUserViewController(userToAdd: BAUserHolder.shared.user)
-        viewController.providesPresentationContextTransitionStyle = true
-        viewController.definesPresentationContext = true
-        viewController.modalPresentationStyle = .overCurrentContext
-        
-        self.present(viewController, animated: false, completion: nil)
+//        let viewController = BAAddUserViewController(userToAdd: BAUserHolder.shared.user)
+//        viewController.providesPresentationContextTransitionStyle = true
+//        viewController.definesPresentationContext = true
+//        viewController.modalPresentationStyle = .overCurrentContext
+//
+//        self.present(viewController, animated: false, completion: nil)
     }
     
     //MARK: account button
