@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         BACommonUtility.configureMessages()
         
+        if BALocationManager.shared.isAuthorized {
+            BALocationManager.shared.initialize()
+        }
+        
         self.loadInitialViewController()
         self.window?.makeKeyAndVisible()
         
