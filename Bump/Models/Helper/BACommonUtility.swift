@@ -25,8 +25,8 @@ class BACommonUtility: NSObject {
         if let font = UIFont.avenirDemi(size: 16.0) {
             GSMessage.font = font
         }
-        GSMessage.successBackgroundColor = UIColor(hexColor: 0x8CC152, alpha: 1.0)
-        GSMessage.warningBackgroundColor = UIColor(hexColor: 0xF6BB42, alpha: 1.0)
+        GSMessage.successBackgroundColor = UIColor.Green.normal
+        GSMessage.warningBackgroundColor = UIColor.Yellow.normal
         GSMessage.errorBackgroundColor   = UIColor.Red.normal
     }
 }
