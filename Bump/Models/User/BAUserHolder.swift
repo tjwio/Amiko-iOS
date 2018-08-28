@@ -106,8 +106,7 @@ class BAUserHolder: NSObject {
             BAConstants.GeoMessage.timestamp : bump.date.timeIntervalSince1970 * 1000.0,
             BAConstants.GeoMessage.latitude : location.coordinate.latitude,
             BAConstants.GeoMessage.longitude : location.coordinate.longitude,
-            BAConstants.GeoMessage.horizontalAccuracy : location.horizontalAccuracy,
-            BAConstants.GeoMessage.verticalAccuracy : location.verticalAccuracy
+            BAConstants.GeoMessage.accuracy : location.horizontalAccuracy
         ]
         
         print("bumping with params: \(params)")

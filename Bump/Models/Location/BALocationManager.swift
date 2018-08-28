@@ -57,22 +57,21 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
                 currentLocation = newLoc
             }
             
-            print("latitude: \(newLoc.coordinate.latitude), longitude: \(newLoc.coordinate.longitude), horizontal accuracy: \(newLoc.horizontalAccuracy), vertical accuracy: \(newLoc.verticalAccuracy), timestamp: \(newLoc.timestamp.timeIntervalSinceNow)\n")
+            print("latitude: \(newLoc.coordinate.latitude), longitude: \(newLoc.coordinate.longitude), horizontal accuracy: \(newLoc.horizontalAccuracy), timestamp: \(newLoc.timestamp.timeIntervalSinceNow)\n")
         }
     }
     
     //MARK: helper methods
     
     private func shouldUpdateLocation(curr: CLLocation, next: CLLocation) -> Bool {
-        guard next.horizontalAccuracy >= 0 && next.verticalAccuracy >= 0 && -next.timestamp.timeIntervalSinceNow < 10 else { return false }
+        guard next.horizontalAccuracy >= 0 && -next.timestamp.timeIntervalSinceNow < 10 else { return false }
         
         let distance = curr.distance(from: next)
         
         let hDelta = curr.horizontalAccuracy - next.horizontalAccuracy
-        let vDelta = curr.verticalAccuracy - next.verticalAccuracy
         
-        let accuracyDeltaValid = (hDelta > -10 && vDelta > -10) || (vDelta > 0 && vDelta > abs(hDelta)) || (hDelta > 0 && hDelta > abs(vDelta))
+        let accuracyDeltaValid = hDelta > -10
         
-        return distance < (curr.horizontalAccuracy + curr.verticalAccuracy) && accuracyDeltaValid
+        return distance <= next.horizontalAccuracy && accuracyDeltaValid
     }
 }
