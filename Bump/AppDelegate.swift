@@ -45,7 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        BAUserHolder.shared.reconnect()
+        if BAUserHolder.initialized {
+            BAUserHolder.shared.reconnect()
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
