@@ -8,6 +8,7 @@
 
 import UIKit
 import Gloss
+import FeatherIcon
 import ReactiveCocoa
 import ReactiveSwift
 import SDWebImage
@@ -34,36 +35,27 @@ public enum BAAccountContact: String {
     }
     
     var isImage: Bool {
-        switch self {
-        case .phone: return true
-        default: return false
-        }
+        return false
     }
     
     var image: String? {
-        switch self {
-        case .phone: return "phone_icon"
-        default: return nil
-        }
+        return nil
     }
     
     var icon: String? {
         switch self {
-        case .email: return String.fontAwesomeIcon(name: .envelope)
-        case .facebook: return String.fontAwesomeIcon(name: .facebookF)
-        case .instagram: return String.fontAwesomeIcon(name: .instagram)
-        case .linkedin: return String.fontAwesomeIcon(name: .linkedin)
-        case .twitter: return String.fontAwesomeIcon(name: .twitter)
-        case .resume: return String.fontAwesomeIcon(name: .file)
-        default: return nil
+        case .email: return String.featherIcon(name: .mail)
+        case .phone: return String.featherIcon(name: .smartphone)
+        case .facebook: return String.featherIcon(name: .facebook)
+        case .instagram: return String.featherIcon(name: .instagram)
+        case .linkedin: return String.featherIcon(name: .linkedin)
+        case .twitter: return String.featherIcon(name: .twitter)
+        case .resume: return String.featherIcon(name: .paperclip)
         }
     }
     
     var font: UIFont? {
-        switch self {
-        case .email: return UIFont.fontAwesome(ofSize: 24.0, style: .solid)
-        default: return UIFont.fontAwesome(ofSize: 24.0, style: .brands)
-        }
+        return UIFont.featherFont(size: 24.0)
     }
     
     var color: UIColor {

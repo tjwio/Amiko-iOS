@@ -22,9 +22,9 @@ class BAHomeViewController: UIViewController {
     let accountButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
-        button.setTitle(String.fontAwesomeIcon(name: .user), for: .normal)
+        button.setTitle(String.featherIcon(name: .edit2), for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.fontAwesome(ofSize: 20.0, style: .solid)
+        button.titleLabel?.font = UIFont.featherFont(size: 20.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 22.0
         
