@@ -20,7 +20,7 @@ public struct BABumpEvent {
 }
 
 public class BABumpManager: NSObject {
-    private static let ACCELERATION_DELTA_THRESHOLD = 1.0
+    private static let ACCELERATION_DELTA_THRESHOLD = 0.5
     
     public static let shared = BABumpManager()
     
