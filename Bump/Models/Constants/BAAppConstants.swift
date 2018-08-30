@@ -56,6 +56,7 @@ struct BAConstants {
         static let timestamp = "timestamp"
         static let latitude = "latitude"
         static let longitude = "longitude"
+        static let accuracy = "accuracy"
     }
     
     struct HockeyApp {

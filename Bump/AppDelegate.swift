@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         BACommonUtility.configureMessages()
         
+        if BALocationManager.shared.isAuthorized {
+            BALocationManager.shared.initialize()
+        }
+        
         self.loadInitialViewController()
         self.window?.makeKeyAndVisible()
         
@@ -41,7 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        BAUserHolder.shared.reconnect()
+        if BAUserHolder.initialized {
+            BAUserHolder.shared.reconnect()
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

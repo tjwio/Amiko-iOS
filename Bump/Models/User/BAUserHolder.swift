@@ -15,6 +15,8 @@ class BAUserHolder: NSObject {
     private static let BUMP_MATCHED_EVENT = "bump_matched"
     private static let BUMP_TEST_EVENT = "bump_test"
     
+    static var initialized = false
+    
     private(set) static var shared: BAUserHolder!
     private(set) var user: BAUser
     
@@ -33,7 +35,14 @@ class BAUserHolder: NSObject {
     class func initialize(user: BAUser) -> BAUserHolder {
         shared = BAUserHolder(user: user)
         
+        initialized = true
+        
         return shared
+    }
+    
+    class func logOut() {
+        shared = nil
+        initialized = false
     }
     
     //MARK: load
@@ -105,7 +114,8 @@ class BAUserHolder: NSObject {
         let params: [String : Any] = [
             BAConstants.GeoMessage.timestamp : bump.date.timeIntervalSince1970 * 1000.0,
             BAConstants.GeoMessage.latitude : location.coordinate.latitude,
-            BAConstants.GeoMessage.longitude : location.coordinate.longitude
+            BAConstants.GeoMessage.longitude : location.coordinate.longitude,
+            BAConstants.GeoMessage.accuracy : location.horizontalAccuracy
         ]
         
         print("bumping with params: \(params)")

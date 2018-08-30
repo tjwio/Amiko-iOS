@@ -66,6 +66,7 @@ class BAWelcomeViewController: UIViewController {
         button.setAttributedTitle(loginAttString, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setContentCompressionResistancePriority(.required, for: .vertical)
         
         return button
     }()

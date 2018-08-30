@@ -15,10 +15,19 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     private(set) var currentLocation: CLLocation?
     
+    private var didInitialize = false
+    
+    var isAuthorized: Bool {
+        return CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways
+    }
+    
     func initialize() {
+        guard !didInitialize else { return }
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+        if isAuthorized {
+            didInitialize = true
             locationManager.startUpdatingLocation()
         }
         else {
@@ -28,11 +37,41 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways || status == .authorizedWhenInUse {
+            didInitialize = true
             locationManager.startUpdatingLocation()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.currentLocation = manager.location
+        if let newLoc = manager.location {
+            if let curr = currentLocation {
+                print("distance: \(curr.distance(from: newLoc))")
+                if shouldUpdateLocation(curr: curr, next: newLoc) {
+                    currentLocation = newLoc
+                }
+                else {
+                    print("not updating location")
+                }
+            }
+            else {
+                currentLocation = newLoc
+            }
+            
+            print("latitude: \(newLoc.coordinate.latitude), longitude: \(newLoc.coordinate.longitude), horizontal accuracy: \(newLoc.horizontalAccuracy), timestamp: \(newLoc.timestamp.timeIntervalSinceNow)\n")
+        }
+    }
+    
+    //MARK: helper methods
+    
+    private func shouldUpdateLocation(curr: CLLocation, next: CLLocation) -> Bool {
+        guard next.horizontalAccuracy >= 0 && -next.timestamp.timeIntervalSinceNow < 10 else { return false }
+        
+        let distance = curr.distance(from: next)
+        
+        let hDelta = curr.horizontalAccuracy - next.horizontalAccuracy
+        
+        let accuracyDeltaValid = hDelta > -10
+        
+        return distance <= next.horizontalAccuracy && accuracyDeltaValid
     }
 }
