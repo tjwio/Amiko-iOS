@@ -97,6 +97,7 @@ public class BAUser: NSObject, JSONDecodable {
     var phone: String
     var imageUrl: String?
     var profession: String?
+    var company: String?
     var socialAccounts = [(BAAccountContact, String)]()
     
     let image = MutableProperty<UIImage?>(nil)
