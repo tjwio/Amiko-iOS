@@ -34,15 +34,7 @@ public enum BAAccountContact: String {
         }
     }
     
-    var isImage: Bool {
-        return false
-    }
-    
-    var image: String? {
-        return nil
-    }
-    
-    var icon: String? {
+    var icon: String {
         switch self {
         case .email: return String.featherIcon(name: .mail)
         case .phone: return String.featherIcon(name: .smartphone)

@@ -33,6 +33,16 @@ class BAProfileView: UIView {
         return button
     }()
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Edit Profile"
+        label.textColor = UIColor.Grayscale.dark
+        label.font = UIFont.avenirBold(size: 20.0)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     let avatarImageView: BAAvatarView = {
         let imageView = BAAvatarView(image: .blankAvatar, shadowHidden: true)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,9 +54,10 @@ class BAProfileView: UIView {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
-        tableView.tableFooterView = UIView()
+        tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 16.0, 0.0)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        tableView.tableFooterView = UIView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -69,5 +80,45 @@ class BAProfileView: UIView {
     
     private func commonInit() {
         backgroundColor = .white
+        
+        addSubview(cancelButton)
+        addSubview(saveButton)
+        addSubview(titleLabel)
+        addSubview(avatarImageView)
+        addSubview(tableView)
+        
+        setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        cancelButton.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(16.0)
+            make.height.width.equalTo(44.0)
+        }
+        
+        saveButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16.0)
+            make.trailing.equalToSuperview().offset(-16.0)
+            make.height.width.equalTo(44.0)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(32.0)
+            make.centerX.equalToSuperview()
+        }
+        
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(12.0)
+            make.centerX.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.avatarImageView.snp.bottom).offset(12.0)
+            make.leading.equalToSuperview().offset(32.0)
+            make.trailing.equalToSuperview().offset(-32.0)
+            make.bottom.equalToSuperview()
+        }
+        
+        super.updateConstraints()
     }
 }
