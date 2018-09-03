@@ -72,6 +72,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         lastName.value = user.lastName
         jobTitle.value = user.profession
         company.value = user.company
+        website.value = user.website
         phone.value = user.phone
         email.value = user.email
         
@@ -197,6 +198,8 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.accountHolderView.isHidden = true
             cell.iconLabel.isHidden = true
             cell.textField.isEnabled = true
+            cell.textField.autocapitalizationType = .words
+            cell.textField.autocorrectionType = .default
             
             switch indexPath.section {
             case Constants.firstNameIndex:
@@ -238,10 +241,19 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             if indexPath.section == Constants.phoneIndex {
+                cell.textField.autocapitalizationType = .none
+                cell.textField.autocorrectionType = .no
                 cell.textField.keyboardType = .phonePad
             }
             else if indexPath.section == Constants.emailIndex {
+                cell.textField.autocapitalizationType = .none
+                cell.textField.autocorrectionType = .no
                 cell.textField.keyboardType = .emailAddress
+            }
+            else if indexPath.section == Constants.websiteIndex {
+                cell.textField.autocapitalizationType = .none
+                cell.textField.autocorrectionType = .no
+                cell.textField.keyboardType = .URL
             }
             else {
                 cell.textField.keyboardType = .default

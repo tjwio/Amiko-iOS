@@ -47,9 +47,14 @@ class BAAddUserViewController: UIViewController {
         view.backgroundColor = .clear
         
         userView.nameLabel.text = userToAdd.fullName
-        if let profession = userToAdd.profession {
-            userView.jobLabel.text = profession
+        if let fullJobCompany = userToAdd.fullJobCompany {
+            userView.jobLabel.isHidden = false
+            userView.jobLabel.text = fullJobCompany
         }
+        else {
+            userView.jobLabel.isHidden = true
+        }
+        
         if userToAdd.imageUrl != nil {
             userView.avatarImageView.imageView.sd_setIndicatorStyle(.gray)
             userView.avatarImageView.imageView.sd_addActivityIndicator()

@@ -127,7 +127,11 @@ class BAHomeViewController: UIViewController {
         nameLabel.text = "\(user.firstName) \(user.lastName)"
         
         if let fullJobCompany = user.fullJobCompany {
+            jobLabel.isHidden = false
             jobLabel.text = fullJobCompany
+        }
+        else {
+            jobLabel.isHidden = true
         }
         
         if user.imageUrl != nil {
