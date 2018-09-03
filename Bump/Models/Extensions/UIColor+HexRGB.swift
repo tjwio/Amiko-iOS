@@ -32,6 +32,10 @@ extension UIColor {
         static var lightest: UIColor {
             return UIColor(hexColor: 0xFBFCFD)
         }
+        
+        static var placeholderColor: UIColor {
+            return UIColor(hexColor: 0xC6C6C6)
+        }
     }
     
     struct Blue {

@@ -12,6 +12,25 @@ import ReactiveSwift
 
 class BAProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    private struct Constants {
+        static let cellIdentifier = "BAProfileDetailValueTableViewCellIdentifier"
+        static let headers = [0, 1, 3, 7]
+        static let maxLabelIndex = 6
+        
+        static let firstNameIndex = 0
+        static let lastNameIndex = 1
+        static let jobIndex = 2
+        static let companyIndex = 3
+        static let phoneIndex = 4
+        static let emailIndex = 5
+        static let websiteIndex = 6
+        
+        static let facebookIndex = 7
+        static let linkedinIndex = 8
+        static let instagramIndex = 9
+        static let twitterIndex = 10
+    }
+    
     let user: BAUser
     
     let image = MutableProperty<UIImage?>(nil)
@@ -21,6 +40,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     let company = MutableProperty<String?>(nil)
     let phone = MutableProperty<String?>(nil)
     let email = MutableProperty<String?>(nil)
+    let website = MutableProperty<String?>(nil)
     
     let facebook = MutableProperty<String?>(nil)
     let linkedin = MutableProperty<String?>(nil)
@@ -40,6 +60,8 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         
         return view
     }()
+    
+    private var disposables = CompositeDisposable()
     
     init(user: BAUser) {
         self.user = user
@@ -71,6 +93,10 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        disposables.dispose()
     }
     
     override func viewDidLoad() {
@@ -106,7 +132,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         dummyShadowView.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(40.0)
             make.leading.equalTo(self.view).offset(12.0)
-            make.trailing.equalTo(self.view).offset(12.0)
+            make.trailing.equalTo(self.view).offset(-12.0)
             make.bottom.equalTo(self.view).offset(6.0)
         }
         
@@ -118,7 +144,12 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: cancel
     
     @objc private func cancelProfileView(_ sender: UIButton?) {
-        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            self.view.backgroundColor = .clear
+            self.profileView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
+        }) { completed in
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     //MARK: save
@@ -130,12 +161,134 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: table view
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return 11
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Constants.headers.contains(section) ? 0.5 : 0.0
+    }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return Constants.headers.contains(section) ? UIView() : nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier) as? BAProfileDetailValueTableViewCell ?? BAProfileDetailValueTableViewCell(style: .default, reuseIdentifier: Constants.cellIdentifier)
+        
+        let attributes: [NSAttributedStringKey : Any] = [ .foregroundColor :  UIColor.Grayscale.placeholderColor]
+        
+        if indexPath.section <= Constants.maxLabelIndex {
+            cell.detailLabel.isHidden = false
+            cell.accountHolderView.isHidden = true
+            cell.iconLabel.isHidden = true
+            cell.textField.isEnabled = true
+            
+            switch indexPath.section {
+            case Constants.firstNameIndex:
+                cell.detailLabel.text = "First Name"
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "Muhammad", attributes: attributes)
+                cell.textField.text = self.firstName.value
+                disposables += (self.firstName <~ cell.textField.reactive.continuousTextValues)
+            case Constants.lastNameIndex:
+                cell.detailLabel.text = "Last Name"
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "Nakamura", attributes: attributes)
+                cell.textField.text = self.lastName.value
+                disposables += (self.lastName <~ cell.textField.reactive.continuousTextValues)
+            case Constants.jobIndex:
+                cell.detailLabel.text = "Job Title"
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "Product Designer", attributes: attributes)
+                cell.textField.text = self.jobTitle.value
+                disposables += (self.jobTitle <~ cell.textField.reactive.continuousTextValues)
+            case Constants.companyIndex:
+                cell.detailLabel.text = "Company"
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "Ciao", attributes: attributes)
+                cell.textField.text = self.company.value
+                disposables += (self.company <~ cell.textField.reactive.continuousTextValues)
+            case Constants.phoneIndex:
+                cell.detailLabel.text = "Phone"
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "800.700.6000", attributes: attributes)
+                cell.textField.text = self.phone.value
+                disposables += (self.phone <~ cell.textField.reactive.continuousTextValues)
+            case Constants.emailIndex:
+                cell.detailLabel.text = "Email"
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "muhammad.nakmura@ciao.haus", attributes: attributes)
+                cell.textField.text = self.email.value
+                disposables += (self.email <~ cell.textField.reactive.continuousTextValues)
+            case Constants.websiteIndex:
+                cell.detailLabel.text = "Website"
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "https://ciao.haus", attributes: attributes)
+                cell.textField.text = self.website.value
+                disposables += (self.website <~ cell.textField.reactive.continuousTextValues)
+            default: break
+            }
+            
+            if indexPath.section == Constants.phoneIndex {
+                cell.textField.keyboardType = .phonePad
+            }
+            else if indexPath.section == Constants.emailIndex {
+                cell.textField.keyboardType = .emailAddress
+            }
+            else {
+                cell.textField.keyboardType = .default
+            }
+        }
+        else {
+            let exampleHandle = "muhammad.nakmura"
+            
+            cell.detailLabel.isHidden = true
+            cell.accountHolderView.isHidden = false
+            cell.iconLabel.isHidden = false
+            cell.textField.isEnabled = false
+            
+            switch indexPath.section {
+            case Constants.facebookIndex:
+                let contact = BAAccountContact.facebook
+                
+                cell.accountHolderView.backgroundColor = self.facebook.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
+                cell.iconLabel.text = contact.icon
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
+                cell.textField.text = self.facebook.value
+            case Constants.linkedinIndex:
+                let contact = BAAccountContact.linkedin
+                
+                cell.accountHolderView.backgroundColor = self.linkedin.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
+                cell.iconLabel.text = contact.icon
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
+                cell.textField.text = self.linkedin.value
+            case Constants.instagramIndex:
+                let contact = BAAccountContact.instagram
+                
+                cell.accountHolderView.backgroundColor = self.instagram.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
+                cell.iconLabel.text = contact.icon
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)
+                cell.textField.text = self.instagram.value
+            case Constants.twitterIndex:
+                let contact = BAAccountContact.twitter
+                
+                cell.accountHolderView.backgroundColor = self.twitter.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
+                cell.iconLabel.text = contact.icon
+                cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)
+                cell.textField.text = self.twitter.value
+            default: break
+            }
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return indexPath.section > Constants.maxLabelIndex ? indexPath : nil
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

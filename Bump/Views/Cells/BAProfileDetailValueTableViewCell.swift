@@ -13,7 +13,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
     let textField: UITextField = {
         let textField = UITextField()
         textField.textColor = UIColor.Grayscale.dark
-        textField.font = UIFont.avenirRegular(size: 12.0)
+        textField.font = UIFont.avenirRegular(size: 14.0)
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
@@ -22,7 +22,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
     let detailLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.Grayscale.dark
-        label.font = UIFont.avenirDemi(size: 12.0)
+        label.font = UIFont.avenirDemi(size: 14.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -31,7 +31,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
     let accountHolderView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(hexColor: 0xD8DBE0)
-        view.layer.cornerRadius = 13.0
+        view.layer.cornerRadius = 16.0
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -40,7 +40,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
     let iconLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.fontAwesome(ofSize: 24.0, style: .brands)
+        label.font = UIFont.featherFont(size: 18.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -69,7 +69,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
     
     override func updateConstraints() {
         textField.snp.makeConstraints { make in
-            make.leading.equalTo(self.contentView.snp.centerX).offset(40.0)
+            make.leading.equalTo(self.contentView.snp.centerX).offset(-30.0)
             make.centerY.equalToSuperview()
         }
         
@@ -85,7 +85,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
         accountHolderView.snp.makeConstraints { make in
             make.trailing.equalTo(self.detailLabel)
             make.centerY.equalToSuperview()
-            make.height.width.equalTo(26.0)
+            make.height.width.equalTo(32.0)
         }
         
         super.updateConstraints()

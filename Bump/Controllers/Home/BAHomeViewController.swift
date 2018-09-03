@@ -317,6 +317,11 @@ class BAHomeViewController: UIViewController {
     //MARK: account button
     
     @objc private func showAccount(_ sender: UIButton?) {
-        BAAppManager.shared.logOut()
+        let viewController = BAProfileViewController(user: BAUserHolder.shared.user)
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        
+        self.present(viewController, animated: false, completion: nil)
     }
 }

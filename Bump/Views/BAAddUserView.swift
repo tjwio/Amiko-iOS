@@ -239,17 +239,10 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
             
             cell.accountLabel.text = item.1
             
-            if let imageName = item.0.image, let image = UIImage(named: imageName) {
-                cell.accountImageView.image = image
-                cell.accountImageView.isHidden = false
-                cell.iconLabel.isHidden = true
-            }
-            else if let iconHex = item.0.icon {
-                cell.iconLabel.text = iconHex
-                cell.iconLabel.font = item.0.font
-                cell.iconLabel.isHidden = false
-                cell.accountImageView.isHidden = true
-            }
+            cell.iconLabel.text = item.0.icon
+            cell.iconLabel.font = item.0.font
+            cell.iconLabel.isHidden = false
+            cell.accountImageView.isHidden = true
             
             cell.accountHolderView.backgroundColor = item.0.color
             
