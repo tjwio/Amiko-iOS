@@ -45,6 +45,7 @@ class BAProfileView: UIView {
     
     let avatarImageView: BAAvatarView = {
         let imageView = BAAvatarView(image: .blankAvatar, shadowHidden: true)
+        imageView.imageView.layer.borderWidth = 0.0
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -110,6 +111,7 @@ class BAProfileView: UIView {
         avatarImageView.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(12.0)
             make.centerX.equalToSuperview()
+            make.height.width.equalTo(100.0)
         }
         
         tableView.snp.makeConstraints { make in

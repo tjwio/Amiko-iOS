@@ -66,7 +66,6 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     init(user: BAUser) {
         self.user = user
         
-        image.value = user.image.value
         firstName.value = user.firstName
         lastName.value = user.lastName
         jobTitle.value = user.profession
@@ -89,6 +88,10 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         super.init(nibName: nil, bundle: nil)
+        
+        user.loadImage(success: { (image, _) in
+            self.image.value = image
+        }, failure: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -104,6 +107,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         
         view.backgroundColor = .clear
         
+        disposables += (profileView.avatarImageView.imageView.reactive.image <~ self.image)
         profileView.cancelButton.addTarget(self, action: #selector(self.cancelProfileView(_:)), for: .touchUpInside)
         profileView.saveButton.addTarget(self, action: #selector(self.saveProfileView(_:)), for: .touchUpInside)
         profileView.tableView.delegate = self
@@ -111,6 +115,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         profileView.isHidden = false
         profileView.transform = CGAffineTransform(translationX: 0.0, y: view.frame.size.height)
         profileView.layer.cornerRadius = 20.0
+        profileView.clipsToBounds = true
         
         view.addSubview(dummyShadowView)
         dummyShadowView.addSubview(profileView)
