@@ -13,12 +13,13 @@ enum BAURLRouter: URLRequestConvertible {
     case loadUser
     case loadHistory
     
-    //MARK: PUT
-    
     //MARK: POST
     case signup(parameters: Parameters)
     case login(parameters: Parameters)
     case addConnection(parameters: Parameters)
+    
+    //MARK: PUT
+    case updateUser(parameters: Parameters)
     
     //MARK: DELETE
     case deleteConnection(historyId: String)
@@ -29,6 +30,8 @@ enum BAURLRouter: URLRequestConvertible {
             return .get
         case .signup, .login, .addConnection:
             return .post
+        case .updateUser:
+            return .put
         case .deleteConnection:
             return .delete
         }
@@ -36,7 +39,7 @@ enum BAURLRouter: URLRequestConvertible {
     
     var path: String {
         switch self {
-        case .loadUser:
+        case .loadUser, .updateUser:
             return "/users/me"
         case .loadHistory:
             return "/users/connections"
@@ -61,7 +64,7 @@ enum BAURLRouter: URLRequestConvertible {
         }
         
         switch self {
-        case .signup(let parameters), .login(let parameters), .addConnection(let parameters):
+        case .signup(let parameters), .login(let parameters), .addConnection(let parameters), .updateUser(let parameters):
             urlRequest = try JSONEncoding.default.encode(urlRequest, withJSONObject: parameters)
         default: break
         }

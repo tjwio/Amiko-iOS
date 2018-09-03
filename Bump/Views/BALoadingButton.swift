@@ -46,18 +46,18 @@ class BALoadingButton: UIButton {
     }
     
     private func commonInit() {
-        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white);
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white);
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false;
         self.addSubview(self.activityIndicator);
         
-        self.addTarget(self, action: #selector(self.buttonPressed), for: UIControlEvents.touchUpInside);
+        self.addTarget(self, action: #selector(self.buttonPressed), for: .touchUpInside);
         
         self.setNeedsUpdateConstraints();
     }
     
     override func updateConstraints() {
-        let centerXConstraint = NSLayoutConstraint(item: self.activityIndicator, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0);
-        let centerYConstraint = NSLayoutConstraint(item: self.activityIndicator, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0);
+        let centerXConstraint = NSLayoutConstraint(item: self.activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0);
+        let centerYConstraint = NSLayoutConstraint(item: self.activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0);
         
         NSLayoutConstraint.activate([centerXConstraint, centerYConstraint]);
         

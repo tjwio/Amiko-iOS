@@ -46,6 +46,17 @@ extension BANetworkHandler {
         }
     }
     
+    //MARK: PUT
+    
+    public func updateUser(parameters: Parameters, success: BAJSONHandler?, failure: BAErrorHandler?) {
+        self.sessionManager.request(BAURLRouter.updateUser(parameters: parameters)).validate().responseJSON { response in
+            switch response.result {
+            case .success: success?(response.result.value as? JSON ?? JSON())
+            case .failure(let error): failure?(error)
+            }
+        }
+    }
+    
     //MARK: DELETE
     
     public func deleteConnection(historyId: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {

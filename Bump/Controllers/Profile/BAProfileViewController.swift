@@ -31,6 +31,8 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         static let twitterIndex = 10
     }
     
+    var successCallback: BAEmptyHandler?
+    
     let user: BAUser
     
     let image = MutableProperty<UIImage?>(nil)
@@ -73,19 +75,10 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         phone.value = user.phone
         email.value = user.email
         
-        for account in user.socialAccounts {
-            switch account.0 {
-            case .facebook:
-                facebook.value = account.1
-            case .linkedin:
-                linkedin.value = account.1
-            case .instagram:
-                instagram.value = account.1
-            case .twitter:
-                twitter.value = account.1
-            default: break
-            }
-        }
+        facebook.value = user.facebook
+        linkedin.value = user.linkedin
+        instagram.value = user.instagram
+        twitter.value = user.twitter
         
         super.init(nibName: nil, bundle: nil)
         
@@ -146,9 +139,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    //MARK: cancel
-    
-    @objc private func cancelProfileView(_ sender: UIButton?) {
+    private func dismissViewController() {
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
             self.view.backgroundColor = .clear
             self.profileView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
@@ -157,10 +148,21 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    //MARK: cancel
+    
+    @objc private func cancelProfileView(_ sender: UIButton?) {
+        dismissViewController()
+    }
+    
     //MARK: save
     
     @objc private func saveProfileView(_ sender: BALoadingButton?) {
-        
+        user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
+            self.dismissViewController()
+            self.successCallback?()
+        }) { _ in
+            self.showLeftMessage("Failed to update info", type: .error, view: self.profileView)
+        }
     }
     
     //MARK: table view

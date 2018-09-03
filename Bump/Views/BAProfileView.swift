@@ -11,24 +11,21 @@ import UIKit
 class BAProfileView: UIView {
     let cancelButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
         button.setTitle(String.featherIcon(name: .x), for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.featherFont(size: 20.0)
+        button.setTitleColor(UIColor.Grayscale.dark, for: .normal)
+        button.titleLabel?.font = UIFont.featherFont(size: 24.0)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 22.0
         
         return button
     }()
     
     let saveButton: BALoadingButton = {
         let button = BALoadingButton(type: .custom)
-        button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
+        button.activityIndicator.color = UIColor.Grayscale.dark
         button.setTitle(String.featherIcon(name: .check), for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.featherFont(size: 20.0)
+        button.setTitleColor(UIColor.Grayscale.dark, for: .normal)
+        button.titleLabel?.font = UIFont.featherFont(size: 24.0)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 22.0
         
         return button
     }()
@@ -94,13 +91,11 @@ class BAProfileView: UIView {
     override func updateConstraints() {
         cancelButton.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(16.0)
-            make.height.width.equalTo(44.0)
         }
         
         saveButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16.0)
             make.trailing.equalToSuperview().offset(-16.0)
-            make.height.width.equalTo(44.0)
         }
         
         titleLabel.snp.makeConstraints { make in

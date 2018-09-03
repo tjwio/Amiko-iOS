@@ -55,6 +55,7 @@
 		2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */; };
 		2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F3C213916C80074AB8B /* BAProfileView.swift */; };
 		2F552F47213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */; };
+		2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F48213DE82D0074AB8B /* String+Null.swift */; };
 		2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6354D8208C5FC400429F72 /* BACameraViewController.swift */; };
 		2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */; };
 		2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */; };
@@ -165,6 +166,7 @@
 		2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
 		2F552F3C213916C80074AB8B /* BAProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileView.swift; sourceTree = "<group>"; };
 		2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileDetailValueTableViewCell.swift; sourceTree = "<group>"; };
+		2F552F48213DE82D0074AB8B /* String+Null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Null.swift"; sourceTree = "<group>"; };
 		2F6354D8208C5FC400429F72 /* BACameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACameraViewController.swift; sourceTree = "<group>"; };
 		2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABumpManager.swift; sourceTree = "<group>"; };
 		2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppConstants.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				2F18D3A92106FB9700C97E3A /* Date+Formatter.swift */,
 				2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */,
 				2F27363D2086BA7900D05238 /* Double+Round.swift */,
+				2F552F48213DE82D0074AB8B /* String+Null.swift */,
 				2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */,
 				2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */,
 				2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */,
@@ -867,6 +870,7 @@
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
 				2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */,
 				2F1E73CD2119975100B83501 /* BAHistoryMapViewController.swift in Sources */,
+				2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */,
 				2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */,
 				2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */,
 				2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */,
