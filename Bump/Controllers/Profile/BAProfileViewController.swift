@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FacebookCore
 import FBSDKCoreKit
 import FBSDKLoginKit
 import ReactiveCocoa
