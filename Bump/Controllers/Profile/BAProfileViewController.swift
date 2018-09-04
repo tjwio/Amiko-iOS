@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 import ReactiveCocoa
 import ReactiveSwift
 
@@ -275,6 +277,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
                 cell.textField.text = self.facebook.value
+                disposables += (cell.textField.reactive.text <~ self.facebook)
             case Constants.linkedinIndex:
                 let contact = BAAccountContact.linkedin
                 
@@ -282,6 +285,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
                 cell.textField.text = self.linkedin.value
+                disposables += (cell.textField.reactive.text <~ self.linkedin)
             case Constants.instagramIndex:
                 let contact = BAAccountContact.instagram
                 
@@ -289,6 +293,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)
                 cell.textField.text = self.instagram.value
+                disposables += (cell.textField.reactive.text <~ self.instagram)
             case Constants.twitterIndex:
                 let contact = BAAccountContact.twitter
                 
@@ -296,6 +301,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)
                 cell.textField.text = self.twitter.value
+                disposables += (cell.textField.reactive.text <~ self.twitter)
             default: break
             }
         }
@@ -309,5 +315,16 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == Constants.facebookIndex {
+            FBSDKLoginManager().logIn(withReadPermissions: [], from: self) { (result, error) in
+                if let result = result {
+                    self.facebook.value = result.token.userID
+                }
+                else if let error = error {
+                    print("failed to login to facebook with error: \(error)")
+                }
+            }
+        }
     }
 }
