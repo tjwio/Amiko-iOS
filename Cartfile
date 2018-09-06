@@ -8,6 +8,5 @@ github "ReactiveCocoa/ReactiveCocoa" ~> 7.0
 github "Skyscanner/SkyFloatingLabelTextField"
 github "tw23/GSMessages" "fix/access_control"
 github "bitstadium/HockeySDK-iOS"
-github "thii/FontAwesome.swift"
 github "airbnb/lottie-ios" "master"
 github "tjwio/SwiftFeather" "master"

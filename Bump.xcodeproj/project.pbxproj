@@ -92,7 +92,6 @@
 		2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */; };
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
 		2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF920F84AB00012F1AB /* FirstExp.strings */; };
-		2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3EC2131F2990045B75E /* FontAwesome.framework */; };
 		2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */; };
 		2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3F0213212050045B75E /* UIImageColors.swift */; };
 		2FFAE3F3213220060045B75E /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3F2213220060045B75E /* Lottie.framework */; };
@@ -231,7 +230,6 @@
 			files = (
 				2F29454221337D1000A22C62 /* FeatherIcon.framework in Frameworks */,
 				2FFAE3F3213220060045B75E /* Lottie.framework in Frameworks */,
-				2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */,
 				2F1E73C521163D1800B83501 /* HockeySDK.framework in Frameworks */,
 				2F1E73B6211636BC00B83501 /* Alamofire.framework in Frameworks */,
 				2F1E73B7211636BC00B83501 /* Gloss.framework in Frameworks */,
@@ -811,7 +809,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FeatherIcon.framework",
 			);

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FontAwesome
 import ReactiveCocoa
 import ReactiveSwift
 import SkyFloatingLabelTextField
