@@ -8,6 +8,8 @@
 
 import UIKit
 import Lottie
+import ReactiveCocoa
+import ReactiveSwift
 import SnapKit
 
 class BAInitialLoadingViewController: UIViewController {
@@ -23,19 +25,25 @@ class BAInitialLoadingViewController: UIViewController {
         animation.contentMode = .scaleAspectFit
         animation.loopAnimation = false
         animation.isHidden = false
-        animation.animationSpeed = 0.5
+        animation.animationSpeed = 1.0
         animation.translatesAutoresizingMaskIntoConstraints = false
         
         return animation
     }()
     
+    let userComplete = MutableProperty<Bool>(false)
+    let animationComplete = MutableProperty<Bool>(false)
+    
+    var user: BAUser!
+    
+    private var disposables = CompositeDisposable()
+    
     init(userId: String) {
         super.init(nibName: nil, bundle: nil)
         
         BAUserHolder.loadUser(userId: userId, success: { user in
-            DispatchQueue.main.async {
-                (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
-            }
+            self.user = user
+            self.userComplete.value = true
         }) { error in
             print("failed to load user id: \(userId), logging out")
             BAAppManager.shared.logOut()
@@ -46,6 +54,10 @@ class BAInitialLoadingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        disposables.dispose()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,6 +66,7 @@ class BAInitialLoadingViewController: UIViewController {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         bumpAnimation.play { [weak self] _ in
+            self?.animationComplete.value = true
             self?.activityIndicator.startAnimating()
         }
         
@@ -61,6 +74,15 @@ class BAInitialLoadingViewController: UIViewController {
         view.addSubview(bumpAnimation)
         
         setupConstraints()
+        
+        disposables += SignalProducer.combineLatest(userComplete.producer, animationComplete.producer).startWithValues { [weak self] (userComplete, animationComplete) in
+            guard let strongSelf = self else { return }
+            if userComplete && animationComplete {
+                DispatchQueue.main.async {
+                    (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: strongSelf.user)
+                }
+            }
+        }
     }
     
     private func setupConstraints() {
