@@ -125,9 +125,15 @@ class BAHomeViewController: UIViewController {
         
         let user = BAUserHolder.shared.user
         nameLabel.text = "\(user.firstName) \(user.lastName)"
-        if let profession = user.profession {
-            jobLabel.text = profession
+        
+        if let fullJobCompany = user.fullJobCompany {
+            jobLabel.isHidden = false
+            jobLabel.text = fullJobCompany
         }
+        else {
+            jobLabel.isHidden = true
+        }
+        
         if user.imageUrl != nil {
             avatarImageView.imageView.sd_setIndicatorStyle(.gray)
             avatarImageView.imageView.sd_addActivityIndicator()
@@ -317,6 +323,16 @@ class BAHomeViewController: UIViewController {
     //MARK: account button
     
     @objc private func showAccount(_ sender: UIButton?) {
-        BAAppManager.shared.logOut()
+        let viewController = BAProfileViewController(user: BAUserHolder.shared.user)
+        viewController.successCallback = { [weak self] in
+            DispatchQueue.main.async {
+                self?.showLeftMessage("Successfully updated profile", type: .success)
+            }
+        }
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        
+        self.present(viewController, animated: false, completion: nil)
     }
 }

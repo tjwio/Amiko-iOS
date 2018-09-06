@@ -150,12 +150,19 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         let history = user.history[indexPath.section]
         
         cell.dateLabel.text = "Connected on \(history.date.string(formatter: .monthDayYear))"
-        cell.jobLabel.text = "iOS Engineer"
         cell.locationLabel.text = "at San Francisco Convention Center"
         cell.nameLabel.text = history.addedUser.fullName
         cell.phoneLabel.text = history.addedUser.phone
         cell.socialDrawer.items = history.addedUser.socialAccounts
         cell.socialDrawer.selectCallback = BAConstants.defaultSocialCallback
+        
+        if let fullJobCompany = history.addedUser.fullJobCompany {
+            cell.jobLabel.isHidden = false
+            cell.jobLabel.text = fullJobCompany
+        }
+        else {
+            cell.jobLabel.isHidden = true
+        }
         
         if history.addedUser.imageUrl != nil {
             cell.avatarView.imageView.sd_setIndicatorStyle(.gray)

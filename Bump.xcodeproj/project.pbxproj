@@ -43,6 +43,7 @@
 		2F262EFD2134FF3500138D4D /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F262EFC2134FF3500138D4D /* Array+RemoveObject.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F29454221337D1000A22C62 /* FeatherIcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F29454121337D1000A22C62 /* FeatherIcon.framework */; };
+		2F31CFB92137CEA300308702 /* BAProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F31CFB82137CEA300308702 /* BAProfileViewController.swift */; };
 		2F3432C121243BCB00B9ED45 /* BAHistoryHolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */; };
 		2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C321243F5800B9ED45 /* BANavigationController.swift */; };
 		2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C521243F7E00B9ED45 /* BANavigationBar.swift */; };
@@ -52,6 +53,9 @@
 		2F4BBB3820522A3700AAFE1A /* BumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB3720522A3700AAFE1A /* BumpTests.swift */; };
 		2F4BBB4320522A3700AAFE1A /* BumpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB4220522A3700AAFE1A /* BumpUITests.swift */; };
 		2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */; };
+		2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F3C213916C80074AB8B /* BAProfileView.swift */; };
+		2F552F47213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */; };
+		2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F48213DE82D0074AB8B /* String+Null.swift */; };
 		2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6354D8208C5FC400429F72 /* BACameraViewController.swift */; };
 		2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */; };
 		2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */; };
@@ -88,7 +92,6 @@
 		2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */; };
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
 		2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF920F84AB00012F1AB /* FirstExp.strings */; };
-		2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3EC2131F2990045B75E /* FontAwesome.framework */; };
 		2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */; };
 		2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFAE3F0213212050045B75E /* UIImageColors.swift */; };
 		2FFAE3F3213220060045B75E /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFAE3F2213220060045B75E /* Lottie.framework */; };
@@ -143,6 +146,7 @@
 		2F262EFC2134FF3500138D4D /* Array+RemoveObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+RemoveObject.swift"; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F29454121337D1000A22C62 /* FeatherIcon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeatherIcon.framework; path = Carthage/Build/iOS/FeatherIcon.framework; sourceTree = "<group>"; };
+		2F31CFB82137CEA300308702 /* BAProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileViewController.swift; sourceTree = "<group>"; };
 		2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHistoryHolderViewController.swift; sourceTree = "<group>"; };
 		2F3432C321243F5800B9ED45 /* BANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANavigationController.swift; sourceTree = "<group>"; };
 		2F3432C521243F7E00B9ED45 /* BANavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANavigationBar.swift; sourceTree = "<group>"; };
@@ -159,6 +163,9 @@
 		2F4BBB4220522A3700AAFE1A /* BumpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpUITests.swift; sourceTree = "<group>"; };
 		2F4BBB4420522A3700AAFE1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
+		2F552F3C213916C80074AB8B /* BAProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileView.swift; sourceTree = "<group>"; };
+		2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileDetailValueTableViewCell.swift; sourceTree = "<group>"; };
+		2F552F48213DE82D0074AB8B /* String+Null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Null.swift"; sourceTree = "<group>"; };
 		2F6354D8208C5FC400429F72 /* BACameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACameraViewController.swift; sourceTree = "<group>"; };
 		2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABumpManager.swift; sourceTree = "<group>"; };
 		2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppConstants.swift; sourceTree = "<group>"; };
@@ -223,7 +230,6 @@
 			files = (
 				2F29454221337D1000A22C62 /* FeatherIcon.framework in Frameworks */,
 				2FFAE3F3213220060045B75E /* Lottie.framework in Frameworks */,
-				2FFAE3ED2131F2990045B75E /* FontAwesome.framework in Frameworks */,
 				2F1E73C521163D1800B83501 /* HockeySDK.framework in Frameworks */,
 				2F1E73B6211636BC00B83501 /* Alamofire.framework in Frameworks */,
 				2F1E73B7211636BC00B83501 /* Gloss.framework in Frameworks */,
@@ -263,6 +269,7 @@
 				2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */,
 				2FFAE3EE2131FACF0045B75E /* BASocialDrawerTableViewCell.swift */,
 				2F18D39E2105584600C97E3A /* BAUserCardTableViewCell.swift */,
+				2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -337,6 +344,14 @@
 				2F262EFA2134F8EF00138D4D /* BADeleteUserViewController.swift */,
 			);
 			path = Delete;
+			sourceTree = "<group>";
+		};
+		2F31CFB72137CE7C00308702 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2F31CFB82137CEA300308702 /* BAProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		2F3432C221243F3A00B9ED45 /* Navigation */ = {
@@ -459,6 +474,7 @@
 				2F1312032081AEE900D462F8 /* Home */,
 				2F6E51EC20830F4A00E8D8CA /* Login */,
 				2F3432C221243F3A00B9ED45 /* Navigation */,
+				2F31CFB72137CE7C00308702 /* Profile */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -481,6 +497,7 @@
 				2F18D3A92106FB9700C97E3A /* Date+Formatter.swift */,
 				2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */,
 				2F27363D2086BA7900D05238 /* Double+Round.swift */,
+				2F552F48213DE82D0074AB8B /* String+Null.swift */,
 				2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */,
 				2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */,
 				2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */,
@@ -607,6 +624,7 @@
 				2F18D399210539C000C97E3A /* BAAvatarView.swift */,
 				2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */,
 				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
+				2F552F3C213916C80074AB8B /* BAProfileView.swift */,
 				2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */,
 				2F0635762085395E00D655E7 /* Cells */,
 				2F1E73D3211B21D500B83501 /* Map */,
@@ -791,7 +809,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FeatherIcon.framework",
 			);
@@ -810,6 +827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
+				2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */,
 				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
 				2F18D39C21053C5300C97E3A /* UIImage+Constants.swift in Sources */,
@@ -849,6 +867,7 @@
 				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
 				2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */,
 				2F1E73CD2119975100B83501 /* BAHistoryMapViewController.swift in Sources */,
+				2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */,
 				2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */,
 				2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */,
 				2F6E52042083DE8100E8D8CA /* BACommonUtility.swift in Sources */,
@@ -859,6 +878,7 @@
 				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* BAURLRouter.swift in Sources */,
+				2F31CFB92137CEA300308702 /* BAProfileViewController.swift in Sources */,
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
 				2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */,
 				2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */,
@@ -867,6 +887,7 @@
 				2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
 				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,
+				2F552F47213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift in Sources */,
 				2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */,
 				2F1312072081B0EA00D462F8 /* UIColor+HexRGB.swift in Sources */,
 			);
@@ -1028,7 +1049,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1053,7 +1074,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

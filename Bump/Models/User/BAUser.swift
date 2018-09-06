@@ -34,15 +34,7 @@ public enum BAAccountContact: String {
         }
     }
     
-    var isImage: Bool {
-        return false
-    }
-    
-    var image: String? {
-        return nil
-    }
-    
-    var icon: String? {
+    var icon: String {
         switch self {
         case .email: return String.featherIcon(name: .mail)
         case .phone: return String.featherIcon(name: .smartphone)
@@ -97,7 +89,46 @@ public class BAUser: NSObject, JSONDecodable {
     var phone: String
     var imageUrl: String?
     var profession: String?
-    var socialAccounts = [(BAAccountContact, String)]()
+    var company: String?
+    var website: String?
+    
+    var facebook: String?
+    var linkedin: String?
+    var instagram: String?
+    var twitter: String?
+    
+    var fullJobCompany: String? {
+        if let profession = profession, let company = company {
+            return profession.appending(" at \(company)")
+        }
+        else if let profession = profession {
+            return profession
+        }
+        else if let company = company {
+            return company
+        }
+        
+        return nil
+    }
+    
+    var socialAccounts: [(BAAccountContact, String)] {
+        var ret = [(BAAccountContact, String)]()
+        
+        if !(facebook?.isEmpty ?? true) {
+            ret.append((.facebook, facebook!))
+        }
+        if !(linkedin?.isEmpty ?? true) {
+            ret.append((.linkedin, linkedin!))
+        }
+        if !(instagram?.isEmpty ?? true) {
+            ret.append((.instagram, instagram!))
+        }
+        if !(twitter?.isEmpty ?? true) {
+            ret.append((.twitter, twitter!))
+        }
+        
+        return ret
+    }
     
     let image = MutableProperty<UIImage?>(nil)
     let imageColors = MutableProperty<UIImageColors?>(nil)
@@ -124,14 +155,31 @@ public class BAUser: NSObject, JSONDecodable {
         self.phone = phone
         self.imageUrl = BAConstants.User.imageUrl <~~ json
         self.profession = BAConstants.User.profession <~~ json
+        self.company = BAConstants.User.company <~~ json
+        self.website = BAConstants.User.website <~~ json
         
-        for social in availableSocial {
-            if let accountContact = BAAccountContact(rawValue: social), let value: String = social <~~ json {
-                self.socialAccounts.append((accountContact, value))
-            }
-        }
+        self.facebook = BAConstants.User.facebook <~~ json
+        self.linkedin = BAConstants.User.linkedin <~~ json
+        self.instagram = BAConstants.User.instagram <~~ json
+        self.twitter = BAConstants.User.twitter <~~ json
         
         super.init()
+    }
+    
+    class func json(firstName: String, lastName: String, profession: String, company: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String) -> JSON {
+        return jsonify([
+            BAConstants.User.firstName ~~> firstName.nullOrValue,
+            BAConstants.User.lastName ~~> lastName.nullOrValue,
+            BAConstants.User.profession ~~> profession.nullOrValue,
+            BAConstants.User.company ~~> company.nullOrValue,
+            BAConstants.User.phone ~~> phone.nullOrValue,
+            BAConstants.User.email ~~> email.nullOrValue,
+            BAConstants.User.website ~~> website.nullOrValue,
+            BAConstants.User.facebook ~~> facebook.nullOrValue,
+            BAConstants.User.linkedin ~~> linkedin.nullOrValue,
+            BAConstants.User.instagram ~~> instagram.nullOrValue,
+            BAConstants.User.twitter ~~> twitter.nullOrValue
+            ]) ?? [:]
     }
     
     //MARK: load/get
@@ -197,6 +245,31 @@ public class BAUser: NSObject, JSONDecodable {
             }
         }) { error in
             print("failed to add connection with error: \(error)")
+            failure?(error)
+        }
+    }
+    
+    //MARK: update/put
+    
+    func updateUser(firstName: String, lastName: String, profession: String, company: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {
+        let parameters = BAUser.json(firstName: firstName, lastName: lastName, profession: profession, company: company, phone: phone, email: email, website: website, facebook: facebook, linkedin: linkedin, instagram: instagram, twitter: twitter)
+        
+        BANetworkHandler.shared.updateUser(parameters: parameters, success: { _ in
+            self.firstName = firstName
+            self.lastName = lastName
+            self.profession = profession
+            self.company = company
+            self.phone = phone
+            self.email = email
+            self.website = website
+            
+            self.facebook = facebook
+            self.linkedin = linkedin
+            self.instagram = instagram
+            self.twitter = twitter
+            success?()
+        }) { error in
+            print("failed to update user with error: \(error)")
             failure?(error)
         }
     }
