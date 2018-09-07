@@ -172,8 +172,18 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc private func saveProfileView(_ sender: BALoadingButton?) {
         user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
-            self.dismissViewController()
-            self.successCallback?()
+            if self.imageDidUpdate.value, let newImage = self.image.value {
+                self.user.updateImage(newImage, success: {
+                    self.dismissViewController()
+                    self.successCallback?()
+                }, failure: { error in
+                    self.showLeftMessage("Failed to update user image, please try again.", type: .error)
+                })
+            }
+            else {
+                self.dismissViewController()
+                self.successCallback?()
+            }
         }) { _ in
             self.showLeftMessage("Failed to update info", type: .error, view: self.profileView)
         }

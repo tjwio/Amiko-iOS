@@ -9,11 +9,14 @@
 import Foundation
 
 enum BAError: Error {
+    case imageData
     case invalidJson
     case nilOrEmpty
     
     var localizedDescription: String {
         switch self {
+        case .imageData:
+            return "Failed to encode image data"
         case .invalidJson:
             return "Invalid JSON Response"
         case .nilOrEmpty:
