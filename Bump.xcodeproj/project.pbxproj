@@ -83,9 +83,11 @@
 		2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */; };
 		2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */; };
 		2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */; };
-		2F6E5212208462F100E8D8CA /* BAInitialLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */; };
+		2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */; };
 		2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */; };
+		2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */; };
 		2FD4B9102141C38B00E0E570 /* ciao_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FD4B90F2141C38B00E0E570 /* ciao_logo.json */; };
+		2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */; };
 		2FE36BED20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BEC20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift */; };
 		2FE36BEF20F846660012F1AB /* BAFirstExpIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BEE20F846660012F1AB /* BAFirstExpIntroViewController.swift */; };
 		2FE36BF120F8466F0012F1AB /* BAFirstExpSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF020F8466F0012F1AB /* BAFirstExpSocialViewController.swift */; };
@@ -204,9 +206,11 @@
 		2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALoadingButton.swift; sourceTree = "<group>"; };
 		2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAButtonMessage.swift; sourceTree = "<group>"; };
 		2F6E520E2084040E00E8D8CA /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = Carthage/Build/iOS/GSMessages.framework; sourceTree = "<group>"; };
-		2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAInitialLoadingViewController.swift; sourceTree = "<group>"; };
+		2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserLoadingViewController.swift; sourceTree = "<group>"; };
 		2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alignment.swift"; sourceTree = "<group>"; };
+		2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAWelcomeLoadingViewController.swift; sourceTree = "<group>"; };
 		2FD4B90F2141C38B00E0E570 /* ciao_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ciao_logo.json; sourceTree = "<group>"; };
+		2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABaseLoadingViewController.swift; sourceTree = "<group>"; };
 		2FE36BEC20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAFirstExpHomeContainerViewController.swift; sourceTree = "<group>"; };
 		2FE36BEE20F846660012F1AB /* BAFirstExpIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAFirstExpIntroViewController.swift; sourceTree = "<group>"; };
 		2FE36BF020F8466F0012F1AB /* BAFirstExpSocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAFirstExpSocialViewController.swift; sourceTree = "<group>"; };
@@ -289,7 +293,6 @@
 			children = (
 				2FFAE405213253C40045B75E /* BAMainTabBarViewController.swift */,
 				2F1312042081AF2600D462F8 /* BAHomeViewController.swift */,
-				2F6E5211208462F100E8D8CA /* BAInitialLoadingViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				2F4BBB6520522CD500AAFE1A /* First Experience */,
 				2F18D39D2105485300C97E3A /* History */,
 				2F1312032081AEE900D462F8 /* Home */,
+				2FD4B913214254B400E0E570 /* Loading */,
 				2F6E51EC20830F4A00E8D8CA /* Login */,
 				2F3432C221243F3A00B9ED45 /* Navigation */,
 				2F31CFB72137CE7C00308702 /* Profile */,
@@ -632,6 +636,16 @@
 				2F1E73D3211B21D500B83501 /* Map */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2FD4B913214254B400E0E570 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */,
+				2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */,
+				2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 		2FE36BF420F848FD0012F1AB /* Localization */ = {
@@ -831,6 +845,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
+				2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */,
 				2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */,
 				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
@@ -844,7 +859,7 @@
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F1E73D02119987E00B83501 /* BAUserPinAnnotation.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
-				2F6E5212208462F100E8D8CA /* BAInitialLoadingViewController.swift in Sources */,
+				2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */,
 				2FE36BED20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
@@ -888,6 +903,7 @@
 				2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */,
 				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
+				2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */,
 				2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
 				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,

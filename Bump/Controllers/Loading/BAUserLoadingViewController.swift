@@ -12,27 +12,11 @@ import ReactiveCocoa
 import ReactiveSwift
 import SnapKit
 
-class BAInitialLoadingViewController: UIViewController {
-    
-    private struct Constants {
-        static let logoAnimation = "ciao_logo"
-    }
+class BAUserLoadingViewController: BABaseLoadingViewController {
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
-    let bumpAnimation: LOTAnimationView = {
-        let animation = LOTAnimationView(name: Constants.logoAnimation)
-        animation.contentMode = .scaleAspectFit
-        animation.loopAnimation = false
-        animation.isHidden = false
-        animation.animationSpeed = 1.0
-        animation.translatesAutoresizingMaskIntoConstraints = false
-        
-        return animation
-    }()
-    
     let userComplete = MutableProperty<Bool>(false)
-    let animationComplete = MutableProperty<Bool>(false)
     
     var user: BAUser!
     
@@ -40,6 +24,10 @@ class BAInitialLoadingViewController: UIViewController {
     
     init(userId: String) {
         super.init(nibName: nil, bundle: nil)
+        
+        self.onAnimationFinished = { [weak self] in
+            self?.activityIndicator.startAnimating()
+        }
         
         BAUserHolder.loadUser(userId: userId, success: { user in
             self.user = user
@@ -65,13 +53,7 @@ class BAInitialLoadingViewController: UIViewController {
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
-        bumpAnimation.play { [weak self] _ in
-            self?.animationComplete.value = true
-            self?.activityIndicator.startAnimating()
-        }
-        
         view.addSubview(activityIndicator)
-        view.addSubview(bumpAnimation)
         
         setupConstraints()
         
@@ -89,11 +71,6 @@ class BAInitialLoadingViewController: UIViewController {
         activityIndicator.snp.makeConstraints { make in
             make.bottom.equalTo(self.view).offset(-200.0)
             make.centerX.equalTo(self.view)
-        }
-        
-        bumpAnimation.snp.makeConstraints { make in
-            make.center.equalTo(self.view)
-            make.height.equalTo(356.0)
         }
     }
 }
