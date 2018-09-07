@@ -13,7 +13,7 @@ extension BAUser {
     var randomImageFileName: String {
         let randomNum = Int(arc4random_uniform(10000))
         
-        return "\(fullName)_\(randomNum).jpeg"
+        return "\(fullName.replacingOccurrences(of: " ", with: "_"))_\(randomNum).jpeg"
     }
     
     func updateImage(_ image: UIImage, success: BAEmptyHandler?, failure: BAErrorHandler?) {
