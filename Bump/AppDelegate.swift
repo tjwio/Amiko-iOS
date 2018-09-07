@@ -58,13 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    private func loadWelcomeViewController() {
+    func loadWelcomeViewController() {
         let navigationController = UINavigationController(rootViewController: BAWelcomeViewController())
-        self.window?.rootViewController = navigationController
-    }
-    
-    private func loadLoadingViewController(userId: String) {
-        let navigationController = BAInitialLoadingViewController(userId: userId)
         self.window?.rootViewController = navigationController
     }
     
@@ -74,12 +69,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func loadInitialViewController() {
+        var viewController: BABaseLoadingViewController
+        
         if let userId = BAAuthenticationManager.shared.userId, userId.count > 0 {
-            self.loadLoadingViewController(userId: userId)
+            viewController = BAUserLoadingViewController(userId: userId)
         }
         else {
-            self.loadWelcomeViewController()
+            viewController = BAWelcomeLoadingViewController()
         }
+        
+        self.window?.rootViewController = viewController
     }
     
     //MARK: debug helper font
