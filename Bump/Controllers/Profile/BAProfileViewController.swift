@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import AVKit
+import MMSCameraViewController
+import MMSProfileImagePicker
+import Photos
 import ReactiveCocoa
 import ReactiveSwift
 
-class BAProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BAProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MMSProfileImagePickerDelegate {
     
     private struct Constants {
         static let cellIdentifier = "BAProfileDetailValueTableViewCellIdentifier"
@@ -48,6 +52,10 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     let linkedin = MutableProperty<String?>(nil)
     let instagram = MutableProperty<String?>(nil)
     let twitter = MutableProperty<String?>(nil)
+    
+    let imageDidUpdate = MutableProperty<Bool>(false)
+    
+    let profilePicker = MMSProfileImagePicker()
     
     let profileView: BAProfileView = {
         let view = BAProfileView()
@@ -101,6 +109,8 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         
         view.backgroundColor = .clear
         
+        profilePicker.delegate = self
+        
         disposables += (profileView.avatarImageView.imageView.reactive.image <~ self.image)
         profileView.cancelButton.addTarget(self, action: #selector(self.cancelProfileView(_:)), for: .touchUpInside)
         profileView.saveButton.addTarget(self, action: #selector(self.saveProfileView(_:)), for: .touchUpInside)
@@ -110,6 +120,9 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         profileView.transform = CGAffineTransform(translationX: 0.0, y: view.frame.size.height)
         profileView.layer.cornerRadius = 20.0
         profileView.clipsToBounds = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarPressed(_:)))
+        profileView.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
         
         view.addSubview(dummyShadowView)
         dummyShadowView.addSubview(profileView)
@@ -309,5 +322,63 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    //MARK: photo/camera delegate
+    
+    @objc private func avatarPressed(_ sender: UIGestureRecognizer?) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { _ in
+            let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+            
+            if authStatus == .authorized {
+                self.profilePicker.select(fromCamera: self)
+            }
+            else {
+                AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
+                    if granted {
+                        self.profilePicker.select(fromCamera: self)
+                    }
+                })
+            }
+        }
+        let choosePhoto = UIAlertAction(title: "Choose from Library", style: .default) { _ in
+            let authStatus = PHPhotoLibrary.authorizationStatus()
+            
+            if authStatus == .authorized {
+                self.profilePicker.select(fromPhotoLibrary: self)
+            }
+            else {
+                PHPhotoLibrary.requestAuthorization { newStatus in
+                    if newStatus == .authorized {
+                        self.profilePicker.select(fromPhotoLibrary: self)
+                    }
+                    else {
+                        self.showLeftMessage("Failed to gain access to photo library", type: .error)
+                    }
+                }
+            }
+        }
+        
+        alertController.addAction(cancel)
+        alertController.addAction(choosePhoto)
+        alertController.addAction(takePhoto)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func mmsImagePickerControllerDidCancel(_ picker: MMSProfileImagePicker) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func mmsImagePickerController(_ picker: MMSProfileImagePicker, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.image.value = image
+            imageDidUpdate.value = true
+            
+            picker.dismiss(animated: true, completion: nil)
+        }
     }
 }

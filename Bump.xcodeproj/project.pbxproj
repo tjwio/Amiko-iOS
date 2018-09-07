@@ -86,6 +86,8 @@
 		2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */; };
 		2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */; };
 		2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */; };
+		2FD3BEEA21425EDA002DB435 /* MMSCameraViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */; };
+		2FD3BEEB21425EDA002DB435 /* MMSProfileImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */; };
 		2FD4B9102141C38B00E0E570 /* ciao_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FD4B90F2141C38B00E0E570 /* ciao_logo.json */; };
 		2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */; };
 		2FE36BED20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BEC20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift */; };
@@ -209,6 +211,8 @@
 		2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserLoadingViewController.swift; sourceTree = "<group>"; };
 		2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alignment.swift"; sourceTree = "<group>"; };
 		2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAWelcomeLoadingViewController.swift; sourceTree = "<group>"; };
+		2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSCameraViewController.framework; path = Carthage/Build/iOS/MMSCameraViewController.framework; sourceTree = "<group>"; };
+		2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSProfileImagePicker.framework; path = Carthage/Build/iOS/MMSProfileImagePicker.framework; sourceTree = "<group>"; };
 		2FD4B90F2141C38B00E0E570 /* ciao_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ciao_logo.json; sourceTree = "<group>"; };
 		2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABaseLoadingViewController.swift; sourceTree = "<group>"; };
 		2FE36BEC20F846570012F1AB /* BAFirstExpHomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAFirstExpHomeContainerViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FD3BEEA21425EDA002DB435 /* MMSCameraViewController.framework in Frameworks */,
+				2FD3BEEB21425EDA002DB435 /* MMSProfileImagePicker.framework in Frameworks */,
 				2F29454221337D1000A22C62 /* FeatherIcon.framework in Frameworks */,
 				2FFAE3F3213220060045B75E /* Lottie.framework in Frameworks */,
 				2F1E73C521163D1800B83501 /* HockeySDK.framework in Frameworks */,
@@ -318,6 +324,8 @@
 		2F1E73B5211636BC00B83501 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */,
+				2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */,
 				2F29454121337D1000A22C62 /* FeatherIcon.framework */,
 				2FFAE3F2213220060045B75E /* Lottie.framework */,
 				2FFAE3EC2131F2990045B75E /* FontAwesome.framework */,
@@ -829,6 +837,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/HockeySDK.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Lottie.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FeatherIcon.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MMSCameraViewController.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MMSProfileImagePicker.framework",
 			);
 			name = "Copy Carthage Frameworks";
 			outputPaths = (
