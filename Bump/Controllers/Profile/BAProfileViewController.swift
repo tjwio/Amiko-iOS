@@ -18,7 +18,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     private struct Constants {
         static let cellIdentifier = "BAProfileDetailValueTableViewCellIdentifier"
-        static let headers = [0, 1, 3, 7]
+        static let headers = [2, 4, 7]
         static let maxLabelIndex = 6
         
         static let firstNameIndex = 0
@@ -279,14 +279,6 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.headers.contains(section) ? 0.5 : 0.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return Constants.headers.contains(section) ? UIView() : nil
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

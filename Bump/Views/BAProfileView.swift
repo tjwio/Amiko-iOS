@@ -111,8 +111,8 @@ class BAProfileView: UIView {
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(self.avatarImageView.snp.bottom).offset(12.0)
-            make.leading.equalToSuperview().offset(32.0)
-            make.trailing.equalToSuperview().offset(-32.0)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         

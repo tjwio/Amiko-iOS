@@ -70,6 +70,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
     override func updateConstraints() {
         textField.snp.makeConstraints { make in
             make.leading.equalTo(self.contentView.snp.centerX).offset(-30.0)
+            make.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
