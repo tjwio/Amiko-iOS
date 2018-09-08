@@ -55,6 +55,8 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let imageDidUpdate = MutableProperty<Bool>(false)
     
+    var originalProfileFrame: CGRect?
+    
     let profilePicker = MMSProfileImagePicker()
     
     let profileView: BAProfileView = {
@@ -81,6 +83,14 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
+    }()
+    
+    private let dummyHeaderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
     }()
     
     private let dummyShadowView: UIView = {
@@ -143,9 +153,14 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         profileView.layer.cornerRadius = 20.0
         profileView.clipsToBounds = true
         
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.panGestureRecognized(_:)))
+        panGestureRecognizer.delegate = self
+        dummyHeaderView.addGestureRecognizer(panGestureRecognizer)
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarPressed(_:)))
         profileView.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
         
+        profileView.insertSubview(dummyHeaderView, at: 0)
         view.addSubview(dummyShadowView)
         dummyShadowView.addSubview(profileView)
         setupConstraints()
@@ -172,6 +187,11 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         
         profileView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        dummyHeaderView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(profileView.tableView.snp.top)
         }
     }
     
@@ -226,6 +246,35 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         alertController.addAction(logOut)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: pan gesture recognizer
+    
+    @objc private func panGestureRecognized(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .began {
+            if originalProfileFrame == nil { originalProfileFrame = profileView.frame }
+        }
+        else if sender.state == .changed {
+            guard let minFrame = originalProfileFrame else { return }
+            
+            let translatedPoint = sender.translation(in: profileView)
+            let newY = profileView.frame.origin.y + translatedPoint.y
+            profileView.frame.origin.y = max(newY, minFrame.minY)
+            
+            sender.setTranslation(CGPoint(x: 0.0, y: 0.0), in: profileView)
+        }
+        else if sender.state == .ended {
+            let velocity = sender.velocity(in: profileView)
+            
+            if velocity.y > 500 || profileView.frame.minY > view.frame.midY {
+                dismissViewController()
+            }
+            else {
+                UIView.animate(withDuration: 0.25) {
+                    self.profileView.frame.origin.y = self.originalProfileFrame?.minY ?? 20.0
+                }
+            }
+        }
     }
     
     //MARK: table view
