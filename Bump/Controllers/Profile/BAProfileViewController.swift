@@ -18,7 +18,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     private struct Constants {
         static let cellIdentifier = "BAProfileDetailValueTableViewCellIdentifier"
-        static let headers = [0, 1, 3, 7]
+        static let headers = [2, 4, 7]
         static let maxLabelIndex = 6
         
         static let firstNameIndex = 0
@@ -55,10 +55,31 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let imageDidUpdate = MutableProperty<Bool>(false)
     
+    var originalProfileFrame: CGRect?
+    
     let profilePicker = MMSProfileImagePicker()
     
     let profileView: BAProfileView = {
         let view = BAProfileView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let logOutButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("LOG OUT", for: .normal)
+        button.setTitleColor(UIColor.Red.normal, for: .normal)
+        button.setTitleColor(UIColor.Red.darker, for: .normal)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 15.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    private let dummyHeaderView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -111,19 +132,27 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         
         profilePicker.delegate = self
         
+        logOutButton.addTarget(self, action: #selector(self.logOut(_:)), for: .touchUpInside)
+        
         disposables += (profileView.avatarImageView.imageView.reactive.image <~ self.image)
         profileView.cancelButton.addTarget(self, action: #selector(self.cancelProfileView(_:)), for: .touchUpInside)
         profileView.saveButton.addTarget(self, action: #selector(self.saveProfileView(_:)), for: .touchUpInside)
         profileView.tableView.delegate = self
         profileView.tableView.dataSource = self
+        profileView.tableView.tableFooterView = getTableFooterView()
         profileView.isHidden = false
         profileView.transform = CGAffineTransform(translationX: 0.0, y: view.frame.size.height)
         profileView.layer.cornerRadius = 20.0
         profileView.clipsToBounds = true
         
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.panGestureRecognized(_:)))
+        panGestureRecognizer.delegate = self
+        dummyHeaderView.addGestureRecognizer(panGestureRecognizer)
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarPressed(_:)))
         profileView.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
         
+        profileView.insertSubview(dummyHeaderView, at: 0)
         view.addSubview(dummyShadowView)
         dummyShadowView.addSubview(profileView)
         setupConstraints()
@@ -150,6 +179,11 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         
         profileView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        dummyHeaderView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(profileView.tableView.snp.top)
         }
     }
     
@@ -184,8 +218,56 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.dismissViewController()
                 self.successCallback?()
             }
+            
+            NotificationCenter.default.post(name: .bumpDidUpdateUser, object: nil)
         }) { _ in
             self.showLeftMessage("Failed to update info", type: .error, view: self.profileView)
+        }
+    }
+    
+    //MARK: log out
+    
+    @objc private func logOut(_ sender: UIButton?) {
+        let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let logOut = UIAlertAction(title: "Log Out", style: .destructive) { _ in
+            DispatchQueue.main.async {
+                BAAppManager.shared.logOut()
+            }
+        }
+        
+        alertController.addAction(cancel)
+        alertController.addAction(logOut)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: pan gesture recognizer
+    
+    @objc private func panGestureRecognized(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .began {
+            if originalProfileFrame == nil { originalProfileFrame = profileView.frame }
+        }
+        else if sender.state == .changed {
+            guard let minFrame = originalProfileFrame else { return }
+            
+            let translatedPoint = sender.translation(in: profileView)
+            let newY = profileView.frame.origin.y + translatedPoint.y
+            profileView.frame.origin.y = max(newY, minFrame.minY)
+            
+            sender.setTranslation(CGPoint(x: 0.0, y: 0.0), in: profileView)
+        }
+        else if sender.state == .ended {
+            let velocity = sender.velocity(in: profileView)
+            
+            if velocity.y > 500 || profileView.frame.minY > view.frame.midY {
+                dismissViewController()
+            }
+            else {
+                UIView.animate(withDuration: 0.25) {
+                    self.profileView.frame.origin.y = self.originalProfileFrame?.minY ?? 20.0
+                }
+            }
         }
     }
     
@@ -197,14 +279,6 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return Constants.headers.contains(section) ? 0.5 : 0.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return Constants.headers.contains(section) ? UIView() : nil
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -332,6 +406,18 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func getTableFooterView() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: profileView.tableView.bounds.size.width, height: 100.0))
+        
+        footerView.addSubview(logOutButton)
+        
+        logOutButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        return footerView
     }
     
     //MARK: photo/camera delegate

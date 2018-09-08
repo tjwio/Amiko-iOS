@@ -1,7 +1,7 @@
 github "Alamofire/Alamofire" "4.7.3"
 github "ReactiveCocoa/ReactiveCocoa" "7.2.0"
 github "ReactiveCocoa/ReactiveSwift" "3.1.0"
-github "Skyscanner/SkyFloatingLabelTextField" "v3.5.1"
+github "Skyscanner/SkyFloatingLabelTextField" "v3.5.2"
 github "SnapKit/SnapKit" "4.0.0"
 github "airbnb/lottie-ios" "21122a769ccc3e43ffd23f80b7c8c48247834900"
 github "antitypical/Result" "3.2.4"
