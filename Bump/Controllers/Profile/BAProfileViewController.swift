@@ -71,7 +71,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         button.setTitle("LOG OUT", for: .normal)
         button.setTitleColor(UIColor.Red.normal, for: .normal)
         button.setTitleColor(UIColor.Red.darker, for: .normal)
-        button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
+        button.titleLabel?.font = UIFont.avenirDemi(size: 15.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
