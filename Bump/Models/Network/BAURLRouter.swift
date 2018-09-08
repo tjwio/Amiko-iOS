@@ -17,6 +17,7 @@ enum BAURLRouter: URLRequestConvertible {
     case signup(parameters: Parameters)
     case login(parameters: Parameters)
     case addConnection(parameters: Parameters)
+    case uploadImage
     
     //MARK: PUT
     case updateUser(parameters: Parameters)
@@ -28,7 +29,7 @@ enum BAURLRouter: URLRequestConvertible {
         switch self {
         case .loadUser, .loadHistory:
             return .get
-        case .signup, .login, .addConnection:
+        case .signup, .login, .addConnection, .uploadImage:
             return .post
         case .updateUser:
             return .put
@@ -49,6 +50,8 @@ enum BAURLRouter: URLRequestConvertible {
             return "/login"
         case .addConnection:
             return "/users/connections"
+        case .uploadImage:
+            return "/upload/image"
         case .deleteConnection(let historyId):
             return "/users/connections/\(historyId)"
         }

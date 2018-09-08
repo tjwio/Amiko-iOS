@@ -9,6 +9,8 @@
 import UIKit
 import CoreMotion
 import Lottie
+import ReactiveCocoa
+import ReactiveSwift
 import SnapKit
 import SDWebImage
 
@@ -110,6 +112,12 @@ class BAHomeViewController: UIViewController {
     }()
     
     var isHoldingToBump = false
+    
+    private var disposables = CompositeDisposable()
+    
+    deinit {
+        disposables.dispose()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,12 +148,16 @@ class BAHomeViewController: UIViewController {
             avatarImageView.imageView.sd_showActivityIndicatorView()
             
             user.loadImage(success: { (image, colors) in
-                self.avatarImageView.imageView.image = image
                 self.avatarImageView.imageView.sd_removeActivityIndicator()
                 self.backgroundHeaderView.backgroundColor = colors.background
             }) { _ in
                 self.avatarImageView.imageView.sd_removeActivityIndicator()
             }
+        }
+        
+        disposables += (avatarImageView.imageView.reactive.image <~ user.image)
+        disposables += user.imageColors.signal.observeValues { [weak self] colors in
+            self?.backgroundHeaderView.backgroundColor = colors?.background
         }
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)

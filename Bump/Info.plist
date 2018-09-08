@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>27</string>
+	<string>28</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -28,11 +28,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera is used to scan user&apos;s profile to add them</string>
+	<string>Camera is used to take a profile photo</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Allow contact access to automatically add to address book</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location is used to increase accuracy of bump matching</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photos are used to choose a profile image</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AvenirNextLTPro-Bold.otf</string>
