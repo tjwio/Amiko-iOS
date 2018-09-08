@@ -218,6 +218,8 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.dismissViewController()
                 self.successCallback?()
             }
+            
+            NotificationCenter.default.post(name: .bumpDidUpdateUser, object: nil)
         }) { _ in
             self.showLeftMessage("Failed to update info", type: .error, view: self.profileView)
         }

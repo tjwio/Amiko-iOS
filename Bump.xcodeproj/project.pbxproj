@@ -84,6 +84,7 @@
 		2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */; };
 		2F6E520D208403F700E8D8CA /* BAButtonMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */; };
 		2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */; };
+		2F7A3A5921447AE900AA260D /* Notifications+Bump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */; };
 		2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */; };
 		2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */; };
 		2FD3BEEA21425EDA002DB435 /* MMSCameraViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */; };
@@ -211,6 +212,7 @@
 		2F6E520C208403F700E8D8CA /* BAButtonMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAButtonMessage.swift; sourceTree = "<group>"; };
 		2F6E520E2084040E00E8D8CA /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = Carthage/Build/iOS/GSMessages.framework; sourceTree = "<group>"; };
 		2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserLoadingViewController.swift; sourceTree = "<group>"; };
+		2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Bump.swift"; sourceTree = "<group>"; };
 		2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alignment.swift"; sourceTree = "<group>"; };
 		2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAWelcomeLoadingViewController.swift; sourceTree = "<group>"; };
 		2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSCameraViewController.framework; path = Carthage/Build/iOS/MMSCameraViewController.framework; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				2F18D3A92106FB9700C97E3A /* Date+Formatter.swift */,
 				2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */,
 				2F27363D2086BA7900D05238 /* Double+Round.swift */,
+				2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */,
 				2F552F48213DE82D0074AB8B /* String+Null.swift */,
 				2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */,
 				2F1312062081B0EA00D462F8 /* UIColor+HexRGB.swift */,
@@ -892,6 +895,7 @@
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
 				2F18D3A82106F7D400C97E3A /* DateFormatter+Constants.swift in Sources */,
 				2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */,
+				2F7A3A5921447AE900AA260D /* Notifications+Bump.swift in Sources */,
 				2FFAE400213230110045B75E /* BASocialDrawerView.swift in Sources */,
 				2F18D3A421056A5B00C97E3A /* BAHistory.swift in Sources */,
 				2F18D39F2105584600C97E3A /* BAUserCardTableViewCell.swift in Sources */,

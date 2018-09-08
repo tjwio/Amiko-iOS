@@ -117,6 +117,7 @@ class BAHomeViewController: UIViewController {
     
     deinit {
         disposables.dispose()
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLoad() {
@@ -132,15 +133,8 @@ class BAHomeViewController: UIViewController {
         view.addGestureRecognizer(holdGestureRecognizer)
         
         let user = BAUserHolder.shared.user
-        nameLabel.text = "\(user.firstName) \(user.lastName)"
         
-        if let fullJobCompany = user.fullJobCompany {
-            jobLabel.isHidden = false
-            jobLabel.text = fullJobCompany
-        }
-        else {
-            jobLabel.isHidden = true
-        }
+        updateUserInfo(user)
         
         if user.imageUrl != nil {
             avatarImageView.imageView.sd_setIndicatorStyle(.gray)
@@ -192,6 +186,8 @@ class BAHomeViewController: UIViewController {
         view.addSubview(cameraButton)
         
         setupConstraints()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notificationDidUpdateUserInfo(_:)), name: .bumpDidUpdateUser, object: nil)
     }
     
     private func setupConstraints() {
@@ -346,5 +342,25 @@ class BAHomeViewController: UIViewController {
         viewController.modalPresentationStyle = .overCurrentContext
         
         self.present(viewController, animated: false, completion: nil)
+    }
+    
+    //MARK: notification
+    
+    @objc private func notificationDidUpdateUserInfo(_ notification: Notification) {
+        updateUserInfo(BAUserHolder.shared.user)
+    }
+    
+    //MARK: helper
+    
+    private func updateUserInfo(_ user: BAUser) {
+        nameLabel.text = "\(user.firstName) \(user.lastName)"
+        
+        if let fullJobCompany = user.fullJobCompany {
+            jobLabel.isHidden = false
+            jobLabel.text = fullJobCompany
+        }
+        else {
+            jobLabel.isHidden = true
+        }
     }
 }
