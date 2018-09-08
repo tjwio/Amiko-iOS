@@ -68,18 +68,10 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let logOutButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = UIColor.Red.normal
         button.setTitle("LOG OUT", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(UIColor.Red.normal, for: .normal)
+        button.setTitleColor(UIColor.Red.darker, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
-        button.layer.cornerRadius = 27.0
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
-            button.backgroundColor = UIColor.Red.normal
-        }
-        
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
-            button.backgroundColor = UIColor.Red.darker
-        }
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -428,10 +420,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
         footerView.addSubview(logOutButton)
         
         logOutButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16.0)
-            make.trailing.equalToSuperview().offset(-16.0)
-            make.centerY.equalToSuperview()
-            make.height.equalTo(54.0)
+            make.center.equalToSuperview()
         }
         
         return footerView
