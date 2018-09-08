@@ -39,6 +39,6 @@ class BAAppManager: NSObject {
     func logOut() {
         BAAuthenticationManager.shared.logOut()
         BAUserHolder.logOut()
-        (UIApplication.shared.delegate as? AppDelegate)?.loadInitialViewController()
+        (UIApplication.shared.delegate as? AppDelegate)?.loadWelcomeViewController()
     }
 }
