@@ -35,8 +35,8 @@ class BAButtonMessage: GSMessage {
             button.translatesAutoresizingMaskIntoConstraints = false;
             
             let attributedString = NSAttributedString(string: buttonText, attributes: [
-                NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue,
-                NSAttributedStringKey.foregroundColor : UIColor.white
+                NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue,
+                NSAttributedString.Key.foregroundColor : UIColor.white
                 ])
             
             button.setAttributedTitle(attributedString, for: .normal);

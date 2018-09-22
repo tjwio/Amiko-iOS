@@ -62,6 +62,8 @@ public enum BAAccountContact: String {
     
     func appUrl(id: String) -> String? {
         switch self {
+        case .email: return "mailto:\(id)"
+        case .phone: return "tel://\(id)"
         case .facebook: return "fb://profile/\(id)"
         case .instagram: return "instagram://user?username=\(id)"
         case .linkedin: return "linkedin://profile/\(id)"

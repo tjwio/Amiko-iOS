@@ -288,7 +288,7 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier) as? BAProfileDetailValueTableViewCell ?? BAProfileDetailValueTableViewCell(style: .default, reuseIdentifier: Constants.cellIdentifier)
         
-        let attributes: [NSAttributedStringKey : Any] = [ .foregroundColor :  UIColor.Grayscale.placeholderColor]
+        let attributes: [NSAttributedString.Key : Any] = [ .foregroundColor :  UIColor.Grayscale.placeholderColor]
         
         if indexPath.section <= Constants.maxLabelIndex {
             cell.detailLabel.isHidden = false
@@ -470,11 +470,16 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func mmsImagePickerController(_ picker: MMSProfileImagePicker, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
             self.image.value = image
             imageDidUpdate.value = true
             
             picker.dismiss(animated: true, completion: nil)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

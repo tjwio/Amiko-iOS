@@ -37,7 +37,7 @@ extension UITextField {
         doneToolbar.backgroundColor = UIColor.clear;
         doneToolbar.sizeToFit();
         doneToolbar.barStyle = toolbarStyle;
-        let doneBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: target, action: selector);
+        let doneBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: target, action: selector);
         
         if var items = doneToolbar.items {
             items.append(doneBarButtonItem);

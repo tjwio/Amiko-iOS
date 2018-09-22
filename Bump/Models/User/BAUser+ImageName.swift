@@ -17,7 +17,7 @@ extension BAUser {
     }
     
     func updateImage(_ image: UIImage, success: BAEmptyHandler?, failure: BAErrorHandler?) {
-        guard let data = UIImageJPEGRepresentation(image, 0.7) else {
+        guard let data = image.jpegData(compressionQuality: 0.7) else {
             failure?(BAError.imageData)
             return
         }

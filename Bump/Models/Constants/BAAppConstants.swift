@@ -15,7 +15,9 @@ public typealias BAUserHandler = (BAUser) -> Void
 public typealias BAHistoryHandler = (BAHistory) -> Void
 public typealias BAHistoryListHandler = ([BAHistory]) -> Void
 
-public typealias BASocialCallback = (BAAccountContact, String) -> Void
+public typealias BAContactActionHandler = (BAAccountContact, String) -> Void
+
+public typealias BASocialHandler = (BAAccountContact, String) -> Void
 
 public typealias BAEmptyHandler = () -> Void
 public typealias BAJSONHandler = (JSON) -> Void
@@ -65,7 +67,7 @@ struct BAConstants {
         static let id = "89a0b16ec7df40e798c9dafc196235a1"
     }
     
-    static let defaultSocialCallback: BASocialCallback = { (account, value) in
+    static let defaultSocialCallback: BASocialHandler = { (account, value) in
         var validUrl: URL?
         
         if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
@@ -76,7 +78,7 @@ struct BAConstants {
         }
         
         if let url = validUrl {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
 }
@@ -97,4 +99,9 @@ struct BADeviceUtil {
     static let IS_IPHONE_6         = IS_IPHONE && SCREEN_MAX_LENGTH == 667
     static let IS_IPHONE_6P        = IS_IPHONE && SCREEN_MAX_LENGTH == 736
     static let IS_IPHONE_X         = IS_IPHONE && SCREEN_MAX_LENGTH == 812
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

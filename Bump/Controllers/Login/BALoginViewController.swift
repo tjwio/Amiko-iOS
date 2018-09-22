@@ -98,11 +98,11 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.isEnabled = false
         button.layer.cornerRadius = 27.0
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
+        button.reactive.controlEvents(UIControl.Event(rawValue: UIControl.Event.touchUpInside.rawValue | UIControl.Event.touchUpOutside.rawValue | UIControl.Event.touchCancel.rawValue)).observeValues { button in
             button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.35)
         }
         
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
+        button.reactive.controlEvents(UIControl.Event(rawValue: UIControl.Event.touchDown.rawValue | UIControl.Event.touchDragInside.rawValue)).observeValues { button in
             button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.5)
         }
         
@@ -111,7 +111,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     
     let createAccountButton: UIButton = {
         let createAccountAttString = NSMutableAttributedString(string: "Dont have an account? Create Account")
-        createAccountAttString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(createAccountAttString.length-14, 14))
+        createAccountAttString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(createAccountAttString.length-14, 14))
         createAccountAttString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, createAccountAttString.length))
         
         let button = UIButton(type: .custom)
@@ -123,8 +123,8 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     }()
     
     let forgotPasswordButton: UIButton = {
-        let forgotPasswordAttString = NSAttributedString(string: "Forgot Password?", attributes: [NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue,
-                                                                                                  NSAttributedStringKey.foregroundColor : UIColor.white])
+        let forgotPasswordAttString = NSAttributedString(string: "Forgot Password?", attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue,
+                                                                                                  NSAttributedString.Key.foregroundColor : UIColor.white])
         let button = UIButton(type: .custom)
         button.setAttributedTitle(forgotPasswordAttString, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 16.0)
@@ -204,8 +204,8 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
                 }
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setupConstraints() {
@@ -327,7 +327,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            if let keyboardFrame = (notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if let keyboardFrame = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 let offset = (self.fullStackView.frame.origin.y + self.textFieldsStackView.frame.origin.y + self.textFieldsStackView.frame.size.height + 30.0) - keyboardFrame.origin.y;
                 if (offset > 0) {
                     self.fullStackView.snp.updateConstraints { make in

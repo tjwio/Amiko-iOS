@@ -17,7 +17,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         static let socialCellIdentifier = "BASocialDrawerTableViewCellIdentifier"
     }
     
-    var selectCallback: BASocialCallback?
+    var socialCallback: BASocialHandler?
+    var actionCallback: BAContactActionHandler?
     
     var mainItems: [(BAAccountContact, String)]
     var socialItems: [(BAAccountContact, String)]
@@ -80,7 +81,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
@@ -134,11 +135,11 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedUp(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue))
-        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedDown(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue))
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedUp(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchUpInside.rawValue | UIControl.Event.touchUpOutside.rawValue | UIControl.Event.touchCancel.rawValue))
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedDown(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchDown.rawValue | UIControl.Event.touchDragInside.rawValue))
         
-        doneButton.addTarget(self, action: #selector(self.doneButtonPressedUp(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue))
-        doneButton.addTarget(self, action: #selector(self.doneButtonPressedDown(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue))
+        doneButton.addTarget(self, action: #selector(self.doneButtonPressedUp(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchUpInside.rawValue | UIControl.Event.touchUpOutside.rawValue | UIControl.Event.touchCancel.rawValue))
+        doneButton.addTarget(self, action: #selector(self.doneButtonPressedDown(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchDown.rawValue | UIControl.Event.touchDragInside.rawValue))
         
         buttonStackView = UIStackView(arrangedSubviews: [cancelButton, doneButton])
         buttonStackView.alignment = .center
@@ -252,7 +253,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.socialCellIdentifier) as? BASocialDrawerTableViewCell ?? BASocialDrawerTableViewCell(style: .default, reuseIdentifier: Constants.socialCellIdentifier)
             
             cell.drawerView.items = socialItems
-            cell.drawerView.selectCallback = selectCallback
+            cell.drawerView.selectCallback = socialCallback
             
             return cell
         }
@@ -263,6 +264,18 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor(hexColor: 0xE6E9ED).cgColor
         cell.layer.cornerRadius = 32.0
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return indexPath.section < mainItems.count ? indexPath : nil
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let account = mainItems[indexPath.section]
+        
+        actionCallback?(account.0, account.1)
     }
     
     //MARK: done

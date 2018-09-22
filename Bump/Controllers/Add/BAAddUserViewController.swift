@@ -74,7 +74,11 @@ class BAAddUserViewController: UIViewController {
         userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         userView.layer.cornerRadius = 8.0
         userView.translatesAutoresizingMaskIntoConstraints = false
-        userView.selectCallback = BAConstants.defaultSocialCallback
+        userView.socialCallback = BAConstants.defaultSocialCallback
+        userView.actionCallback = { (account, value) in
+            guard let urlStr = account.appUrl(id: value), let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) else { return }
+            UIApplication.shared.open(url)
+        }
         
         view.addSubview(dummyShadowView)
         dummyShadowView.addSubview(userView)
@@ -163,7 +167,7 @@ class BAAddUserViewController: UIViewController {
         if let profession = userToAdd.profession {
             contactToAdd.organizationName = profession
         }
-        if let image = self.userToAdd.image.value, let data = UIImageJPEGRepresentation(image, 0.5) {
+        if let image = self.userToAdd.image.value, let data = image.jpegData(compressionQuality: 0.5) {
             contactToAdd.imageData = data
         }
         

@@ -23,7 +23,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.estimatedRowHeight = 100.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView()
@@ -81,7 +81,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, view.bounds.size.height-200.0, 0.0)
+        tableView.contentInset = UIEdgeInsets.init(top: 20.0, left: 0.0, bottom: view.bounds.size.height-200.0, right: 0.0)
         view.addSubview(tableView)
         
         setupConstraints()

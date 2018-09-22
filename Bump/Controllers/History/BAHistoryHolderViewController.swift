@@ -118,8 +118,8 @@ class BAHistoryHolderViewController: UIViewController, BAHistoryChangeDelegate {
     }
     
     private func addChildHelper(_ child: UIViewController) {
-        addChildViewController(child)
+        addChild(child)
         view.addSubview(child.view)
-        child.didMove(toParentViewController: self)
+        child.didMove(toParent: self)
     }
 }

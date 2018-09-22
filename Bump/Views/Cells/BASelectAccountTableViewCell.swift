@@ -53,7 +53,7 @@ class BASelectAccountTableViewCell: UITableViewCell {
         return label
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.commonInit()
     }
@@ -103,5 +103,31 @@ class BASelectAccountTableViewCell: UITableViewCell {
         }
         
         super.updateConstraints()
+    }
+    
+    // MARK: highlighted/selected
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.50) {
+                self.setHolderBackgroundColor(selected: highlighted)
+            }
+        } else {
+            setHolderBackgroundColor(selected: highlighted)
+        }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.50) {
+                self.setHolderBackgroundColor(selected: selected)
+            }
+        } else {
+            setHolderBackgroundColor(selected: selected)
+        }
+    }
+    
+    private func setHolderBackgroundColor(selected: Bool) {
+        backgroundColor = selected ? UIColor.Grayscale.lighter : .white
     }
 }
