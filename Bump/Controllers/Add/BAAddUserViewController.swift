@@ -74,7 +74,11 @@ class BAAddUserViewController: UIViewController {
         userView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         userView.layer.cornerRadius = 8.0
         userView.translatesAutoresizingMaskIntoConstraints = false
-        userView.selectCallback = BAConstants.defaultSocialCallback
+        userView.socialCallback = BAConstants.defaultSocialCallback
+        userView.actionCallback = { (account, value) in
+            guard let url = account.appUrl(id: value), UIApplication.shared.canOpenURL(url) else { return }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
         
         view.addSubview(dummyShadowView)
         dummyShadowView.addSubview(userView)

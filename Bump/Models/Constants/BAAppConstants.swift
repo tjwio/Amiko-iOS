@@ -15,7 +15,9 @@ public typealias BAUserHandler = (BAUser) -> Void
 public typealias BAHistoryHandler = (BAHistory) -> Void
 public typealias BAHistoryListHandler = ([BAHistory]) -> Void
 
-public typealias BASocialCallback = (BAAccountContact, String) -> Void
+public typealias BAContactActionHandler = (BAAccountContact, String) -> Void
+
+public typealias BASocialHandler = (BAAccountContact, String) -> Void
 
 public typealias BAEmptyHandler = () -> Void
 public typealias BAJSONHandler = (JSON) -> Void
@@ -65,7 +67,7 @@ struct BAConstants {
         static let id = "89a0b16ec7df40e798c9dafc196235a1"
     }
     
-    static let defaultSocialCallback: BASocialCallback = { (account, value) in
+    static let defaultSocialCallback: BASocialHandler = { (account, value) in
         var validUrl: URL?
         
         if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {
