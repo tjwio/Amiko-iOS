@@ -77,7 +77,7 @@ class BAAddUserViewController: UIViewController {
         userView.socialCallback = BAConstants.defaultSocialCallback
         userView.actionCallback = { (account, value) in
             guard let urlStr = account.appUrl(id: value), let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) else { return }
-            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            UIApplication.shared.open(url)
         }
         
         view.addSubview(dummyShadowView)
@@ -187,9 +187,4 @@ class BAAddUserViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
