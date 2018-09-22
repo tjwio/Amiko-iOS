@@ -36,13 +36,16 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     
     var isListVisible = true
     
-    private var mainSection = 0
     private var isScrollingFromMap = false
     private var currentIndexPath: IndexPath?
     
     init(user: BAUser, delegate: BAHistoryChangeDelegate? = nil) {
         self.user = user
         self.delegate = delegate
+        if !user.history.isEmpty {
+            currentIndexPath = IndexPath(row: 0, section: 0)
+        }
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -181,10 +184,10 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
             cell.avatarView.imageView.image = .blankAvatar
         }
         
-        if indexPath.section == mainSection && !cell.isMain {
+        if indexPath.section == currentIndexPath?.section && !cell.isMain {
             cell.setIsMain(true, animted: false)
         }
-        else if indexPath.section != mainSection && cell.isMain {
+        else if indexPath.section != currentIndexPath?.section && cell.isMain {
             cell.setIsMain(false, animted: false)
         }
         
@@ -193,6 +196,9 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? BAUserCardTableViewCell else { return }
+        guard cell.isMain else { setMainCell(cell, indexPath: indexPath, currMain: currentIndexPath); return }
         
         let viewController = BADeleteUserViewController(user: user, history: user.history[indexPath.section])
         viewController.providesPresentationContextTransitionStyle = true
@@ -214,31 +220,39 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         if let curr = tableView.indexPathsForRows(in: point)?.first {
             
             if let cell = tableView.cellForRow(at: curr) as? BAUserCardTableViewCell, !cell.isMain {
-                hapticGenerator.impactOccurred()
-                mainSection = curr.section
-                currentIndexPath = curr
-                cell.setIsMain(true, animted: true)
-                delegate?.historyController(self, didSelect: user.history[curr.section])
-                
-                if curr.section > 0 {
-                    let top = IndexPath(row: 0, section: curr.section-1)
-                    
-                    if let cell = tableView.cellForRow(at: top) as? BAUserCardTableViewCell, cell.isMain {
-                        cell.setIsMain(false, animted: true)
-                    }
-                }
-                
-                if curr.section < user.history.count - 1 {
-                    let bottom = IndexPath(row: 0, section: curr.section+1)
-                    
-                    if let cell = tableView.cellForRow(at: bottom) as? BAUserCardTableViewCell, cell.isMain {
-                        cell.setIsMain(false, animted: true)
-                    }
-                }
-                
-                tableView.beginUpdates()
-                tableView.endUpdates()
+                setMainCell(cell, indexPath: curr)
             }
         }
+    }
+    
+    private func setMainCell(_ cell: BAUserCardTableViewCell, indexPath: IndexPath, currMain: IndexPath? = nil) {
+        hapticGenerator.impactOccurred()
+        currentIndexPath = indexPath
+        cell.setIsMain(true, animted: true)
+        delegate?.historyController(self, didSelect: user.history[indexPath.section])
+        
+        if let currMain = currMain, let cell = tableView.cellForRow(at: currMain) as? BAUserCardTableViewCell, cell.isMain {
+            cell.setIsMain(false, animted: true)
+        }
+        else {
+            if indexPath.section > 0 {
+                let top = IndexPath(row: 0, section: indexPath.section-1)
+                
+                if let cell = tableView.cellForRow(at: top) as? BAUserCardTableViewCell, cell.isMain {
+                    cell.setIsMain(false, animted: true)
+                }
+            }
+            
+            if indexPath.section < user.history.count - 1 {
+                let bottom = IndexPath(row: 0, section: indexPath.section+1)
+                
+                if let cell = tableView.cellForRow(at: bottom) as? BAUserCardTableViewCell, cell.isMain {
+                    cell.setIsMain(false, animted: true)
+                }
+            }
+        }
+        
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
