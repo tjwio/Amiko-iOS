@@ -78,7 +78,7 @@ struct BAConstants {
         }
         
         if let url = validUrl {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
 }
@@ -99,4 +99,9 @@ struct BADeviceUtil {
     static let IS_IPHONE_6         = IS_IPHONE && SCREEN_MAX_LENGTH == 667
     static let IS_IPHONE_6P        = IS_IPHONE && SCREEN_MAX_LENGTH == 736
     static let IS_IPHONE_X         = IS_IPHONE && SCREEN_MAX_LENGTH == 812
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

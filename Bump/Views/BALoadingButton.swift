@@ -46,7 +46,7 @@ class BALoadingButton: UIButton {
     }
     
     private func commonInit() {
-        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white);
+        self.activityIndicator = UIActivityIndicatorView(style: .white);
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false;
         self.addSubview(self.activityIndicator);
         

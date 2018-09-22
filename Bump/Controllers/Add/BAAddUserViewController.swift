@@ -76,8 +76,8 @@ class BAAddUserViewController: UIViewController {
         userView.translatesAutoresizingMaskIntoConstraints = false
         userView.socialCallback = BAConstants.defaultSocialCallback
         userView.actionCallback = { (account, value) in
-            guard let url = account.appUrl(id: value), UIApplication.shared.canOpenURL(url) else { return }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            guard let urlStr = account.appUrl(id: value), let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) else { return }
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
         
         view.addSubview(dummyShadowView)
@@ -167,7 +167,7 @@ class BAAddUserViewController: UIViewController {
         if let profession = userToAdd.profession {
             contactToAdd.organizationName = profession
         }
-        if let image = self.userToAdd.image.value, let data = UIImageJPEGRepresentation(image, 0.5) {
+        if let image = self.userToAdd.image.value, let data = image.jpegData(compressionQuality: 0.5) {
             contactToAdd.imageData = data
         }
         
@@ -187,4 +187,9 @@ class BAAddUserViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIBarItem {
-    open func setAllTitleTextAttributes(_ attributes: [NSAttributedStringKey : Any]?) {
+    open func setAllTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?) {
         self.setTitleTextAttributes(attributes, for: .normal);
         self.setTitleTextAttributes(attributes, for: .highlighted);
         self.setTitleTextAttributes(attributes, for: .disabled);

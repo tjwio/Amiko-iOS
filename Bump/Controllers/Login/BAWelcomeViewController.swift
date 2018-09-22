@@ -46,11 +46,11 @@ class BAWelcomeViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.avenirDemi(size: 17.0)
         button.layer.cornerRadius = 27.0
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue)).observeValues { button in
+        button.reactive.controlEvents(UIControl.Event(rawValue: UIControl.Event.touchUpInside.rawValue | UIControl.Event.touchUpOutside.rawValue | UIControl.Event.touchCancel.rawValue)).observeValues { button in
             button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.35)
         }
         
-        button.reactive.controlEvents(UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue)).observeValues { button in
+        button.reactive.controlEvents(UIControl.Event(rawValue: UIControl.Event.touchDown.rawValue | UIControl.Event.touchDragInside.rawValue)).observeValues { button in
             button.backgroundColor = button.backgroundColor?.withAlphaComponent(0.5)
         }
         
@@ -59,7 +59,7 @@ class BAWelcomeViewController: UIViewController {
     
     let loginButton: UIButton = {
         let loginAttString = NSMutableAttributedString(string: "Log in");
-        loginAttString.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: NSMakeRange(0, loginAttString.length));
+        loginAttString.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, loginAttString.length));
         loginAttString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, loginAttString.length));
         
         let button = UIButton(type: .custom)

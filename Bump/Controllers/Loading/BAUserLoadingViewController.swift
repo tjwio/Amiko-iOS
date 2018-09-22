@@ -14,7 +14,7 @@ import SnapKit
 
 class BAUserLoadingViewController: BABaseLoadingViewController {
     
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let activityIndicator = UIActivityIndicatorView(style: .gray)
     
     let userComplete = MutableProperty<Bool>(false)
     

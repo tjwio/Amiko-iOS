@@ -112,7 +112,7 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
     
     private func resetCenter(animated: Bool = false) {
         if let coordinate = user.history.first?.coordinate ?? BALocationManager.shared.currentLocation?.coordinate {
-            mapView.setRegion(MKCoordinateRegionMakeWithDistance(coordinate, 10.0, 10.0), animated: animated)
+            mapView.setRegion(MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 10.0, longitudinalMeters: 10.0), animated: animated)
             mapView.setCenter(coordinate, animated: animated)
         }
     }

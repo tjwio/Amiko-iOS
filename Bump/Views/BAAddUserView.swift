@@ -135,11 +135,11 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedUp(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue))
-        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedDown(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue))
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedUp(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchUpInside.rawValue | UIControl.Event.touchUpOutside.rawValue | UIControl.Event.touchCancel.rawValue))
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressedDown(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchDown.rawValue | UIControl.Event.touchDragInside.rawValue))
         
-        doneButton.addTarget(self, action: #selector(self.doneButtonPressedUp(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchUpInside.rawValue | UIControlEvents.touchUpOutside.rawValue | UIControlEvents.touchCancel.rawValue))
-        doneButton.addTarget(self, action: #selector(self.doneButtonPressedDown(_:)), for: UIControlEvents(rawValue: UIControlEvents.touchDown.rawValue | UIControlEvents.touchDragInside.rawValue))
+        doneButton.addTarget(self, action: #selector(self.doneButtonPressedUp(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchUpInside.rawValue | UIControl.Event.touchUpOutside.rawValue | UIControl.Event.touchCancel.rawValue))
+        doneButton.addTarget(self, action: #selector(self.doneButtonPressedDown(_:)), for: UIControl.Event(rawValue: UIControl.Event.touchDown.rawValue | UIControl.Event.touchDragInside.rawValue))
         
         buttonStackView = UIStackView(arrangedSubviews: [cancelButton, doneButton])
         buttonStackView.alignment = .center
