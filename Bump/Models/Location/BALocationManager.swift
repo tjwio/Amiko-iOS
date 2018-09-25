@@ -66,12 +66,8 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
     private func shouldUpdateLocation(curr: CLLocation, next: CLLocation) -> Bool {
         guard next.horizontalAccuracy >= 0 && -next.timestamp.timeIntervalSinceNow < 10 else { return false }
         
-        let distance = curr.distance(from: next)
-        
         let hDelta = curr.horizontalAccuracy - next.horizontalAccuracy
         
-        let accuracyDeltaValid = hDelta > -10
-        
-        return distance <= next.horizontalAccuracy && accuracyDeltaValid
+        return hDelta > -10
     }
 }
