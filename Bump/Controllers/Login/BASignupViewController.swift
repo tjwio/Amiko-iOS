@@ -409,9 +409,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         sender?.isLoading = true
         BAAuthenticationManager.shared.signup(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, phone: self.phoneTextField.text!, password: self.passwordTextField.text!, success: { user in
             let homeBlock = {
-                DispatchQueue.main.async {
-                    (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)
-                }
+                let viewController = BAFirstXPWelcomeViewController(user: user)
+                self.navigationController?.pushViewController(viewController, animated: true)
             }
             
             user.loadHistory(success: { _ in

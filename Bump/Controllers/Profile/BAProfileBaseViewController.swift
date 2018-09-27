@@ -87,7 +87,9 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         
         user.loadImage(success: { (image, _) in
             self.image.value = image
-        }, failure: nil)
+        }, failure: {_ in
+            self.image.value = .blankAvatar
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {

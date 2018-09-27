@@ -13,11 +13,13 @@ class BAFirstXPWelcomeViewController: BAProfileBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        _ = BAUserHolder.initialize(user: user)
+        
         view.backgroundColor = .white
         
         profileView.isHidden = false
-        profileView.titleLabel.text = "Welcome to Ciao"
         profileView.cancelButton.isHidden = true
+        profileView.titleLabel.text = "Welcome to Ciao"
         
         view.addSubview(profileView)
         setupConstraints()
@@ -27,6 +29,12 @@ class BAFirstXPWelcomeViewController: BAProfileBaseViewController {
         profileView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(-16.0)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    override func dismissViewController() {
+        DispatchQueue.main.async {
+            (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: self.user, shouldInitialize: false)
         }
     }
 }
