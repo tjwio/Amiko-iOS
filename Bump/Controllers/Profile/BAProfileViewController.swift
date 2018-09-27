@@ -362,50 +362,50 @@ class BAProfileViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.detailLabel.isHidden = true
             cell.accountHolderView.isHidden = false
             cell.iconLabel.isHidden = false
-            cell.textField.isEnabled = false
+            cell.textField.isEnabled = true
             
             switch indexPath.section {
             case Constants.facebookIndex:
                 let contact = BAAccountContact.facebook
                 
-                cell.accountHolderView.backgroundColor = self.facebook.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
-                cell.textField.text = self.facebook.value
+                cell.textField.text = facebook.value
+                cell.textIconColor = contact.color
+                
+                disposables += facebook <~ cell.textField.reactive.continuousTextValues
             case Constants.linkedinIndex:
                 let contact = BAAccountContact.linkedin
                 
-                cell.accountHolderView.backgroundColor = self.linkedin.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
-                cell.textField.text = self.linkedin.value
+                cell.textField.text = linkedin.value
+                cell.textIconColor = contact.color
+                
+                disposables += linkedin <~ cell.textField.reactive.continuousTextValues
             case Constants.instagramIndex:
                 let contact = BAAccountContact.instagram
                 
-                cell.accountHolderView.backgroundColor = self.instagram.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)
-                cell.textField.text = self.instagram.value
+                cell.textField.text = instagram.value
+                cell.textIconColor = contact.color
+                
+                disposables += instagram <~ cell.textField.reactive.continuousTextValues
             case Constants.twitterIndex:
                 let contact = BAAccountContact.twitter
                 
-                cell.accountHolderView.backgroundColor = self.twitter.value?.isEmpty ?? true ? UIColor.Grayscale.placeholderColor : contact.color
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)
-                cell.textField.text = self.twitter.value
+                cell.textField.text = twitter.value
+                cell.textIconColor = contact.color
+                
+                disposables += twitter <~ cell.textField.reactive.continuousTextValues
             default: break
             }
         }
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return indexPath.section > Constants.maxLabelIndex ? indexPath : nil
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func getTableFooterView() -> UIView {
