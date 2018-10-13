@@ -63,8 +63,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigationController
     }
     
-    func loadHomeViewController(user: BAUser) {
-        _ = BAUserHolder.initialize(user: user)
+    func loadHomeViewController(user: BAUser, shouldInitialize: Bool = true) {
+        if shouldInitialize {
+            _ = BAUserHolder.initialize(user: user)
+        }
+        
         self.window?.rootViewController = BAMainTabBarViewController()
     }
     

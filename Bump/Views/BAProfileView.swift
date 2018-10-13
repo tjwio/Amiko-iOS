@@ -50,7 +50,7 @@ class BAProfileView: UIView {
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.allowsSelection = true
+        tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.contentInset = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 16.0, right: 0.0)
         tableView.separatorStyle = .none

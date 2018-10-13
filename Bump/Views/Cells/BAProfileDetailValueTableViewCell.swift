@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ReactiveCocoa
+import ReactiveSwift
 import SnapKit
 
 class BAProfileDetailValueTableViewCell: UITableViewCell {
@@ -46,6 +48,20 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
         return label
     }()
     
+    var defaultIconColor = UIColor(hexColor: 0xD8DBE0) {
+        didSet {
+            updateIconColor(isHidden: textField.text?.isEmpty ?? true)
+        }
+    }
+    
+    var textIconColor: UIColor? {
+        didSet {
+            updateIconColor(isHidden: textField.text?.isEmpty ?? true)
+        }
+    }
+    
+    private var disposables = CompositeDisposable()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -54,6 +70,10 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+    }
+    
+    deinit {
+        disposables.dispose()
     }
     
     private func commonInit() {
@@ -65,6 +85,10 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
         contentView.addSubview(accountHolderView)
         
         setNeedsUpdateConstraints()
+        
+        disposables += textField.reactive.continuousTextValues.map { return $0?.isEmpty ?? true }.observeValues { [weak self] hidden in
+            self?.updateIconColor(isHidden: hidden)
+        }
     }
     
     override func updateConstraints() {
@@ -90,5 +114,13 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
         }
         
         super.updateConstraints()
+    }
+    
+    // MARK: helper ui
+    
+    private func updateIconColor(isHidden: Bool) {
+        guard let iconColor = textIconColor else { accountHolderView.backgroundColor = defaultIconColor; return }
+        
+        accountHolderView.backgroundColor = isHidden ? defaultIconColor : iconColor
     }
 }
