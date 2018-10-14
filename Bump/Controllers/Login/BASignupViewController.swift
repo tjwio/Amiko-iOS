@@ -217,7 +217,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     var textFieldsStackView: UIStackView!
     var fullStackView: UIStackView!
     
-    private var isKeyboardShowing: Bool! = false
+    private var isKeyboardShowing = false
     
     //rx
     private var disposables = CompositeDisposable()
@@ -431,7 +431,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    //MARK: Keyboard Notifications
+    // MARK: Keyboard Notifications
+    
     @objc private func keyboardWillShow(notification: NSNotification?) {
         if (self.navigationController?.viewControllers.last == self && self.isViewLoaded && self.view.window != nil) {
             if (self.isKeyboardShowing) {
@@ -469,7 +470,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: status bar
+    // MARK: status bar
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent;
     }

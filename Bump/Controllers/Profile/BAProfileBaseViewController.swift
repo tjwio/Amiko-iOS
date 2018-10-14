@@ -65,6 +65,8 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         return view
     }()
     
+    var origContentInset: UIEdgeInsets?
+    
     private var disposables = CompositeDisposable()
     
     init(user: BAUser) {
@@ -98,6 +100,8 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
     
     deinit {
         disposables.dispose()
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -116,6 +120,9 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarPressed(_:)))
         profileView.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: dismiss
@@ -339,6 +346,41 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
             imageDidUpdate.value = true
             
             picker.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: Keyboard Notifications
+    
+    @objc private func keyboardWillShow(notification: NSNotification?) {
+        if self.isViewLoaded && self.view.window != nil {
+            if let keyboardSize = (notification?.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
+                var contentInsets: UIEdgeInsets
+                
+                if UIApplication.shared.statusBarOrientation.isPortrait {
+                    contentInsets = UIEdgeInsets(top: profileView.tableView.contentInset.top, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+                } else {
+                    contentInsets = UIEdgeInsets(top: profileView.tableView.contentInset.top, left: 0.0, bottom: keyboardSize.width, right: 0.0)
+                }
+                
+                self.origContentInset = profileView.tableView.contentInset
+                
+                UIView.animate(withDuration: (notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.3, delay: 0.0, options: .beginFromCurrentState, animations: {
+                    self.profileView.tableView.contentInset = contentInsets
+                    self.profileView.tableView.scrollIndicatorInsets = contentInsets
+                    self.profileView.tableView.setNeedsDisplay()
+                }, completion: nil)
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification?) {
+        if self.isViewLoaded && self.view.window != nil {
+            UIView.animate(withDuration: (notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.3, animations: {
+                if let contentInset = self.origContentInset {
+                    self.profileView.tableView.contentInset = contentInset
+                    self.profileView.tableView.scrollIndicatorInsets = contentInset
+                }
+            })
         }
     }
 }
