@@ -51,8 +51,8 @@ class BABaseLoadingViewController: UIViewController {
         view.backgroundColor = UIColor(hexColor: 0xFAFAFA)
         
         bumpAnimation.play { [weak self] _ in
-//            self?.animationComplete.value = true
-//            self?.onAnimationFinished?()
+            self?.animationComplete.value = true
+            self?.onAnimationFinished?()
             
             self?.spinnerAnimation.isHidden = false
             self?.spinnerAnimation.play()
