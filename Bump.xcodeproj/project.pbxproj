@@ -53,6 +53,8 @@
 		2F4BBB3820522A3700AAFE1A /* BumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB3720522A3700AAFE1A /* BumpTests.swift */; };
 		2F4BBB4320522A3700AAFE1A /* BumpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB4220522A3700AAFE1A /* BumpUITests.swift */; };
 		2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */; };
+		2F51E171217457D10028ADBE /* spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E16F217457D00028ADBE /* spinner.json */; };
+		2F51E172217457D10028ADBE /* ciao_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F51E170217457D10028ADBE /* ciao_logo.json */; };
 		2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F3C213916C80074AB8B /* BAProfileView.swift */; };
 		2F552F47213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */; };
 		2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F48213DE82D0074AB8B /* String+Null.swift */; };
@@ -91,7 +93,6 @@
 		2FD3BEEB21425EDA002DB435 /* MMSProfileImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */; };
 		2FD3BEEE2142698C002DB435 /* BANetworkHandler+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEED2142698C002DB435 /* BANetworkHandler+Image.swift */; };
 		2FD3BEF021426B3E002DB435 /* BAUser+ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEEF21426B3E002DB435 /* BAUser+ImageName.swift */; };
-		2FD4B9102141C38B00E0E570 /* ciao_logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FD4B90F2141C38B00E0E570 /* ciao_logo.json */; };
 		2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */; };
 		2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */; };
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
@@ -169,6 +170,8 @@
 		2F4BBB4220522A3700AAFE1A /* BumpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpUITests.swift; sourceTree = "<group>"; };
 		2F4BBB4420522A3700AAFE1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F4BBB6320522B3100AAFE1A /* UIFont+CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFonts.swift"; sourceTree = "<group>"; };
+		2F51E16F217457D00028ADBE /* spinner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spinner.json; sourceTree = "<group>"; };
+		2F51E170217457D10028ADBE /* ciao_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ciao_logo.json; sourceTree = "<group>"; };
 		2F552F3C213916C80074AB8B /* BAProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileView.swift; sourceTree = "<group>"; };
 		2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileDetailValueTableViewCell.swift; sourceTree = "<group>"; };
 		2F552F48213DE82D0074AB8B /* String+Null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Null.swift"; sourceTree = "<group>"; };
@@ -217,7 +220,6 @@
 		2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSProfileImagePicker.framework; path = Carthage/Build/iOS/MMSProfileImagePicker.framework; sourceTree = "<group>"; };
 		2FD3BEED2142698C002DB435 /* BANetworkHandler+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+Image.swift"; sourceTree = "<group>"; };
 		2FD3BEEF21426B3E002DB435 /* BAUser+ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BAUser+ImageName.swift"; sourceTree = "<group>"; };
-		2FD4B90F2141C38B00E0E570 /* ciao_logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ciao_logo.json; sourceTree = "<group>"; };
 		2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABaseLoadingViewController.swift; sourceTree = "<group>"; };
 		2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALocalizationStrings.swift; sourceTree = "<group>"; };
 		2FE36BF720F84A7B0012F1AB /* Global.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Global.strings; sourceTree = "<group>"; };
@@ -681,7 +683,8 @@
 			isa = PBXGroup;
 			children = (
 				2FFAE3FB213227710045B75E /* bump.json */,
-				2FD4B90F2141C38B00E0E570 /* ciao_logo.json */,
+				2F51E170217457D10028ADBE /* ciao_logo.json */,
+				2F51E16F217457D00028ADBE /* spinner.json */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -798,11 +801,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E51E9208308E000E8D8CA /* AvenirNextLTPro-Medium.otf in Resources */,
+				2F51E171217457D10028ADBE /* spinner.json in Resources */,
 				2F6E51F0208316AA00E8D8CA /* AvenirNextLTPro-Demi.otf in Resources */,
 				2FFAE404213243780045B75E /* AvenirNextLTPro-UltLtIt.otf in Resources */,
 				2F6E51E7208308E000E8D8CA /* AvenirNextLTPro-It.otf in Resources */,
 				2F6E51EB208308E000E8D8CA /* AvenirNextLTPro-Bold.otf in Resources */,
-				2FD4B9102141C38B00E0E570 /* ciao_logo.json in Resources */,
+				2F51E172217457D10028ADBE /* ciao_logo.json in Resources */,
 				2F6E51E8208308E000E8D8CA /* AvenirNextLTPro-Regular.otf in Resources */,
 				2FFAE3FC213227710045B75E /* bump.json in Resources */,
 				2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */,
