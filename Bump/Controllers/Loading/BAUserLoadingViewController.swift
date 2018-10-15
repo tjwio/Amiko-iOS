@@ -14,8 +14,6 @@ import SnapKit
 
 class BAUserLoadingViewController: BABaseLoadingViewController {
     
-    let activityIndicator = UIActivityIndicatorView(style: .gray)
-    
     let userComplete = MutableProperty<Bool>(false)
     
     var user: BAUser!
@@ -24,10 +22,6 @@ class BAUserLoadingViewController: BABaseLoadingViewController {
     
     init(userId: String) {
         super.init(nibName: nil, bundle: nil)
-        
-        self.onAnimationFinished = { [weak self] in
-            self?.activityIndicator.startAnimating()
-        }
         
         BAUserHolder.loadUser(userId: userId, success: { user in
             self.user = user
@@ -49,14 +43,6 @@ class BAUserLoadingViewController: BABaseLoadingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(hexColor: 0xFBFCFD)
-        
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(activityIndicator)
-        
-        setupConstraints()
-        
         disposables += SignalProducer.combineLatest(userComplete.producer, animationComplete.producer).startWithValues { [weak self] (userComplete, animationComplete) in
             guard let strongSelf = self else { return }
             if userComplete && animationComplete {
@@ -64,13 +50,6 @@ class BAUserLoadingViewController: BABaseLoadingViewController {
                     (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: strongSelf.user)
                 }
             }
-        }
-    }
-    
-    private func setupConstraints() {
-        activityIndicator.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view).offset(-200.0)
-            make.centerX.equalTo(self.view)
         }
     }
 }
