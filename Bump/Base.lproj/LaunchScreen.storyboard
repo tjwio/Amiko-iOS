@@ -17,7 +17,20 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="first_spinner_dot" translatesAutoresizingMaskIntoConstraints="NO" id="XlU-US-RLP">
+                                <rect key="frame" x="155.5" y="301.5" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="8Do-MN-WgS"/>
+                                    <constraint firstAttribute="height" constant="64" id="zLa-0o-ci0"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XlU-US-RLP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bLZ-N1-qjd"/>
+                            <constraint firstItem="XlU-US-RLP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pQr-gR-Gyf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -26,4 +39,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="first_spinner_dot" width="512" height="512"/>
+    </resources>
 </document>

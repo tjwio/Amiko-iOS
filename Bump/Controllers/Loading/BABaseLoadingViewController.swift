@@ -48,7 +48,7 @@ class BABaseLoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(hexColor: 0xFBFCFD)
+        view.backgroundColor = UIColor(hexColor: 0xFAFAFA)
         
         bumpAnimation.play { [weak self] _ in
 //            self?.animationComplete.value = true
