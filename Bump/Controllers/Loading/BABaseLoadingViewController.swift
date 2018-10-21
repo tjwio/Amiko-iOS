@@ -16,6 +16,7 @@ class BABaseLoadingViewController: UIViewController {
     
     private struct Constants {
         static let logoAnimation = "ciao_logo"
+        static let spinner = "spinner"
     }
     
     let animationComplete = MutableProperty<Bool>(false)
@@ -31,23 +32,45 @@ class BABaseLoadingViewController: UIViewController {
         return animation
     }()
     
+    let spinnerAnimation: LOTAnimationView = {
+        let animation = LOTAnimationView(name: Constants.spinner)
+        animation.contentMode = .scaleAspectFit
+        animation.loopAnimation = true
+        animation.isHidden = true
+        animation.animationSpeed = 1.0
+        animation.translatesAutoresizingMaskIntoConstraints = false
+        
+        return animation
+    }()
+    
     var onAnimationFinished: BAEmptyHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(hexColor: 0xFBFCFD)
+        view.backgroundColor = UIColor(hexColor: 0xFAFAFA)
         
         bumpAnimation.play { [weak self] _ in
             self?.animationComplete.value = true
             self?.onAnimationFinished?()
+            
+            self?.spinnerAnimation.isHidden = false
+            self?.spinnerAnimation.play()
+            
+            self?.bumpAnimation.isHidden = true
         }
         
         view.addSubview(bumpAnimation)
+        view.addSubview(spinnerAnimation)
         
         bumpAnimation.snp.makeConstraints { make in
-            make.center.equalTo(self.view)
-            make.height.equalTo(356.0)
+            make.center.equalToSuperview()
+            make.height.width.equalTo(64.0)
+        }
+        
+        spinnerAnimation.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.width.equalTo(64.0)
         }
     }
 }
