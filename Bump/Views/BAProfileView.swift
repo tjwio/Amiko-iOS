@@ -48,6 +48,26 @@ class BAProfileView: UIView {
         return imageView
     }()
     
+    let avatarOverlayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+        view.layer.cornerRadius = 50.0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        
+        return view
+    }()
+    
+    let avatarEditLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.featherFont(size: 24.0)
+        label.text = String.featherIcon(name: .edit2)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.allowsSelection = false
@@ -79,16 +99,22 @@ class BAProfileView: UIView {
     private func commonInit() {
         backgroundColor = .white
         
+        avatarOverlayView.addSubview(avatarEditLabel)
         addSubview(cancelButton)
         addSubview(saveButton)
         addSubview(titleLabel)
         addSubview(avatarImageView)
+        addSubview(avatarOverlayView)
         addSubview(tableView)
         
         setNeedsUpdateConstraints()
     }
     
     override func updateConstraints() {
+        avatarEditLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
         cancelButton.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(16.0)
         }
@@ -106,6 +132,11 @@ class BAProfileView: UIView {
         avatarImageView.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(12.0)
             make.centerX.equalToSuperview()
+            make.height.width.equalTo(100.0)
+        }
+        
+        avatarOverlayView.snp.makeConstraints { make in
+            make.center.equalTo(self.avatarImageView)
             make.height.width.equalTo(100.0)
         }
         
