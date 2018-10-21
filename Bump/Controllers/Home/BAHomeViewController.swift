@@ -18,6 +18,7 @@ class BAHomeViewController: UIViewController {
     private struct Constants {
         static let instructionsHold = "Hold anywhere to bump"
         static let instructionsBump = "Bump now"
+        static let waitingToReceiveLocation = "Please wait while we initiliaze your location"
         static let firstFrame = NSNumber(value: 36.0)
     }
     
@@ -111,6 +112,8 @@ class BAHomeViewController: UIViewController {
         return view
     }()
     
+    var holdGestureRecognizer: UILongPressGestureRecognizer!
+    
     var isHoldingToBump = false
     
     private var disposables = CompositeDisposable()
@@ -127,7 +130,7 @@ class BAHomeViewController: UIViewController {
         
         view.backgroundColor = UIColor(hexColor: 0xFBFCFD)
         
-        let holdGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.holdGestureRecognized(_:)))
+        holdGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.holdGestureRecognized(_:)))
         holdGestureRecognizer.minimumPressDuration = 0.0
         holdGestureRecognizer.delegate = self
         view.addGestureRecognizer(holdGestureRecognizer)
@@ -173,6 +176,11 @@ class BAHomeViewController: UIViewController {
             }
         }
         BABumpManager.shared.start()
+        
+        disposables += locationManager.didReceiveFirstLocation.producer.startWithValues { [weak self] didReceiveFirstLocation in
+            self?.holdGestureRecognizer.isEnabled = didReceiveFirstLocation
+            self?.bumpInstructionsLabel.text = didReceiveFirstLocation ? Constants.instructionsHold : Constants.waitingToReceiveLocation
+        }
         
         holderAnimationView.addSubview(bumpImageView)
         holderAnimationView.addSubview(bumpAnimation)

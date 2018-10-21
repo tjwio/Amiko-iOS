@@ -8,14 +8,21 @@
 
 import Foundation
 import MapKit
+import ReactiveSwift
 
 class BALocationManager: NSObject, CLLocationManagerDelegate {
     static let shared = BALocationManager()
     
-    let locationManager = CLLocationManager()
-    private(set) var currentLocation: CLLocation?
+    private let locationManager = CLLocationManager()
+    private(set) var currentLocation: CLLocation? {
+        didSet {
+            didReceiveFirstLocation.value = true
+        }
+    }
     
     private var didInitialize = false
+    
+    let didReceiveFirstLocation = MutableProperty<Bool>(false)
     
     var isAuthorized: Bool {
         return CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways
@@ -69,5 +76,15 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
         let hDelta = curr.horizontalAccuracy - next.horizontalAccuracy
         
         return hDelta > -10
+    }
+    
+    func startUpdatingLocation() {
+        didReceiveFirstLocation.value = false
+        locationManager.startUpdatingLocation()
+    }
+    
+    func stopUpdatingLocation() {
+        didReceiveFirstLocation.value = false
+        locationManager.stopUpdatingLocation()
     }
 }
