@@ -258,12 +258,19 @@ class BAHomeViewController: UIViewController {
     //MARK: add user
     
     private func showAddUser(_ userToAdd: BAUser) {
-        let viewController = BAAddUserViewController(userToAdd: userToAdd)
-        viewController.successCallback = { [weak self] in
-            DispatchQueue.main.async {
-                self?.showLeftMessage("Successfully added contact to address book and all accounts!", type: .success)
+        let viewController: BAAddUserViewController
+        
+        if let history = BAUserHolder.shared.user.history.first(where: { return $0.user?.userId == userToAdd.userId } ) {
+            viewController = BADeleteUserViewController(user: BAUserHolder.shared.user, history: history)
+        } else {
+            viewController = BAAddUserViewController(userToAdd: userToAdd)
+            viewController.successCallback = { [weak self] in
+                DispatchQueue.main.async {
+                    self?.showLeftMessage("Successfully added contact to address book and all accounts!", type: .success)
+                }
             }
         }
+        
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
         viewController.modalPresentationStyle = .overCurrentContext
