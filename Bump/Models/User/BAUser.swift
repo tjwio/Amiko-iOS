@@ -194,7 +194,9 @@ public class BAUser: NSObject, JSONDecodable {
                 return
             }
             
-            self.history = historyList
+            self.history = historyList.sorted { (first, last) -> Bool in
+                return first.date > last.date
+            }
             
             success?(historyList)
         }) { error in
@@ -239,7 +241,7 @@ public class BAUser: NSObject, JSONDecodable {
         
         BANetworkHandler.shared.addConnection(parameters: parameters, success: { json in
             if let entry = BAHistory(json: json, user: self) {
-                self.history.append(entry)
+                self.history.insert(entry, at: 0)
                 success?(entry)
             }
             else {
