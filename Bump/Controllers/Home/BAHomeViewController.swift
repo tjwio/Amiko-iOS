@@ -114,6 +114,8 @@ class BAHomeViewController: UIViewController {
     
     var holdGestureRecognizer: UILongPressGestureRecognizer!
     
+    let hapticGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    
     var isHoldingToBump = false
     
     private var disposables = CompositeDisposable()
@@ -258,6 +260,7 @@ class BAHomeViewController: UIViewController {
     //MARK: add user
     
     private func showAddUser(_ userToAdd: BAUser) {
+        hapticGenerator.impactOccurred()
         let viewController: BAAddUserViewController
         
         if let history = BAUserHolder.shared.user.history.first(where: { return $0.user?.userId == userToAdd.userId } ) {
