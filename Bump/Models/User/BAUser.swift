@@ -64,7 +64,7 @@ public enum BAAccountContact: String {
         switch self {
         case .email: return "mailto:\(id)"
         case .phone: return "tel://\(id)"
-        case .facebook: return "fb://profile/\(id)"
+        case .facebook: return "fb://profile?id=\(id)"
         case .instagram: return "instagram://user?username=\(id)"
         case .linkedin: return "linkedin://profile/\(id)"
         case .twitter: return "twitter://user?screen_name=\(id)"
