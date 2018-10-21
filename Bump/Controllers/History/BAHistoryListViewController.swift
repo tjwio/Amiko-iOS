@@ -204,7 +204,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
         viewController.modalPresentationStyle = .overCurrentContext
-        viewController.successCallback = { [weak self] in
+        viewController.successCallback = { [weak self] _ in
             self?.tableView.reloadData()
         }
         

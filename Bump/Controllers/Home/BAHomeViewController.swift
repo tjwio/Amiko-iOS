@@ -70,7 +70,7 @@ class BAHomeViewController: UIViewController {
     let cameraButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "camera_button"), for: .normal)
-        button.isHidden = true
+        button.isHidden = false
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -263,13 +263,13 @@ class BAHomeViewController: UIViewController {
         hapticGenerator.impactOccurred()
         let viewController: BAAddUserViewController
         
-        if let history = BAUserHolder.shared.user.history.first(where: { return $0.user?.userId == userToAdd.userId } ) {
+        if let history = BAUserHolder.shared.user.history.first(where: { return $0.addedUser.userId == userToAdd.userId } ) {
             viewController = BADeleteUserViewController(user: BAUserHolder.shared.user, history: history)
         } else {
             viewController = BAAddUserViewController(userToAdd: userToAdd)
-            viewController.successCallback = { [weak self] in
+            viewController.successCallback = { [weak self] message in
                 DispatchQueue.main.async {
-                    self?.showLeftMessage("Successfully added contact to address book and all accounts!", type: .success)
+                    self?.showLeftMessage(message, type: .success)
                 }
             }
         }

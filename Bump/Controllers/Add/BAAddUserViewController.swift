@@ -13,6 +13,10 @@ import SafariServices
 
 class BAAddUserViewController: UIViewController {
     
+    private struct Constants {
+        static let contactKeysToFetch = [CNContactEmailAddressesKey, CNContactPhoneNumbersKey, CNContactGivenNameKey, CNContactFamilyNameKey, CNContactOrganizationNameKey, CNContactImageDataAvailableKey] as [CNKeyDescriptor]
+    }
+    
     let userToAdd: BAUser
     let store = CNContactStore()
     
@@ -24,7 +28,7 @@ class BAAddUserViewController: UIViewController {
         return view
     }()
     
-    var successCallback: BAEmptyHandler?
+    var successCallback: BAStringHandler?
     var failureCallback: BAErrorHandler?
     
     init(userToAdd: BAUser) {
@@ -145,17 +149,76 @@ class BAAddUserViewController: UIViewController {
     
     //MARK: add new contact
     private func addNewContact() throws {
-        try addContactToStore()
+        let didUpdateContact = try addToAddressBookHelper()
         
         if let coordinate = BALocationManager.shared.currentLocation?.coordinate {
             BAUserHolder.shared.user.addConnection(addedUserId: userToAdd.userId, latitude: coordinate.latitude, longitude: coordinate.longitude, success: { _ in
-                self.successCallback?()
+                self.successCallback?(didUpdateContact ? "Successfully updated exisiting contact in address book!" : "Successfully added contact to address book and all accounts!")
                 self.dismissViewController()
             }) { error in
                 self.failureCallback?(error)
                 self.dismissViewController()
             }
         }
+    }
+    
+    /// Updates exisiting contact or adds a new contact if not found
+    ///
+    /// - Returns: true if updated exisitng contact, false if added new contact
+    /// - Throws: throw if contact store fails to update or add
+    private func addToAddressBookHelper() throws -> Bool {
+        let predicate = CNContact.predicateForContacts(matchingName: "\(userToAdd.firstName) \(userToAdd.lastName)")
+        let contacts = try store.unifiedContacts(matching: predicate, keysToFetch: Constants.contactKeysToFetch)
+        
+        for contact in contacts {
+            if contact.givenName == userToAdd.firstName && contact.familyName == userToAdd.lastName {
+                if updateExistingContact(contact) {
+                    return true
+                }
+            }
+        }
+        
+        try addContactToStore()
+        return false
+    }
+    
+    private func updateExistingContact(_ contact: CNContact) -> Bool {
+        guard let contact = contact.mutableCopy() as? CNMutableContact else { return false }
+        
+        var didChange = false
+        
+        if !contact.phoneNumbers.contains(where: { return $0.value.stringValue == userToAdd.phone }) {
+            contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: userToAdd.phone)))
+            didChange = true
+        }
+        
+        if !contact.emailAddresses.contains(where: { return $0.value as String == userToAdd.email }) {
+            contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: userToAdd.email as NSString))
+            didChange = true
+        }
+        
+        if contact.organizationName.isEmpty, let profession = userToAdd.profession {
+            contact.organizationName = profession
+            didChange = true
+        }
+        
+        if !contact.imageDataAvailable, let image = userToAdd.image.value, let data = image.jpegData(compressionQuality: 0.5) {
+            contact.imageData = data
+            didChange = true
+        }
+        
+        if didChange {
+            let saveRequest = CNSaveRequest()
+            saveRequest.update(contact)
+            
+            do {
+                try store.execute(saveRequest)
+            } catch {
+                return false
+            }
+        }
+        
+        return true
     }
     
     private func addContactToStore() throws {

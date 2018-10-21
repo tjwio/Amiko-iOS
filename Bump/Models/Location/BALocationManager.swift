@@ -84,6 +84,7 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func stopUpdatingLocation() {
+        currentLocation = nil
         didReceiveFirstLocation.value = false
         locationManager.stopUpdatingLocation()
     }

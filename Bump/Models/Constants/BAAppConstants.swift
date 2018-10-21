@@ -20,6 +20,7 @@ public typealias BAContactActionHandler = (BAAccountContact, String) -> Void
 public typealias BASocialHandler = (BAAccountContact, String) -> Void
 
 public typealias BAEmptyHandler = () -> Void
+public typealias BAStringHandler = (String) -> Void
 public typealias BAJSONHandler = (JSON) -> Void
 public typealias BAJSONListHandler = ([JSON]) -> Void
 public typealias BAErrorHandler = (Error) -> Void

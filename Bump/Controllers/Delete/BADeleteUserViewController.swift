@@ -46,7 +46,7 @@ class BADeleteUserViewController: BAAddUserViewController {
     
     private func removeUser(_ sender: BALoadingButton?) {
         currentUser.deleteConnection(history: history, success: {
-            self.successCallback?()
+            self.successCallback?("Successfully removed contact")
             self.dismiss(animated: true, completion: nil)
         }) { error in
             sender?.isLoading = false
