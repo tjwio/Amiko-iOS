@@ -16,7 +16,9 @@ class BALocationManager: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private(set) var currentLocation: CLLocation? {
         didSet {
-            didReceiveFirstLocation.value = true
+            if !didReceiveFirstLocation.value {
+                didReceiveFirstLocation.value = true
+            }
         }
     }
     
