@@ -1,1 +1,1 @@
-# Bump App for iOS - CS 201 Project
+# Ciao App for iOS

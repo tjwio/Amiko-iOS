@@ -1,0 +1,13 @@
+github "SnapKit/SnapKit" ~> 4.0.0
+github "Alamofire/Alamofire" ~> 4.7
+github "davidstump/SwiftPhoenixClient" ~> 0.8
+github "hkellaway/Gloss"
+github "rs/SDWebImage"
+github "evgenyneu/keychain-swift" ~> 11.0
+github "ReactiveCocoa/ReactiveCocoa" ~> 7.0
+github "Skyscanner/SkyFloatingLabelTextField"
+github "tw23/GSMessages" "fix/access_control"
+github "bitstadium/HockeySDK-iOS"
+github "airbnb/lottie-ios" "master"
+github "tjwio/SwiftFeather" "master"
+github "tjwio/MMSProfileImagePicker" "master"

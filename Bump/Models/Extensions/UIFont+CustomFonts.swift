@@ -11,37 +11,57 @@ import UIKit
 extension UIFont {
     //MARK: basic fonts
     
-    public func mainRegular(size: CGFloat) -> UIFont? {
-        return UIFont(name: "TitilliumWeb-Regular", size: size)
+    public class func avenirRegular(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-Regular", size: size)
     }
     
-    public func mainSemiBold(size: CGFloat) -> UIFont? {
-        return UIFont(name: "TitilliumWeb-SemiBold", size: size)
+    public class func avenirMedium(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-Medium", size: size)
+    }
+    
+    public class func avenirDemi(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-DemiBold", size: size)
+    }
+    
+    public class func avenirBold(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-Bold", size: size)
+    }
+    
+    public class func avenirItalic(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-Italic", size: size)
+    }
+    
+    public class func avenirLight(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-UltraLight", size: size)
+    }
+    
+    public class func avenirUltraLightItalic(size: CGFloat) -> UIFont? {
+        return UIFont(name: "AvenirNext-UltraLightItalic", size: size)
     }
     
     //MARK: headers
     
-    public func mainHeader() -> UIFont? {
-        return mainSemiBold(size: 24.0)
+    public class func mainHeader() -> UIFont? {
+        return avenirMedium(size: 24.0)
     }
     
-    public func mediumHeader() -> UIFont? {
-        return mainSemiBold(size: 20.0)
+    public class func mediumHeader() -> UIFont? {
+        return avenirMedium(size: 20.0)
     }
     
-    public func smallheader() -> UIFont? {
-        return mainSemiBold(size: 16.0)
+    public class func smallheader() -> UIFont? {
+        return avenirMedium(size: 16.0)
     }
     
     //MARK: regular
     
-    public func regularText() -> UIFont? {
-        return mainRegular(size: 16.0)
+    public class func regularText() -> UIFont? {
+        return avenirRegular(size: 16.0)
     }
     
     //MARK: detail
     
-    public func detailText() -> UIFont? {
-        return mainRegular(size: 14.0)
+    public class func detailText() -> UIFont? {
+        return avenirRegular(size: 14.0)
     }
 }

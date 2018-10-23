@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        BITHockeyManager.shared().configure(withIdentifier: BAConstants.HockeyApp.id)
+        BITHockeyManager.shared().start()
+        BITHockeyManager.shared().authenticator.authenticateInstallation()
+        
+        BACommonUtility.configureMessages()
+        
+        if BALocationManager.shared.isAuthorized {
+            BALocationManager.shared.initialize()
+        }
+        
+        self.loadInitialViewController()
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
@@ -25,12 +40,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        BALocationManager.shared.stopUpdatingLocation()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        if BAUserHolder.initialized {
+            BAUserHolder.shared.reconnect()
+        }
+        
+        if BALocationManager.shared.isAuthorized && !BALocationManager.shared.didReceiveFirstLocation.value {
+            BALocationManager.shared.startUpdatingLocation()
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -40,7 +60,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func loadWelcomeViewController() {
+        let navigationController = UINavigationController(rootViewController: BAWelcomeViewController())
+        self.window?.rootViewController = navigationController
+    }
+    
+    func loadHomeViewController(user: BAUser, shouldInitialize: Bool = true) {
+        if shouldInitialize {
+            _ = BAUserHolder.initialize(user: user)
+        }
+        
+        self.window?.rootViewController = BAMainTabBarViewController()
+    }
+    
+    func loadInitialViewController() {
+        var viewController: BABaseLoadingViewController
+        
+        if let userId = BAAuthenticationManager.shared.userId, userId.count > 0 {
+            viewController = BAUserLoadingViewController(userId: userId)
+        }
+        else {
+            viewController = BAWelcomeLoadingViewController()
+        }
+        
+        self.window?.rootViewController = viewController
+    }
+    
+    //MARK: debug helper font
+    private func printFontNames() {
+        for familyName in UIFont.familyNames {
+            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+                print(fontName)
+            }
+        }
+    }
 }
 
