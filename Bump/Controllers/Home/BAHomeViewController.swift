@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import CoreMotion
 import Lottie
 import ReactiveCocoa
@@ -20,6 +21,8 @@ class BAHomeViewController: UIViewController {
         static let instructionsBump = "Bump now"
         static let waitingToReceiveLocation = "Please wait while we initiliaze your location"
         static let firstFrame = NSNumber(value: 36.0)
+        static let successSound = "Success8"
+        static let soundExtension = "caf"
     }
     
     let accountButton: UIButton = {
@@ -110,6 +113,22 @@ class BAHomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
+    }()
+    
+    var audioPlayer: AVAudioPlayer? = {
+        guard let url = Bundle.main.url(forResource: Constants.successSound, withExtension: Constants.soundExtension) else { return nil }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            let player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.caf.rawValue)
+            
+            return player
+        } catch let error {
+            print("failed to get audio player with error: \(error)")
+            return nil
+        }
     }()
     
     var holdGestureRecognizer: UILongPressGestureRecognizer!
@@ -261,6 +280,7 @@ class BAHomeViewController: UIViewController {
     
     private func showAddUser(_ userToAdd: BAUser) {
         hapticGenerator.impactOccurred()
+        audioPlayer?.play()
         let viewController: BAAddUserViewController
         
         if let history = BAUserHolder.shared.user.history.first(where: { return $0.addedUser.userId == userToAdd.userId } ) {
