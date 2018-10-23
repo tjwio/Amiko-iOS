@@ -70,7 +70,7 @@ class BAHomeViewController: UIViewController {
     let cameraButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "camera_button"), for: .normal)
-        button.isHidden = false
+        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
