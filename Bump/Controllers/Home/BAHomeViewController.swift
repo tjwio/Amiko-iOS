@@ -119,7 +119,7 @@ class BAHomeViewController: UIViewController {
         guard let url = Bundle.main.url(forResource: Constants.successSound, withExtension: Constants.soundExtension) else { return nil }
         
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setCategory(.soloAmbient, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
             
             let player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.caf.rawValue)
