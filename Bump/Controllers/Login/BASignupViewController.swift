@@ -13,6 +13,12 @@ import SkyFloatingLabelTextField
 
 class BASignupViewController: UIViewController, UITextFieldDelegate {
     
+    var firstName = MutableProperty<String?>(nil)
+    var lastName = MutableProperty<String?>(nil)
+    var phone = MutableProperty<String?>(nil)
+    var email = MutableProperty<String?>(nil)
+    var password = MutableProperty<String?>(nil)
+    
     let ciaoLabel: UILabel = {
         let label = UILabel()
         label.text = "Ciao."
@@ -227,18 +233,23 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = .white
         
+        firstName <~ firstNameTextField.reactive.continuousTextValues
         self.firstNameTextField.delegate = self
         self.firstNameTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingFirstName(sender:)), toolbarStyle: .black)
         
+        lastName <~ lastNameTextField.reactive.continuousTextValues
         self.lastNameTextField.delegate = self
         self.lastNameTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingLastName(sender:)), toolbarStyle: .black)
         
+        email <~ emailTextField.reactive.continuousTextValues
         self.emailTextField.delegate = self
         self.emailTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingEmail(sender:)), toolbarStyle: .black)
         
+        phone <~ phoneTextField.reactive.continuousTextValues
         self.phoneTextField.delegate = self
         self.phoneTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingPhoneNumber(sender:)), toolbarStyle: .black)
         
+        password <~ passwordTextField.reactive.continuousTextValues
         self.passwordTextField.delegate = self
         self.passwordTextField.addDoneToolbar(target: self, selector: #selector(self.userFinishedEditingPassword(sender:)), toolbarStyle: .black)
         
@@ -268,23 +279,25 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         
         _ = self.addBackButtonToView(dark: false)
         
-        let firstNameTextFieldSignal = self.firstNameTextField.reactive.continuousTextValues
-        let lastNameTextFieldSignal  = self.lastNameTextField.reactive.continuousTextValues
-        let phoneTextFieldSignal     = self.phoneTextField.reactive.continuousTextValues
-        let emailTextFieldSignal = self.emailTextField.reactive.continuousTextValues
-        let passwordTextFieldSignal  = self.passwordTextField.reactive.continuousTextValues
+        let producer = SignalProducer.combineLatest(firstName.producer, lastName.producer, phone.producer, email.producer, password.producer).map { (firstName, lastName, phone, email, password) -> Bool in
+            let firstNameValid = firstName?.count ?? 0 > 0
+            let lastNameValid = lastName?.count ?? 0 > 0
+            let phoneValid = phone?.count ?? 0 > 0
+            let emailValid = email?.count ?? 0 > 0 ? BACommonUtility.isValidEmail(email!) : false
+            let passwordValid = password?.count ?? 0 >= 6
+            
+            return firstNameValid && lastNameValid && phoneValid && emailValid && passwordValid
+        }
         
-        disposables += Signal.combineLatest(firstNameTextFieldSignal, lastNameTextFieldSignal, phoneTextFieldSignal, emailTextFieldSignal, passwordTextFieldSignal).map { firstName, lastName, phone, email, password in
-            return (email != nil ? BACommonUtility.isValidEmail(email!) : false) && (firstName?.count ?? 0 > 0 && lastName?.count ?? 0 > 0 && email?.count ?? 0 > 0 && password?.count ?? 0 >= 6 && phone?.count ?? 0 > 0);
-            }.observeValues { [weak self] isEnabled in
-                if (isEnabled) {
-                    self?.createAccountButton.isEnabled = true;
-                    self?.createAccountButton.backgroundColor = self?.createAccountButton.backgroundColor?.withAlphaComponent(0.35)
-                }
-                else {
-                    self?.createAccountButton.isEnabled = false;
-                    self?.createAccountButton.backgroundColor = self?.createAccountButton.backgroundColor?.withAlphaComponent(0.1)
-                }
+        disposables += producer.startWithValues { [unowned self] isEnabled in
+            if (isEnabled) {
+                self.createAccountButton.isEnabled = true;
+                self.createAccountButton.backgroundColor = self.createAccountButton.backgroundColor?.withAlphaComponent(0.35)
+            }
+            else {
+                self.createAccountButton.isEnabled = false;
+                self.createAccountButton.backgroundColor = self.createAccountButton.backgroundColor?.withAlphaComponent(0.1)
+            }
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -407,7 +420,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     //MARK: create account
     @objc private func createAccount(_ sender: BALoadingButton?) {
         sender?.isLoading = true
-        BAAuthenticationManager.shared.signup(firstName: self.firstNameTextField.text!, lastName: self.lastNameTextField.text!, email: self.emailTextField.text!, phone: self.phoneTextField.text!, password: self.passwordTextField.text!, success: { user in
+        BAAuthenticationManager.shared.signup(firstName: firstName.value!, lastName: lastName.value!, email: email.value!, phone: phone.value!, password: password.value!, success: { user in
             let homeBlock = {
                 let viewController = BAFirstXPWelcomeViewController(user: user)
                 self.navigationController?.pushViewController(viewController, animated: true)

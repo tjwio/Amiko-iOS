@@ -10,7 +10,7 @@ import Alamofire
 
 final class BANetworkHandler: NSObject {
     static let shared = BANetworkHandler()
-    private(set) var sessionManager = SessionManager(configuration: .default)
+    private(set) var sessionManager = Session(configuration: .default)
     
     private override init() { super.init() }
 }

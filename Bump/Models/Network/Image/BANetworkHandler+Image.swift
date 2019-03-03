@@ -18,12 +18,10 @@ extension BANetworkHandler {
     public func uploadImage(_ image: Data, success: BAJSONHandler?, failure: BAErrorHandler?) {
         self.sessionManager.upload(multipartFormData: { multipartFormData in
             multipartFormData.append(image, withName: Constants.name, fileName: BAUserHolder.shared.user.randomImageFileName, mimeType: Constants.mimeType)
-        }, with: BAURLRouter.uploadImage) { result in
-            switch result {
-            case .success(let upload, _, _):
-                upload.validate().responseJSON(completionHandler: { response in
-                    success?(response.result.value as? JSON ?? JSON())
-                })
+        }, with: BAURLRouter.uploadImage).responseJSON { response in
+            switch response.result {
+            case .success:
+                success?(response.result.value as? JSON ?? JSON())
             case .failure(let error):
                 failure?(error)
             }
