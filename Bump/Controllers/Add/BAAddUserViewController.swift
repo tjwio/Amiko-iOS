@@ -10,6 +10,7 @@ import UIKit
 import Contacts
 import SnapKit
 import SafariServices
+import SDWebImage
 
 class BAAddUserViewController: UIViewController {
     
@@ -60,16 +61,15 @@ class BAAddUserViewController: UIViewController {
         }
         
         if userToAdd.imageUrl != nil {
-            userView.avatarImageView.imageView.sd_setIndicatorStyle(.gray)
-            userView.avatarImageView.imageView.sd_addActivityIndicator()
-            userView.avatarImageView.imageView.sd_showActivityIndicatorView()
+            userView.avatarImageView.imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            userView.avatarImageView.imageView.sd_imageIndicator?.startAnimatingIndicator()
             
             userToAdd.loadImage(success: { (image, colors) in
                 self.userView.avatarImageView.imageView.image = image
-                self.userView.avatarImageView.imageView.sd_removeActivityIndicator()
+                self.userView.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
                 self.userView.backgroundHeaderView.backgroundColor = colors.background
             }) { _ in
-                self.userView.avatarImageView.imageView.sd_removeActivityIndicator()
+                self.userView.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
             }
         }
         userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)

@@ -110,8 +110,8 @@ class BACameraViewController: UIViewController {
     private func setupConstraints() {
         let backgroundTopConstraint = NSLayoutConstraint(item: self.backgroundView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0.0)
         let backgroundLeadingConstraint = NSLayoutConstraint(item: self.backgroundView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0.0)
-        let backgroundTrailingConstraint = NSLayoutConstraint(item: self.view, attribute: .trailing, relatedBy: .equal, toItem: self.backgroundView, attribute: .trailing, multiplier: 1.0, constant: 0.0)
-        let backgroundBottomConstraint = NSLayoutConstraint(item: self.view, attribute: .bottom, relatedBy: .equal, toItem: self.backgroundView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        let backgroundTrailingConstraint = NSLayoutConstraint(item: self.view!, attribute: .trailing, relatedBy: .equal, toItem: self.backgroundView, attribute: .trailing, multiplier: 1.0, constant: 0.0)
+        let backgroundBottomConstraint = NSLayoutConstraint(item: self.view!, attribute: .bottom, relatedBy: .equal, toItem: self.backgroundView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
         
         let headerTopConstraint = NSLayoutConstraint(item: self.headerLabel, attribute: .top, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide.topAnchor, attribute: .bottom, multiplier: 1.0, constant: 13.0)
         let headerCenterXConstraint = NSLayoutConstraint(item: self.headerLabel, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0.0)

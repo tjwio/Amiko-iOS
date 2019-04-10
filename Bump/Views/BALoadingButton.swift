@@ -56,8 +56,8 @@ class BALoadingButton: UIButton {
     }
     
     override func updateConstraints() {
-        let centerXConstraint = NSLayoutConstraint(item: self.activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0);
-        let centerYConstraint = NSLayoutConstraint(item: self.activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0);
+        let centerXConstraint = NSLayoutConstraint(item: self.activityIndicator!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0);
+        let centerYConstraint = NSLayoutConstraint(item: self.activityIndicator!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0);
         
         NSLayoutConstraint.activate([centerXConstraint, centerYConstraint]);
         

@@ -26,7 +26,7 @@ class BAUserHolder: NSObject {
     
     init(user: BAUser) {
         self.user = user
-        socket = Socket(url: BAAppManager.shared.environment.streamUrl, params: ["token" : BAAuthenticationManager.shared.authToken ?? ""])
+        socket = Socket(BAAppManager.shared.environment.streamUrl, params: ["token" : BAAuthenticationManager.shared.authToken ?? ""])
         super.init()
         
         self.addSocketEvents()
@@ -64,19 +64,19 @@ class BAUserHolder: NSObject {
     //MARK: bump events
     
     private func addSocketEvents() {
-        socket.onOpen = { print("socket connected") }
-        socket.onClose = { print("socket disconnected") }
-        socket.onError = { error in print("socket error: \(error)") }
+        socket.onOpen { print("socket connected") }
+        socket.onClose { print("socket disconnected") }
+        socket.onError { error in print("socket error: \(error)") }
         
         let lobby = socket.channel(BAConstants.Channel.lobby)
         let privateRoom = socket.channel("\(BAConstants.Channel.privateRoom):\(user.userId)")
         
-        socket.onMessage = { payload in
+        socket.onMessage { payload in
             print("socket message: \(payload)")
         }
         
-        privateRoom.on(BAConstants.Events.matched) { [weak self] payload in
-            if let user = BAUser(json: payload) {
+        privateRoom.on(BAConstants.Events.matched) { [weak self] message in
+            if let user = BAUser(json: message.payload) {
                 if let bumpCallback = self?.bumpMatchCallback {
                     bumpCallback(user)
                 }
@@ -85,23 +85,23 @@ class BAUserHolder: NSObject {
         
         socket.connect()
         _ = lobby.join()
-            .receive("ok", handler: { _ in
+            .receive("ok", callback: { _ in
                 print("lobby connected")
             })
-            .receive("error", handler: { error in
+            .receive("error", callback: { error in
                 print("lobby error: \(error)")
             })
-            .receive("timeout", handler: { error in
+            .receive("timeout", callback: { error in
                 print("lobby timeout: \(error)")
             })
         _ = privateRoom.join()
-            .receive("ok", handler: { _ in
+            .receive("ok", callback: { _ in
                 print("private room connected")
             })
-            .receive("error", handler: { error in
+            .receive("error", callback: { error in
                 print("private room error: \(error)")
             })
-            .receive("timeout", handler: { error in
+            .receive("timeout", callback: { error in
                 print("private room timeout: \(error)")
             })
     }

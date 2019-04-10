@@ -212,7 +212,7 @@ public class BAUser: NSObject, JSONDecodable {
         }
         
         if let imageUrl = self.imageUrl {
-            SDWebImageManager.shared().loadImage(with: URL(string: imageUrl), options: .retryFailed, progress: nil) { (image, _, error, _, _, _) in
+            SDWebImageManager.shared.loadImage(with: URL(string: imageUrl), options: .retryFailed, progress: nil) { (image, _, error, _, _, _) in
                 if let image = image {
                     image.getColors { [weak self] colors in
                         self?.image.value = image

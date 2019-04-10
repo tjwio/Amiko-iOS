@@ -20,7 +20,7 @@ class BAHomeViewController: UIViewController {
         static let instructionsHold = "Hold anywhere to bump"
         static let instructionsBump = "Bump now"
         static let waitingToReceiveLocation = "Please wait while we initiliaze your location"
-        static let firstFrame = NSNumber(value: 36.0)
+        static let firstFrame = 36.0
         static let successSound = "Success8"
         static let soundExtension = "caf"
     }
@@ -79,11 +79,13 @@ class BAHomeViewController: UIViewController {
         return button
     }()
     
-    let bumpAnimation: LOTAnimationView = {
-        let animation = LOTAnimationView(name: "bump")
+    let bumpAnimation: AnimationView = {
+        let animation = AnimationView(name: "bump")
         animation.contentMode = .scaleAspectFit
-        animation.loopAnimation = true
-        animation.setProgressWithFrame(Constants.firstFrame)
+        animation.loopMode = .loop
+        if let frame = AnimationFrameTime(exactly: Constants.firstFrame) {
+            animation.currentFrame = frame
+        }
         animation.isHidden = true
         animation.translatesAutoresizingMaskIntoConstraints = false
         
@@ -161,15 +163,14 @@ class BAHomeViewController: UIViewController {
         updateUserInfo(user)
         
         if user.imageUrl != nil {
-            avatarImageView.imageView.sd_setIndicatorStyle(.gray)
-            avatarImageView.imageView.sd_addActivityIndicator()
-            avatarImageView.imageView.sd_showActivityIndicatorView()
+            avatarImageView.imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            avatarImageView.imageView.sd_imageIndicator?.startAnimatingIndicator()
             
             user.loadImage(success: { (image, colors) in
-                self.avatarImageView.imageView.sd_removeActivityIndicator()
+                self.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
                 self.backgroundHeaderView.backgroundColor = colors.background
             }) { _ in
-                self.avatarImageView.imageView.sd_removeActivityIndicator()
+                self.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
             }
         }
         
@@ -308,16 +309,18 @@ class BAHomeViewController: UIViewController {
             isHoldingToBump = true
             bumpInstructionsLabel.text = Constants.instructionsBump
             
-            bumpAnimation.loopAnimation = true
+            bumpAnimation.loopMode = .loop
             bumpAnimation.isHidden = false
             bumpAnimation.alpha = 0.0
-            bumpAnimation.setProgressWithFrame(Constants.firstFrame)
+            if let frame = AnimationFrameTime(exactly: Constants.firstFrame) {
+                bumpAnimation.currentFrame = frame
+            }
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.bumpAnimation.alpha = 1.0
                 self.bumpImageView.alpha = 0.0
             }) { _ in
-                self.bumpAnimation.play(fromProgress: 0.0, toProgress: 1.0, withCompletion: nil)
+                self.bumpAnimation.play(fromProgress: 0.0, toProgress: 1.0, completion: nil)
                 self.bumpImageView.isHidden = true
             }
         }
@@ -328,8 +331,8 @@ class BAHomeViewController: UIViewController {
             bumpImageView.isHidden = false
             
             bumpAnimation.pause()
-            bumpAnimation.loopAnimation = false
-            bumpAnimation.play(toFrame: Constants.firstFrame, withCompletion: { _ in
+            bumpAnimation.loopMode = .playOnce
+            bumpAnimation.play(toFrame: AnimationFrameTime(exactly: Constants.firstFrame)!, completion: { _ in
                 UIView.animate(withDuration: 0.5, animations: {
                     self.bumpImageView.alpha = 1.0
                     self.bumpAnimation.alpha = 0.0

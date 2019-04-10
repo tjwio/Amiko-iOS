@@ -191,7 +191,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         let passwordTextFieldSignal  = self.passwordTextField.reactive.continuousTextValues
         
         self.disposables += Signal.combineLatest(emailTextFieldSignal, passwordTextFieldSignal).map { email, password in
-            return (email != nil ? BACommonUtility.isValidEmail(email!) : false) && (password?.count ?? 0 > 0);
+            return BACommonUtility.isValidEmail(email) && !password.isEmpty;
             }.observeValues { [weak self] isEnabled in
                 guard let strongSelf = self else { return }
                 if (isEnabled) {
