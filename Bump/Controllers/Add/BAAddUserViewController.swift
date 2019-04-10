@@ -62,11 +62,15 @@ class BAAddUserViewController: UIViewController {
         
         if userToAdd.imageUrl != nil {
             userView.avatarImageView.imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            userView.avatarImageView.imageView.sd_imageIndicator?.startAnimatingIndicator()
             
             userToAdd.loadImage(success: { (image, colors) in
                 self.userView.avatarImageView.imageView.image = image
+                self.userView.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
                 self.userView.backgroundHeaderView.backgroundColor = colors.background
-            }, failure: nil)
+            }) { _ in
+                self.userView.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
+            }
         }
         userView.doneButton.addTarget(self, action: #selector(self.done(_:)), for: .touchUpInside)
         userView.cancelButton.addTarget(self, action: #selector(self.cancel(_:)), for: .touchUpInside)

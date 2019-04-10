@@ -169,15 +169,20 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         }
         
         if history.addedUser.imageUrl != nil {
-            cell.avatarView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell.avatarView.imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell.avatarView.imageView.sd_imageIndicator?.startAnimatingIndicator()
             
             history.addedUser.loadImage(success: { (image, colors) in
                 cell.avatarView.imageView.image = image
+                cell.avatarView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
                 cell.headerView.backgroundColor = colors.background
-            }, failure: nil)
+            }) { _ in
+                cell.avatarView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
+            }
         }
         else {
             cell.avatarView.imageView.image = .blankAvatar
+            cell.avatarView.sd_imageIndicator = nil
         }
         
         if indexPath.section == currentIndexPath?.section && !cell.isMain {

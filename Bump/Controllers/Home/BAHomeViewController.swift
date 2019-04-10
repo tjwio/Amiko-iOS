@@ -164,10 +164,14 @@ class BAHomeViewController: UIViewController {
         
         if user.imageUrl != nil {
             avatarImageView.imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            avatarImageView.imageView.sd_imageIndicator?.startAnimatingIndicator()
             
             user.loadImage(success: { (image, colors) in
+                self.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
                 self.backgroundHeaderView.backgroundColor = colors.background
-            }, failure: nil)
+            }) { _ in
+                self.avatarImageView.imageView.sd_imageIndicator?.stopAnimatingIndicator()
+            }
         }
         
         disposables += (avatarImageView.imageView.reactive.image <~ user.image)
