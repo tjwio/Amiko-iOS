@@ -86,7 +86,7 @@ class BAProfileDetailValueTableViewCell: UITableViewCell {
         
         setNeedsUpdateConstraints()
         
-        disposables += textField.reactive.continuousTextValues.map { return $0?.isEmpty ?? true }.observeValues { [weak self] hidden in
+        disposables += textField.reactive.continuousTextValues.map { return $0.isEmpty }.observeValues { [weak self] hidden in
             self?.updateIconColor(isHidden: hidden)
         }
     }

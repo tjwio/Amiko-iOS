@@ -8,13 +8,11 @@
 
 import UIKit
 import AVKit
-import MMSCameraViewController
-import MMSProfileImagePicker
 import Photos
 import ReactiveCocoa
 import ReactiveSwift
 
-class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MMSProfileImagePickerDelegate {
+class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     struct Constants {
         static let cellIdentifier = "BAProfileDetailValueTableViewCellIdentifier"
         static let headers = [2, 4, 7]
@@ -55,8 +53,6 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
     let imageDidUpdate = MutableProperty<Bool>(false)
     
     var originalProfileFrame: CGRect?
-    
-    let profilePicker = MMSProfileImagePicker()
     
     let profileView: BAProfileView = {
         let view = BAProfileView()
@@ -108,8 +104,6 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         view.backgroundColor = .clear
-        
-        profilePicker.delegate = self
         
         disposables += (profileView.avatarImageView.imageView.reactive.image <~ self.image)
         profileView.saveButton.addTarget(self, action: #selector(self.saveProfileView(_:)), for: .touchUpInside)
@@ -301,12 +295,12 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
             let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
             
             if authStatus == .authorized {
-                self.profilePicker.select(fromCamera: self)
+                self.showCameraController()
             }
             else {
                 AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
                     if granted {
-                        self.profilePicker.select(fromCamera: self)
+                        self.showCameraController()
                     }
                 })
             }
@@ -315,12 +309,12 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
             let authStatus = PHPhotoLibrary.authorizationStatus()
             
             if authStatus == .authorized {
-                self.profilePicker.select(fromPhotoLibrary: self)
+                self.showImageController()
             }
             else {
                 PHPhotoLibrary.requestAuthorization { newStatus in
                     if newStatus == .authorized {
-                        self.profilePicker.select(fromPhotoLibrary: self)
+                        self.showImageController()
                     }
                     else {
                         self.showLeftMessage("Failed to gain access to photo library", type: .error)
@@ -336,17 +330,35 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         present(alertController, animated: true, completion: nil)
     }
     
-    func mmsImagePickerControllerDidCancel(_ picker: MMSProfileImagePicker) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func mmsImagePickerController(_ picker: MMSProfileImagePicker, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = (info[.editedImage] ?? info[.originalImage]) as? UIImage {
             self.image.value = image
             imageDidUpdate.value = true
             
             picker.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    private func showCameraController() {
+        let cameraController = UIImagePickerController()
+        cameraController.allowsEditing = true
+        cameraController.delegate = self
+        cameraController.sourceType = .camera
+        
+        present(cameraController, animated: true, completion: nil)
+    }
+    
+    private func showImageController() {
+        let cameraController = UIImagePickerController()
+        cameraController.allowsEditing = true
+        cameraController.delegate = self
+        cameraController.sourceType = .photoLibrary
+        
+        present(cameraController, animated: true, completion: nil)
     }
     
     // MARK: Keyboard Notifications
@@ -383,9 +395,4 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
             })
         }
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }

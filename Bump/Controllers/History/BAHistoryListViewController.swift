@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 import SnapKit
 
 class BAHistoryListViewController: UIViewController, BAHistoryViewController, UITableViewDataSource, UITableViewDelegate {
@@ -105,7 +106,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     ///MARK: history change delegate
     
     func showEntry(_ entry: BAHistory) {
-        if let index = user.history.index(of: entry) {
+        if let index = user.history.firstIndex(of: entry) {
             isScrollingFromMap = true
             let indexPath = IndexPath(row: 0, section: index)
             
@@ -168,17 +169,12 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         }
         
         if history.addedUser.imageUrl != nil {
-            cell.avatarView.imageView.sd_setIndicatorStyle(.gray)
-            cell.avatarView.imageView.sd_addActivityIndicator()
-            cell.avatarView.imageView.sd_showActivityIndicatorView()
+            cell.avatarView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             
             history.addedUser.loadImage(success: { (image, colors) in
                 cell.avatarView.imageView.image = image
-                cell.avatarView.imageView.sd_removeActivityIndicator()
                 cell.headerView.backgroundColor = colors.background
-            }) { _ in
-                cell.avatarView.imageView.sd_removeActivityIndicator()
-            }
+            }, failure: nil)
         }
         else {
             cell.avatarView.imageView.image = .blankAvatar

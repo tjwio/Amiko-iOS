@@ -16,8 +16,8 @@ extension BANetworkHandler {
     public func loadUser(success: BAJSONHandler?, failure: BAErrorHandler?) {
         self.sessionManager.request(BAURLRouter.loadUser).validate().responseJSON { response in
             switch response.result {
-            case .success:
-                success?(response.result.value as? JSON ?? JSON())
+            case .success(let value):
+                success?(value as? JSON ?? JSON())
             case .failure(let error):
                 failure?(error)
             }
@@ -27,8 +27,8 @@ extension BANetworkHandler {
     public func loadHistory(success: BAJSONListHandler?, failure: BAErrorHandler?) {
         self.sessionManager.request(BAURLRouter.loadHistory).validate().responseJSON { response in
             switch response.result {
-            case .success:
-                success?(response.result.value as? [JSON] ?? [JSON]())
+            case .success(let value):
+                success?(value as? [JSON] ?? [JSON]())
             case .failure(let error):
                 failure?(error)
             }
@@ -40,7 +40,7 @@ extension BANetworkHandler {
     public func addConnection(parameters: Parameters, success: BAJSONHandler?, failure: BAErrorHandler?) {
         self.sessionManager.request(BAURLRouter.addConnection(parameters: parameters)).validate().responseJSON { response in
             switch response.result {
-            case .success: success?(response.result.value as? JSON ?? JSON())
+            case .success(let value): success?(value as? JSON ?? JSON())
             case .failure(let error): failure?(error)
             }
         }
@@ -51,7 +51,7 @@ extension BANetworkHandler {
     public func updateUser(parameters: Parameters, success: BAJSONHandler?, failure: BAErrorHandler?) {
         self.sessionManager.request(BAURLRouter.updateUser(parameters: parameters)).validate().responseJSON { response in
             switch response.result {
-            case .success: success?(response.result.value as? JSON ?? JSON())
+            case .success(let value): success?(value as? JSON ?? JSON())
             case .failure(let error): failure?(error)
             }
         }
@@ -62,7 +62,7 @@ extension BANetworkHandler {
     public func deleteConnection(historyId: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {
         self.sessionManager.request(BAURLRouter.deleteConnection(historyId: historyId)).validate().responseData { response in
             switch response.result {
-            case .success: success?()
+            case .success(_): success?()
             case .failure(let error): failure?(error)
             }
         }

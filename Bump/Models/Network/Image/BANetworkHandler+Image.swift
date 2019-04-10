@@ -6,7 +6,7 @@
 //  Copyright © 2018 tjwio. All rights reserved.
 //
 
-import Foundation
+import Alamofire
 import Gloss
 
 extension BANetworkHandler {
@@ -16,14 +16,13 @@ extension BANetworkHandler {
     }
     
     public func uploadImage(_ image: Data, success: BAJSONHandler?, failure: BAErrorHandler?) {
-        self.sessionManager.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(image, withName: Constants.name, fileName: BAUserHolder.shared.user.randomImageFileName, mimeType: Constants.mimeType)
-        }, with: BAURLRouter.uploadImage).responseJSON { response in
+        let multipartFormData = MultipartFormData(fileManager: .default, boundary: nil)
+        multipartFormData.append(image, withName: Constants.name, fileName: BAUserHolder.shared.user.randomImageFileName, mimeType: Constants.mimeType)
+        
+        sessionManager.upload(multipartFormData: multipartFormData, with: BAURLRouter.uploadImage).validate().responseJSON { response in
             switch response.result {
-            case .success:
-                success?(response.result.value as? JSON ?? JSON())
-            case .failure(let error):
-                failure?(error)
+            case .success(let value): success?(value as? JSON ?? JSON())
+            case .failure(let error): failure?(error)
             }
         }
     }

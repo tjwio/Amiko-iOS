@@ -21,10 +21,10 @@ class BABaseLoadingViewController: UIViewController {
     
     let animationComplete = MutableProperty<Bool>(false)
     
-    let bumpAnimation: LOTAnimationView = {
-        let animation = LOTAnimationView(name: Constants.logoAnimation)
+    let bumpAnimation: AnimationView = {
+        let animation = AnimationView(name: Constants.logoAnimation)
         animation.contentMode = .scaleAspectFit
-        animation.loopAnimation = false
+        animation.loopMode = .playOnce
         animation.isHidden = false
         animation.animationSpeed = 1.0
         animation.translatesAutoresizingMaskIntoConstraints = false
@@ -32,10 +32,10 @@ class BABaseLoadingViewController: UIViewController {
         return animation
     }()
     
-    let spinnerAnimation: LOTAnimationView = {
-        let animation = LOTAnimationView(name: Constants.spinner)
+    let spinnerAnimation: AnimationView = {
+        let animation = AnimationView(name: Constants.spinner)
         animation.contentMode = .scaleAspectFit
-        animation.loopAnimation = true
+        animation.loopMode = .loop
         animation.isHidden = true
         animation.animationSpeed = 1.0
         animation.translatesAutoresizingMaskIntoConstraints = false
