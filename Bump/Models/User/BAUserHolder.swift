@@ -47,7 +47,7 @@ class BAUserHolder: NSObject {
     
     //MARK: load
     class func loadUser(userId: String, success: BAUserHandler?, failure: BAErrorHandler?) {
-        BANetworkHandler.shared.loadUser(success: { response in
+        NetworkHandler.shared.loadUser(success: { response in
             if let user = BAUser(json: response) {
                 user.loadHistory(success: { _ in
                     success?(user)

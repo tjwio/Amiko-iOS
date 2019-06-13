@@ -8,8 +8,8 @@
 
 import Alamofire
 
-final class BANetworkHandler: NSObject {
-    static let shared = BANetworkHandler()
+final class NetworkHandler: NSObject {
+    static let shared = NetworkHandler()
     private(set) var sessionManager = Session(configuration: .default)
     
     private override init() { super.init() }
