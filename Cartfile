@@ -1,5 +1,5 @@
 github "SnapKit/SnapKit" ~> 4.0.0
-github "Alamofire/Alamofire" "5.0.0-beta.4"
+github "Alamofire/Alamofire" "5.0.0-beta.6"
 github "davidstump/SwiftPhoenixClient" ~> 1.0
 github "hkellaway/Gloss"
 github "rs/SDWebImage"
