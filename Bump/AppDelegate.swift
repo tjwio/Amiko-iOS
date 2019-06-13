@@ -75,6 +75,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if let url = userActivity.webpageURL, url.lastPathComponent == Constants.user, let id = url.paramaters[Constants.id] {
+            NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
+        }
+        
+        return true
+    }
+    
     func loadWelcomeViewController() {
         let navigationController = UINavigationController(rootViewController: BAWelcomeViewController())
         self.window?.rootViewController = navigationController

@@ -130,6 +130,7 @@
 /* Begin PBXFileReference section */
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
+		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
 		22C409D0225D72AC00475C19 /* UIViewController+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Message.swift"; sourceTree = "<group>"; };
 		2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASelectAccountTableViewCell.swift; sourceTree = "<group>"; };
 		2F06357920853E7F00D655E7 /* BAAddUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAddUserView.swift; sourceTree = "<group>"; };
@@ -420,6 +421,7 @@
 		2F4BBB2120522A3700AAFE1A /* Bump */ = {
 			isa = PBXGroup;
 			children = (
+				22AD845A22B22BA400BC7BDC /* Bump.entitlements */,
 				2F4BBB5F20522AD400AAFE1A /* Models */,
 				2F6E52092083EBD300E8D8CA /* Views */,
 				2F4BBB6020522AE900AAFE1A /* Controllers */,
@@ -773,6 +775,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 					2F4BBB3220522A3700AAFE1A = {
 						CreatedOnToolsVersion = 9.2;
@@ -1114,6 +1121,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 49;
@@ -1139,6 +1147,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 49;
