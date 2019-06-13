@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import ReactiveCocoa
+import ReactiveSwift
 
 class BAMainTabBarViewController: UITabBarController {
+    private var disposables = CompositeDisposable()
+    
+    deinit {
+        disposables.dispose()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,5 +36,11 @@ class BAMainTabBarViewController: UITabBarController {
         
         viewControllers = [homeController, historyController]
         tabBar.tintColor = .black
+        
+        disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
+            guard let id = notification.object as? String else { return }
+            
+            
+        }
     }
 }

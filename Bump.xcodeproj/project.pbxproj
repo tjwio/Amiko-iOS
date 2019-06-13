@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C409D0225D72AC00475C19 /* UIViewController+Message.swift */; };
 		2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */; };
 		2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F06357920853E7F00D655E7 /* BAAddUserView.swift */; };
@@ -126,6 +127,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22C409D0225D72AC00475C19 /* UIViewController+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Message.swift"; sourceTree = "<group>"; };
 		2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASelectAccountTableViewCell.swift; sourceTree = "<group>"; };
 		2F06357920853E7F00D655E7 /* BAAddUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAddUserView.swift; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */,
 				2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */,
 				22C409D0225D72AC00475C19 /* UIViewController+Message.swift */,
+				22AD845622B216CF00BC7BDC /* URL+Params.swift */,
 				2F18D39220FEA16000C97E3A /* URLRequesst+cURL.swift */,
 			);
 			path = Extensions;
@@ -907,6 +910,7 @@
 				2F18D3A421056A5B00C97E3A /* BAHistory.swift in Sources */,
 				2F18D39F2105584600C97E3A /* BAUserCardTableViewCell.swift in Sources */,
 				2F18D3A62106F54E00C97E3A /* BALogger.swift in Sources */,
+				22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */,
 				2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */,
 				2F262EFD2134FF3500138D4D /* Array+RemoveObject.swift in Sources */,
 				2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */,

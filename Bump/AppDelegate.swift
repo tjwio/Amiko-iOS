@@ -11,6 +11,11 @@ import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    private struct Constants {
+        static let scheme = "ciaohaus"
+        static let user = "user"
+        static let id = "id"
+    }
 
     var window: UIWindow?
 
@@ -59,6 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let scheme = url.scheme, let host = url.host, scheme.lowercased() == Constants.scheme, host.lowercased() == Constants.user,
+            let id = url.paramaters[Constants.id] {
+            NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
+        }
+        
+        return true
     }
     
     func loadWelcomeViewController() {
