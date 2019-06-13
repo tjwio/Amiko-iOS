@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
+		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
 		22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C409D0225D72AC00475C19 /* UIViewController+Message.swift */; };
 		2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */; };
 		2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F06357920853E7F00D655E7 /* BAAddUserView.swift */; };
@@ -128,6 +129,7 @@
 
 /* Begin PBXFileReference section */
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
+		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22C409D0225D72AC00475C19 /* UIViewController+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Message.swift"; sourceTree = "<group>"; };
 		2F063577208539A000D655E7 /* BASelectAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BASelectAccountTableViewCell.swift; sourceTree = "<group>"; };
 		2F06357920853E7F00D655E7 /* BAAddUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAddUserView.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				2F06357C20854AAF00D655E7 /* BAAddUserViewController.swift */,
+				22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -938,6 +941,7 @@
 				2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */,
 				2F31CFB92137CEA300308702 /* BAProfileBaseViewController.swift in Sources */,
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
+				22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */,
 				2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */,
 				2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */,
 				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,

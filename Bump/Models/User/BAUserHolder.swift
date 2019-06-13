@@ -61,6 +61,21 @@ class BAUserHolder: NSObject {
         }, failure: failure)
     }
     
+    class func loadSpecificUser(id: String, success: BAUserHandler?, failure: BAErrorHandler?) {
+        NetworkHandler.shared.loadSpecificUser(id: id, success: { response in
+            if let user = BAUser(json: response) {
+                user.loadHistory(success: { _ in
+                    success?(user)
+                }, failure: { _ in
+                    success?(user)
+                })
+            }
+            else {
+                failure?(BAError.invalidJson)
+            }
+        }, failure: failure)
+    }
+    
     //MARK: bump events
     
     private func addSocketEvents() {

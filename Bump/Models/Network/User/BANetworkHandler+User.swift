@@ -6,9 +6,7 @@
 //  Copyright © 2018 tjwio. All rights reserved.
 //
 
-import Foundation
 import Alamofire
-import Gloss
 
 extension NetworkHandler {
     //MARK: GET
@@ -20,6 +18,15 @@ extension NetworkHandler {
                 success?(value as? JSON ?? JSON())
             case .failure(let error):
                 failure?(error)
+            }
+        }
+    }
+    
+    public func loadSpecificUser(id: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
+        self.sessionManager.request(URLRouter.loadSpecificUser(id: id)).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value): success?(value as? JSON ?? JSON())
+            case .failure(let error): failure?(error)
             }
         }
     }

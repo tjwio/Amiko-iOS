@@ -40,7 +40,20 @@ class BAMainTabBarViewController: UITabBarController {
         disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
             guard let id = notification.object as? String else { return }
             
+            let viewController = LoadProfileViewController(userId: id)
+            viewController.successCallback = { [weak self] message in
+                DispatchQueue.main.async {
+                    self?.showLeftMessage(message, type: .success)
+                }
+            }
+        
+            viewController.providesPresentationContextTransitionStyle = true
+            viewController.definesPresentationContext = true
+            viewController.modalPresentationStyle = .overCurrentContext
             
+            DispatchQueue.main.async {
+                self.present(viewController, animated: false, completion: nil)
+            }
         }
     }
 }

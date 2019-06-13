@@ -44,7 +44,7 @@ enum URLRouter: URLRequestConvertible {
         case .loadUser, .updateUser:
             return "/users/me"
         case .loadSpecificUser(let id):
-            return "/users/\(id)"
+            return "/users/profile/\(id)"
         case .loadHistory:
             return "/users/connections"
         case .signup:
