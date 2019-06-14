@@ -27,4 +27,39 @@ platform :ios do
     	)
   	end
   end
+
+  lane :build do |options|
+    gym(
+      scheme: "Bump",
+      configuration: "Release",
+      export_method: "ad-hoc",
+      export_options: { compileBitcode: false }
+    )
+
+    upload_to_appcenter(app_name: "Ciao")
+  end
+
+  lane :travis_beta do
+    setup_travis
+    # ensure_git_status_clean
+    match(type: "adhoc", readonly: is_ci)
+    # build_number = increment_build_number(xcodeproj: "Restaurant.xcodeproj")
+    # # Commit the version bump, skipping CI Build
+    # commit_version_bump(xcodeproj: "Restaurant.xcodeproj", message:"chore(project): update build to #{build_number} [ci skip]")
+    # # Push new build number
+    # push_to_git_remote(tags: false)
+    build_all
+  end
+
+  lane :upload_to_appcenter do |options|
+    appcenter_upload(
+      api_token: "5e0b943058bdb7eec030b82b8c216bd609cf385b",
+      owner_name: "tjwio",
+      app_name: options[:app_name],
+      ipa: "./Bump.ipa",
+      dsym: "./Bump.app.dSYM.zip",
+      destinations: "Internal",
+      notify_testers: true
+    )
+  end
 end
