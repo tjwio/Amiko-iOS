@@ -48,7 +48,7 @@ platform :ios do
     # commit_version_bump(xcodeproj: "Restaurant.xcodeproj", message:"chore(project): update build to #{build_number} [ci skip]")
     # # Push new build number
     # push_to_git_remote(tags: false)
-    build_all
+    build
   end
 
   lane :upload_to_appcenter do |options|
