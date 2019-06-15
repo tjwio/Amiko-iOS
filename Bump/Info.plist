@@ -55,6 +55,8 @@
 	<string>Location is used to increase accuracy of bump matching</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photos are used to choose a profile image</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>NFC scanner is used to scan an Amiko Card</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AvenirNextLTPro-Bold.otf</string>

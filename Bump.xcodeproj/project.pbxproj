@@ -12,6 +12,7 @@
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
 		2248BFAB22B3B96100979398 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA622B3B96000979398 /* AppCenterCrashes.framework */; };
 		2248BFAC22B3B96100979398 /* AppCenterDistribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA722B3B96100979398 /* AppCenterDistribute.framework */; };
+		2248BFB422B49EE500979398 /* HomeViewController+NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248BFB322B49EE500979398 /* HomeViewController+NFC.swift */; };
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
 		22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C409D0225D72AC00475C19 /* UIViewController+Message.swift */; };
@@ -137,6 +138,7 @@
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
 		2248BFA622B3B96000979398 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		2248BFA722B3B96100979398 /* AppCenterDistribute.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterDistribute.framework; sourceTree = "<group>"; };
+		2248BFB322B49EE500979398 /* HomeViewController+NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+NFC.swift"; sourceTree = "<group>"; };
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			children = (
 				2FFAE405213253C40045B75E /* BAMainTabBarViewController.swift */,
 				2F1312042081AF2600D462F8 /* BAHomeViewController.swift */,
+				2248BFB322B49EE500979398 /* HomeViewController+NFC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -801,6 +804,9 @@
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.NearFieldCommunicationTagReading = {
+								enabled = 1;
+							};
 							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
@@ -979,6 +985,7 @@
 				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */,
+				2248BFB422B49EE500979398 /* HomeViewController+NFC.swift in Sources */,
 				2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
 				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,
