@@ -18,13 +18,15 @@ extension BAHomeViewController: NFCNDEFReaderSessionDelegate {
         var result = ""
         messages.forEach { (nfcndefMessage) in
             nfcndefMessage.records.forEach({ (nfcndefPayload) in
-                result += String.init(data: nfcndefPayload.payload.advanced(by: 3), encoding: .utf8)!
+                result += (String(data: nfcndefPayload.payload, encoding: .utf8) ?? "").replacingOccurrences(of: "\0", with: "")
             })
         }
         
-        guard result.contains("ciao.haus://"), let url = URL(string: result), UIApplication.shared.canOpenURL(url) else { return }
+        guard result.contains("ciaohaus://"), let url = URL(string: result) else { return }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            guard UIApplication.shared.canOpenURL(url) else { return }
+            
             session.invalidate()
             UIApplication.shared.open(url)
         }
