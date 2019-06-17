@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import ReactiveCocoa
+import ReactiveSwift
 
 class BAMainTabBarViewController: UITabBarController {
+    private var disposables = CompositeDisposable()
+    
+    deinit {
+        disposables.dispose()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,5 +36,36 @@ class BAMainTabBarViewController: UITabBarController {
         
         viewControllers = [homeController, historyController]
         tabBar.tintColor = .black
+        
+        disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
+            guard let id = notification.object as? String else { return }
+            DispatchQueue.main.async {
+                self.openProfileController(id: id)
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let id = BAAppManager.shared.deepLinkId {
+            openProfileController(id: id)
+            BAAppManager.shared.deepLinkId = nil
+        }
+    }
+    
+    private func openProfileController(id: String) {
+        let viewController = LoadProfileViewController(userId: id)
+        viewController.successCallback = { [weak self] message in
+            DispatchQueue.main.async {
+                self?.showLeftMessage(message, type: .success)
+            }
+        }
+        
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        
+        self.present(viewController, animated: false, completion: nil)
     }
 }

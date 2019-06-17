@@ -9,7 +9,7 @@
 import Alamofire
 import Gloss
 
-extension BANetworkHandler {
+extension NetworkHandler {
     private struct Constants {
         static let name = "file"
         static let mimeType = "image/jpeg"
@@ -19,7 +19,7 @@ extension BANetworkHandler {
         let multipartFormData = MultipartFormData(fileManager: .default, boundary: nil)
         multipartFormData.append(image, withName: Constants.name, fileName: BAUserHolder.shared.user.randomImageFileName, mimeType: Constants.mimeType)
         
-        sessionManager.upload(multipartFormData: multipartFormData, with: BAURLRouter.uploadImage).validate().responseJSON { response in
+        sessionManager.upload(multipartFormData: multipartFormData, with: URLRouter.uploadImage).validate().responseJSON { response in
             switch response.result {
             case .success(let value): success?(value as? JSON ?? JSON())
             case .failure(let error): failure?(error)

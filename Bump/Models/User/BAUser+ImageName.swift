@@ -22,7 +22,7 @@ extension BAUser {
             return
         }
         
-        BANetworkHandler.shared.uploadImage(data, success: { _ in
+        NetworkHandler.shared.uploadImage(data, success: { _ in
             image.getColors { colors in
                 self.image.value = image
                 self.imageColors.value = colors

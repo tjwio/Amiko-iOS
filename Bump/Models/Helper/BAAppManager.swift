@@ -25,6 +25,8 @@ class BAAppManager: NSObject {
     
     private(set) var environment: BAEnvironment
     
+    var deepLinkId: String?
+    
     private init(environment: BAEnvironment) {
         self.environment = environment
         super.init()

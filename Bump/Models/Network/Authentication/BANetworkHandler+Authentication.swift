@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-extension BANetworkHandler {
+extension NetworkHandler {
     public func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
         let parameters = [
             BAConstants.User.firstName : firstName,
@@ -19,7 +19,7 @@ extension BANetworkHandler {
             BAConstants.User.password : password
         ]
         
-        self.sessionManager.request(BAURLRouter.signup(parameters: parameters)).validate().responseJSON { response in
+        self.sessionManager.request(URLRouter.signup(parameters: parameters)).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 success?(value as? JSON ?? JSON())
@@ -35,7 +35,7 @@ extension BANetworkHandler {
             BAConstants.User.password : password
         ]
         
-        self.sessionManager.request(BAURLRouter.login(parameters: parameters)).validate().responseJSON { response in
+        self.sessionManager.request(URLRouter.login(parameters: parameters)).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 success?(value as? JSON ?? JSON())

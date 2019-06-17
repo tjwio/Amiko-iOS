@@ -7,6 +7,5 @@ github "evgenyneu/keychain-swift" ~> 11.0
 github "ReactiveCocoa/ReactiveCocoa" ~> 9.0
 github "Skyscanner/SkyFloatingLabelTextField"
 github "wxxsw/GSMessages"
-github "acamill/HockeySDK-iOS" "misc/xcode10.2-tmp-fix"
 github "airbnb/lottie-ios" "master"
 github "tjwio/SwiftFeather" "master"

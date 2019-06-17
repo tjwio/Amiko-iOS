@@ -9,6 +9,8 @@
 import UIKit
 import Gloss
 
+public typealias JSON = [String: Any]
+
 public typealias BABumpHandler = (BABumpEvent) -> Void
 public typealias BAUserHandler = (BAUser) -> Void
 

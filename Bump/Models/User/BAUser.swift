@@ -187,7 +187,7 @@ public class BAUser: NSObject, JSONDecodable {
     //MARK: load/get
     
     func loadHistory(success: BAHistoryListHandler?, failure: BAErrorHandler?) {
-        BANetworkHandler.shared.loadHistory(success: { response in
+        NetworkHandler.shared.loadHistory(success: { response in
             guard let historyList = [BAHistory].from(jsonArray: response) else {
                 self.history = []
                 failure?(BAError.invalidJson)
@@ -239,7 +239,7 @@ public class BAUser: NSObject, JSONDecodable {
             BAHistory.Constants.longitude : longitude
         ]
         
-        BANetworkHandler.shared.addConnection(parameters: parameters, success: { json in
+        NetworkHandler.shared.addConnection(parameters: parameters, success: { json in
             if let entry = BAHistory(json: json, user: self) {
                 self.history.insert(entry, at: 0)
                 success?(entry)
@@ -258,7 +258,7 @@ public class BAUser: NSObject, JSONDecodable {
     func updateUser(firstName: String, lastName: String, profession: String, company: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {
         let parameters = BAUser.json(firstName: firstName, lastName: lastName, profession: profession, company: company, phone: phone, email: email, website: website, facebook: facebook, linkedin: linkedin, instagram: instagram, twitter: twitter)
         
-        BANetworkHandler.shared.updateUser(parameters: parameters, success: { _ in
+        NetworkHandler.shared.updateUser(parameters: parameters, success: { _ in
             self.firstName = firstName
             self.lastName = lastName
             self.profession = profession
@@ -281,7 +281,7 @@ public class BAUser: NSObject, JSONDecodable {
     //MARK: delete
     
     func deleteConnection(history: BAHistory, success: BAEmptyHandler?, failure: BAErrorHandler?) {
-        BANetworkHandler.shared.deleteConnection(historyId: history.id, success: {
+        NetworkHandler.shared.deleteConnection(historyId: history.id, success: {
             self.history.remove(object: history)
             
             success?()

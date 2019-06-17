@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import CoreMotion
+import CoreNFC
 import Lottie
 import ReactiveCocoa
 import ReactiveSwift
@@ -29,6 +30,18 @@ class BAHomeViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
         button.setTitle(String.featherIcon(name: .edit2), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.featherFont(size: 20.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 22.0
+        
+        return button
+    }()
+    
+    let scanButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor(white: 0.0, alpha: 0.35)
+        button.setTitle(String.featherIcon(name: .crosshair), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.featherFont(size: 20.0)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -181,6 +194,7 @@ class BAHomeViewController: UIViewController {
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
         accountButton.addTarget(self, action: #selector(self.showAccount(_:)), for: .touchUpInside)
+        scanButton.addTarget(self, action: #selector(self.showNFCScanner(_:)), for: .touchUpInside)
         
         let userHolder = BAUserHolder.shared
         let locationManager = BALocationManager.shared
@@ -209,6 +223,7 @@ class BAHomeViewController: UIViewController {
         holderAnimationView.addSubview(bumpInstructionsLabel)
         view.addSubview(backgroundHeaderView)
         view.addSubview(accountButton)
+        view.addSubview(scanButton)
         view.addSubview(avatarImageView)
         view.addSubview(nameLabel)
         view.addSubview(jobLabel)
@@ -224,6 +239,12 @@ class BAHomeViewController: UIViewController {
         accountButton.snp.makeConstraints { make in
             make.top.equalTo(self.view).offset(36.0)
             make.leading.equalTo(self.view).offset(16.0)
+            make.height.width.equalTo(44.0)
+        }
+        
+        scanButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(36.0)
+            make.trailing.equalToSuperview().offset(-16.0)
             make.height.width.equalTo(44.0)
         }
         
@@ -300,6 +321,16 @@ class BAHomeViewController: UIViewController {
         viewController.modalPresentationStyle = .overCurrentContext
         
         self.present(viewController, animated: false, completion: nil)
+    }
+    
+    // MARK: nfc
+    
+    @objc private func showNFCScanner(_ sender: UIButton?) {
+        guard NFCNDEFReaderSession.readingAvailable else { return }
+        
+        let nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
+        nfcSession.alertMessage = "Please scan an Amiko Card"
+        nfcSession.begin()
     }
     
     //MARK: hold gesture

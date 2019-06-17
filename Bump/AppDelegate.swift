@@ -7,10 +7,25 @@
 //
 
 import UIKit
-import HockeySDK
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+import AppCenterDistribute
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    private struct Constants {
+        static let configuration = "Configuration"
+        static let debug = "Debug"
+        
+        static let scheme = "ciaohaus"
+        static let user = "user"
+        static let id = "id"
+        
+        struct AppCenter {
+            static let appSecret = "89a0b16e-c7df-40e7-98c9-dafc196235a1"
+        }
+    }
 
     var window: UIWindow?
 
@@ -18,9 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        BITHockeyManager.shared().configure(withIdentifier: BAConstants.HockeyApp.id)
-        BITHockeyManager.shared().start()
-        BITHockeyManager.shared().authenticator.authenticateInstallation()
+        configureAppCenter()
         
         BACommonUtility.configureMessages()
         
@@ -61,6 +74,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let scheme = url.scheme, let host = url.host, scheme.lowercased() == Constants.scheme, host.lowercased() == Constants.user,
+            let id = url.paramaters[Constants.id] {
+            BAAppManager.shared.deepLinkId = id
+            NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
+        }
+        
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if let url = userActivity.webpageURL, url.lastPathComponent == Constants.user, let id = url.paramaters[Constants.id] {
+            BAAppManager.shared.deepLinkId = id
+            NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
+        }
+        
+        return true
+    }
+    
     func loadWelcomeViewController() {
         let navigationController = UINavigationController(rootViewController: BAWelcomeViewController())
         self.window?.rootViewController = navigationController
@@ -93,6 +125,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for fontName in UIFont.fontNames(forFamilyName: familyName) {
                 print(fontName)
             }
+        }
+    }
+    
+    // MARK: App Center
+    
+    private func configureAppCenter() {
+        let isDebug = Bundle.main.object(forInfoDictionaryKey: Constants.configuration) as? String == Constants.debug
+        
+        if isDebug {
+            MSAppCenter.start(Constants.AppCenter.appSecret, withServices: [MSAnalytics.self, MSCrashes.self])
+        } else {
+            MSAppCenter.start(Constants.AppCenter.appSecret, withServices: [MSAnalytics.self, MSCrashes.self, MSDistribute.self])
         }
     }
 }
