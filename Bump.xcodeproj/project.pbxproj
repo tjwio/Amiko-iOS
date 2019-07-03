@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2210BECA22CC5F630053F8A8 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2210BEC922CC5F630053F8A8 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -133,6 +134,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2210BEC922CC5F630053F8A8 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2210BECA22CC5F630053F8A8 /* CoreNFC.framework in Frameworks */,
 				2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */,
 				2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */,
 				2248BFAB22B3B96100979398 /* AppCenterCrashes.framework in Frameworks */,
@@ -359,6 +362,7 @@
 		2F1E73B5211636BC00B83501 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2210BEC922CC5F630053F8A8 /* CoreNFC.framework */,
 				2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */,
 				2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */,
 				2F29454121337D1000A22C62 /* FeatherIcon.framework */,
@@ -1156,7 +1160,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1183,7 +1187,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
