@@ -10,22 +10,22 @@ import Foundation
 import MapKit
 import SwiftPhoenixClient
 
-class BAUserHolder: NSObject {
+class UserHolder: NSObject {
     private static let BUMP_RECEIVED_EVENT = "bump_received"
     private static let BUMP_MATCHED_EVENT = "bump_matched"
     private static let BUMP_TEST_EVENT = "bump_test"
     
     static var initialized = false
     
-    private(set) static var shared: BAUserHolder!
-    private(set) var user: BAUser
+    private(set) static var shared: UserHolder!
+    private(set) var user: User
     
     let socket: Socket
     var lobby: Channel!
     
     var bumpMatchCallback: BAUserHandler?
     
-    init(user: BAUser) {
+    init(user: User) {
         self.user = user
         socket = Socket(AppManager.shared.environment.streamUrl, params: ["token" : AuthenticationManager.shared.authToken ?? ""])
         super.init()
@@ -33,8 +33,8 @@ class BAUserHolder: NSObject {
         self.addSocketEvents()
     }
     
-    class func initialize(user: BAUser) -> BAUserHolder {
-        shared = BAUserHolder(user: user)
+    class func initialize(user: User) -> UserHolder {
+        shared = UserHolder(user: user)
         
         initialized = true
         
@@ -49,7 +49,7 @@ class BAUserHolder: NSObject {
     //MARK: load
     class func loadUser(userId: String, success: BAUserHandler?, failure: BAErrorHandler?) {
         NetworkHandler.shared.loadUser(success: { response in
-            if let user = BAUser(json: response) {
+            if let user = User(json: response) {
                 user.loadHistory(success: { _ in
                     success?(user)
                 }, failure: { _ in
@@ -64,7 +64,7 @@ class BAUserHolder: NSObject {
     
     class func loadSpecificUser(id: String, success: BAUserHandler?, failure: BAErrorHandler?) {
         NetworkHandler.shared.loadSpecificUser(id: id, success: { response in
-            if let user = BAUser(json: response) {
+            if let user = User(json: response) {
                 user.loadHistory(success: { _ in
                     success?(user)
                 }, failure: { _ in
@@ -92,7 +92,7 @@ class BAUserHolder: NSObject {
         }
         
         privateRoom.on(AppConstants.Events.matched) { [weak self] message in
-            if let user = BAUser(json: message.payload) {
+            if let user = User(json: message.payload) {
                 if let bumpCallback = self?.bumpMatchCallback {
                     bumpCallback(user)
                 }

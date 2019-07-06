@@ -18,7 +18,7 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
     
     weak var delegate: BAHistoryChangeDelegate?
     
-    let user: BAUser
+    let user: User
     
     let mapView = MKMapView()
     
@@ -36,7 +36,7 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
         }
     }
     
-    init(user: BAUser, delegate: BAHistoryChangeDelegate? = nil) {
+    init(user: User, delegate: BAHistoryChangeDelegate? = nil) {
         self.user = user
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)

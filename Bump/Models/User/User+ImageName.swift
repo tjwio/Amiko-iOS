@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension BAUser {
+extension User {
     var randomImageFileName: String {
         let randomNum = Int(arc4random_uniform(10000))
         

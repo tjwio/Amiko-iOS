@@ -57,8 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if BAUserHolder.initialized {
-            BAUserHolder.shared.reconnect()
+        if UserHolder.initialized {
+            UserHolder.shared.reconnect()
         }
         
         if LocationManager.shared.isAuthorized && !LocationManager.shared.didReceiveFirstLocation.value {
@@ -98,9 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigationController
     }
     
-    func loadHomeViewController(user: BAUser, shouldInitialize: Bool = true) {
+    func loadHomeViewController(user: User, shouldInitialize: Bool = true) {
         if shouldInitialize {
-            _ = BAUserHolder.initialize(user: user)
+            _ = UserHolder.initialize(user: user)
         }
         
         self.window?.rootViewController = BAMainTabBarViewController()

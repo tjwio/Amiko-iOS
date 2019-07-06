@@ -20,8 +20,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     var socialCallback: BASocialHandler?
     var actionCallback: BAContactActionHandler?
     
-    var mainItems: [(BAAccountContact, String)]
-    var socialItems: [(BAAccountContact, String)]
+    var mainItems: [(AccountContact, String)]
+    var socialItems: [(AccountContact, String)]
     
     var isDelete = false {
         didSet {
@@ -116,7 +116,7 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     private var buttonStackView: UIStackView!
     
-    init(mainItems: [(BAAccountContact, String)], socialItems: [(BAAccountContact, String)]) {
+    init(mainItems: [(AccountContact, String)], socialItems: [(AccountContact, String)]) {
         self.mainItems = mainItems
         self.socialItems = socialItems
         super.init(frame: .zero)

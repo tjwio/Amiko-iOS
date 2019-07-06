@@ -13,7 +13,7 @@ class BAFirstXPWelcomeViewController: BAProfileBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        _ = BAUserHolder.initialize(user: user)
+        _ = UserHolder.initialize(user: user)
         
         view.backgroundColor = .white
         

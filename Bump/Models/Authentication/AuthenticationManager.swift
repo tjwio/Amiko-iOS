@@ -32,7 +32,7 @@ class AuthenticationManager: NSObject {
     //MARK: SIGNUP
     func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: BAUserHandler?, failure: BAErrorHandler?) {
         NetworkHandler.shared.signup(firstName: firstName, lastName: lastName, email: email, phone: phone, password: password, success: { response in
-            if let userDict = response["user"] as? [String : Any], let authToken = response["token"] as? String, let user = BAUser(json: userDict) {
+            if let userDict = response["user"] as? [String : Any], let authToken = response["token"] as? String, let user = User(json: userDict) {
                 self.save(userId: user.userId, email: email, password: password, authToken: authToken)
                 
                 success?(user)
@@ -46,7 +46,7 @@ class AuthenticationManager: NSObject {
     //MARK: LOGIN
     func login(email: String, password: String, success: BAUserHandler?, failure: BAErrorHandler?) {
         NetworkHandler.shared.login(email: email, password: password, success: { response in
-            if let userDict = response["user"] as? [String : Any], let authToken = response["token"] as? String, let user = BAUser(json: userDict) {
+            if let userDict = response["user"] as? [String : Any], let authToken = response["token"] as? String, let user = User(json: userDict) {
                 self.save(userId: user.userId, email: email, password: password, authToken: authToken)
                 
                 success?(user)

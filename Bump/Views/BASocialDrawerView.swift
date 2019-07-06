@@ -13,7 +13,7 @@ import SnapKit
 
 class BASocialDrawerView: UIView {
     var selectCallback: BASocialHandler?
-    var items = [(BAAccountContact, String)]() {
+    var items = [(AccountContact, String)]() {
         didSet {
             addSocialButtons()
         }
@@ -48,7 +48,7 @@ class BASocialDrawerView: UIView {
         commonInit()
     }
     
-    init(items: [(BAAccountContact, String)], scale: CGFloat = 1.0) {
+    init(items: [(AccountContact, String)], scale: CGFloat = 1.0) {
         self.items = items
         self.scale = scale
         super.init(frame: .zero)

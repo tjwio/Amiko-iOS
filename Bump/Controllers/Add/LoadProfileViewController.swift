@@ -64,7 +64,7 @@ class LoadProfileViewController: BaseUserViewController {
     init(userId: String) {
         self.userId = userId
         super.init(nibName: nil, bundle: nil)
-        BAUserHolder.loadSpecificUser(id: userId, success: { user in
+        UserHolder.loadSpecificUser(id: userId, success: { user in
             DispatchQueue.main.async {
                 self.userToAdd = user
                 self.setupUser(user)
@@ -111,7 +111,7 @@ class LoadProfileViewController: BaseUserViewController {
         }, completion: nil)
     }
     
-    private func setupUser(_ user: BAUser) {
+    private func setupUser(_ user: User) {
         userToAdd = user
         userView = BAAddUserView(mainItems: [
             (.phone, userToAdd.phone),

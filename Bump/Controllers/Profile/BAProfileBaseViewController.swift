@@ -34,7 +34,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
     
     var successCallback: BAEmptyHandler?
     
-    let user: BAUser
+    let user: User
     
     let image = MutableProperty<UIImage?>(nil)
     let firstName = MutableProperty<String?>(nil)
@@ -65,7 +65,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
     
     private var disposables = CompositeDisposable()
     
-    init(user: BAUser) {
+    init(user: User) {
         self.user = user
         
         firstName.value = user.firstName
@@ -243,7 +243,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
             
             switch indexPath.section {
             case Constants.facebookIndex:
-                let contact = BAAccountContact.facebook
+                let contact = AccountContact.facebook
                 
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
@@ -252,7 +252,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 disposables += facebook <~ cell.textField.reactive.continuousTextValues
             case Constants.linkedinIndex:
-                let contact = BAAccountContact.linkedin
+                let contact = AccountContact.linkedin
                 
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "/\(exampleHandle)", attributes: attributes)
@@ -261,7 +261,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 disposables += linkedin <~ cell.textField.reactive.continuousTextValues
             case Constants.instagramIndex:
-                let contact = BAAccountContact.instagram
+                let contact = AccountContact.instagram
                 
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)
@@ -270,7 +270,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 disposables += instagram <~ cell.textField.reactive.continuousTextValues
             case Constants.twitterIndex:
-                let contact = BAAccountContact.twitter
+                let contact = AccountContact.twitter
                 
                 cell.iconLabel.text = contact.icon
                 cell.textField.attributedPlaceholder = NSAttributedString(string: "@\(exampleHandle)", attributes: attributes)

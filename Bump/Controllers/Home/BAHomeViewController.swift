@@ -174,7 +174,7 @@ class BAHomeViewController: UIViewController {
         holdGestureRecognizer.delegate = self
         view.addGestureRecognizer(holdGestureRecognizer)
         
-        let user = BAUserHolder.shared.user
+        let user = UserHolder.shared.user
         
         updateUserInfo(user)
         
@@ -199,11 +199,11 @@ class BAHomeViewController: UIViewController {
         accountButton.addTarget(self, action: #selector(self.showAccount(_:)), for: .touchUpInside)
         scanButton.addTarget(self, action: #selector(self.showNFCScanner(_:)), for: .touchUpInside)
         
-        let userHolder = BAUserHolder.shared
+        let userHolder = UserHolder.shared
         let locationManager = LocationManager.shared
         locationManager.initialize()
         
-        BAUserHolder.shared.bumpMatchCallback = { [weak self] user in
+        UserHolder.shared.bumpMatchCallback = { [weak self] user in
             DispatchQueue.main.async {
                 self?.showAddUser(user)
             }
@@ -303,13 +303,13 @@ class BAHomeViewController: UIViewController {
     
     //MARK: add user
     
-    private func showAddUser(_ userToAdd: BAUser) {
+    private func showAddUser(_ userToAdd: User) {
         hapticGenerator.impactOccurred()
         audioPlayer?.play()
         let viewController: BAAddUserViewController
         
-        if let history = BAUserHolder.shared.user.history.first(where: { return $0.addedUser.userId == userToAdd.userId } ) {
-            viewController = BADeleteUserViewController(user: BAUserHolder.shared.user, history: history)
+        if let history = UserHolder.shared.user.history.first(where: { return $0.addedUser.userId == userToAdd.userId } ) {
+            viewController = BADeleteUserViewController(user: UserHolder.shared.user, history: history)
         } else {
             viewController = BAAddUserViewController(userToAdd: userToAdd)
             viewController.successCallback = { [weak self] message in
@@ -392,7 +392,7 @@ class BAHomeViewController: UIViewController {
     @objc private func showCamera(_ sender: UIButton?) {
 //        let mockLocation = CLLocation(latitude: 34.029526415497742, longitude: -118.28915680636308)
         
-        BAUserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
+        UserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
         
 //        let viewController = BACameraViewController()
 //        self.present(viewController, animated: true, completion: nil)
@@ -408,7 +408,7 @@ class BAHomeViewController: UIViewController {
     //MARK: account button
     
     @objc private func showAccount(_ sender: UIButton?) {
-        let viewController = BAProfileViewController(user: BAUserHolder.shared.user)
+        let viewController = BAProfileViewController(user: UserHolder.shared.user)
         viewController.successCallback = { [weak self] in
             DispatchQueue.main.async {
                 self?.showLeftMessage("Successfully updated profile", type: .success)
@@ -424,12 +424,12 @@ class BAHomeViewController: UIViewController {
     //MARK: notification
     
     @objc private func notificationDidUpdateUserInfo(_ notification: Notification) {
-        updateUserInfo(BAUserHolder.shared.user)
+        updateUserInfo(UserHolder.shared.user)
     }
     
     //MARK: helper
     
-    private func updateUserInfo(_ user: BAUser) {
+    private func updateUserInfo(_ user: User) {
         nameLabel.text = "\(user.firstName) \(user.lastName)"
         
         if let fullJobCompany = user.fullJobCompany {

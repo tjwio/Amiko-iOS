@@ -40,7 +40,7 @@ class AppManager: NSObject {
     
     func logOut() {
         AuthenticationManager.shared.logOut()
-        BAUserHolder.logOut()
+        UserHolder.logOut()
         (UIApplication.shared.delegate as? AppDelegate)?.loadWelcomeViewController()
     }
 }

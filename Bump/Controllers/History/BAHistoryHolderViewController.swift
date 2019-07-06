@@ -28,7 +28,7 @@ class BAHistoryHolderViewController: UIViewController, BAHistoryChangeDelegate {
     
     let mapController: BAHistoryMapViewController
     
-    init(user: BAUser) {
+    init(user: User) {
         listController = BAHistoryListViewController(user: user)
         listNav = BANavigationController(navigationBarClass: BANavigationBar.classForCoder(), toolbarClass: nil)
         listNav.setViewControllers([listController], animated: false)

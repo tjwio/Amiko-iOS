@@ -21,7 +21,7 @@ class BAMainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         let homeController = BAHomeViewController()
-        let historyController = BAHistoryHolderViewController(user: BAUserHolder.shared.user)
+        let historyController = BAHistoryHolderViewController(user: UserHolder.shared.user)
         
         let homeTabBarItem = UITabBarItem(title: nil, image: .homeTabActive, selectedImage: .homeTabGray)
         let historyTabBarItem = UITabBarItem(title: nil, image: .activityTabActive, selectedImage: .activityTabGray)

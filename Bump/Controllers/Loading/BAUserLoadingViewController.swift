@@ -16,14 +16,14 @@ class BAUserLoadingViewController: BABaseLoadingViewController {
     
     let userComplete = MutableProperty<Bool>(false)
     
-    var user: BAUser!
+    var user: User!
     
     private var disposables = CompositeDisposable()
     
     init(userId: String) {
         super.init(nibName: nil, bundle: nil)
         
-        BAUserHolder.loadUser(userId: userId, success: { user in
+        UserHolder.loadUser(userId: userId, success: { user in
             self.user = user
             self.userComplete.value = true
         }) { error in

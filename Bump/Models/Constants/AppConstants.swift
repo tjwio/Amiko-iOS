@@ -12,14 +12,14 @@ import Gloss
 public typealias JSON = [String: Any]
 
 public typealias BABumpHandler = (BumpEvent) -> Void
-public typealias BAUserHandler = (BAUser) -> Void
+public typealias BAUserHandler = (User) -> Void
 
 public typealias BAHistoryHandler = (BAHistory) -> Void
 public typealias BAHistoryListHandler = ([BAHistory]) -> Void
 
-public typealias BAContactActionHandler = (BAAccountContact, String) -> Void
+public typealias BAContactActionHandler = (AccountContact, String) -> Void
 
-public typealias BASocialHandler = (BAAccountContact, String) -> Void
+public typealias BASocialHandler = (AccountContact, String) -> Void
 
 public typealias BAEmptyHandler = () -> Void
 public typealias BAStringHandler = (String) -> Void

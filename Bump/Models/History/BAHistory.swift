@@ -11,13 +11,13 @@ import MapKit
 import Gloss
 
 public class BAHistory: NSObject, JSONDecodable {
-    weak var user: BAUser?
+    weak var user: User?
     
     var id: String
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
     var date: Date
-    var addedUser: BAUser
+    var addedUser: User
     
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -38,7 +38,7 @@ public class BAHistory: NSObject, JSONDecodable {
             let longitude: Double = Constants.longitude <~~ json,
             let date = Gloss.Decoder.decode(dateForKey: Constants.insertedAt, dateFormatter: .iso861)(json),
             let addedUserJson: JSON = Constants.addedUser <~~ json,
-            let addedUser = BAUser(json: addedUserJson)
+            let addedUser = User(json: addedUserJson)
             else { return nil}
         
         self.id = id
@@ -48,7 +48,7 @@ public class BAHistory: NSObject, JSONDecodable {
         self.addedUser = addedUser
     }
     
-    convenience public init?(json: JSON, user: BAUser) {
+    convenience public init?(json: JSON, user: User) {
         self.init(json: json)
         self.user = user
     }

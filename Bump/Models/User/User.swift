@@ -13,7 +13,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import SDWebImage
 
-public enum BAAccountContact: String {
+public enum AccountContact: String {
     case phone = "phone"
     case email = "email"
     case linkedin = "linkedin"
@@ -83,7 +83,7 @@ public enum BAAccountContact: String {
     }
 }
 
-public class BAUser: NSObject, JSONDecodable {
+public class User: NSObject, JSONDecodable {
     var userId: String
     var firstName: String
     var lastName: String
@@ -113,8 +113,8 @@ public class BAUser: NSObject, JSONDecodable {
         return nil
     }
     
-    var socialAccounts: [(BAAccountContact, String)] {
-        var ret = [(BAAccountContact, String)]()
+    var socialAccounts: [(AccountContact, String)] {
+        var ret = [(AccountContact, String)]()
         
         if !(facebook?.isEmpty ?? true) {
             ret.append((.facebook, facebook!))
@@ -256,7 +256,7 @@ public class BAUser: NSObject, JSONDecodable {
     //MARK: update/put
     
     func updateUser(firstName: String, lastName: String, profession: String, company: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {
-        let parameters = BAUser.json(firstName: firstName, lastName: lastName, profession: profession, company: company, phone: phone, email: email, website: website, facebook: facebook, linkedin: linkedin, instagram: instagram, twitter: twitter)
+        let parameters = User.json(firstName: firstName, lastName: lastName, profession: profession, company: company, phone: phone, email: email, website: website, facebook: facebook, linkedin: linkedin, instagram: instagram, twitter: twitter)
         
         NetworkHandler.shared.updateUser(parameters: parameters, success: { _ in
             self.firstName = firstName

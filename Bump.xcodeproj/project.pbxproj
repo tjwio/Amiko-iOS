@@ -71,15 +71,15 @@
 		2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6354D8208C5FC400429F72 /* BACameraViewController.swift */; };
 		2F6E51B12082AD9E00E8D8CA /* BumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BumpManager.swift */; };
 		2F6E51B42082AF8800E8D8CA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* AppConstants.swift */; };
-		2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B62082B10C00E8D8CA /* BAUser.swift */; };
+		2F6E51B72082B10C00E8D8CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B62082B10C00E8D8CA /* User.swift */; };
 		2F6E51C92082B86E00E8D8CA /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51C82082B86E00E8D8CA /* NetworkHandler.swift */; };
 		2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CA2082B8D000E8D8CA /* URLRouter.swift */; };
 		2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CC2082B9CD00E8D8CA /* AppManager.swift */; };
-		2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */; };
-		2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */; };
+		2F6E51D02082BBF700E8D8CA /* NetworkHandler+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CF2082BBF700E8D8CA /* NetworkHandler+Authentication.swift */; };
+		2F6E51D32082BD5800E8D8CA /* NetworkHandler+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D22082BD5800E8D8CA /* NetworkHandler+User.swift */; };
 		2F6E51D62082BE4000E8D8CA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D52082BE4000E8D8CA /* AuthenticationManager.swift */; };
 		2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DB2082C2C000E8D8CA /* BAError.swift */; };
-		2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */; };
+		2F6E51DE2082CB5000E8D8CA /* UserHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DD2082CB5000E8D8CA /* UserHolder.swift */; };
 		2F6E51E12082FF3000E8D8CA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51E02082FF3000E8D8CA /* LocationManager.swift */; };
 		2F6E51E7208308E000E8D8CA /* AvenirNextLTPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E2208308E000E8D8CA /* AvenirNextLTPro-It.otf */; };
 		2F6E51E8208308E000E8D8CA /* AvenirNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2F6E51E3208308E000E8D8CA /* AvenirNextLTPro-Regular.otf */; };
@@ -98,8 +98,8 @@
 		2F7A3A5921447AE900AA260D /* Notifications+Bump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */; };
 		2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */; };
 		2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */; };
-		2FD3BEEE2142698C002DB435 /* BANetworkHandler+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEED2142698C002DB435 /* BANetworkHandler+Image.swift */; };
-		2FD3BEF021426B3E002DB435 /* BAUser+ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEEF21426B3E002DB435 /* BAUser+ImageName.swift */; };
+		2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEED2142698C002DB435 /* NetworkHandler+Image.swift */; };
+		2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEEF21426B3E002DB435 /* User+ImageName.swift */; };
 		2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */; };
 		2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */; };
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
@@ -197,7 +197,7 @@
 		2F6354D8208C5FC400429F72 /* BACameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACameraViewController.swift; sourceTree = "<group>"; };
 		2F6E51B02082AD9E00E8D8CA /* BumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpManager.swift; sourceTree = "<group>"; };
 		2F6E51B32082AF8800E8D8CA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
-		2F6E51B62082B10C00E8D8CA /* BAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUser.swift; sourceTree = "<group>"; };
+		2F6E51B62082B10C00E8D8CA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2F6E51B82082B5C400E8D8CA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		2F6E51B92082B5C400E8D8CA /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
 		2F6E51BB2082B5C500E8D8CA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
@@ -205,12 +205,12 @@
 		2F6E51C82082B86E00E8D8CA /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		2F6E51CA2082B8D000E8D8CA /* URLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
 		2F6E51CC2082B9CD00E8D8CA /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
-		2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+Authentication.swift"; sourceTree = "<group>"; };
-		2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+User.swift"; sourceTree = "<group>"; };
+		2F6E51CF2082BBF700E8D8CA /* NetworkHandler+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkHandler+Authentication.swift"; sourceTree = "<group>"; };
+		2F6E51D22082BD5800E8D8CA /* NetworkHandler+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkHandler+User.swift"; sourceTree = "<group>"; };
 		2F6E51D52082BE4000E8D8CA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
 		2F6E51DB2082C2C000E8D8CA /* BAError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAError.swift; sourceTree = "<group>"; };
-		2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserHolder.swift; sourceTree = "<group>"; };
+		2F6E51DD2082CB5000E8D8CA /* UserHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHolder.swift; sourceTree = "<group>"; };
 		2F6E51E02082FF3000E8D8CA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		2F6E51E2208308E000E8D8CA /* AvenirNextLTPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-It.otf"; sourceTree = "<group>"; };
 		2F6E51E3208308E000E8D8CA /* AvenirNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirNextLTPro-Regular.otf"; sourceTree = "<group>"; };
@@ -236,8 +236,8 @@
 		2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAWelcomeLoadingViewController.swift; sourceTree = "<group>"; };
 		2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSCameraViewController.framework; path = Carthage/Build/iOS/MMSCameraViewController.framework; sourceTree = "<group>"; };
 		2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSProfileImagePicker.framework; path = Carthage/Build/iOS/MMSProfileImagePicker.framework; sourceTree = "<group>"; };
-		2FD3BEED2142698C002DB435 /* BANetworkHandler+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+Image.swift"; sourceTree = "<group>"; };
-		2FD3BEEF21426B3E002DB435 /* BAUser+ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BAUser+ImageName.swift"; sourceTree = "<group>"; };
+		2FD3BEED2142698C002DB435 /* NetworkHandler+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkHandler+Image.swift"; sourceTree = "<group>"; };
+		2FD3BEEF21426B3E002DB435 /* User+ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+ImageName.swift"; sourceTree = "<group>"; };
 		2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABaseLoadingViewController.swift; sourceTree = "<group>"; };
 		2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALocalizationStrings.swift; sourceTree = "<group>"; };
 		2FE36BF720F84A7B0012F1AB /* Global.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Global.strings; sourceTree = "<group>"; };
@@ -607,9 +607,9 @@
 		2F6E51B52082B0F100E8D8CA /* User */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51B62082B10C00E8D8CA /* BAUser.swift */,
-				2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */,
-				2FD3BEEF21426B3E002DB435 /* BAUser+ImageName.swift */,
+				2F6E51B62082B10C00E8D8CA /* User.swift */,
+				2F6E51DD2082CB5000E8D8CA /* UserHolder.swift */,
+				2FD3BEEF21426B3E002DB435 /* User+ImageName.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -629,7 +629,7 @@
 		2F6E51CE2082BBD000E8D8CA /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */,
+				2F6E51CF2082BBF700E8D8CA /* NetworkHandler+Authentication.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -637,7 +637,7 @@
 		2F6E51D12082BD4A00E8D8CA /* User */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */,
+				2F6E51D22082BD5800E8D8CA /* NetworkHandler+User.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -701,7 +701,7 @@
 		2FD3BEEC21426977002DB435 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				2FD3BEED2142698C002DB435 /* BANetworkHandler+Image.swift */,
+				2FD3BEED2142698C002DB435 /* NetworkHandler+Image.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -938,13 +938,13 @@
 				2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */,
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
 				2FF2EDAC215CA83A00550366 /* BAFirstXPWelcomeViewController.swift in Sources */,
-				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
+				2F6E51B72082B10C00E8D8CA /* User.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F1E73D02119987E00B83501 /* UserPinAnnotation.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* AppConstants.swift in Sources */,
 				2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */,
-				2FD3BEEE2142698C002DB435 /* BANetworkHandler+Image.swift in Sources */,
-				2FD3BEF021426B3E002DB435 /* BAUser+ImageName.swift in Sources */,
+				2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */,
+				2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
@@ -966,19 +966,19 @@
 				2F18D3AA2106FB9700C97E3A /* Date+Formatter.swift in Sources */,
 				2F18D3A12105650600C97E3A /* BAHistoryListViewController.swift in Sources */,
 				2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */,
-				2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */,
+				2F6E51DE2082CB5000E8D8CA /* UserHolder.swift in Sources */,
 				2F1E73CD2119975100B83501 /* BAHistoryMapViewController.swift in Sources */,
 				2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */,
 				2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */,
 				2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */,
 				2F6E52042083DE8100E8D8CA /* CommonUtility.swift in Sources */,
 				2FF2EDAE215CAC4100550366 /* BAProfileViewController.swift in Sources */,
-				2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */,
+				2F6E51D02082BBF700E8D8CA /* NetworkHandler+Authentication.swift in Sources */,
 				2F06357D20854AAF00D655E7 /* BAAddUserViewController.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* NetworkHandler.swift in Sources */,
 				2F6E51E12082FF3000E8D8CA /* LocationManager.swift in Sources */,
 				22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */,
-				2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */,
+				2F6E51D32082BD5800E8D8CA /* NetworkHandler+User.swift in Sources */,
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */,
 				2F31CFB92137CEA300308702 /* BAProfileBaseViewController.swift in Sources */,

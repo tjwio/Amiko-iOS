@@ -10,10 +10,10 @@ import UIKit
 
 class BADeleteUserViewController: BAAddUserViewController {
     
-    let currentUser: BAUser
+    let currentUser: User
     let history: BAHistory
     
-    init(user: BAUser, history: BAHistory) {
+    init(user: User, history: BAHistory) {
         self.currentUser = user
         self.history = history
         super.init(userToAdd: history.addedUser)

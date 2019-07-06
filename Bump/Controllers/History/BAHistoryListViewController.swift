@@ -19,7 +19,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     
     weak var delegate: BAHistoryChangeDelegate?
     
-    let user: BAUser
+    let user: User
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -40,7 +40,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
     private var isScrollingFromMap = false
     private var currentIndexPath: IndexPath?
     
-    init(user: BAUser, delegate: BAHistoryChangeDelegate? = nil) {
+    init(user: User, delegate: BAHistoryChangeDelegate? = nil) {
         self.user = user
         self.delegate = delegate
         if !user.history.isEmpty {
