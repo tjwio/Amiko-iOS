@@ -141,46 +141,46 @@ public class BAUser: NSObject, JSONDecodable {
     
     var history = [BAHistory]()
     
-    private let availableSocial = [BAConstants.User.facebook, BAConstants.User.instagram, BAConstants.User.linkedin, BAConstants.User.twitter]
+    private let availableSocial = [AppConstants.User.facebook, AppConstants.User.instagram, AppConstants.User.linkedin, AppConstants.User.twitter]
     
     public required init?(json: JSON) {
-        guard let userId: String = BAConstants.User.id <~~ json else { return nil }
-        guard let firstName: String = BAConstants.User.firstName <~~ json else { return nil }
-        guard let lastName: String = BAConstants.User.lastName <~~ json else { return nil }
-        guard let email: String = BAConstants.User.email <~~ json else { return nil }
-        guard let phone: String = BAConstants.User.phone <~~ json else { return nil }
+        guard let userId: String = AppConstants.User.id <~~ json else { return nil }
+        guard let firstName: String = AppConstants.User.firstName <~~ json else { return nil }
+        guard let lastName: String = AppConstants.User.lastName <~~ json else { return nil }
+        guard let email: String = AppConstants.User.email <~~ json else { return nil }
+        guard let phone: String = AppConstants.User.phone <~~ json else { return nil }
         
         self.userId = userId
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.phone = phone
-        self.imageUrl = BAConstants.User.imageUrl <~~ json
-        self.profession = BAConstants.User.profession <~~ json
-        self.company = BAConstants.User.company <~~ json
-        self.website = BAConstants.User.website <~~ json
+        self.imageUrl = AppConstants.User.imageUrl <~~ json
+        self.profession = AppConstants.User.profession <~~ json
+        self.company = AppConstants.User.company <~~ json
+        self.website = AppConstants.User.website <~~ json
         
-        self.facebook = BAConstants.User.facebook <~~ json
-        self.linkedin = BAConstants.User.linkedin <~~ json
-        self.instagram = BAConstants.User.instagram <~~ json
-        self.twitter = BAConstants.User.twitter <~~ json
+        self.facebook = AppConstants.User.facebook <~~ json
+        self.linkedin = AppConstants.User.linkedin <~~ json
+        self.instagram = AppConstants.User.instagram <~~ json
+        self.twitter = AppConstants.User.twitter <~~ json
         
         super.init()
     }
     
     class func json(firstName: String, lastName: String, profession: String, company: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String) -> JSON {
         return jsonify([
-            BAConstants.User.firstName ~~> firstName.nullOrValue,
-            BAConstants.User.lastName ~~> lastName.nullOrValue,
-            BAConstants.User.profession ~~> profession.nullOrValue,
-            BAConstants.User.company ~~> company.nullOrValue,
-            BAConstants.User.phone ~~> phone.nullOrValue,
-            BAConstants.User.email ~~> email.nullOrValue,
-            BAConstants.User.website ~~> website.nullOrValue,
-            BAConstants.User.facebook ~~> facebook.nullOrValue,
-            BAConstants.User.linkedin ~~> linkedin.nullOrValue,
-            BAConstants.User.instagram ~~> instagram.nullOrValue,
-            BAConstants.User.twitter ~~> twitter.nullOrValue
+            AppConstants.User.firstName ~~> firstName.nullOrValue,
+            AppConstants.User.lastName ~~> lastName.nullOrValue,
+            AppConstants.User.profession ~~> profession.nullOrValue,
+            AppConstants.User.company ~~> company.nullOrValue,
+            AppConstants.User.phone ~~> phone.nullOrValue,
+            AppConstants.User.email ~~> email.nullOrValue,
+            AppConstants.User.website ~~> website.nullOrValue,
+            AppConstants.User.facebook ~~> facebook.nullOrValue,
+            AppConstants.User.linkedin ~~> linkedin.nullOrValue,
+            AppConstants.User.instagram ~~> instagram.nullOrValue,
+            AppConstants.User.twitter ~~> twitter.nullOrValue
             ]) ?? [:]
     }
     

@@ -27,7 +27,7 @@ class BAUserHolder: NSObject {
     
     init(user: BAUser) {
         self.user = user
-        socket = Socket(BAAppManager.shared.environment.streamUrl, params: ["token" : AuthenticationManager.shared.authToken ?? ""])
+        socket = Socket(AppManager.shared.environment.streamUrl, params: ["token" : AuthenticationManager.shared.authToken ?? ""])
         super.init()
         
         self.addSocketEvents()
@@ -84,14 +84,14 @@ class BAUserHolder: NSObject {
         socket.onClose { print("socket disconnected") }
         socket.onError { error in print("socket error: \(error)") }
         
-        lobby = socket.channel(BAConstants.Channel.lobby)
-        let privateRoom = socket.channel("\(BAConstants.Channel.privateRoom):\(user.userId)")
+        lobby = socket.channel(AppConstants.Channel.lobby)
+        let privateRoom = socket.channel("\(AppConstants.Channel.privateRoom):\(user.userId)")
         
         socket.onMessage { payload in
             print("socket message: \(payload)")
         }
         
-        privateRoom.on(BAConstants.Events.matched) { [weak self] message in
+        privateRoom.on(AppConstants.Events.matched) { [weak self] message in
             if let user = BAUser(json: message.payload) {
                 if let bumpCallback = self?.bumpMatchCallback {
                     bumpCallback(user)
@@ -128,15 +128,15 @@ class BAUserHolder: NSObject {
     
     func sendBumpReceivedEvent(bump: BumpEvent, location: CLLocation) {
         let params: [String : Any] = [
-            BAConstants.GeoMessage.timestamp : bump.date.timeIntervalSince1970 * 1000.0,
-            BAConstants.GeoMessage.latitude : location.coordinate.latitude,
-            BAConstants.GeoMessage.longitude : location.coordinate.longitude,
-            BAConstants.GeoMessage.accuracy : location.horizontalAccuracy
+            AppConstants.GeoMessage.timestamp : bump.date.timeIntervalSince1970 * 1000.0,
+            AppConstants.GeoMessage.latitude : location.coordinate.latitude,
+            AppConstants.GeoMessage.longitude : location.coordinate.longitude,
+            AppConstants.GeoMessage.accuracy : location.horizontalAccuracy
         ]
         
         print("bumping with params: \(params)")
         
-        _ = lobby.push(BAConstants.Events.bumped, payload: params)
+        _ = lobby.push(AppConstants.Events.bumped, payload: params)
     }
     
     //MARK: reconnect

@@ -28,7 +28,7 @@ class BAUserLoadingViewController: BABaseLoadingViewController {
             self.userComplete.value = true
         }) { error in
             print("failed to load user id: \(userId), logging out")
-            BAAppManager.shared.logOut()
+            AppManager.shared.logOut()
         }
     }
     

@@ -70,11 +70,11 @@
 		2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F48213DE82D0074AB8B /* String+Null.swift */; };
 		2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6354D8208C5FC400429F72 /* BACameraViewController.swift */; };
 		2F6E51B12082AD9E00E8D8CA /* BumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BumpManager.swift */; };
-		2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */; };
+		2F6E51B42082AF8800E8D8CA /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* AppConstants.swift */; };
 		2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B62082B10C00E8D8CA /* BAUser.swift */; };
 		2F6E51C92082B86E00E8D8CA /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51C82082B86E00E8D8CA /* NetworkHandler.swift */; };
 		2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CA2082B8D000E8D8CA /* URLRouter.swift */; };
-		2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */; };
+		2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CC2082B9CD00E8D8CA /* AppManager.swift */; };
 		2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */; };
 		2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */; };
 		2F6E51D62082BE4000E8D8CA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D52082BE4000E8D8CA /* AuthenticationManager.swift */; };
@@ -196,7 +196,7 @@
 		2F552F48213DE82D0074AB8B /* String+Null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Null.swift"; sourceTree = "<group>"; };
 		2F6354D8208C5FC400429F72 /* BACameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACameraViewController.swift; sourceTree = "<group>"; };
 		2F6E51B02082AD9E00E8D8CA /* BumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpManager.swift; sourceTree = "<group>"; };
-		2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppConstants.swift; sourceTree = "<group>"; };
+		2F6E51B32082AF8800E8D8CA /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		2F6E51B62082B10C00E8D8CA /* BAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUser.swift; sourceTree = "<group>"; };
 		2F6E51B82082B5C400E8D8CA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		2F6E51B92082B5C400E8D8CA /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		2F6E51BC2082B5C500E8D8CA /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		2F6E51C82082B86E00E8D8CA /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		2F6E51CA2082B8D000E8D8CA /* URLRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRouter.swift; sourceTree = "<group>"; };
-		2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppManager.swift; sourceTree = "<group>"; };
+		2F6E51CC2082B9CD00E8D8CA /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+Authentication.swift"; sourceTree = "<group>"; };
 		2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+User.swift"; sourceTree = "<group>"; };
 		2F6E51D52082BE4000E8D8CA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -539,7 +539,7 @@
 		2F4BBB6120522AFF00AAFE1A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */,
+				2F6E51CC2082B9CD00E8D8CA /* AppManager.swift */,
 				2F6E52032083DE8100E8D8CA /* BACommonUtility.swift */,
 				2F18D3A52106F54E00C97E3A /* BALogger.swift */,
 			);
@@ -599,7 +599,7 @@
 		2F6E51B22082AF7D00E8D8CA /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */,
+				2F6E51B32082AF8800E8D8CA /* AppConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -941,11 +941,11 @@
 				2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F1E73D02119987E00B83501 /* BAUserPinAnnotation.swift in Sources */,
-				2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */,
+				2F6E51B42082AF8800E8D8CA /* AppConstants.swift in Sources */,
 				2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */,
 				2FD3BEEE2142698C002DB435 /* BANetworkHandler+Image.swift in Sources */,
 				2FD3BEF021426B3E002DB435 /* BAUser+ImageName.swift in Sources */,
-				2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */,
+				2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
 				2F18D3A82106F7D400C97E3A /* DateFormatter+Constants.swift in Sources */,

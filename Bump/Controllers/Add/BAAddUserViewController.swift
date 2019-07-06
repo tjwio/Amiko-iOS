@@ -119,7 +119,7 @@ class BaseUserViewController: UIViewController {
         userView.isHidden = false
         userView.layer.cornerRadius = 8.0
         userView.translatesAutoresizingMaskIntoConstraints = false
-        userView.socialCallback = BAConstants.defaultSocialCallback
+        userView.socialCallback = AppConstants.defaultSocialCallback
         userView.actionCallback = { (account, value) in
             guard let urlStr = account.appUrl(id: value), let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) else { return }
             UIApplication.shared.open(url)

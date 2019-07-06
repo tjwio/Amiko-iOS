@@ -26,7 +26,7 @@ class BAMainTabBarViewController: UITabBarController {
         let homeTabBarItem = UITabBarItem(title: nil, image: .homeTabActive, selectedImage: .homeTabGray)
         let historyTabBarItem = UITabBarItem(title: nil, image: .activityTabActive, selectedImage: .activityTabGray)
         
-        let offset: CGFloat = BADeviceUtil.IS_IPHONE_X ? 12.0 : 6.0
+        let offset: CGFloat = DeviceUtil.IS_IPHONE_X ? 12.0 : 6.0
         
         homeTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
         historyTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
@@ -48,9 +48,9 @@ class BAMainTabBarViewController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let id = BAAppManager.shared.deepLinkId {
+        if let id = AppManager.shared.deepLinkId {
             openProfileController(id: id)
-            BAAppManager.shared.deepLinkId = nil
+            AppManager.shared.deepLinkId = nil
         }
     }
     

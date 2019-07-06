@@ -61,7 +61,7 @@ enum URLRouter: URLRequestConvertible {
     }
     
     func asURLRequest() throws -> URLRequest {
-        let url = try BAAppManager.shared.environment.apiUrl.asURL()
+        let url = try AppManager.shared.environment.apiUrl.asURL()
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue

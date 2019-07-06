@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if let scheme = url.scheme, let host = url.host, scheme.lowercased() == Constants.scheme, host.lowercased() == Constants.user,
             let id = url.paramaters[Constants.id] {
-            BAAppManager.shared.deepLinkId = id
+            AppManager.shared.deepLinkId = id
             NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
         }
         
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if let url = userActivity.webpageURL, url.lastPathComponent == Constants.user, let id = url.paramaters[Constants.id] {
-            BAAppManager.shared.deepLinkId = id
+            AppManager.shared.deepLinkId = id
             NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
         }
         

@@ -106,7 +106,7 @@ class BAProfileViewController: BAProfileBaseViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let logOut = UIAlertAction(title: "Log Out", style: .destructive) { _ in
             DispatchQueue.main.async {
-                BAAppManager.shared.logOut()
+                AppManager.shared.logOut()
             }
         }
         

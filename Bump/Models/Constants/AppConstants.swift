@@ -29,7 +29,7 @@ public typealias BAErrorHandler = (Error) -> Void
 
 public typealias BAImageHandler = (UIImage, UIImageColors) -> Void
 
-struct BAConstants {
+struct AppConstants {
     struct User {
         static let id = "id"
         static let firstName = "first_name"
@@ -86,7 +86,7 @@ struct BAConstants {
     }
 }
 
-struct BADeviceUtil {
+struct DeviceUtil {
     // iDevice detection code
     static let IS_IPAD             = UIDevice.current.userInterfaceIdiom == .pad
     static let IS_IPHONE           = UIDevice.current.userInterfaceIdiom == .phone

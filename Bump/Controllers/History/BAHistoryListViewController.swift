@@ -158,7 +158,7 @@ class BAHistoryListViewController: UIViewController, BAHistoryViewController, UI
         cell.nameLabel.text = history.addedUser.fullName
         cell.phoneLabel.text = history.addedUser.phone
         cell.socialDrawer.items = history.addedUser.socialAccounts
-        cell.socialDrawer.selectCallback = BAConstants.defaultSocialCallback
+        cell.socialDrawer.selectCallback = AppConstants.defaultSocialCallback
         
         if let fullJobCompany = history.addedUser.fullJobCompany {
             cell.jobLabel.isHidden = false
