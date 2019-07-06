@@ -294,7 +294,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: login
     @objc private func login(_ sender: BALoadingButton?) {
         sender?.isLoading = true
-        BAAuthenticationManager.shared.login(email: self.emailTextField.text!, password: self.passwordTextField.text!, success: { user in
+        AuthenticationManager.shared.login(email: self.emailTextField.text!, password: self.passwordTextField.text!, success: { user in
             let homeBlock = {
                 DispatchQueue.main.async {
                     (UIApplication.shared.delegate as? AppDelegate)?.loadHomeViewController(user: user)

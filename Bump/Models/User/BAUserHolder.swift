@@ -27,7 +27,7 @@ class BAUserHolder: NSObject {
     
     init(user: BAUser) {
         self.user = user
-        socket = Socket(BAAppManager.shared.environment.streamUrl, params: ["token" : BAAuthenticationManager.shared.authToken ?? ""])
+        socket = Socket(BAAppManager.shared.environment.streamUrl, params: ["token" : AuthenticationManager.shared.authToken ?? ""])
         super.init()
         
         self.addSocketEvents()
@@ -126,7 +126,7 @@ class BAUserHolder: NSObject {
         
     }
     
-    func sendBumpReceivedEvent(bump: BABumpEvent, location: CLLocation) {
+    func sendBumpReceivedEvent(bump: BumpEvent, location: CLLocation) {
         let params: [String : Any] = [
             BAConstants.GeoMessage.timestamp : bump.date.timeIntervalSince1970 * 1000.0,
             BAConstants.GeoMessage.latitude : location.coordinate.latitude,

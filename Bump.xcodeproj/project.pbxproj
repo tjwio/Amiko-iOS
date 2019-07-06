@@ -69,7 +69,7 @@
 		2F552F47213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */; };
 		2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F552F48213DE82D0074AB8B /* String+Null.swift */; };
 		2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6354D8208C5FC400429F72 /* BACameraViewController.swift */; };
-		2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */; };
+		2F6E51B12082AD9E00E8D8CA /* BumpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B02082AD9E00E8D8CA /* BumpManager.swift */; };
 		2F6E51B42082AF8800E8D8CA /* BAAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */; };
 		2F6E51B72082B10C00E8D8CA /* BAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51B62082B10C00E8D8CA /* BAUser.swift */; };
 		2F6E51C92082B86E00E8D8CA /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51C82082B86E00E8D8CA /* NetworkHandler.swift */; };
@@ -77,7 +77,7 @@
 		2F6E51CD2082B9CD00E8D8CA /* BAAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */; };
 		2F6E51D02082BBF700E8D8CA /* BANetworkHandler+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */; };
 		2F6E51D32082BD5800E8D8CA /* BANetworkHandler+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */; };
-		2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D52082BE4000E8D8CA /* BAAuthenticationManager.swift */; };
+		2F6E51D62082BE4000E8D8CA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51D52082BE4000E8D8CA /* AuthenticationManager.swift */; };
 		2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DB2082C2C000E8D8CA /* BAError.swift */; };
 		2F6E51DE2082CB5000E8D8CA /* BAUserHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */; };
 		2F6E51E12082FF3000E8D8CA /* BALocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E51E02082FF3000E8D8CA /* BALocationManager.swift */; };
@@ -195,7 +195,7 @@
 		2F552F46213B7FB70074AB8B /* BAProfileDetailValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileDetailValueTableViewCell.swift; sourceTree = "<group>"; };
 		2F552F48213DE82D0074AB8B /* String+Null.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Null.swift"; sourceTree = "<group>"; };
 		2F6354D8208C5FC400429F72 /* BACameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BACameraViewController.swift; sourceTree = "<group>"; };
-		2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABumpManager.swift; sourceTree = "<group>"; };
+		2F6E51B02082AD9E00E8D8CA /* BumpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpManager.swift; sourceTree = "<group>"; };
 		2F6E51B32082AF8800E8D8CA /* BAAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppConstants.swift; sourceTree = "<group>"; };
 		2F6E51B62082B10C00E8D8CA /* BAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUser.swift; sourceTree = "<group>"; };
 		2F6E51B82082B5C400E8D8CA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		2F6E51CC2082B9CD00E8D8CA /* BAAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAppManager.swift; sourceTree = "<group>"; };
 		2F6E51CF2082BBF700E8D8CA /* BANetworkHandler+Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+Authentication.swift"; sourceTree = "<group>"; };
 		2F6E51D22082BD5800E8D8CA /* BANetworkHandler+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BANetworkHandler+User.swift"; sourceTree = "<group>"; };
-		2F6E51D52082BE4000E8D8CA /* BAAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAAuthenticationManager.swift; sourceTree = "<group>"; };
+		2F6E51D52082BE4000E8D8CA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		2F6E51D72082BF9B00E8D8CA /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
 		2F6E51DB2082C2C000E8D8CA /* BAError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAError.swift; sourceTree = "<group>"; };
 		2F6E51DD2082CB5000E8D8CA /* BAUserHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserHolder.swift; sourceTree = "<group>"; };
@@ -591,7 +591,7 @@
 		2F6E51AF2082AD2A00E8D8CA /* Bump */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51B02082AD9E00E8D8CA /* BABumpManager.swift */,
+				2F6E51B02082AD9E00E8D8CA /* BumpManager.swift */,
 			);
 			path = Bump;
 			sourceTree = "<group>";
@@ -645,7 +645,7 @@
 		2F6E51D42082BE2800E8D8CA /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				2F6E51D52082BE4000E8D8CA /* BAAuthenticationManager.swift */,
+				2F6E51D52082BE4000E8D8CA /* AuthenticationManager.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -930,11 +930,11 @@
 				2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */,
 				2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */,
 				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
-				2F6E51B12082AD9E00E8D8CA /* BABumpManager.swift in Sources */,
+				2F6E51B12082AD9E00E8D8CA /* BumpManager.swift in Sources */,
 				2F18D39C21053C5300C97E3A /* UIImage+Constants.swift in Sources */,
 				2F3432C121243BCB00B9ED45 /* BAHistoryHolderViewController.swift in Sources */,
 				2F262EFB2134F8EF00138D4D /* BADeleteUserViewController.swift in Sources */,
-				2F6E51D62082BE4000E8D8CA /* BAAuthenticationManager.swift in Sources */,
+				2F6E51D62082BE4000E8D8CA /* AuthenticationManager.swift in Sources */,
 				2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */,
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
 				2FF2EDAC215CA83A00550366 /* BAFirstXPWelcomeViewController.swift in Sources */,

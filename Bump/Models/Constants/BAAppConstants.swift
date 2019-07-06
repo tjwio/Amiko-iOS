@@ -11,7 +11,7 @@ import Gloss
 
 public typealias JSON = [String: Any]
 
-public typealias BABumpHandler = (BABumpEvent) -> Void
+public typealias BABumpHandler = (BumpEvent) -> Void
 public typealias BAUserHandler = (BAUser) -> Void
 
 public typealias BAHistoryHandler = (BAHistory) -> Void

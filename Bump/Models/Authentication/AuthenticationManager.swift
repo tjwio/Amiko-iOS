@@ -8,7 +8,7 @@
 
 import KeychainSwift
 
-class BAAuthenticationManager: NSObject {
+class AuthenticationManager: NSObject {
     private struct Constants {
         static let passwordKeychainKey = "BA_USER_PASSWORD"
         static let emailKeychainKey = "BA_USER_EMAIL"
@@ -16,7 +16,7 @@ class BAAuthenticationManager: NSObject {
         static let authTokenKeychainKey = "BA_AUTH_TOKEN"
     }
     
-    static let shared = BAAuthenticationManager()
+    static let shared = AuthenticationManager()
     
     private let keychain = KeychainSwift()
     var userId: String?

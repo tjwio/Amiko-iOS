@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func loadInitialViewController() {
         var viewController: BABaseLoadingViewController
         
-        if let userId = BAAuthenticationManager.shared.userId, userId.count > 0 {
+        if let userId = AuthenticationManager.shared.userId, userId.count > 0 {
             viewController = BAUserLoadingViewController(userId: userId)
         }
         else {

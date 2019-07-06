@@ -209,12 +209,12 @@ class BAHomeViewController: UIViewController {
             }
         }
         
-        BABumpManager.shared.bumpHandler = { [weak userHolder, weak locationManager, weak self]  bump in
+        BumpManager.shared.bumpHandler = { [weak userHolder, weak locationManager, weak self]  bump in
             if self?.isHoldingToBump ?? false, let currentLocation = locationManager?.currentLocation {
                 userHolder?.sendBumpReceivedEvent(bump: bump, location: currentLocation)
             }
         }
-        BABumpManager.shared.start()
+        BumpManager.shared.start()
         
         disposables += locationManager.didReceiveFirstLocation.producer.startWithValues { [weak self] didReceiveFirstLocation in
             self?.holdGestureRecognizer.isEnabled = didReceiveFirstLocation
@@ -392,7 +392,7 @@ class BAHomeViewController: UIViewController {
     @objc private func showCamera(_ sender: UIButton?) {
 //        let mockLocation = CLLocation(latitude: 34.029526415497742, longitude: -118.28915680636308)
         
-        BAUserHolder.shared.sendBumpReceivedEvent(bump: BABumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+        BAUserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
         
 //        let viewController = BACameraViewController()
 //        self.present(viewController, animated: true, completion: nil)

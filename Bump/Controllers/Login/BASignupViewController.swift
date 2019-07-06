@@ -420,7 +420,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     //MARK: create account
     @objc private func createAccount(_ sender: BALoadingButton?) {
         sender?.isLoading = true
-        BAAuthenticationManager.shared.signup(firstName: firstName.value!, lastName: lastName.value!, email: email.value!, phone: phone.value!, password: password.value!, success: { user in
+        AuthenticationManager.shared.signup(firstName: firstName.value!, lastName: lastName.value!, email: email.value!, phone: phone.value!, password: password.value!, success: { user in
             let homeBlock = {
                 let viewController = BAFirstXPWelcomeViewController(user: user)
                 self.navigationController?.pushViewController(viewController, animated: true)

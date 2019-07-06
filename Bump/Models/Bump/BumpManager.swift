@@ -9,7 +9,7 @@
 import Foundation
 import CoreMotion
 
-public struct BABumpEvent {
+public struct BumpEvent {
     var acceleration: CMAcceleration
     var date: Date
     
@@ -19,10 +19,10 @@ public struct BABumpEvent {
     }
 }
 
-public class BABumpManager: NSObject {
+public class BumpManager: NSObject {
     private static let ACCELERATION_DELTA_THRESHOLD = 0.5
     
-    public static let shared = BABumpManager()
+    public static let shared = BumpManager()
     
     public var bumpHandler: BABumpHandler?
     public var errorHandler: BAErrorHandler?
@@ -52,9 +52,9 @@ public class BABumpManager: NSObject {
                 let deltaY = abs(curr.y - self.prev.y)
                 let deltaZ = abs(curr.z - self.prev.z)
                 
-                if deltaX > BABumpManager.ACCELERATION_DELTA_THRESHOLD || deltaY > BABumpManager.ACCELERATION_DELTA_THRESHOLD || deltaZ > BABumpManager.ACCELERATION_DELTA_THRESHOLD {
+                if deltaX > BumpManager.ACCELERATION_DELTA_THRESHOLD || deltaY > BumpManager.ACCELERATION_DELTA_THRESHOLD || deltaZ > BumpManager.ACCELERATION_DELTA_THRESHOLD {
                     self.skipTimes = 20
-                    self.bumpHandler?(BABumpEvent(acceleration: data.userAcceleration))
+                    self.bumpHandler?(BumpEvent(acceleration: data.userAcceleration))
                 }
                 
                 //print("x: \(abs(data.userAcceleration.x - self.prev.x).roundTo(2)), y: \(abs(data.userAcceleration.y - self.prev.y).roundTo(2)), z: \(abs(data.userAcceleration.z - self.prev.z).roundTo(2))")

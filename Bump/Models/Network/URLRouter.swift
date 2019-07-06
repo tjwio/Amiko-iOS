@@ -65,7 +65,7 @@ enum URLRouter: URLRequestConvertible {
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
-        if let authHeader = BAAuthenticationManager.shared.authToken {
+        if let authHeader = AuthenticationManager.shared.authToken {
             urlRequest.setValue("Bearer \(authHeader)", forHTTPHeaderField: "Authorization");
         }
         
