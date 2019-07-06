@@ -164,7 +164,7 @@ class BaseUserViewController: UIViewController {
     private func addNewContact() throws {
         let didUpdateContact = try addToAddressBookHelper()
         
-        if let coordinate = BALocationManager.shared.currentLocation?.coordinate {
+        if let coordinate = LocationManager.shared.currentLocation?.coordinate {
             BAUserHolder.shared.user.addConnection(addedUserId: userToAdd.userId, latitude: coordinate.latitude, longitude: coordinate.longitude, success: { _ in
                 self.successCallback?(didUpdateContact ? "Successfully updated exisiting contact in address book!" : "Successfully added contact to address book and all accounts!")
                 self.dismissViewController()

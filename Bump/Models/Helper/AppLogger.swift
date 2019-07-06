@@ -8,8 +8,8 @@
 
 import UIKit
 
-public class BALogger: NSObject {
+public class AppLogger: NSObject {
     public class func log(_ string: Any) {
-        print("[Ciao]: \(string)")
+        print("[Amiko]: \(string)")
     }
 }

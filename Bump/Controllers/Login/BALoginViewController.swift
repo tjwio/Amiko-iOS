@@ -191,7 +191,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         let passwordTextFieldSignal  = self.passwordTextField.reactive.continuousTextValues
         
         self.disposables += Signal.combineLatest(emailTextFieldSignal, passwordTextFieldSignal).map { email, password in
-            return BACommonUtility.isValidEmail(email) && !password.isEmpty;
+            return CommonUtility.isValidEmail(email) && !password.isEmpty;
             }.observeValues { [weak self] isEnabled in
                 guard let strongSelf = self else { return }
                 if (isEnabled) {
@@ -271,7 +271,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
                     floatingTextField.errorMessage = floatingTextField.placeholder?.uppercased();
                 }
                 else {
-                    if (floatingTextField == self.emailTextField && !BACommonUtility.isValidEmail(newText)) {
+                    if (floatingTextField == self.emailTextField && !CommonUtility.isValidEmail(newText)) {
                         floatingTextField.errorMessage = "EMAIL NOT VALID";
                     }
                     else {

@@ -8,7 +8,7 @@
 
 import MapKit
 
-class BAUserPinAnnotation: NSObject, MKAnnotation {
+class UserPinAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     weak var history: BAHistory?
     

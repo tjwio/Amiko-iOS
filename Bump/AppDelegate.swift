@@ -35,10 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureAppCenter()
         
-        BACommonUtility.configureMessages()
+        CommonUtility.configureMessages()
         
-        if BALocationManager.shared.isAuthorized {
-            BALocationManager.shared.initialize()
+        if LocationManager.shared.isAuthorized {
+            LocationManager.shared.initialize()
         }
         
         self.loadInitialViewController()
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        BALocationManager.shared.stopUpdatingLocation()
+        LocationManager.shared.stopUpdatingLocation()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -61,8 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BAUserHolder.shared.reconnect()
         }
         
-        if BALocationManager.shared.isAuthorized && !BALocationManager.shared.didReceiveFirstLocation.value {
-            BALocationManager.shared.startUpdatingLocation()
+        if LocationManager.shared.isAuthorized && !LocationManager.shared.didReceiveFirstLocation.value {
+            LocationManager.shared.startUpdatingLocation()
         }
     }
 

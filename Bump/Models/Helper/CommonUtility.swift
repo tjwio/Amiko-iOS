@@ -9,7 +9,7 @@
 import UIKit
 import GSMessages
 
-class BACommonUtility: NSObject {
+class CommonUtility: NSObject {
     public class func isValidEmail(_ email: String!) -> Bool {
         if (email.count > 0) {
             let laxChecker = "^.+@.+.[A-Za-z]{2}[A-Za-z]*$";

@@ -283,7 +283,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
             let firstNameValid = firstName?.count ?? 0 > 0
             let lastNameValid = lastName?.count ?? 0 > 0
             let phoneValid = phone?.count ?? 0 > 0
-            let emailValid = email?.count ?? 0 > 0 ? BACommonUtility.isValidEmail(email!) : false
+            let emailValid = email?.count ?? 0 > 0 ? CommonUtility.isValidEmail(email!) : false
             let passwordValid = password?.count ?? 0 >= 6
             
             return firstNameValid && lastNameValid && phoneValid && emailValid && passwordValid
@@ -385,7 +385,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
                     floatingTextField.errorMessage = floatingTextField.placeholder?.uppercased();
                 }
                 else {
-                    if (floatingTextField == self.emailTextField && !BACommonUtility.isValidEmail(newText)) {
+                    if (floatingTextField == self.emailTextField && !CommonUtility.isValidEmail(newText)) {
                         floatingTextField.errorMessage = "EMAIL NOT VALID";
                     }
                     else {

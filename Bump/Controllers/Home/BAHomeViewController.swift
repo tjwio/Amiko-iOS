@@ -200,7 +200,7 @@ class BAHomeViewController: UIViewController {
         scanButton.addTarget(self, action: #selector(self.showNFCScanner(_:)), for: .touchUpInside)
         
         let userHolder = BAUserHolder.shared
-        let locationManager = BALocationManager.shared
+        let locationManager = LocationManager.shared
         locationManager.initialize()
         
         BAUserHolder.shared.bumpMatchCallback = { [weak self] user in
@@ -392,7 +392,7 @@ class BAHomeViewController: UIViewController {
     @objc private func showCamera(_ sender: UIButton?) {
 //        let mockLocation = CLLocation(latitude: 34.029526415497742, longitude: -118.28915680636308)
         
-        BAUserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: BALocationManager.shared.currentLocation!)
+        BAUserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
         
 //        let viewController = BACameraViewController()
 //        self.present(viewController, animated: true, completion: nil)

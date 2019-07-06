@@ -10,8 +10,8 @@ import Foundation
 import MapKit
 import ReactiveSwift
 
-class BALocationManager: NSObject, CLLocationManagerDelegate {
-    static let shared = BALocationManager()
+class LocationManager: NSObject, CLLocationManagerDelegate {
+    static let shared = LocationManager()
     
     private let locationManager = CLLocationManager()
     private(set) var currentLocation: CLLocation? {

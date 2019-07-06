@@ -200,7 +200,7 @@ public class BAUser: NSObject, JSONDecodable {
             
             success?(historyList)
         }) { error in
-            BALogger.log("failed to parse history with error: \(error)")
+            AppLogger.log("failed to parse history with error: \(error)")
             failure?(error)
         }
     }
