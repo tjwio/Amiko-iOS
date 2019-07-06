@@ -21,6 +21,7 @@ class BAUserHolder: NSObject {
     private(set) var user: BAUser
     
     let socket: Socket
+    var lobby: Channel!
     
     var bumpMatchCallback: BAUserHandler?
     
@@ -83,7 +84,7 @@ class BAUserHolder: NSObject {
         socket.onClose { print("socket disconnected") }
         socket.onError { error in print("socket error: \(error)") }
         
-        let lobby = socket.channel(BAConstants.Channel.lobby)
+        lobby = socket.channel(BAConstants.Channel.lobby)
         let privateRoom = socket.channel("\(BAConstants.Channel.privateRoom):\(user.userId)")
         
         socket.onMessage { payload in
@@ -135,7 +136,7 @@ class BAUserHolder: NSObject {
         
         print("bumping with params: \(params)")
         
-        _ = socket.channel(BAConstants.Channel.lobby).push(BAConstants.Events.bumped, payload: params)
+        _ = lobby.push(BAConstants.Events.bumped, payload: params)
     }
     
     //MARK: reconnect

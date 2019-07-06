@@ -7,6 +7,7 @@
 //
 
 import UIKit
+#if canImport(CoreNFC)
 import CoreNFC
 
 extension BAHomeViewController: NFCNDEFReaderSessionDelegate {
@@ -47,3 +48,5 @@ extension BAHomeViewController: NFCNDEFReaderSessionDelegate {
         self.present(viewController, animated: false, completion: nil)
     }
 }
+
+#endif

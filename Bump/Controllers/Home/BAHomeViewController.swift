@@ -9,12 +9,15 @@
 import UIKit
 import AVFoundation
 import CoreMotion
-import CoreNFC
 import Lottie
 import ReactiveCocoa
 import ReactiveSwift
 import SnapKit
 import SDWebImage
+
+#if canImport(CoreNFC)
+import CoreNFC
+#endif
 
 class BAHomeViewController: UIViewController {
     private struct Constants {
@@ -326,11 +329,13 @@ class BAHomeViewController: UIViewController {
     // MARK: nfc
     
     @objc private func showNFCScanner(_ sender: UIButton?) {
+        #if canImport(CoreNFC)
         guard NFCNDEFReaderSession.readingAvailable else { return }
         
         let nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
         nfcSession.alertMessage = "Please scan an Amiko Card"
         nfcSession.begin()
+        #endif
     }
     
     //MARK: hold gesture
