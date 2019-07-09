@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2210BECA22CC5F630053F8A8 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2210BEC922CC5F630053F8A8 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED722D443750053F8A8 /* SyncUserViewController.swift */; };
+		2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -135,6 +137,8 @@
 
 /* Begin PBXFileReference section */
 		2210BEC922CC5F630053F8A8 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
+		2210BED722D443750053F8A8 /* SyncUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserViewController.swift; sourceTree = "<group>"; };
+		2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserHeaderView.swift; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -319,8 +323,39 @@
 		2210BECC22D137050053F8A8 /* V2 */ = {
 			isa = PBXGroup;
 			children = (
+				2210BED622D443510053F8A8 /* Sync */,
 			);
 			path = V2;
+			sourceTree = "<group>";
+		};
+		2210BED422D43D9A0053F8A8 /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				2F06357920853E7F00D655E7 /* BAAddUserView.swift */,
+				2F18D399210539C000C97E3A /* BAAvatarView.swift */,
+				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
+				2F552F3C213916C80074AB8B /* BAProfileView.swift */,
+				2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */,
+				2F0635762085395E00D655E7 /* Cells */,
+				2F1E73D3211B21D500B83501 /* Map */,
+			);
+			path = V1;
+			sourceTree = "<group>";
+		};
+		2210BED522D43DA20053F8A8 /* V2 */ = {
+			isa = PBXGroup;
+			children = (
+				2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */,
+			);
+			path = V2;
+			sourceTree = "<group>";
+		};
+		2210BED622D443510053F8A8 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				2210BED722D443750053F8A8 /* SyncUserViewController.swift */,
+			);
+			path = Sync;
 			sourceTree = "<group>";
 		};
 		2248BFA222B3B94B00979398 /* CustomFrameworks */ = {
@@ -695,13 +730,8 @@
 		2F6E52092083EBD300E8D8CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2F06357920853E7F00D655E7 /* BAAddUserView.swift */,
-				2F18D399210539C000C97E3A /* BAAvatarView.swift */,
-				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
-				2F552F3C213916C80074AB8B /* BAProfileView.swift */,
-				2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */,
-				2F0635762085395E00D655E7 /* Cells */,
-				2F1E73D3211B21D500B83501 /* Map */,
+				2210BED522D43DA20053F8A8 /* V2 */,
+				2210BED422D43D9A0053F8A8 /* V1 */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -945,6 +975,7 @@
 				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
 				2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */,
 				2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */,
+				2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */,
 				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
 				2F6E51B12082AD9E00E8D8CA /* BumpManager.swift in Sources */,
 				2F18D39C21053C5300C97E3A /* UIImage+Constants.swift in Sources */,
@@ -960,6 +991,7 @@
 				2F6E51B42082AF8800E8D8CA /* AppConstants.swift in Sources */,
 				2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */,
 				2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */,
+				2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */,
 				2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,

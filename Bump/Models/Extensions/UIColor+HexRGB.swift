@@ -16,13 +16,27 @@ extension UIColor {
                   alpha: alpha);
     }
     
+    struct Matcha {
+        static var dusk: UIColor {
+            return UIColor(hexColor: 0x737C71)
+        }
+        
+        static var sky: UIColor {
+            return UIColor(hexColor: 0xD1DCCF)
+        }
+    }
+    
     struct Grayscale {
         static var dark: UIColor {
-            return UIColor(hexColor: 0x656A6F)
+            return UIColor(hexColor: 0x585353)
+        }
+        
+        static var background: UIColor {
+            return UIColor(hexColor: 0xF4F4F4)
         }
         
         static var light: UIColor {
-            return UIColor(hexColor: 0xA7ADB6)
+            return UIColor(hexColor: 0xABA8A8)
         }
         
         static var lighter: UIColor {
