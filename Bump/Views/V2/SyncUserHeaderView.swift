@@ -11,6 +11,12 @@ import SDWebImage
 import SnapKit
 
 class SyncUserHeaderView: UIView {
+    var mutualImageUrls = [String]() {
+        didSet {
+            updateMutualAvatars(urls: mutualImageUrls)
+        }
+    }
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .avenirDemi(size: 24.0)
