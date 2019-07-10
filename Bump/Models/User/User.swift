@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gloss
 import FeatherIcon
 import ReactiveCocoa
 import ReactiveSwift
@@ -83,12 +82,12 @@ public enum AccountContact: String {
     }
 }
 
-public class User: NSObject, JSONDecodable {
-    var userId: String
+public class User: NSObject, Codable {
+    var id: String
     var firstName: String
     var lastName: String
-    var email: String
-    var phone: String
+    var email: String?
+    var phone: String?
     var imageUrl: String?
     var profession: String?
     var company: String?
@@ -99,6 +98,8 @@ public class User: NSObject, JSONDecodable {
     var linkedin: String?
     var instagram: String?
     var twitter: String?
+    
+    var mutualFriends: [User]
     
     var fullJobCompany: String? {
         if let profession = profession, let company = company {
@@ -123,10 +124,21 @@ public class User: NSObject, JSONDecodable {
     }
     
     var allAccounts: [(AccountContact, String)] {
-        return [
-            (.phone, phone),
-            (.email, email)
-        ] + socialAccounts
+        return mainAccounts + socialAccounts
+    }
+    
+    var mainAccounts: [(AccountContact, String)] {
+        var ret = [(AccountContact, String)]()
+        
+        if let phone = phone, !phone.isEmpty {
+            ret.append((.phone, phone))
+        }
+        
+        if let email = email, !email.isEmpty {
+            ret.append((.email, email))
+        }
+        
+        return ret
     }
     
     var socialAccounts: [(AccountContact, String)] {
@@ -159,45 +171,31 @@ public class User: NSObject, JSONDecodable {
     
     private let availableSocial = [AppConstants.User.facebook, AppConstants.User.instagram, AppConstants.User.linkedin, AppConstants.User.twitter]
     
-    public required init?(json: JSON) {
-        guard let userId: String = AppConstants.User.id <~~ json else { return nil }
-        guard let firstName: String = AppConstants.User.firstName <~~ json else { return nil }
-        guard let lastName: String = AppConstants.User.lastName <~~ json else { return nil }
-        guard let email: String = AppConstants.User.email <~~ json else { return nil }
-        guard let phone: String = AppConstants.User.phone <~~ json else { return nil }
-        
-        self.userId = userId
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.phone = phone
-        self.imageUrl = AppConstants.User.imageUrl <~~ json
-        self.profession = AppConstants.User.profession <~~ json
-        self.company = AppConstants.User.company <~~ json
-        self.website = AppConstants.User.website <~~ json
-        
-        self.facebook = AppConstants.User.facebook <~~ json
-        self.linkedin = AppConstants.User.linkedin <~~ json
-        self.instagram = AppConstants.User.instagram <~~ json
-        self.twitter = AppConstants.User.twitter <~~ json
-        
-        super.init()
+    enum CodingKeys: String, CodingKey {
+        case id, email, phone, profession, company, bio, website, facebook, instagram, linkedin, twitter
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case imageUrl = "image_url"
+        case mutualFriends = "mutual_friends"
     }
     
-    class func json(firstName: String, lastName: String, profession: String, company: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String) -> JSON {
-        return jsonify([
-            AppConstants.User.firstName ~~> firstName.nullOrValue,
-            AppConstants.User.lastName ~~> lastName.nullOrValue,
-            AppConstants.User.profession ~~> profession.nullOrValue,
-            AppConstants.User.company ~~> company.nullOrValue,
-            AppConstants.User.phone ~~> phone.nullOrValue,
-            AppConstants.User.email ~~> email.nullOrValue,
-            AppConstants.User.website ~~> website.nullOrValue,
-            AppConstants.User.facebook ~~> facebook.nullOrValue,
-            AppConstants.User.linkedin ~~> linkedin.nullOrValue,
-            AppConstants.User.instagram ~~> instagram.nullOrValue,
-            AppConstants.User.twitter ~~> twitter.nullOrValue
-            ]) ?? [:]
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        firstName = try container.decode(String.self, forKey: .firstName)
+        lastName = try container.decode(String.self, forKey: .lastName)
+        email = try container.decodeIfPresent(String.self, forKey: .email)
+        phone = try container.decodeIfPresent(String.self, forKey: .phone)
+        imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
+        profession = try container.decodeIfPresent(String.self, forKey: .profession)
+        company = try container.decodeIfPresent(String.self, forKey: .company)
+        bio = try container.decodeIfPresent(String.self, forKey: .bio)
+        website = try container.decodeIfPresent(String.self, forKey: .website)
+        facebook = try container.decodeIfPresent(String.self, forKey: .facebook)
+        instagram = try container.decodeIfPresent(String.self, forKey: .instagram)
+        linkedin = try container.decodeIfPresent(String.self, forKey: .linkedin)
+        twitter = try container.decodeIfPresent(String.self, forKey: .twitter)
+        mutualFriends = try container.decodeIfPresent([User].self, forKey: .mutualFriends) ?? []
     }
     
     //MARK: load/get

@@ -85,7 +85,7 @@ class UserHolder: NSObject {
         socket.onError { error in print("socket error: \(error)") }
         
         lobby = socket.channel(AppConstants.Channel.lobby)
-        let privateRoom = socket.channel("\(AppConstants.Channel.privateRoom):\(user.userId)")
+        let privateRoom = socket.channel("\(AppConstants.Channel.privateRoom):\(user.id)")
         
         socket.onMessage { payload in
             print("socket message: \(payload)")

@@ -34,7 +34,7 @@ extension BAHomeViewController: NFCNDEFReaderSessionDelegate {
     }
     
     func openProfileController(id: String) {
-        let viewController = LoadProfileViewController(userId: id)
+        let viewController = LoadProfileViewController(id: id)
         viewController.successCallback = { [weak self] message in
             DispatchQueue.main.async {
                 self?.showLeftMessage(message, type: .success)

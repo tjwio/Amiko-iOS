@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import Gloss
 
 extension NetworkHandler {
     private struct Constants {

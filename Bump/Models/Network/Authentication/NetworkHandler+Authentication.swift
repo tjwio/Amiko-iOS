@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 extension NetworkHandler {
     public func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {

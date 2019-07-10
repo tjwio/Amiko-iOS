@@ -11,6 +11,8 @@
 		2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED722D443750053F8A8 /* SyncUserViewController.swift */; };
 		2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */; };
 		2210BEDE22D590560053F8A8 /* DetailButtonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */; };
+		2210BEE022D594E40053F8A8 /* SyncUserAccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEDF22D594E40053F8A8 /* SyncUserAccountsView.swift */; };
+		2210BEE222D598870053F8A8 /* SyncUserAccountsView+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE122D598870053F8A8 /* SyncUserAccountsView+Cell.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -141,6 +143,8 @@
 		2210BED722D443750053F8A8 /* SyncUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserViewController.swift; sourceTree = "<group>"; };
 		2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserHeaderView.swift; sourceTree = "<group>"; };
 		2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonHeaderView.swift; sourceTree = "<group>"; };
+		2210BEDF22D594E40053F8A8 /* SyncUserAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserAccountsView.swift; sourceTree = "<group>"; };
+		2210BEE122D598870053F8A8 /* SyncUserAccountsView+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncUserAccountsView+Cell.swift"; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -364,7 +368,9 @@
 		2210BEDB22D58FE90053F8A8 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
+				2210BEDF22D594E40053F8A8 /* SyncUserAccountsView.swift */,
 				2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */,
+				2210BEE122D598870053F8A8 /* SyncUserAccountsView+Cell.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -1015,6 +1021,8 @@
 				2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
+				2210BEE022D594E40053F8A8 /* SyncUserAccountsView.swift in Sources */,
+				2210BEE222D598870053F8A8 /* SyncUserAccountsView+Cell.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
 				2F18D3A82106F7D400C97E3A /* DateFormatter+Constants.swift in Sources */,
 				2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */,

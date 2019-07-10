@@ -308,7 +308,7 @@ class BAHomeViewController: UIViewController {
         audioPlayer?.play()
         let viewController: BAAddUserViewController
         
-        if let history = UserHolder.shared.user.history.first(where: { return $0.addedUser.userId == userToAdd.userId } ) {
+        if let history = UserHolder.shared.user.history.first(where: { return $0.addedUser.id == userToAdd.id } ) {
             viewController = BADeleteUserViewController(user: UserHolder.shared.user, history: history)
         } else {
             viewController = BAAddUserViewController(userToAdd: userToAdd)

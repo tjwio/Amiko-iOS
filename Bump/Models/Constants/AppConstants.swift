@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Gloss
 
 public typealias JSON = [String: Any]
 
@@ -45,6 +44,7 @@ struct AppConstants {
         static let linkedin = "linkedin"
         static let twitter = "twitter"
         static let password = "password"
+        static let mutualFriends = "mutual_friends"
     }
     
     struct Channel {
