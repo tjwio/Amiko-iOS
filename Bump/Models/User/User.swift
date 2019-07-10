@@ -92,6 +92,7 @@ public class User: NSObject, JSONDecodable {
     var imageUrl: String?
     var profession: String?
     var company: String?
+    var bio: String?
     var website: String?
     
     var facebook: String?
@@ -102,15 +103,30 @@ public class User: NSObject, JSONDecodable {
     var fullJobCompany: String? {
         if let profession = profession, let company = company {
             return profession.appending(" at \(company)")
-        }
-        else if let profession = profession {
+        } else if let profession = profession {
             return profession
-        }
-        else if let company = company {
+        } else if let company = company {
             return company
         }
         
         return nil
+    }
+    
+    var publicBio: String {
+        let jobDesc = (fullJobCompany ?? "")
+        
+        if let bio = bio {
+            return jobDesc.appending("\n\(bio)")
+        } else {
+            return jobDesc
+        }
+    }
+    
+    var allAccounts: [(AccountContact, String)] {
+        return [
+            (.phone, phone),
+            (.email, email)
+        ] + socialAccounts
     }
     
     var socialAccounts: [(AccountContact, String)] {

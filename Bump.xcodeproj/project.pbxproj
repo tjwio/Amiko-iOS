@@ -10,6 +10,7 @@
 		2210BECA22CC5F630053F8A8 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2210BEC922CC5F630053F8A8 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED722D443750053F8A8 /* SyncUserViewController.swift */; };
 		2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */; };
+		2210BEDE22D590560053F8A8 /* DetailButtonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -139,6 +140,7 @@
 		2210BEC922CC5F630053F8A8 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
 		2210BED722D443750053F8A8 /* SyncUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserViewController.swift; sourceTree = "<group>"; };
 		2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserHeaderView.swift; sourceTree = "<group>"; };
+		2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonHeaderView.swift; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -345,7 +347,8 @@
 		2210BED522D43DA20053F8A8 /* V2 */ = {
 			isa = PBXGroup;
 			children = (
-				2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */,
+				2210BEDC22D58FF80053F8A8 /* Common */,
+				2210BEDB22D58FE90053F8A8 /* Sync */,
 			);
 			path = V2;
 			sourceTree = "<group>";
@@ -356,6 +359,22 @@
 				2210BED722D443750053F8A8 /* SyncUserViewController.swift */,
 			);
 			path = Sync;
+			sourceTree = "<group>";
+		};
+		2210BEDB22D58FE90053F8A8 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
+		2210BEDC22D58FF80053F8A8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		2248BFA222B3B94B00979398 /* CustomFrameworks */ = {
@@ -984,6 +1003,7 @@
 				2F6E51D62082BE4000E8D8CA /* AuthenticationManager.swift in Sources */,
 				2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */,
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
+				2210BEDE22D590560053F8A8 /* DetailButtonHeaderView.swift in Sources */,
 				2FF2EDAC215CA83A00550366 /* BAFirstXPWelcomeViewController.swift in Sources */,
 				2F6E51B72082B10C00E8D8CA /* User.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,

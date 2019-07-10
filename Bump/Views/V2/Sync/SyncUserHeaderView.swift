@@ -112,31 +112,35 @@ class SyncUserHeaderView: UIView {
     
     override func updateConstraints() {
         avatarImageView.snp.makeConstraints { make in
-            make.leading.top.equalToSuperview()
+            make.top.equalToSuperview().offset(56.0)
+            make.leading.equalToSuperview().offset(36.0)
             make.height.equalTo(90.0)
             make.width.equalTo(90.0)
         }
         
         labelStackView.snp.makeConstraints { make in
             make.leading.equalTo(self.avatarImageView.snp.trailing).offset(18.0)
+            make.trailing.equalToSuperview().offset(-36.0)
             make.centerY.equalTo(self.avatarImageView)
         }
         
         separatorView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().offset(36.0)
             make.top.equalTo(self.avatarImageView.snp.bottom).offset(32.0)
             make.height.equalTo(4.0)
             make.width.equalTo(32.0)
         }
         
         mutualLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().offset(36.0)
             make.top.equalTo(self.separatorView.snp.bottom).offset(9.0)
         }
         
         mutualScrollView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(36.0)
+            make.trailing.equalToSuperview().offset(-36.0)
             make.top.equalTo(self.mutualLabel.snp.bottom).offset(12.0)
+            make.bottom.equalToSuperview().offset(-20.0)
         }
         
         super.updateConstraints()
