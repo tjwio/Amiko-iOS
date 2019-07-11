@@ -114,8 +114,7 @@ class SyncUserHeaderView: UIView {
         avatarImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(56.0)
             make.leading.equalToSuperview().offset(36.0)
-            make.height.equalTo(90.0)
-            make.width.equalTo(90.0)
+            make.height.width.equalTo(90.0)
         }
         
         labelStackView.snp.makeConstraints { make in
