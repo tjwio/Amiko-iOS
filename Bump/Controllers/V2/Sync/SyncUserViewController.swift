@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import FeatherIcon
 import SnapKit
 
 class SyncUserViewController: UIViewController {
     let userToAdd: User
     let accountsView: SyncUserAccountsView
+    let buttonTitle: String
     
     let headerView: SyncUserHeaderView = {
         let view = SyncUserHeaderView()
@@ -21,9 +23,51 @@ class SyncUserViewController: UIViewController {
         return view
     }()
     
-    init(currUser: User, userToAdd: User) {
+    let cancelButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .white
+        
+        let attributedTitle = NSMutableAttributedString(string: "\(String.featherIcon(name: .x)) Cancel", attributes: [.foregroundColor: UIColor.Matcha.dusk])
+        attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(0, 1))
+        attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(1, attributedTitle.length-1))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    lazy var confirmButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor.Matcha.dusk
+        
+        let attributedTitle = NSMutableAttributedString(string: "\(buttonTitle) \(String.featherIcon(name: .x))", attributes: [.foregroundColor: UIColor.Matcha.dusk])
+        attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(attributedTitle.length-2, 1))
+        attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(0, attributedTitle.length-1))
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.roundCorners(corners: [.topLeft], radius: 40.0)
+        
+        return button
+    }()
+    
+    lazy var buttonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [cancelButton, confirmButton])
+        stackView.alignment = .center
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 0.0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    
+    init(currUser: User, userToAdd: User, buttonTitle: String) {
         self.userToAdd = userToAdd
         accountsView = SyncUserAccountsView(user: currUser)
+        self.buttonTitle = buttonTitle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,6 +94,7 @@ class SyncUserViewController: UIViewController {
         
         view.addSubview(headerView)
         view.addSubview(accountsView)
+        view.addSubview(buttonStackView)
         
         setupConstraints()
     }
@@ -64,6 +109,18 @@ class SyncUserViewController: UIViewController {
             make.leading.equalToSuperview().offset(32.0)
             make.trailing.equalToSuperview().offset(-32.0)
             make.bottom.equalToSuperview()
+        }
+        
+        buttonStackView.snp.makeConstraints { make in
+            make.leading.bottom.trailing.equalToSuperview()
+        }
+        
+        cancelButton.snp.makeConstraints { make in
+            make.height.equalTo(64.0)
+        }
+        
+        confirmButton.snp.makeConstraints { make in
+            make.height.equalTo(64.0)
         }
     }
 }
