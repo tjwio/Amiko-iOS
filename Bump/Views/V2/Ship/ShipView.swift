@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import FeatherIcon
 import SnapKit
 
 class ShipTableViewCell: UITableViewCell {
+    var accounts = [AccountContact]() {
+        didSet {
+            setupAccountSlider(accounts: accounts)
+        }
+    }
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .avenirDemi(size: 20.0)
@@ -46,13 +53,15 @@ class ShipTableViewCell: UITableViewCell {
         return view
     }()
     
-    let accountsScrollView: UIScrollView = {
+    let accountScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
     }()
+    
+    var accountButtons = [UIButton]()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -71,7 +80,7 @@ class ShipTableViewCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(bioLabel)
         contentView.addSubview(separatorView)
-        contentView.addSubview(accountsScrollView)
+        contentView.addSubview(accountScrollView)
         
         setNeedsUpdateConstraints()
     }
@@ -99,12 +108,48 @@ class ShipTableViewCell: UITableViewCell {
             make.height.equalTo(2.0)
         }
         
-        accountsScrollView.snp.makeConstraints { make in
+        accountScrollView.snp.makeConstraints { make in
             make.top.equalTo(self.separatorView.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(36.0)
         }
         
         super.updateConstraints()
+    }
+    
+    private func setupAccountSlider(accounts: [AccountContact]) {
+        accountButtons.forEach { $0.removeFromSuperview() }
+        accountButtons = []
+        
+        accountButtons = accounts.map { account in
+            let button = UIButton(type: .custom)
+            button.setTitle(account.icon, for: .normal)
+            button.setTitleColor(UIColor.Matcha.dusk, for: .normal)
+            button.titleLabel?.font = .featherFont(size: 16.0)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            return button
+        }
+        
+        var previousButton: UIButton?
+        accountButtons.enumerated().forEach { (index, button) in
+            accountScrollView.addSubview(button)
+            
+            button.snp.makeConstraints { make in
+                if let previousButton = previousButton {
+                    make.leading.equalTo(previousButton.snp.trailing).offset(32.0)
+                } else {
+                    make.leading.equalToSuperview().offset(32.0)
+                }
+                
+                make.centerY.equalToSuperview()
+            }
+            
+            previousButton = button
+        }
+        
+        previousButton?.snp.makeConstraints { make in
+            make.trailing.lessThanOrEqualToSuperview().offset(-32.0)
+        }
     }
 }
