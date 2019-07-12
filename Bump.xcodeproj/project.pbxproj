@@ -15,7 +15,7 @@
 		2210BEE222D598870053F8A8 /* SyncUserAccountsView+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE122D598870053F8A8 /* SyncUserAccountsView+Cell.swift */; };
 		2210BEE422D6D8070053F8A8 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE322D6D8070053F8A8 /* UIView+CornerRadius.swift */; };
 		2210BEE722D6DBE00053F8A8 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE622D6DBE00053F8A8 /* Ship.swift */; };
-		2210BEEA22D6E4C30053F8A8 /* ShipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE922D6E4C30053F8A8 /* ShipView.swift */; };
+		2210BEEA22D6E4C30053F8A8 /* ShipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE922D6E4C30053F8A8 /* ShipTableViewCell.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -149,7 +149,7 @@
 		2210BEE122D598870053F8A8 /* SyncUserAccountsView+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncUserAccountsView+Cell.swift"; sourceTree = "<group>"; };
 		2210BEE322D6D8070053F8A8 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		2210BEE622D6DBE00053F8A8 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
-		2210BEE922D6E4C30053F8A8 /* ShipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipView.swift; sourceTree = "<group>"; };
+		2210BEE922D6E4C30053F8A8 /* ShipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipTableViewCell.swift; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -400,7 +400,7 @@
 		2210BEE822D6E4AF0053F8A8 /* Ship */ = {
 			isa = PBXGroup;
 			children = (
-				2210BEE922D6E4C30053F8A8 /* ShipView.swift */,
+				2210BEE922D6E4C30053F8A8 /* ShipTableViewCell.swift */,
 			);
 			path = Ship;
 			sourceTree = "<group>";
@@ -1033,7 +1033,7 @@
 				2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */,
 				2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */,
 				2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */,
-				2210BEEA22D6E4C30053F8A8 /* ShipView.swift in Sources */,
+				2210BEEA22D6E4C30053F8A8 /* ShipTableViewCell.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2210BEE022D594E40053F8A8 /* SyncUserAccountsView.swift in Sources */,
