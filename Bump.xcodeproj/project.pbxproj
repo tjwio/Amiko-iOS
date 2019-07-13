@@ -16,6 +16,7 @@
 		2210BEE422D6D8070053F8A8 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE322D6D8070053F8A8 /* UIView+CornerRadius.swift */; };
 		2210BEE722D6DBE00053F8A8 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE622D6DBE00053F8A8 /* Ship.swift */; };
 		2210BEEA22D6E4C30053F8A8 /* ShipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEE922D6E4C30053F8A8 /* ShipTableViewCell.swift */; };
+		221F151E22DA796D00EE8567 /* PendingShipHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F151D22DA796D00EE8567 /* PendingShipHeaderView.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -151,6 +152,7 @@
 		2210BEE322D6D8070053F8A8 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		2210BEE622D6DBE00053F8A8 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
 		2210BEE922D6E4C30053F8A8 /* ShipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipTableViewCell.swift; sourceTree = "<group>"; };
+		221F151D22DA796D00EE8567 /* PendingShipHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingShipHeaderView.swift; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				2210BEE922D6E4C30053F8A8 /* ShipTableViewCell.swift */,
+				221F151D22DA796D00EE8567 /* PendingShipHeaderView.swift */,
 			);
 			path = Ship;
 			sourceTree = "<group>";
@@ -1077,6 +1080,7 @@
 				2FF2EDAE215CAC4100550366 /* BAProfileViewController.swift in Sources */,
 				2F6E51D02082BBF700E8D8CA /* NetworkHandler+Authentication.swift in Sources */,
 				2F06357D20854AAF00D655E7 /* BAAddUserViewController.swift in Sources */,
+				221F151E22DA796D00EE8567 /* PendingShipHeaderView.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* NetworkHandler.swift in Sources */,
 				2F6E51E12082FF3000E8D8CA /* LocationManager.swift in Sources */,
 				22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */,

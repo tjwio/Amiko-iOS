@@ -14,7 +14,9 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     let user: User
-    let ships: [Ship]
+    
+    let connectedShips: [Ship]
+    let pendingShips: [Ship]
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -31,7 +33,8 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     
     init(user: User, ships: [Ship]) {
         self.user = user
-        self.ships = ships
+        self.connectedShips = ships.filter { !$0.pending }
+        self.pendingShips = ships.filter { $0.pending }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -65,7 +68,7 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: table view
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return ships.count
+        return connectedShips.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,7 +100,7 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier) as? ShipTableViewCell ?? ShipTableViewCell(style: .default, reuseIdentifier: Constants.cellIdentifier)
         
-        let ship = ships[indexPath.section]
+        let ship = connectedShips[indexPath.section]
         if let imageUrl = ship.user.imageUrl {
             cell.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
         }

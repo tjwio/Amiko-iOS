@@ -44,7 +44,7 @@ class ShipTableViewCell: UITableViewCell {
     
     let avatarImageView: UIImageView = {
         let imageView = UIImageView(image: .blankAvatar)
-        imageView.layer.cornerRadius = 45.0
+        imageView.layer.cornerRadius = 30.0
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
