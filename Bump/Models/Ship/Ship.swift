@@ -7,16 +7,22 @@
 //
 
 import Foundation
+import MapKit
 
 struct Ship: Codable {
+    var id: String
     var user: User
     var latitude: Double
     var longitude: Double
     var pending: Bool
     var insertedAt: Date
     
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
     enum CodingKeys: String, CodingKey {
-        case user, latitude, longitude, pending
+        case id, user, latitude, longitude, pending
         case insertedAt = "inserted_at"
     }
 }

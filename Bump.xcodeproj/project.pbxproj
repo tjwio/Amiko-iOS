@@ -54,7 +54,7 @@
 		2F1E73BF211636BC00B83501 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F1312082081B36700D462F8 /* SnapKit.framework */; };
 		2F1E73C0211636BC00B83501 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E51BC2082B5C500E8D8CA /* Starscream.framework */; };
 		2F1E73C1211636BC00B83501 /* SwiftPhoenixClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */; };
-		2F1E73CD2119975100B83501 /* BAHistoryMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73CC2119975100B83501 /* BAHistoryMapViewController.swift */; };
+		2F1E73CD2119975100B83501 /* ShipMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73CC2119975100B83501 /* ShipMapViewController.swift */; };
 		2F1E73D02119987E00B83501 /* UserPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73CF2119987E00B83501 /* UserPinAnnotation.swift */; };
 		2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */; };
 		2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1E73D4211B21F300B83501 /* BAUserAnnotationView.swift */; };
@@ -182,7 +182,7 @@
 		2F1D5BE82188E666000FF3BF /* Success8.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Success8.caf; sourceTree = "<group>"; };
 		2F1E73C2211636BD00B83501 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
 		2F1E73C421163D1700B83501 /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HockeySDK.framework; path = Carthage/Build/iOS/HockeySDK.framework; sourceTree = "<group>"; };
-		2F1E73CC2119975100B83501 /* BAHistoryMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAHistoryMapViewController.swift; sourceTree = "<group>"; };
+		2F1E73CC2119975100B83501 /* ShipMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipMapViewController.swift; sourceTree = "<group>"; };
 		2F1E73CF2119987E00B83501 /* UserPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPinAnnotation.swift; sourceTree = "<group>"; };
 		2F1E73D12119C4A300B83501 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		2F1E73D4211B21F300B83501 /* BAUserAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserAnnotationView.swift; sourceTree = "<group>"; };
@@ -427,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				22D3F12622D81420007CFA36 /* ShipListViewController.swift */,
+				2F1E73CC2119975100B83501 /* ShipMapViewController.swift */,
 			);
 			path = Ship;
 			sourceTree = "<group>";
@@ -466,7 +467,6 @@
 			children = (
 				2F3432C021243BCB00B9ED45 /* BAHistoryHolderViewController.swift */,
 				2F18D3A02105650600C97E3A /* BAHistoryListViewController.swift */,
-				2F1E73CC2119975100B83501 /* BAHistoryMapViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -1072,7 +1072,7 @@
 				2F18D3A12105650600C97E3A /* BAHistoryListViewController.swift in Sources */,
 				2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* UserHolder.swift in Sources */,
-				2F1E73CD2119975100B83501 /* BAHistoryMapViewController.swift in Sources */,
+				2F1E73CD2119975100B83501 /* ShipMapViewController.swift in Sources */,
 				2F552F49213DE82D0074AB8B /* String+Null.swift in Sources */,
 				2F18D39320FEA16000C97E3A /* URLRequesst+cURL.swift in Sources */,
 				2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */,

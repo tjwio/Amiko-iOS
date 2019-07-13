@@ -10,12 +10,12 @@ import MapKit
 
 class UserPinAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
-    weak var history: BAHistory?
+    let ship: Ship
     
     var isShowing = false
     
-    init(coordinate: CLLocationCoordinate2D, history: BAHistory) {
-        self.coordinate = coordinate
-        self.history = history
+    init(ship: Ship) {
+        self.coordinate = ship.coordinate
+        self.ship = ship
     }
 }

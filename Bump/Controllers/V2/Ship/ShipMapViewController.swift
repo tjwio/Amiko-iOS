@@ -8,17 +8,16 @@
 
 import UIKit
 import MapKit
+import SDWebImage
 import SnapKit
 
-class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKMapViewDelegate {
-    
+class ShipMapViewController: UIViewController, BAHistoryViewController, MKMapViewDelegate {
     private struct Constants {
         static let annotationIdentifier = "BA_HISTORY_ANNOTATION_PIN_IDENTIFIER"
     }
     
-    weak var delegate: BAHistoryChangeDelegate?
-    
     let user: User
+    let ships: [Ship]
     
     let mapView = MKMapView()
     
@@ -36,9 +35,9 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
         }
     }
     
-    init(user: User, delegate: BAHistoryChangeDelegate? = nil) {
+    init(user: User, ships: [Ship]) {
         self.user = user
-        self.delegate = delegate
+        self.ships = ships.filter { !$0.pending }
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -78,12 +77,8 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
         
         view.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
         view.annotation = annotation
-        if let annotation = annotation as? UserPinAnnotation {
-            annotation.history?.addedUser.loadImage(success: { (image, _) in
-                view.userImageView.imageView.image = image
-            }, failure: { _ in
-                view.userImageView.imageView.image = .blankAvatar
-            })
+        if let imageUrl = (annotation as? UserPinAnnotation)?.ship.user.imageUrl {
+            view.userImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
         }
         
         if let annotation = annotation as? UserPinAnnotation {
@@ -94,16 +89,15 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation as? UserPinAnnotation, let entry = annotation.history {
+        if let annotation = view.annotation as? UserPinAnnotation, let ship = annotation.ship {
             showAnnotations([annotation], animated: false)
             zoomMapOut(bottom: bottomOffset)
-            delegate?.historyController(self, didSelect: entry)
         }
     }
     
     //MARK: map helper
     
-    func showEntry(_ entry: BAHistory) {
+    func showEntry(_ entry: Ship) {
         if let annotation = getAnnotation(forEntry: entry) {
             showAnnotations([annotation], animated: false)
             zoomMapOut(bottom: bottomOffset)
@@ -118,8 +112,8 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
     }
     
     private func addAnnotations() {
-        for entry in user.history {
-            let annotation = UserPinAnnotation(coordinate: entry.coordinate, history: entry)
+        ships.forEach { ship in
+            let annotation = UserPinAnnotation(ship: ship)
             mapView.addAnnotation(annotation)
         }
     }
@@ -154,9 +148,9 @@ class BAHistoryMapViewController: UIViewController, BAHistoryViewController, MKM
         mapView.setVisibleMapRect(mapView.visibleMapRect, edgePadding: UIEdgeInsets(top: top, left: 0.0, bottom: bottom, right: 0.0), animated: true)
     }
     
-    private func getAnnotation(forEntry entry: BAHistory) -> MKAnnotation? {
+    private func getAnnotation(forEntry entry: Ship) -> MKAnnotation? {
         for annotation in mapView.annotations {
-            if (annotation as? UserPinAnnotation)?.history?.addedUser === entry.addedUser {
+            if (annotation as? UserPinAnnotation)?.ship.id == entry.id {
                 return annotation
             }
         }
