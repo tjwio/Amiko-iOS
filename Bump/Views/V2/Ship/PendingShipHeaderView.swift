@@ -104,6 +104,14 @@ class PendingShipHeaderView: UIView {
         return scrollView
     }()
     
+    let separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.Grayscale.light
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     init() {
         super.init(frame: .zero)
         commonInit()
@@ -141,6 +149,11 @@ class PendingShipHeaderView: UIView {
         
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.pendingLabel.snp.bottom).offset(12.0)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.top.equalTo(self.scrollView.snp.bottom).offset(16.0)
             make.leading.trailing.bottom.equalToSuperview()
         }
         

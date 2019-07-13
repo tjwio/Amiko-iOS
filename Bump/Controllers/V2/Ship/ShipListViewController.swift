@@ -54,6 +54,7 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableHeaderView = PendingShipHeaderView(pendingShips: pendingShips)
         
         view.addSubview(tableView)
         setupConstraints()
@@ -110,5 +111,17 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.accounts = ship.user.allAccounts
         
         return cell
+    }
+    
+    // MARK: table header view
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        guard let header = tableView.tableHeaderView else { return }
+        
+        header.frame.size.height = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        tableView.tableHeaderView = header
+        tableView.layoutIfNeeded()
     }
 }
