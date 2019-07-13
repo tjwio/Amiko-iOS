@@ -114,8 +114,8 @@ class LoadProfileViewController: BaseUserViewController {
     private func setupUser(_ user: User) {
         userToAdd = user
         userView = BAAddUserView(mainItems: [
-            (.phone, userToAdd.phone),
-            (.email, userToAdd.email)
+            (.phone, userToAdd.phone!),
+            (.email, userToAdd.email!)
             ], socialItems: userToAdd.socialAccounts)
         
         setupUserView()

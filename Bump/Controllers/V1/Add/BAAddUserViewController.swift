@@ -17,8 +17,8 @@ class BAAddUserViewController: BaseUserViewController {
         super.init(nibName: nil, bundle: nil)
         self.userToAdd = userToAdd
         self.userView = BAAddUserView(mainItems: [
-            (.phone, userToAdd.phone),
-            (.email, userToAdd.email)
+            (.phone, userToAdd.phone!),
+            (.email, userToAdd.email!)
             ], socialItems: userToAdd.socialAccounts)
     }
     
@@ -165,13 +165,13 @@ class BaseUserViewController: UIViewController {
         let didUpdateContact = try addToAddressBookHelper()
         
         if let coordinate = LocationManager.shared.currentLocation?.coordinate {
-            UserHolder.shared.user.addConnection(addedUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, success: { _ in
-                self.successCallback?(didUpdateContact ? "Successfully updated exisiting contact in address book!" : "Successfully added contact to address book and all accounts!")
-                self.dismissViewController()
-            }) { error in
-                self.failureCallback?(error)
-                self.dismissViewController()
-            }
+//            UserHolder.shared.user.addConnection(addedUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, success: { _ in
+//                self.successCallback?(didUpdateContact ? "Successfully updated exisiting contact in address book!" : "Successfully added contact to address book and all accounts!")
+//                self.dismissViewController()
+//            }) { error in
+//                self.failureCallback?(error)
+//                self.dismissViewController()
+//            }
         }
     }
     
@@ -201,12 +201,12 @@ class BaseUserViewController: UIViewController {
         var didChange = false
         
         if !contact.phoneNumbers.contains(where: { return $0.value.stringValue == userToAdd.phone }) {
-            contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: userToAdd.phone)))
+//            contact.phoneNumbers.append(CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: userToAdd.phone)))
             didChange = true
         }
         
         if !contact.emailAddresses.contains(where: { return $0.value as String == userToAdd.email }) {
-            contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: userToAdd.email as NSString))
+//            contact.emailAddresses.append(CNLabeledValue<NSString>(label: CNLabelHome, value: userToAdd.email as NSString))
             didChange = true
         }
         
@@ -238,8 +238,8 @@ class BaseUserViewController: UIViewController {
         let contactToAdd = CNMutableContact()
         contactToAdd.givenName = userToAdd.firstName
         contactToAdd.familyName = userToAdd.lastName
-        contactToAdd.phoneNumbers = [CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: userToAdd.phone))]
-        contactToAdd.emailAddresses = [CNLabeledValue<NSString>(label: CNLabelHome, value: userToAdd.email as NSString)]
+//        contactToAdd.phoneNumbers = [CNLabeledValue<CNPhoneNumber>(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: userToAdd.phone))]
+//        contactToAdd.emailAddresses = [CNLabeledValue<NSString>(label: CNLabelHome, value: userToAdd.email as NSString)]
         if let profession = userToAdd.profession {
             contactToAdd.organizationName = profession
         }

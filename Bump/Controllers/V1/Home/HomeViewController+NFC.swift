@@ -34,18 +34,18 @@ extension BAHomeViewController: NFCNDEFReaderSessionDelegate {
     }
     
     func openProfileController(id: String) {
-        let viewController = LoadProfileViewController(id: id)
-        viewController.successCallback = { [weak self] message in
-            DispatchQueue.main.async {
-                self?.showLeftMessage(message, type: .success)
-            }
-        }
-        
-        viewController.providesPresentationContextTransitionStyle = true
-        viewController.definesPresentationContext = true
-        viewController.modalPresentationStyle = .overCurrentContext
-        
-        self.present(viewController, animated: false, completion: nil)
+//        let viewController = LoadProfileViewController(id: id)
+//        viewController.successCallback = { [weak self] message in
+//            DispatchQueue.main.async {
+//                self?.showLeftMessage(message, type: .success)
+//            }
+//        }
+//        
+//        viewController.providesPresentationContextTransitionStyle = true
+//        viewController.definesPresentationContext = true
+//        viewController.modalPresentationStyle = .overCurrentContext
+//        
+//        self.present(viewController, animated: false, completion: nil)
     }
 }
 

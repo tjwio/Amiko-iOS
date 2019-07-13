@@ -10,7 +10,7 @@ import UIKit
 import ReactiveCocoa
 import ReactiveSwift
 
-class BAMainTabBarViewController: UITabBarController {
+class MainTabBarViewController: UITabBarController {
     private var disposables = CompositeDisposable()
     
     deinit {
@@ -20,21 +20,23 @@ class BAMainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let homeController = BAHomeViewController()
-        let historyController = BAHistoryHolderViewController(user: UserHolder.shared.user)
+        let user = UserHolder.shared.user
         
-        let homeTabBarItem = UITabBarItem(title: nil, image: .homeTabActive, selectedImage: .homeTabGray)
-        let historyTabBarItem = UITabBarItem(title: nil, image: .activityTabActive, selectedImage: .activityTabGray)
+        let shipListController = ShipListViewController(user: user, ships: user.ships)
+        let profileController = ProfileTabViewController(user: user)
+        
+        let homeTabBarItem = UITabBarItem(title: nil, image: .homeTabInactive, selectedImage: .homeTabActive)
+        let profileTabBarItem = UITabBarItem(title: nil, image: .profileTabInactive, selectedImage: .profileTabActive)
         
         let offset: CGFloat = DeviceUtil.IS_IPHONE_X ? 12.0 : 6.0
         
         homeTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
-        historyTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
+        profileTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
         
-        homeController.tabBarItem = homeTabBarItem
-        historyController.tabBarItem = historyTabBarItem
+        shipListController.tabBarItem = homeTabBarItem
+        profileController.tabBarItem = profileTabBarItem
         
-        viewControllers = [homeController, historyController]
+        viewControllers = [shipListController, profileController]
         tabBar.tintColor = .black
         
         disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in

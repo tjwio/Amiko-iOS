@@ -308,22 +308,22 @@ class BAHomeViewController: UIViewController {
         audioPlayer?.play()
         let viewController: BAAddUserViewController
         
-        if let history = UserHolder.shared.user.history.first(where: { return $0.addedUser.id == userToAdd.id } ) {
-            viewController = BADeleteUserViewController(user: UserHolder.shared.user, history: history)
-        } else {
-            viewController = BAAddUserViewController(userToAdd: userToAdd)
-            viewController.successCallback = { [weak self] message in
-                DispatchQueue.main.async {
-                    self?.showLeftMessage(message, type: .success)
-                }
-            }
-        }
-        
-        viewController.providesPresentationContextTransitionStyle = true
-        viewController.definesPresentationContext = true
-        viewController.modalPresentationStyle = .overCurrentContext
-        
-        self.present(viewController, animated: false, completion: nil)
+//        if let history = UserHolder.shared.user.history.first(where: { return $0.addedUser.id == userToAdd.id } ) {
+//            viewController = BADeleteUserViewController(user: UserHolder.shared.user, history: history)
+//        } else {
+//            viewController = BAAddUserViewController(userToAdd: userToAdd)
+//            viewController.successCallback = { [weak self] message in
+//                DispatchQueue.main.async {
+//                    self?.showLeftMessage(message, type: .success)
+//                }
+//            }
+//        }
+//        
+//        viewController.providesPresentationContextTransitionStyle = true
+//        viewController.definesPresentationContext = true
+//        viewController.modalPresentationStyle = .overCurrentContext
+//        
+//        self.present(viewController, animated: false, completion: nil)
     }
     
     // MARK: nfc

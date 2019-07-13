@@ -260,11 +260,11 @@ public class User: NSObject, Codable {
     
     func addConnection(toUserId: String, latitude: Double, longitude: Double, accounts: [AccountContact], success: ShipHandler?, failure: ErrorHandler?) {
         let parameters: JSON = [
-            Ship.CodingKeys.fromUserId.rawValue: id,
-            Ship.CodingKeys.toUserId.rawValue: toUserId,
+            "from_user_id": id,
+            "to_user_id": toUserId,
             Ship.CodingKeys.latitude.rawValue: latitude,
             Ship.CodingKeys.longitude.rawValue : longitude,
-            Ship.CodingKeys.sharedInfo.rawValue: accounts.map { $0.rawValue }
+            "shared_info": accounts.map { $0.rawValue }
         ]
         
         NetworkHandler.shared.addConnection(parameters: parameters, success: { ship in

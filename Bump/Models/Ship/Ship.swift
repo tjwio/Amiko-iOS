@@ -24,9 +24,5 @@ public struct Ship: Codable {
     enum CodingKeys: String, CodingKey {
         case id, user, latitude, longitude, pending
         case insertedAt = "inserted_at"
-        
-        case fromUserId = "from_user_id"
-        case toUserId = "to_user_id"
-        case sharedInfo = "shared_info"
     }
 }

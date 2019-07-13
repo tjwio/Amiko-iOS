@@ -41,6 +41,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
     let lastName = MutableProperty<String?>(nil)
     let jobTitle = MutableProperty<String?>(nil)
     let company = MutableProperty<String?>(nil)
+    let bio = MutableProperty<String?>(nil)
     let phone = MutableProperty<String?>(nil)
     let email = MutableProperty<String?>(nil)
     let website = MutableProperty<String?>(nil)
@@ -72,6 +73,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         lastName.value = user.lastName
         jobTitle.value = user.profession
         company.value = user.company
+        bio.value = user.bio
         website.value = user.website
         phone.value = user.phone
         email.value = user.email
@@ -128,7 +130,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: save
     
     @objc private func saveProfileView(_ sender: BALoadingButton?) {
-        user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
+        user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", bio: bio.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
             if self.imageDidUpdate.value, let newImage = self.image.value {
                 self.user.updateImage(newImage, success: {
                     self.dismissViewController()

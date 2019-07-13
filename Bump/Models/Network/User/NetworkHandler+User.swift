@@ -11,21 +11,19 @@ import Alamofire
 extension NetworkHandler {
     //MARK: GET
     
-    public func loadUser(success: JSONHandler?, failure: ErrorHandler?) {
-        self.sessionManager.request(URLRouter.loadUser).validate().responseJSON { response in
+    public func loadUser(success: UserHandler?, failure: ErrorHandler?) {
+        self.sessionManager.request(URLRouter.loadUser).validate().responseDecodable { (response: DataResponse<User>) in
             switch response.result {
-            case .success(let value):
-                success?(value as? JSON ?? JSON())
-            case .failure(let error):
-                failure?(error)
+            case .success(let value): success?(value)
+            case .failure(let error): failure?(error)
             }
         }
     }
     
-    public func loadSpecificUser(id: String, success: JSONHandler?, failure: ErrorHandler?) {
-        self.sessionManager.request(URLRouter.loadSpecificUser(id: id)).validate().responseJSON { response in
+    public func loadSpecificUser(id: String, success: UserHandler?, failure: ErrorHandler?) {
+        self.sessionManager.request(URLRouter.loadSpecificUser(id: id)).validate().responseDecodable { (response: DataResponse<User>) in
             switch response.result {
-            case .success(let value): success?(value as? JSON ?? JSON())
+            case .success(let value): success?(value)
             case .failure(let error): failure?(error)
             }
         }

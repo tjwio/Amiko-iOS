@@ -48,32 +48,18 @@ class UserHolder: NSObject {
     
     //MARK: load
     class func loadUser(userId: String, success: UserHandler?, failure: ErrorHandler?) {
-        NetworkHandler.shared.loadUser(success: { response in
-            if let user = User(json: response) {
-                user.loadHistory(success: { _ in
-                    success?(user)
-                }, failure: { _ in
-                    success?(user)
-                })
-            }
-            else {
-                failure?(BAError.invalidJson)
-            }
+        NetworkHandler.shared.loadUser(success: { user in
+            user.loadShips(success: { _ in
+                success?(user)
+            }, failure: { _ in
+                success?(user)
+            })
         }, failure: failure)
     }
     
     class func loadSpecificUser(id: String, success: UserHandler?, failure: ErrorHandler?) {
-        NetworkHandler.shared.loadSpecificUser(id: id, success: { response in
-            if let user = User(json: response) {
-                user.loadHistory(success: { _ in
-                    success?(user)
-                }, failure: { _ in
-                    success?(user)
-                })
-            }
-            else {
-                failure?(BAError.invalidJson)
-            }
+        NetworkHandler.shared.loadSpecificUser(id: id, success: { user in
+            success?(user)
         }, failure: failure)
     }
     
@@ -92,7 +78,7 @@ class UserHolder: NSObject {
         }
         
         privateRoom.on(AppConstants.Events.matched) { [weak self] message in
-            if let user = User(json: message.payload) {
+            if let user = message.payload.decodeJson(User.self) {
                 if let bumpCallback = self?.bumpMatchCallback {
                     bumpCallback(user)
                 }
