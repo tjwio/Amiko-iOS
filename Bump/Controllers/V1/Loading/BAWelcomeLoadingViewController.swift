@@ -10,7 +10,7 @@ import UIKit
 
 class BAWelcomeLoadingViewController: BABaseLoadingViewController {
     
-    var goToWelcomeScreen: BAEmptyHandler = {
+    var goToWelcomeScreen: EmptyHandler = {
         DispatchQueue.main.async {
             (UIApplication.shared.delegate as? AppDelegate)?.loadWelcomeViewController()
         }

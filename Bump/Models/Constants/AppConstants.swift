@@ -10,21 +10,21 @@ import UIKit
 
 public typealias JSON = [String: Any]
 
-public typealias BABumpHandler = (BumpEvent) -> Void
-public typealias BAUserHandler = (User) -> Void
+public typealias BumpHandler = (BumpEvent) -> Void
+public typealias UserHandler = (User) -> Void
 
-public typealias BAHistoryHandler = (BAHistory) -> Void
-public typealias BAHistoryListHandler = ([BAHistory]) -> Void
+public typealias ShipHandler = (Ship) -> Void
+public typealias ShipListHandler = ([Ship]) -> Void
 
-public typealias BAContactActionHandler = (AccountContact, String) -> Void
+public typealias ContactActionHandler = (AccountContact, String) -> Void
 
-public typealias BASocialHandler = (AccountContact, String) -> Void
+public typealias SocialHandler = (AccountContact, String) -> Void
 
-public typealias BAEmptyHandler = () -> Void
-public typealias BAStringHandler = (String) -> Void
-public typealias BAJSONHandler = (JSON) -> Void
-public typealias BAJSONListHandler = ([JSON]) -> Void
-public typealias BAErrorHandler = (Error) -> Void
+public typealias EmptyHandler = () -> Void
+public typealias StringHandler = (String) -> Void
+public typealias JSONHandler = (JSON) -> Void
+public typealias JSONListHandler = ([JSON]) -> Void
+public typealias ErrorHandler = (Error) -> Void
 
 public typealias BAImageHandler = (UIImage, UIImageColors) -> Void
 
@@ -70,7 +70,7 @@ struct AppConstants {
         static let id = "89a0b16ec7df40e798c9dafc196235a1"
     }
     
-    static let defaultSocialCallback: BASocialHandler = { (account, value) in
+    static let defaultSocialCallback: SocialHandler = { (account, value) in
         var validUrl: URL?
         
         if let str = account.appUrl(id: value), let url = URL(string: str), UIApplication.shared.canOpenURL(url) {

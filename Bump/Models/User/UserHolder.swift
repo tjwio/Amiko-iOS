@@ -23,7 +23,7 @@ class UserHolder: NSObject {
     let socket: Socket
     var lobby: Channel!
     
-    var bumpMatchCallback: BAUserHandler?
+    var bumpMatchCallback: UserHandler?
     
     init(user: User) {
         self.user = user
@@ -47,7 +47,7 @@ class UserHolder: NSObject {
     }
     
     //MARK: load
-    class func loadUser(userId: String, success: BAUserHandler?, failure: BAErrorHandler?) {
+    class func loadUser(userId: String, success: UserHandler?, failure: ErrorHandler?) {
         NetworkHandler.shared.loadUser(success: { response in
             if let user = User(json: response) {
                 user.loadHistory(success: { _ in
@@ -62,7 +62,7 @@ class UserHolder: NSObject {
         }, failure: failure)
     }
     
-    class func loadSpecificUser(id: String, success: BAUserHandler?, failure: BAErrorHandler?) {
+    class func loadSpecificUser(id: String, success: UserHandler?, failure: ErrorHandler?) {
         NetworkHandler.shared.loadSpecificUser(id: id, success: { response in
             if let user = User(json: response) {
                 user.loadHistory(success: { _ in

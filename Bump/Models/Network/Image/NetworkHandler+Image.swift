@@ -14,7 +14,7 @@ extension NetworkHandler {
         static let mimeType = "image/jpeg"
     }
     
-    public func uploadImage(_ image: Data, success: BAJSONHandler?, failure: BAErrorHandler?) {
+    public func uploadImage(_ image: Data, success: JSONHandler?, failure: ErrorHandler?) {
         let multipartFormData = MultipartFormData(fileManager: .default, boundary: nil)
         multipartFormData.append(image, withName: Constants.name, fileName: UserHolder.shared.user.randomImageFileName, mimeType: Constants.mimeType)
         

@@ -24,8 +24,8 @@ public class BumpManager: NSObject {
     
     public static let shared = BumpManager()
     
-    public var bumpHandler: BABumpHandler?
-    public var errorHandler: BAErrorHandler?
+    public var bumpHandler: BumpHandler?
+    public var errorHandler: ErrorHandler?
     
     private var prev = CMAcceleration(x: 0.0, y: 0.0, z: 0.0)
     private var skipTimes = 0

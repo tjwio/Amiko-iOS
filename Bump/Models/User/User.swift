@@ -167,7 +167,7 @@ public class User: NSObject, Codable {
         return "\(firstName) \(lastName)"
     }
     
-    var history = [BAHistory]()
+    var ships = [Ship]()
     
     private let availableSocial = [AppConstants.User.facebook, AppConstants.User.instagram, AppConstants.User.linkedin, AppConstants.User.twitter]
     
@@ -198,28 +198,40 @@ public class User: NSObject, Codable {
         mutualFriends = try container.decodeIfPresent([User].self, forKey: .mutualFriends) ?? []
     }
     
+    public class func json(firstName: String, lastName: String, profession: String, company: String, bio: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String) -> JSON {
+        return [
+            CodingKeys.firstName.rawValue: firstName,
+            CodingKeys.lastName.rawValue: lastName,
+            CodingKeys.profession.rawValue: profession,
+            CodingKeys.company.rawValue: company,
+            CodingKeys.bio.rawValue: bio,
+            CodingKeys.phone.rawValue: phone,
+            CodingKeys.email.rawValue: email,
+            CodingKeys.website.rawValue: website,
+            CodingKeys.facebook.rawValue: facebook,
+            CodingKeys.linkedin.rawValue: linkedin,
+            CodingKeys.instagram.rawValue: instagram,
+            CodingKeys.twitter.rawValue: twitter
+        ]
+    }
+    
     //MARK: load/get
     
-    func loadHistory(success: BAHistoryListHandler?, failure: BAErrorHandler?) {
-        NetworkHandler.shared.loadHistory(success: { response in
-            guard let historyList = [BAHistory].from(jsonArray: response) else {
-                self.history = []
-                failure?(BAError.invalidJson)
-                return
+    func loadShips(success: ShipListHandler?, failure: ErrorHandler?) {
+        NetworkHandler.shared.loadHistory(success: { ships in
+            let sortedShips = ships.sorted { (first, last) -> Bool in
+                return first.insertedAt > last.insertedAt
             }
             
-            self.history = historyList.sorted { (first, last) -> Bool in
-                return first.date > last.date
-            }
-            
-            success?(historyList)
+            self.ships = sortedShips
+            success?(sortedShips)
         }) { error in
-            AppLogger.log("failed to parse history with error: \(error)")
+            AppLogger.log("failed to parse ships with error: \(error)")
             failure?(error)
         }
     }
     
-    func loadImage(success: BAImageHandler?, failure: BAErrorHandler?) {
+    func loadImage(success: BAImageHandler?, failure: ErrorHandler?) {
         if let image = image.value, let imageColors = imageColors.value {
             success?(image, imageColors)
             return
@@ -246,21 +258,21 @@ public class User: NSObject, Codable {
     
     //MARK: add/post
     
-    func addConnection(addedUserId: String, latitude: Double, longitude: Double, success: BAHistoryHandler?, failure: BAErrorHandler?) {
+    func addConnection(toUserId: String, latitude: Double, longitude: Double, accounts: [AccountContact], success: ShipHandler?, failure: ErrorHandler?) {
         let parameters: JSON = [
-            BAHistory.Constants.userId : addedUserId,
-            BAHistory.Constants.latitude : latitude,
-            BAHistory.Constants.longitude : longitude
+            Ship.CodingKeys.fromUserId.rawValue: id,
+            Ship.CodingKeys.toUserId.rawValue: toUserId,
+            Ship.CodingKeys.latitude.rawValue: latitude,
+            Ship.CodingKeys.longitude.rawValue : longitude,
+            Ship.CodingKeys.sharedInfo.rawValue: accounts.map { $0.rawValue }
         ]
         
-        NetworkHandler.shared.addConnection(parameters: parameters, success: { json in
-            if let entry = BAHistory(json: json, user: self) {
-                self.history.insert(entry, at: 0)
-                success?(entry)
+        NetworkHandler.shared.addConnection(parameters: parameters, success: { ship in
+            if ship.user.id != self.id, !ship.pending {
+                self.ships.append(ship)
             }
-            else {
-                failure?(BAError.invalidJson)
-            }
+            
+            success?(ship)
         }) { error in
             print("failed to add connection with error: \(error)")
             failure?(error)
@@ -269,14 +281,15 @@ public class User: NSObject, Codable {
     
     //MARK: update/put
     
-    func updateUser(firstName: String, lastName: String, profession: String, company: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {
-        let parameters = User.json(firstName: firstName, lastName: lastName, profession: profession, company: company, phone: phone, email: email, website: website, facebook: facebook, linkedin: linkedin, instagram: instagram, twitter: twitter)
+    func updateUser(firstName: String, lastName: String, profession: String, company: String, bio: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String, success: EmptyHandler?, failure: ErrorHandler?) {
+        let parameters = User.json(firstName: firstName, lastName: lastName, profession: profession, company: company, bio: bio, phone: phone, email: email, website: website, facebook: facebook, linkedin: linkedin, instagram: instagram, twitter: twitter)
         
         NetworkHandler.shared.updateUser(parameters: parameters, success: { _ in
             self.firstName = firstName
             self.lastName = lastName
             self.profession = profession
             self.company = company
+            self.bio = bio
             self.phone = phone
             self.email = email
             self.website = website
@@ -294,13 +307,13 @@ public class User: NSObject, Codable {
     
     //MARK: delete
     
-    func deleteConnection(history: BAHistory, success: BAEmptyHandler?, failure: BAErrorHandler?) {
-        NetworkHandler.shared.deleteConnection(historyId: history.id, success: {
-            self.history.remove(object: history)
+    func deleteConnection(ship: Ship, success: EmptyHandler?, failure: ErrorHandler?) {
+        NetworkHandler.shared.deleteConnection(id: ship.id, success: {
+            self.ships.remove { $0.id == ship.id }
             
             success?()
         }) { error in
-            print("failed to delete connection: \(history.id) with error: \(error)")
+            print("failed to delete connection: \(ship.id) with error: \(error)")
             failure?(error)
         }
     }

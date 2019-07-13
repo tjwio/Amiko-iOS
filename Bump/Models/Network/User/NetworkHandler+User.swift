@@ -11,7 +11,7 @@ import Alamofire
 extension NetworkHandler {
     //MARK: GET
     
-    public func loadUser(success: BAJSONHandler?, failure: BAErrorHandler?) {
+    public func loadUser(success: JSONHandler?, failure: ErrorHandler?) {
         self.sessionManager.request(URLRouter.loadUser).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -22,7 +22,7 @@ extension NetworkHandler {
         }
     }
     
-    public func loadSpecificUser(id: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
+    public func loadSpecificUser(id: String, success: JSONHandler?, failure: ErrorHandler?) {
         self.sessionManager.request(URLRouter.loadSpecificUser(id: id)).validate().responseJSON { response in
             switch response.result {
             case .success(let value): success?(value as? JSON ?? JSON())
@@ -31,23 +31,21 @@ extension NetworkHandler {
         }
     }
     
-    public func loadHistory(success: BAJSONListHandler?, failure: BAErrorHandler?) {
-        self.sessionManager.request(URLRouter.loadHistory).validate().responseJSON { response in
+    public func loadHistory(success: ShipListHandler?, failure: ErrorHandler?) {
+        sessionManager.request(URLRouter.loadHistory).validate().responseDecodable { (response: DataResponse<[Ship]>) in
             switch response.result {
-            case .success(let value):
-                success?(value as? [JSON] ?? [JSON]())
-            case .failure(let error):
-                failure?(error)
+            case .success(let value): success?(value)
+            case .failure(let error): failure?(error)
             }
         }
     }
     
     //MARK: POST
     
-    public func addConnection(parameters: Parameters, success: BAJSONHandler?, failure: BAErrorHandler?) {
-        self.sessionManager.request(URLRouter.addConnection(parameters: parameters)).validate().responseJSON { response in
+    public func addConnection(parameters: Parameters, success: ShipHandler?, failure: ErrorHandler?) {
+        self.sessionManager.request(URLRouter.addConnection(parameters: parameters)).validate().responseDecodable { (response: DataResponse<Ship>) in
             switch response.result {
-            case .success(let value): success?(value as? JSON ?? JSON())
+            case .success(let value): success?(value)
             case .failure(let error): failure?(error)
             }
         }
@@ -55,7 +53,7 @@ extension NetworkHandler {
     
     //MARK: PUT
     
-    public func updateUser(parameters: Parameters, success: BAJSONHandler?, failure: BAErrorHandler?) {
+    public func updateUser(parameters: Parameters, success: JSONHandler?, failure: ErrorHandler?) {
         self.sessionManager.request(URLRouter.updateUser(parameters: parameters)).validate().responseJSON { response in
             switch response.result {
             case .success(let value): success?(value as? JSON ?? JSON())
@@ -66,8 +64,8 @@ extension NetworkHandler {
     
     //MARK: DELETE
     
-    public func deleteConnection(historyId: String, success: BAEmptyHandler?, failure: BAErrorHandler?) {
-        self.sessionManager.request(URLRouter.deleteConnection(historyId: historyId)).validate().responseData { response in
+    public func deleteConnection(id: String, success: EmptyHandler?, failure: ErrorHandler?) {
+        self.sessionManager.request(URLRouter.deleteConnection(historyId: id)).validate().responseData { response in
             switch response.result {
             case .success(_): success?()
             case .failure(let error): failure?(error)

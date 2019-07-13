@@ -43,7 +43,7 @@ class BABaseLoadingViewController: UIViewController {
         return animation
     }()
     
-    var onAnimationFinished: BAEmptyHandler?
+    var onAnimationFinished: EmptyHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()

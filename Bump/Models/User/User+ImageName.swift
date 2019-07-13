@@ -16,7 +16,7 @@ extension User {
         return "\(fullName.replacingOccurrences(of: " ", with: "_"))_\(randomNum).jpeg"
     }
     
-    func updateImage(_ image: UIImage, success: BAEmptyHandler?, failure: BAErrorHandler?) {
+    func updateImage(_ image: UIImage, success: EmptyHandler?, failure: ErrorHandler?) {
         guard let data = image.jpegData(compressionQuality: 0.7) else {
             failure?(BAError.imageData)
             return

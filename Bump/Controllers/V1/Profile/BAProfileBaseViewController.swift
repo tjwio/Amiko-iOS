@@ -32,7 +32,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         static let twitterIndex = 10
     }
     
-    var successCallback: BAEmptyHandler?
+    var successCallback: EmptyHandler?
     
     let user: User
     

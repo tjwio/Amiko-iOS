@@ -17,8 +17,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         static let socialCellIdentifier = "BASocialDrawerTableViewCellIdentifier"
     }
     
-    var socialCallback: BASocialHandler?
-    var actionCallback: BAContactActionHandler?
+    var socialCallback: SocialHandler?
+    var actionCallback: ContactActionHandler?
     
     var mainItems: [(AccountContact, String)]
     var socialItems: [(AccountContact, String)]

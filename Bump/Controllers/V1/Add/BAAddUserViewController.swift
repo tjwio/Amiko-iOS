@@ -83,8 +83,8 @@ class BaseUserViewController: UIViewController {
         return view
     }()
     
-    var successCallback: BAStringHandler?
-    var failureCallback: BAErrorHandler?
+    var successCallback: StringHandler?
+    var failureCallback: ErrorHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()

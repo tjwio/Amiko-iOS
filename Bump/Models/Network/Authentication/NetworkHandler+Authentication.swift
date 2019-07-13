@@ -9,7 +9,7 @@
 import Foundation
 
 extension NetworkHandler {
-    public func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
+    public func signup(firstName: String, lastName: String, email: String, phone: String, password: String, success: JSONHandler?, failure: ErrorHandler?) {
         let parameters = [
             AppConstants.User.firstName : firstName,
             AppConstants.User.lastName : lastName,
@@ -28,7 +28,7 @@ extension NetworkHandler {
         }
     }
     
-    public func login(email: String, password: String, success: BAJSONHandler?, failure: BAErrorHandler?) {
+    public func login(email: String, password: String, success: JSONHandler?, failure: ErrorHandler?) {
         let parameters = [
             AppConstants.User.email : email,
             AppConstants.User.password : password

@@ -12,7 +12,7 @@ import ReactiveSwift
 import SnapKit
 
 class BASocialDrawerView: UIView {
-    var selectCallback: BASocialHandler?
+    var selectCallback: SocialHandler?
     var items = [(AccountContact, String)]() {
         didSet {
             addSocialButtons()
