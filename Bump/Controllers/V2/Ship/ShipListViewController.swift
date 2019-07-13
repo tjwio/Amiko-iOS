@@ -9,6 +9,9 @@
 import UIKit
 
 class ShipListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    private struct Constants {
+        static let cellIdentifier = "ShipListTableViewCellIdentifier"
+    }
     
     let user: User
     let ships: [Ship]
@@ -67,5 +70,42 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 52.0 : 20.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let view = DetailButtonHeaderView()
+            view.detailLabel.font = .avenirDemi(size: 14.0)
+            view.detailLabel.text = "CONNECTED"
+            view.detailLabel.textColor = UIColor.Grayscale.dark
+            view.button.isHidden = false
+            
+            return view
+        } else {
+            return UIView()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 166.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier) as? ShipTableViewCell ?? ShipTableViewCell(style: .default, reuseIdentifier: Constants.cellIdentifier)
+        
+        let ship = ships[indexPath.section]
+        if let imageUrl = ship.user.imageUrl {
+            cell.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
+        }
+        
+        cell.nameLabel.text = ship.user.fullName
+        cell.bioLabel.text = ship.user.publicBio
+        cell.accounts = ship.user.allAccounts
+        
+        return cell
     }
 }

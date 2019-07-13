@@ -10,12 +10,18 @@ import UIKit
 import FeatherIcon
 import SnapKit
 
+protocol ShipTableViewCellDelegate: class {
+    func shipCell(_ cell: ShipTableViewCell, didSelect account: AccountContact, value: String)
+}
+
 class ShipTableViewCell: UITableViewCell {
-    var accounts = [AccountContact]() {
+    var accounts = [(AccountContact, String)]() {
         didSet {
             setupAccountSlider(accounts: accounts)
         }
     }
+    
+    weak var delegate: ShipTableViewCellDelegate?
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -103,7 +109,7 @@ class ShipTableViewCell: UITableViewCell {
         }
         
         separatorView.snp.makeConstraints { make in
-            make.top.equalTo(self.avatarImageView.snp.bottom).offset(44.0)
+//            make.top.equalTo(self.avatarImageView.snp.bottom).offset(44.0)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(2.0)
         }
@@ -117,13 +123,13 @@ class ShipTableViewCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    private func setupAccountSlider(accounts: [AccountContact]) {
+    private func setupAccountSlider(accounts: [(AccountContact, String)]) {
         accountButtons.forEach { $0.removeFromSuperview() }
         accountButtons = []
         
         accountButtons = accounts.map { account in
             let button = UIButton(type: .custom)
-            button.setTitle(account.icon, for: .normal)
+            button.setTitle(account.0.icon, for: .normal)
             button.setTitleColor(UIColor.Matcha.dusk, for: .normal)
             button.titleLabel?.font = .featherFont(size: 16.0)
             button.translatesAutoresizingMaskIntoConstraints = false
@@ -151,5 +157,12 @@ class ShipTableViewCell: UITableViewCell {
         previousButton?.snp.makeConstraints { make in
             make.trailing.lessThanOrEqualToSuperview().offset(-32.0)
         }
+    }
+    
+    // MARK: button
+    
+    @objc private func didTapAccountButton(_ button: UIButton) {
+        guard let index = accountButtons.firstIndex(of: button) else { return }
+        delegate?.shipCell(self, didSelect: accounts[index].0, value: accounts[index].1)
     }
 }
