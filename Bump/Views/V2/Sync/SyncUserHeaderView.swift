@@ -77,7 +77,7 @@ class UserInfoView: UIView {
         
         bioLabel.snp.makeConstraints { make in
             make.top.equalTo(self.nameLabel.snp.bottom).offset(12.0)
-            make.leading.equalTo(self.avatarImageView)
+            make.leading.equalTo(self.nameLabel)
             make.trailing.equalToSuperview()
         }
         
@@ -124,6 +124,13 @@ class MutualUsersView: UIView {
         commonInit()
     }
     
+    init(mutualImageUrls: [String]) {
+        self.mutualImageUrls = mutualImageUrls
+        super.init(frame: .zero)
+        commonInit()
+        updateMutualAvatars(urls: mutualImageUrls)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -159,19 +166,24 @@ class MutualUsersView: UIView {
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.label.snp.bottom).offset(12.0)
             make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(32.0)
         }
         
         super.updateConstraints()
     }
     
     private func updateMutualAvatars(urls: [String]) {
+        label.text = "\(urls.count) mutual amikos"
+        
         imageViews.forEach { $0.removeFromSuperview() }
         imageViews = []
         
-        let imageViews = urls.map { url -> UIImageView in
+        imageViews = urls.map { url -> UIImageView in
             let imageView = UIImageView()
-            imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage.blankAvatar, completed: nil)
+            imageView.clipsToBounds = true
+            imageView.sd_setImage(with: URL(string: url), placeholderImage: .blankAvatar)
             imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.layer.cornerRadius = 16.0
             
             return imageView
         }

@@ -21,6 +21,8 @@
 		221F152422DA9D0000EE8567 /* Dictionary+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152322DA9D0000EE8567 /* Dictionary+Decoder.swift */; };
 		221F152622DAAF0300EE8567 /* JSONDecoder+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152522DAAF0300EE8567 /* JSONDecoder+Date.swift */; };
 		221F152822DAC2D700EE8567 /* ListMapNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152722DAC2D700EE8567 /* ListMapNavigationView.swift */; };
+		221F152A22DADD5A00EE8567 /* ShipDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152922DADD5A00EE8567 /* ShipDetailViewController.swift */; };
+		221F152C22DAE35A00EE8567 /* ShipDetailViewController+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152B22DAE35A00EE8567 /* ShipDetailViewController+Views.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -158,6 +160,8 @@
 		221F152322DA9D0000EE8567 /* Dictionary+Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Decoder.swift"; sourceTree = "<group>"; };
 		221F152522DAAF0300EE8567 /* JSONDecoder+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Date.swift"; sourceTree = "<group>"; };
 		221F152722DAC2D700EE8567 /* ListMapNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMapNavigationView.swift; sourceTree = "<group>"; };
+		221F152922DADD5A00EE8567 /* ShipDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailViewController.swift; sourceTree = "<group>"; };
+		221F152B22DAE35A00EE8567 /* ShipDetailViewController+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShipDetailViewController+Views.swift"; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 			children = (
 				2210BEE922D6E4C30053F8A8 /* ShipTableViewCell.swift */,
 				221F151D22DA796D00EE8567 /* PendingShipHeaderView.swift */,
+				221F152B22DAE35A00EE8567 /* ShipDetailViewController+Views.swift */,
 			);
 			path = Ship;
 			sourceTree = "<group>";
@@ -447,6 +452,7 @@
 			children = (
 				22D3F12622D81420007CFA36 /* ShipListViewController.swift */,
 				2F1E73CC2119975100B83501 /* ShipMapViewController.swift */,
+				221F152922DADD5A00EE8567 /* ShipDetailViewController.swift */,
 			);
 			path = Ship;
 			sourceTree = "<group>";
@@ -1046,9 +1052,11 @@
 				2F6E51B42082AF8800E8D8CA /* AppConstants.swift in Sources */,
 				2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */,
 				2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */,
+				221F152C22DAE35A00EE8567 /* ShipDetailViewController+Views.swift in Sources */,
 				2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */,
 				2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */,
 				2210BEEA22D6E4C30053F8A8 /* ShipTableViewCell.swift in Sources */,
+				221F152A22DADD5A00EE8567 /* ShipDetailViewController.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2210BEE022D594E40053F8A8 /* SyncUserAccountsView.swift in Sources */,
