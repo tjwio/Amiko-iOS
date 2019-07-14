@@ -84,13 +84,13 @@ class SyncUserViewController: UIViewController {
         accountsView.translatesAutoresizingMaskIntoConstraints = false
         
         if let imageUrl = userToAdd.imageUrl {
-            headerView.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
+            headerView.infoView.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
         } else {
-            headerView.avatarImageView.image = UIImage.blankAvatar
+            headerView.infoView.avatarImageView.image = UIImage.blankAvatar
         }
         
-        headerView.nameLabel.text = userToAdd.fullName
-        headerView.bioLabel.text  = userToAdd.publicBio
+        headerView.infoView.nameLabel.text = userToAdd.fullName
+        headerView.infoView.bioLabel.text  = userToAdd.publicBio
         
         view.addSubview(headerView)
         view.addSubview(accountsView)

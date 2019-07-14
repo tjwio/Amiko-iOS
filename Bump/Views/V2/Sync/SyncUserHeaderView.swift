@@ -10,13 +10,7 @@ import UIKit
 import SDWebImage
 import SnapKit
 
-class SyncUserHeaderView: UIView {
-    var mutualImageUrls = [String]() {
-        didSet {
-            updateMutualAvatars(urls: mutualImageUrls)
-        }
-    }
-    
+class UserInfoView: UIView {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .avenirDemi(size: 24.0)
@@ -45,6 +39,59 @@ class SyncUserHeaderView: UIView {
         return imageView
     }()
     
+    init() {
+        super.init(frame: .zero)
+        commonInit()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        backgroundColor = UIColor.Grayscale.background
+        
+        addSubview(avatarImageView)
+        addSubview(nameLabel)
+        addSubview(bioLabel)
+        
+        setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        avatarImageView.snp.makeConstraints { make in
+            make.top.leading.bottom.equalToSuperview()
+            make.height.width.equalTo(90.0)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview()
+            make.leading.equalTo(self.avatarImageView.snp.trailing).offset(18.0)
+        }
+        
+        bioLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(12.0)
+            make.leading.equalTo(self.avatarImageView)
+            make.trailing.equalToSuperview()
+        }
+        
+        super.updateConstraints()
+    }
+}
+
+class MutualUsersView: UIView {
+    var mutualImageUrls = [String]() {
+        didSet {
+            updateMutualAvatars(urls: mutualImageUrls)
+        }
+    }
+    
     let separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.Matcha.dusk
@@ -53,7 +100,7 @@ class SyncUserHeaderView: UIView {
         return view
     }()
     
-    let mutualLabel: UILabel = {
+    let label: UILabel = {
         let label = UILabel()
         label.font = .avenirRegular(size: 14.0)
         label.textColor = UIColor.Matcha.dusk
@@ -62,7 +109,7 @@ class SyncUserHeaderView: UIView {
         return label
     }()
     
-    let mutualScrollView: UIScrollView = {
+    let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,18 +117,7 @@ class SyncUserHeaderView: UIView {
         return scrollView
     }()
     
-    lazy var labelStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, bioLabel])
-        stackView.alignment = .leading
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.spacing = 12.0
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }()
-    
-    private var mutualImageViews = [UIImageView]()
+    private var imageViews = [UIImageView]()
     
     init() {
         super.init(frame: .zero)
@@ -101,53 +137,36 @@ class SyncUserHeaderView: UIView {
     private func commonInit() {
         backgroundColor = UIColor.Grayscale.background
         
-        addSubview(labelStackView)
-        addSubview(avatarImageView)
         addSubview(separatorView)
-        addSubview(mutualLabel)
-        addSubview(mutualScrollView)
+        addSubview(label)
+        addSubview(scrollView)
         
         setNeedsUpdateConstraints()
     }
     
     override func updateConstraints() {
-        avatarImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(56.0)
-            make.leading.equalToSuperview().offset(36.0)
-            make.height.width.equalTo(90.0)
-        }
-        
-        labelStackView.snp.makeConstraints { make in
-            make.leading.equalTo(self.avatarImageView.snp.trailing).offset(18.0)
-            make.trailing.equalToSuperview().offset(-36.0)
-            make.centerY.equalTo(self.avatarImageView)
-        }
-        
         separatorView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(36.0)
-            make.top.equalTo(self.avatarImageView.snp.bottom).offset(32.0)
+            make.top.leading.equalToSuperview()
             make.height.equalTo(4.0)
             make.width.equalTo(32.0)
         }
         
-        mutualLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(36.0)
+        label.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
             make.top.equalTo(self.separatorView.snp.bottom).offset(9.0)
         }
         
-        mutualScrollView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(36.0)
-            make.trailing.equalToSuperview().offset(-36.0)
-            make.top.equalTo(self.mutualLabel.snp.bottom).offset(12.0)
-            make.bottom.equalToSuperview().offset(-20.0)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(self.label.snp.bottom).offset(12.0)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         super.updateConstraints()
     }
     
     private func updateMutualAvatars(urls: [String]) {
-        mutualImageViews.forEach { $0.removeFromSuperview() }
-        mutualImageViews = []
+        imageViews.forEach { $0.removeFromSuperview() }
+        imageViews = []
         
         let imageViews = urls.map { url -> UIImageView in
             let imageView = UIImageView()
@@ -160,7 +179,7 @@ class SyncUserHeaderView: UIView {
         var previousImageView: UIImageView?
         
         imageViews.forEach { imageView in
-            self.labelStackView.addSubview(imageView)
+            scrollView.addSubview(imageView)
             
             imageView.snp.makeConstraints { make in
                 if let previous = previousImageView {
@@ -181,5 +200,62 @@ class SyncUserHeaderView: UIView {
                 make.trailing.lessThanOrEqualToSuperview()
             }
         }
+    }
+}
+
+class SyncUserHeaderView: UIView {
+    let infoView: UserInfoView = {
+        let view = UserInfoView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let mutualUsersView: MutualUsersView = {
+        let view = MutualUsersView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    init() {
+        super.init(frame: .zero)
+        commonInit()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        backgroundColor = UIColor.Grayscale.background
+        
+        addSubview(infoView)
+        addSubview(mutualUsersView)
+        
+        setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        infoView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(56.0)
+            make.leading.equalToSuperview().offset(32.0)
+            make.trailing.lessThanOrEqualToSuperview().offset(-32.0)
+        }
+        
+        mutualUsersView.snp.makeConstraints { make in
+            make.top.equalTo(self.infoView.snp.bottom).offset(32.0)
+            make.leading.equalToSuperview().offset(32.0)
+            make.trailing.equalToSuperview().offset(-32.0)
+            make.bottom.equalToSuperview().offset(-12.0)
+        }
+        
+        super.updateConstraints()
     }
 }
