@@ -124,11 +124,6 @@ class SyncUserViewController: UIViewController {
             make.top.leading.trailing.equalToSuperview()
         }
         
-        fullView.snp.makeConstraints { make in
-            make.top.equalTo(self.headerView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-        
         accountsView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
@@ -148,6 +143,15 @@ class SyncUserViewController: UIViewController {
         
         confirmButton.snp.makeConstraints { make in
             make.height.equalTo(64.0)
+        }
+        
+        setupFullViewConstraints()
+    }
+    
+    func setupFullViewConstraints() {
+        fullView.snp.makeConstraints { make in
+            make.top.equalTo(self.headerView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     

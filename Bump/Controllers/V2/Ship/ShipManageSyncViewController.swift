@@ -9,7 +9,26 @@
 import UIKit
 
 class ShipManageSyncViewController: SyncUserViewController {
-
+    let ship: Ship
+    var headerHeight: CGFloat = 247.0
+    
+    let blankHeader: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    init(ship: Ship, currUser: User, buttonTitle: String) {
+        self.ship = ship
+        super.init(currUser: currUser, userToAdd: ship.user, buttonTitle: buttonTitle)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +40,26 @@ class ShipManageSyncViewController: SyncUserViewController {
         headerView.isHidden = true
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureRecognized(_:)))
-        view.addGestureRecognizer(tapGestureRecognizer)
+        blankHeader.addGestureRecognizer(tapGestureRecognizer)
+        
+        view.addSubview(blankHeader)
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        blankHeader.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(headerHeight)
+        }
+        
+        fullView.snp.makeConstraints { make in
+            make.top.equalTo(self.blankHeader.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    override func setupFullViewConstraints() {
+        // pass thru
     }
     
     override func viewDidAppear(_ animated: Bool) {
