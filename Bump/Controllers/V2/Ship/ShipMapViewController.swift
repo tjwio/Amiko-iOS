@@ -11,13 +11,15 @@ import MapKit
 import SDWebImage
 import SnapKit
 
-class ShipMapViewController: UIViewController, MKMapViewDelegate {
+class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate {
     private struct Constants {
         static let annotationIdentifier = "BA_HISTORY_ANNOTATION_PIN_IDENTIFIER"
     }
     
     let user: User
     let ships: [Ship]
+    
+    weak var delegate: ShipViewTypeDelegate?
     
     let mapView = MKMapView()
     
@@ -51,6 +53,12 @@ class ShipMapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
+        let titleView = ListMapNavigationView()
+        titleView.listButton.isSelected = false
+        titleView.mapButton.isSelected = true
+        navigationItem.titleView = titleView
+        titleView.listButton.addTarget(self, action: #selector(self.switchToListView(_:)), for: .touchUpInside)
+        
         addAnnotations()
         showAnnotations(mapView.annotations, animated: false)
         
@@ -68,6 +76,12 @@ class ShipMapViewController: UIViewController, MKMapViewDelegate {
         mapView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
+    }
+    
+    // MARK: nav title
+    
+    @objc private func switchToListView(_ sender: UIButton?) {
+        delegate?.shipControllerDidSwitchToListView(self)
     }
     
     //MARK: map delegate

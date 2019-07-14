@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ShipListViewController: UIViewController, ShipTableViewCellDelegate, UITableViewDelegate, UITableViewDataSource {
+protocol ShipController: UIViewController {
+    var ships: [Ship] { get }
+}
+
+class ShipListViewController: UIViewController, ShipController, ShipTableViewCellDelegate, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let cellIdentifier = "ShipListTableViewCellIdentifier"
     }
@@ -17,6 +21,10 @@ class ShipListViewController: UIViewController, ShipTableViewCellDelegate, UITab
     
     let connectedShips: [Ship]
     let pendingShips: [Ship]
+    
+    var ships: [Ship] { return connectedShips }
+    
+    weak var delegate: ShipViewTypeDelegate?
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -47,11 +55,9 @@ class ShipListViewController: UIViewController, ShipTableViewCellDelegate, UITab
         
         view.backgroundColor = UIColor.Grayscale.background
         
-        navigationItem.title = "Amikoships"
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.Grayscale.dark,
-            .font: UIFont.avenirDemi(size: 16.0)!
-        ]
+        let titleView = ListMapNavigationView()
+        navigationItem.titleView = titleView
+        titleView.mapButton.addTarget(self, action: #selector(self.switchToMapView(_:)), for: .touchUpInside)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -68,6 +74,12 @@ class ShipListViewController: UIViewController, ShipTableViewCellDelegate, UITab
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0.0, left: 24.0, bottom: 0.0, right: 24.0))
         }
+    }
+    
+    // MARK: nav title
+    
+    @objc private func switchToMapView(_ sender: UIButton?) {
+        delegate?.shipControllerDidSwitchToMapView(self)
     }
     
     // MARK: table view

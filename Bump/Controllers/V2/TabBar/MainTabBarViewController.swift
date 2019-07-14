@@ -10,8 +10,17 @@ import UIKit
 import ReactiveCocoa
 import ReactiveSwift
 
-class MainTabBarViewController: UITabBarController {
+protocol ShipViewTypeDelegate: class {
+    func shipControllerDidSwitchToListView(_ controller: ShipController)
+    func shipControllerDidSwitchToMapView(_ controller: ShipController)
+}
+
+class MainTabBarViewController: UITabBarController, ShipViewTypeDelegate {
     private var disposables = CompositeDisposable()
+    
+    private var listNavigationController: UINavigationController!
+    private var mapNavigationController: UINavigationController!
+    private var profileController: ProfileTabViewController!
     
     deinit {
         disposables.dispose()
@@ -23,7 +32,14 @@ class MainTabBarViewController: UITabBarController {
         let user = UserHolder.shared.user
         
         let shipListController = ShipListViewController(user: user, ships: user.ships)
-        let profileController = ProfileTabViewController(user: user)
+        shipListController.delegate = self
+        listNavigationController = UINavigationController(rootViewController: shipListController)
+        
+        let shipMapController = ShipMapViewController(user: user, ships: user.ships)
+        shipMapController.delegate = self
+        mapNavigationController = UINavigationController(rootViewController: shipMapController)
+        
+        profileController = ProfileTabViewController(user: user)
         
         let homeTabBarItem = UITabBarItem(title: nil, image: .homeTabInactive, selectedImage: .homeTabActive)
         let profileTabBarItem = UITabBarItem(title: nil, image: .profileTabInactive, selectedImage: .profileTabActive)
@@ -34,9 +50,10 @@ class MainTabBarViewController: UITabBarController {
         profileTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
         
         shipListController.tabBarItem = homeTabBarItem
+        shipMapController.tabBarItem = homeTabBarItem
         profileController.tabBarItem = profileTabBarItem
         
-        viewControllers = [shipListController, profileController]
+        viewControllers = [listNavigationController, profileController]
         tabBar.tintColor = .black
         
         disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
@@ -69,5 +86,15 @@ class MainTabBarViewController: UITabBarController {
         viewController.modalPresentationStyle = .overCurrentContext
         
         self.present(viewController, animated: false, completion: nil)
+    }
+    
+    // MARK: ship delegate
+    
+    func shipControllerDidSwitchToListView(_ controller: ShipController) {
+        viewControllers = [listNavigationController, profileController]
+    }
+    
+    func shipControllerDidSwitchToMapView(_ controller: ShipController) {
+        viewControllers = [mapNavigationController, profileController]
     }
 }
