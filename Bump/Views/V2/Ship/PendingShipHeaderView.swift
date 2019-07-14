@@ -136,6 +136,7 @@ class PendingShipHeaderView: UIView {
     private func commonInit() {
         addSubview(pendingLabel)
         addSubview(scrollView)
+        addSubview(separatorView)
         
         setupAvatarViews(ships: pendingShips)
         

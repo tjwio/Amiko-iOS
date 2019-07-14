@@ -11,7 +11,7 @@ import MapKit
 import SDWebImage
 import SnapKit
 
-class ShipMapViewController: UIViewController, BAHistoryViewController, MKMapViewDelegate {
+class ShipMapViewController: UIViewController, MKMapViewDelegate {
     private struct Constants {
         static let annotationIdentifier = "BA_HISTORY_ANNOTATION_PIN_IDENTIFIER"
     }
@@ -52,7 +52,7 @@ class ShipMapViewController: UIViewController, BAHistoryViewController, MKMapVie
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         addAnnotations()
-        showFirstAnnotation()
+        showAnnotations(mapView.annotations, animated: false)
         
         view.addSubview(mapView)
         
@@ -89,7 +89,7 @@ class ShipMapViewController: UIViewController, BAHistoryViewController, MKMapVie
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation as? UserPinAnnotation, let ship = annotation.ship {
+        if let annotation = view.annotation as? UserPinAnnotation {
             showAnnotations([annotation], animated: false)
             zoomMapOut(bottom: bottomOffset)
         }
@@ -105,7 +105,7 @@ class ShipMapViewController: UIViewController, BAHistoryViewController, MKMapVie
     }
     
     private func resetCenter(animated: Bool = false) {
-        if let coordinate = user.history.first?.coordinate ?? LocationManager.shared.currentLocation?.coordinate {
+        if let coordinate = user.ships.first?.coordinate ?? LocationManager.shared.currentLocation?.coordinate {
             mapView.setRegion(MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 10.0, longitudinalMeters: 10.0), animated: animated)
             mapView.setCenter(coordinate, animated: animated)
         }
@@ -135,12 +135,6 @@ class ShipMapViewController: UIViewController, BAHistoryViewController, MKMapVie
                 mapView.view(for: annotation)?.layer.zPosition = 1.0
                 annotation.isShowing = true
             }
-        }
-    }
-    
-    private func showFirstAnnotation(animated: Bool = false) {
-        if let entry = user.history.first, let annotation = getAnnotation(forEntry: entry) {
-            showAnnotations([annotation], animated: animated)
         }
     }
     

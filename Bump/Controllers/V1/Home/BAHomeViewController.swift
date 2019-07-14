@@ -306,8 +306,8 @@ class BAHomeViewController: UIViewController {
     private func showAddUser(_ userToAdd: User) {
         hapticGenerator.impactOccurred()
         audioPlayer?.play()
-        let viewController: BAAddUserViewController
-        
+//        let viewController: BAAddUserViewController
+//        
 //        if let history = UserHolder.shared.user.history.first(where: { return $0.addedUser.id == userToAdd.id } ) {
 //            viewController = BADeleteUserViewController(user: UserHolder.shared.user, history: history)
 //        } else {

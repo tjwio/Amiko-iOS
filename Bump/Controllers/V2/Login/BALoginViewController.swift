@@ -301,7 +301,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             
-            user.loadHistory(success: { _ in
+            user.loadShips(success: { _ in
                 homeBlock()
             }, failure: { _ in
                 homeBlock()

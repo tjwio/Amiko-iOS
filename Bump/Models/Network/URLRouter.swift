@@ -46,7 +46,7 @@ enum URLRouter: URLRequestConvertible {
         case .loadSpecificUser(let id):
             return "/users/profile/\(id)"
         case .loadHistory:
-            return "/users/ships"
+            return "/ships"
         case .signup:
             return "/signup"
         case .login:
@@ -56,7 +56,7 @@ enum URLRouter: URLRequestConvertible {
         case .uploadImage:
             return "/upload/image"
         case .deleteConnection(let historyId):
-            return "/users/ships/\(historyId)"
+            return "/ships/\(historyId)"
         }
     }
     
@@ -75,7 +75,7 @@ enum URLRouter: URLRequestConvertible {
         default: break
         }
         
-        print("\(urlRequest.cURL)")
+        AppLogger.log("\(urlRequest.cURL)")
         
         return urlRequest
     }

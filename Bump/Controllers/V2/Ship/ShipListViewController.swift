@@ -45,7 +45,8 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.Grayscale.background
+        
         navigationItem.title = "Amikoships"
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.Grayscale.dark,
@@ -54,7 +55,10 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableHeaderView = PendingShipHeaderView(pendingShips: pendingShips)
+        
+        if !pendingShips.isEmpty {
+            tableView.tableHeaderView = PendingShipHeaderView(pendingShips: pendingShips)
+        }
         
         view.addSubview(tableView)
         setupConstraints()

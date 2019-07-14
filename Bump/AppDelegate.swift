@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             _ = UserHolder.initialize(user: user)
         }
         
-        self.window?.rootViewController = BAMainTabBarViewController()
+        self.window?.rootViewController = MainTabBarViewController()
     }
     
     func loadInitialViewController() {
