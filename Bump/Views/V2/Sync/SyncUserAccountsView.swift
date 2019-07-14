@@ -16,6 +16,8 @@ class SyncUserAccountsView: UIView, UITableViewDelegate, UITableViewDataSource {
     let user: User
     var accounts: [(AccountContact, String, Bool)]
     
+    var headerLabel: String?
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.allowsSelection = true
@@ -31,7 +33,7 @@ class SyncUserAccountsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     init(user: User) {
         self.user = user
-        self.accounts = user.allAccounts.map { ($0.0, $0.1, false) }
+        self.accounts = user.allAccounts.map { ($0.0, $0.1, true) }
         super.init(frame: .zero)
         commonInit()
     }
@@ -78,13 +80,17 @@ class SyncUserAccountsView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let view = DetailButtonHeaderView()
-            view.detailLabel.text = "PICK WHAT TO SHARE"
+            view.detailLabel.text = headerLabel ?? "PICK WHAT TO SHARE"
             view.button.isHidden = false
             
             return view
         } else {
             return UIView()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 62.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,6 +115,8 @@ class SyncUserAccountsView: UIView, UITableViewDelegate, UITableViewDataSource {
             cell.valueLabel.textColor = UIColor.Grayscale.light
             cell.layer.borderWidth = 0.0
         }
+        
+        cell.layer.cornerRadius = 20.0
         
         cell.tintColor = UIColor.Matcha.dusk
         

@@ -38,6 +38,14 @@ class SyncUserViewController: UIViewController {
         return button
     }()
     
+    let fullView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     lazy var confirmButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.Matcha.dusk
@@ -103,9 +111,10 @@ class SyncUserViewController: UIViewController {
         headerView.mutualUsersView.mutualImageUrls = userToAdd.mutualFriends.compactMap { $0.imageUrl }
         
         view.addSubview(headerView)
-        view.addSubview(accountsView)
-        view.addSubview(backgroundFooterView)
-        view.addSubview(buttonStackView)
+        view.addSubview(fullView)
+        fullView.addSubview(accountsView)
+        fullView.addSubview(backgroundFooterView)
+        fullView.addSubview(buttonStackView)
         
         setupConstraints()
     }
@@ -115,11 +124,13 @@ class SyncUserViewController: UIViewController {
             make.top.leading.trailing.equalToSuperview()
         }
         
-        accountsView.tableView.snp.makeConstraints { make in
+        fullView.snp.makeConstraints { make in
             make.top.equalTo(self.headerView.snp.bottom)
-            make.leading.equalToSuperview().offset(32.0)
-            make.trailing.equalToSuperview().offset(-32.0)
-            make.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        accountsView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
         }
         
         buttonStackView.snp.makeConstraints { make in
@@ -144,7 +155,7 @@ class SyncUserViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         if confirmButton.frame.size.height > 0.0 {
-            confirmButton.roundCorners(corners: [.topLeft], radius: 40.0)
+            confirmButton.roundCorners(corners: [.topLeft], radius: 36.0)
         }
     }
     

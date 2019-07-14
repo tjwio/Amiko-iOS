@@ -15,8 +15,10 @@ class ShipManageSyncViewController: SyncUserViewController {
         
         view.backgroundColor = .clear
         
-//        accountsView.isHidden = true
-//        headerView.isHidden = true
+        accountsView.headerLabel = "Manage your share with \(userToAdd.firstName)".uppercased()
+        
+        fullView.isHidden = true
+        headerView.isHidden = true
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureRecognized(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -25,12 +27,12 @@ class ShipManageSyncViewController: SyncUserViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        accountsView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
-        accountsView.isHidden = false
+        fullView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
+        fullView.isHidden = false
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
             self.view.backgroundColor = UIColor(hexColor: 0x262A2F, alpha: 0.90)
             
-            self.accountsView.transform = .identity
+            self.fullView.transform = .identity
         }, completion: nil)
     }
     
@@ -45,7 +47,7 @@ class ShipManageSyncViewController: SyncUserViewController {
     func dismissViewController(completion: ((Bool) -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
             self.view.backgroundColor = .clear
-            self.accountsView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
+            self.fullView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         }) { completed in
             self.dismiss(animated: false, completion: nil)
             completion?(completed)
