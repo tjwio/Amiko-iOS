@@ -15,6 +15,7 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         static let cellIdentifier = "ShipDetailTableViewCellIdentifier"
     }
     
+    let user: User
     let ship: Ship
     let accounts: [(AccountContact, String)]
     
@@ -48,13 +49,15 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     lazy var footerView: FooterView = {
         let view = FooterView()
+        view.manageButton.addTarget(self, action: #selector(self.manageAccounts(_:)), for: .touchUpInside)
         view.manageButton.setTitle("MANAGE YOUR SHARE WITH \(ship.user.firstName)".uppercased(), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
-    init(ship: Ship) {
+    init(user: User, ship: Ship) {
+        self.user = user
         self.ship = ship
         self.accounts = ship.user.allAccounts
         super.init(nibName: nil, bundle: nil)
@@ -105,6 +108,15 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: buttons
+    
+    @objc private func manageAccounts(_ sender: UIButton?) {
+        let viewController = ShipManageSyncViewController(currUser: user, userToAdd: ship.user, buttonTitle: "COMPLETE")
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        
+        present(viewController, animated: false, completion: nil)
+    }
     
     @objc private func close(_ sender: UIButton?) {
         dismiss(animated: true, completion: nil)

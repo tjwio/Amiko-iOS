@@ -123,4 +123,14 @@ class SyncUserViewController: UIViewController {
             make.height.equalTo(64.0)
         }
     }
+    
+    // MARK: buttons
+    
+    @objc func cancelButtonPressed(_ sender: UIButton?) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func confirmButtonPressed(_ sender: UIButton?) {
+        
+    }
 }

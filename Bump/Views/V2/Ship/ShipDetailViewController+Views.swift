@@ -92,6 +92,7 @@ extension ShipDetailViewController {
         let manageButton: UIButton = {
             let button = UIButton(type: .custom)
             button.setTitleColor(UIColor.Matcha.dusk, for: .normal)
+            button.setTitleColor(UIColor.Matcha.dusk.withAlphaComponent(0.75), for: .highlighted)
             button.titleLabel?.font = .avenirDemi(size: 14.0)
             button.translatesAutoresizingMaskIntoConstraints = false
             

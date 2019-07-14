@@ -136,7 +136,7 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let viewController = ShipDetailViewController(ship: connectedShips[indexPath.section])
+        let viewController = ShipDetailViewController(user: user, ship: connectedShips[indexPath.section])
         present(viewController, animated: true, completion: nil)
     }
     
