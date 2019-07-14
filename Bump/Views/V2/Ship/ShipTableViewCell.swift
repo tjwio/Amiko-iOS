@@ -105,7 +105,8 @@ class ShipTableViewCell: UITableViewCell {
         
         bioLabel.snp.makeConstraints { make in
             make.top.equalTo(self.nameLabel.snp.bottom).offset(8.0)
-            make.leading.trailing.equalTo(self.nameLabel)
+            make.leading.equalTo(self.nameLabel)
+            make.trailing.lessThanOrEqualToSuperview().offset(-8.0)
         }
         
         separatorView.snp.makeConstraints { make in
@@ -129,6 +130,7 @@ class ShipTableViewCell: UITableViewCell {
         
         accountButtons = accounts.map { account in
             let button = UIButton(type: .custom)
+            button.addTarget(self, action: #selector(self.accountButtonPressed(_:)), for: .touchUpInside)
             button.setTitle(account.0.icon, for: .normal)
             button.setTitleColor(UIColor.Matcha.dusk, for: .normal)
             button.titleLabel?.font = .featherFont(size: 16.0)
@@ -161,7 +163,7 @@ class ShipTableViewCell: UITableViewCell {
     
     // MARK: button
     
-    @objc private func didTapAccountButton(_ button: UIButton) {
+    @objc private func accountButtonPressed(_ button: UIButton) {
         guard let index = accountButtons.firstIndex(of: button) else { return }
         delegate?.shipCell(self, didSelect: accounts[index].0, value: accounts[index].1)
     }

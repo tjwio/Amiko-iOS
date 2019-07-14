@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShipListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShipListViewController: UIViewController, ShipTableViewCellDelegate, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let cellIdentifier = "ShipListTableViewCellIdentifier"
     }
@@ -66,7 +66,7 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0.0, left: 24.0, bottom: 0.0, right: 24.0))
         }
     }
     
@@ -87,7 +87,8 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let view = DetailButtonHeaderView()
-            view.detailLabel.font = .avenirDemi(size: 14.0)
+            view.backgroundColor = UIColor.Grayscale.background
+            view.detailLabel.font = .avenirDemi(size: 16.0)
             view.detailLabel.text = "CONNECTED"
             view.detailLabel.textColor = UIColor.Grayscale.dark
             view.button.isHidden = false
@@ -113,8 +114,15 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.nameLabel.text = ship.user.fullName
         cell.bioLabel.text = ship.user.publicBio
         cell.accounts = ship.user.allAccounts
+        cell.layer.cornerRadius = 10.0
+        
+        cell.delegate = self
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: table header view
@@ -127,5 +135,15 @@ class ShipListViewController: UIViewController, UITableViewDelegate, UITableView
         header.frame.size.height = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         tableView.tableHeaderView = header
         tableView.layoutIfNeeded()
+    }
+    
+    // MARK: ship cell delegate
+    
+    func shipCell(_ cell: ShipTableViewCell, didSelect account: AccountContact, value: String) {
+        if let urlStr = account.appUrl(id: value), let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        } else if let urlStr = account.webUrl(id: value), let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
     }
 }

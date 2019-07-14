@@ -30,7 +30,7 @@ extension NetworkHandler {
     }
     
     public func loadHistory(success: ShipListHandler?, failure: ErrorHandler?) {
-        sessionManager.request(URLRouter.loadHistory).validate().responseDecodable { (response: DataResponse<[Ship]>) in
+        sessionManager.request(URLRouter.loadHistory).validate().responseDecodable(decoder: JSONDecoder.iso8601DateDeocder) { (response: DataResponse<[Ship]>) in
             switch response.result {
             case .success(let value): success?(value)
             case .failure(let error): failure?(error)
@@ -41,7 +41,7 @@ extension NetworkHandler {
     //MARK: POST
     
     public func addConnection(parameters: Parameters, success: ShipHandler?, failure: ErrorHandler?) {
-        self.sessionManager.request(URLRouter.addConnection(parameters: parameters)).validate().responseDecodable { (response: DataResponse<Ship>) in
+        self.sessionManager.request(URLRouter.addConnection(parameters: parameters)).validate().responseDecodable(decoder: JSONDecoder.iso8601DateDeocder) { (response: DataResponse<Ship>) in
             switch response.result {
             case .success(let value): success?(value)
             case .failure(let error): failure?(error)

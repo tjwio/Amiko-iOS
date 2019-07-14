@@ -19,6 +19,7 @@
 		221F151E22DA796D00EE8567 /* PendingShipHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F151D22DA796D00EE8567 /* PendingShipHeaderView.swift */; };
 		221F152222DA98B200EE8567 /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152122DA98B200EE8567 /* ProfileTabViewController.swift */; };
 		221F152422DA9D0000EE8567 /* Dictionary+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152322DA9D0000EE8567 /* Dictionary+Decoder.swift */; };
+		221F152622DAAF0300EE8567 /* JSONDecoder+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152522DAAF0300EE8567 /* JSONDecoder+Date.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -154,6 +155,7 @@
 		221F151D22DA796D00EE8567 /* PendingShipHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingShipHeaderView.swift; sourceTree = "<group>"; };
 		221F152122DA98B200EE8567 /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
 		221F152322DA9D0000EE8567 /* Dictionary+Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Decoder.swift"; sourceTree = "<group>"; };
+		221F152522DAAF0300EE8567 /* JSONDecoder+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Date.swift"; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 				2F18D3A72106F7D400C97E3A /* DateFormatter+Constants.swift */,
 				221F152322DA9D0000EE8567 /* Dictionary+Decoder.swift */,
 				2F27363D2086BA7900D05238 /* Double+Round.swift */,
+				221F152522DAAF0300EE8567 /* JSONDecoder+Date.swift */,
 				2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */,
 				2F552F48213DE82D0074AB8B /* String+Null.swift */,
 				2FFB89B62109914F006F8F94 /* UIBarItem+TextAttributes.swift */,
@@ -1057,6 +1060,7 @@
 				2F18D3A62106F54E00C97E3A /* AppLogger.swift in Sources */,
 				22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */,
 				2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */,
+				221F152622DAAF0300EE8567 /* JSONDecoder+Date.swift in Sources */,
 				2F262EFD2134FF3500138D4D /* Array+RemoveObject.swift in Sources */,
 				2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */,
 				2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */,
