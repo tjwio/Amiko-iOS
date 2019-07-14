@@ -50,7 +50,7 @@ class SyncUserViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.Matcha.dusk
         
-        let attributedTitle = NSMutableAttributedString(string: "\(buttonTitle) \(String.featherIcon(name: .x))", attributes: [.foregroundColor: UIColor.white])
+        let attributedTitle = NSMutableAttributedString(string: "\(buttonTitle) \(String.featherIcon(name: .arrowRight))", attributes: [.foregroundColor: UIColor.white])
         attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(attributedTitle.length-1, 1))
         attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(0, attributedTitle.length-1))
         attributedTitle.addAttribute(.baselineOffset, value: 2.0, range: NSMakeRange(0, attributedTitle.length-1))

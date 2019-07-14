@@ -110,7 +110,7 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: buttons
     
     @objc private func manageAccounts(_ sender: UIButton?) {
-        let viewController = ShipManageSyncViewController(currUser: user, userToAdd: ship.user, buttonTitle: "COMPLETE")
+        let viewController = ShipManageSyncViewController(ship: ship, currUser: user, buttonTitle: "COMPLETE")
         viewController.headerHeight = headerView.frame.size.height
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true

@@ -23,6 +23,7 @@ class ShipManageSyncViewController: SyncUserViewController {
     init(ship: Ship, currUser: User, buttonTitle: String) {
         self.ship = ship
         super.init(currUser: currUser, userToAdd: ship.user, buttonTitle: buttonTitle)
+        accountsView.accounts = currUser.allAccounts.map { ($0.0, $0.1, true) }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -12,7 +12,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import SDWebImage
 
-public enum AccountContact: String {
+public enum AccountContact: String, Codable {
     case phone = "phone"
     case email = "email"
     case linkedin = "linkedin"
