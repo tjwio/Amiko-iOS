@@ -15,8 +15,8 @@ class ShipManageSyncViewController: SyncUserViewController {
         
         view.backgroundColor = .clear
         
-        accountsView.isHidden = true
-        headerView.isHidden = true
+//        accountsView.isHidden = true
+//        headerView.isHidden = true
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapGestureRecognized(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)

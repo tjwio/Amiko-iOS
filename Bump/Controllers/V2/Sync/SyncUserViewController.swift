@@ -27,9 +27,10 @@ class SyncUserViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.backgroundColor = .white
         
-        let attributedTitle = NSMutableAttributedString(string: "\(String.featherIcon(name: .x)) Cancel", attributes: [.foregroundColor: UIColor.Matcha.dusk])
+        let attributedTitle = NSMutableAttributedString(string: "\(String.featherIcon(name: .x)) CANCEL", attributes: [.foregroundColor: UIColor.Matcha.dusk])
         attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(0, 1))
         attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(1, attributedTitle.length-1))
+        attributedTitle.addAttribute(.baselineOffset, value: 2.0, range: NSMakeRange(1, attributedTitle.length-1))
         
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -41,14 +42,13 @@ class SyncUserViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.Matcha.dusk
         
-        let attributedTitle = NSMutableAttributedString(string: "\(buttonTitle) \(String.featherIcon(name: .x))", attributes: [.foregroundColor: UIColor.Matcha.dusk])
-        attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(attributedTitle.length-2, 1))
+        let attributedTitle = NSMutableAttributedString(string: "\(buttonTitle) \(String.featherIcon(name: .x))", attributes: [.foregroundColor: UIColor.white])
+        attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(attributedTitle.length-1, 1))
         attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(0, attributedTitle.length-1))
+        attributedTitle.addAttribute(.baselineOffset, value: 2.0, range: NSMakeRange(0, attributedTitle.length-1))
         
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.roundCorners(corners: [.topLeft], radius: 40.0)
         
         return button
     }()
@@ -62,6 +62,13 @@ class SyncUserViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
+    }()
+    
+    let backgroundFooterView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        
+        return view
     }()
     
     init(currUser: User, userToAdd: User, buttonTitle: String) {
@@ -83,6 +90,8 @@ class SyncUserViewController: UIViewController {
         accountsView.backgroundColor = .white
         accountsView.translatesAutoresizingMaskIntoConstraints = false
         
+        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed(_:)), for: .touchUpInside)
+        
         if let imageUrl = userToAdd.imageUrl {
             headerView.infoView.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
         } else {
@@ -91,9 +100,11 @@ class SyncUserViewController: UIViewController {
         
         headerView.infoView.nameLabel.text = userToAdd.fullName
         headerView.infoView.bioLabel.text  = userToAdd.publicBio
+        headerView.mutualUsersView.mutualImageUrls = userToAdd.mutualFriends.compactMap { $0.imageUrl }
         
         view.addSubview(headerView)
         view.addSubview(accountsView)
+        view.addSubview(backgroundFooterView)
         view.addSubview(buttonStackView)
         
         setupConstraints()
@@ -115,12 +126,25 @@ class SyncUserViewController: UIViewController {
             make.leading.bottom.trailing.equalToSuperview()
         }
         
+        backgroundFooterView.snp.makeConstraints { make in
+            make.leading.bottom.trailing.equalToSuperview()
+            make.height.equalTo(64.0)
+        }
+        
         cancelButton.snp.makeConstraints { make in
             make.height.equalTo(64.0)
         }
         
         confirmButton.snp.makeConstraints { make in
             make.height.equalTo(64.0)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if confirmButton.frame.size.height > 0.0 {
+            confirmButton.roundCorners(corners: [.topLeft], radius: 40.0)
         }
     }
     
