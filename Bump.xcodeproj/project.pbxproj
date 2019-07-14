@@ -106,7 +106,7 @@
 		2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */; };
 		2F6E52042083DE8100E8D8CA /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52032083DE8100E8D8CA /* CommonUtility.swift */; };
 		2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */; };
-		2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */; };
+		2F6E520B2083EBE300E8D8CA /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* LoadingButton.swift */; };
 		2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */; };
 		2F7A3A5921447AE900AA260D /* Notifications+Bump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */; };
 		2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */; };
@@ -254,7 +254,7 @@
 		2F6E52012083DA2400E8D8CA /* UITextField+Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Toolbar.swift"; sourceTree = "<group>"; };
 		2F6E52032083DE8100E8D8CA /* CommonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtility.swift; sourceTree = "<group>"; };
 		2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Back.swift"; sourceTree = "<group>"; };
-		2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALoadingButton.swift; sourceTree = "<group>"; };
+		2F6E520A2083EBE300E8D8CA /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		2F6E520E2084040E00E8D8CA /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = Carthage/Build/iOS/GSMessages.framework; sourceTree = "<group>"; };
 		2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserLoadingViewController.swift; sourceTree = "<group>"; };
 		2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Bump.swift"; sourceTree = "<group>"; };
@@ -356,7 +356,7 @@
 			children = (
 				2F06357920853E7F00D655E7 /* BAAddUserView.swift */,
 				2F18D399210539C000C97E3A /* BAAvatarView.swift */,
-				2F6E520A2083EBE300E8D8CA /* BALoadingButton.swift */,
+				2F6E520A2083EBE300E8D8CA /* LoadingButton.swift */,
 				2F552F3C213916C80074AB8B /* BAProfileView.swift */,
 				2FFAE3FF213230110045B75E /* BASocialDrawerView.swift */,
 				2F0635762085395E00D655E7 /* Cells */,
@@ -1037,7 +1037,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F6E520B2083EBE300E8D8CA /* BALoadingButton.swift in Sources */,
+				2F6E520B2083EBE300E8D8CA /* LoadingButton.swift in Sources */,
 				2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */,
 				2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */,
 				2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */,

@@ -19,8 +19,8 @@ class BAProfileView: UIView {
         return button
     }()
     
-    let saveButton: BALoadingButton = {
-        let button = BALoadingButton(type: .custom)
+    let saveButton: LoadingButton = {
+        let button = LoadingButton(type: .custom)
         button.activityIndicator.color = UIColor.Grayscale.dark
         button.setTitle(String.featherIcon(name: .check), for: .normal)
         button.setTitleColor(UIColor.Grayscale.dark, for: .normal)

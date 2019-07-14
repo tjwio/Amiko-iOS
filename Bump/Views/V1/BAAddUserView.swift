@@ -92,8 +92,8 @@ class BAAddUserView: UIView, UITableViewDelegate, UITableViewDataSource {
         return tableView
     }()
     
-    let doneButton: BALoadingButton = {
-        let button = BALoadingButton(type: .custom)
+    let doneButton: LoadingButton = {
+        let button = LoadingButton(type: .custom)
         button.backgroundColor = UIColor.Blue.normal
         button.setTitle("Connect", for: .normal)
         button.setTitleColor(.white, for: .normal)

@@ -188,8 +188,8 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let createAccountButton: BALoadingButton = {
-        let button = BALoadingButton(type: .custom)
+    let createAccountButton: LoadingButton = {
+        let button = LoadingButton(type: .custom)
         button.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
         button.setTitle("SIGN UP", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -418,7 +418,7 @@ class BASignupViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: create account
-    @objc private func createAccount(_ sender: BALoadingButton?) {
+    @objc private func createAccount(_ sender: LoadingButton?) {
         sender?.isLoading = true
         AuthenticationManager.shared.signup(firstName: firstName.value!, lastName: lastName.value!, email: email.value!, phone: phone.value!, password: password.value!, success: { user in
             let homeBlock = {

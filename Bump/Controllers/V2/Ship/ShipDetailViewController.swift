@@ -109,8 +109,19 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: buttons
     
-    @objc private func manageAccounts(_ sender: UIButton?) {
-        let viewController = ShipManageSyncViewController(ship: ship, currUser: user, buttonTitle: "COMPLETE")
+    @objc private func manageAccounts(_ sender: LoadingButton) {
+        NetworkHandler.shared.loadSpecificUserShip(userId: ship.user.id, success: { ship in
+            DispatchQueue.main.async {
+                self.showManageAccountsController(currShip: ship)
+                sender.isLoading = false
+            }
+        }) { _ in
+            sender.isLoading = false
+        }
+    }
+    
+    private func showManageAccountsController(currShip: Ship) {
+        let viewController = ShipManageSyncViewController(ship: currShip, currUser: user, userToAdd: ship.user, buttonTitle: "COMPLETE")
         viewController.headerHeight = headerView.frame.size.height
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true

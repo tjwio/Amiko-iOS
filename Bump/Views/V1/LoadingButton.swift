@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BALoadingButton: UIButton {
+class LoadingButton: UIButton {
     var activityIndicator: UIActivityIndicatorView!;
     
     public var isLoading = false {

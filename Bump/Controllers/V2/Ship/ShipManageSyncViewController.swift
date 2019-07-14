@@ -20,10 +20,10 @@ class ShipManageSyncViewController: SyncUserViewController {
         return view
     }()
     
-    init(ship: Ship, currUser: User, buttonTitle: String) {
+    init(ship: Ship, currUser: User, userToAdd: User, buttonTitle: String) {
         self.ship = ship
-        super.init(currUser: currUser, userToAdd: ship.user, buttonTitle: buttonTitle)
-        accountsView.accounts = currUser.allAccounts.map { ($0.0, $0.1, true) }
+        super.init(currUser: currUser, userToAdd: userToAdd, buttonTitle: buttonTitle)
+        accountsView.accounts = currUser.allAccounts.map { ($0.0, $0.1, ship.sharedInfo.contains($0.0)) }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -38,6 +38,15 @@ extension NetworkHandler {
         }
     }
     
+    public func loadSpecificUserShip(userId: String, success: ShipHandler?, failure: ErrorHandler?) {
+        sessionManager.request(URLRouter.loadSpecificUserShip(userId: userId)).validate().responseDecodable(decoder: JSONDecoder.iso8601DateDeocder) { (response: DataResponse<Ship>) in
+            switch response.result {
+            case .success(let value): success?(value)
+            case .failure(let error): failure?(error)
+            }
+        }
+    }
+    
     //MARK: POST
     
     public func addConnection(parameters: Parameters, success: ShipHandler?, failure: ErrorHandler?) {

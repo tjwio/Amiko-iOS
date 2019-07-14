@@ -129,7 +129,7 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: save
     
-    @objc private func saveProfileView(_ sender: BALoadingButton?) {
+    @objc private func saveProfileView(_ sender: LoadingButton?) {
         user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", bio: bio.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
             if self.imageDidUpdate.value, let newImage = self.image.value {
                 self.user.updateImage(newImage, success: {

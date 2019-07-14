@@ -14,6 +14,7 @@ public struct Ship: Codable {
     var user: User
     var latitude: Double
     var longitude: Double
+    var sharedInfo: [AccountContact]
     var pending: Bool
     var insertedAt: Date
     
@@ -23,6 +24,7 @@ public struct Ship: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, user, latitude, longitude, pending
+        case sharedInfo = "shared_info"
         case insertedAt = "inserted_at"
     }
 }

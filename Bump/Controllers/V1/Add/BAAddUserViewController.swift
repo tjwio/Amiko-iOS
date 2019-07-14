@@ -134,7 +134,7 @@ class BaseUserViewController: UIViewController {
     
     //MARK: done
     
-    @objc func done(_ sender: BALoadingButton?) {
+    @objc func done(_ sender: LoadingButton?) {
         if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
             do { try self.addNewContact() }
             catch {

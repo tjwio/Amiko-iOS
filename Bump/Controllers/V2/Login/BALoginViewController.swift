@@ -90,8 +90,8 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let loginButton: BALoadingButton = {
-        let button = BALoadingButton(type: .custom)
+    let loginButton: LoadingButton = {
+        let button = LoadingButton(type: .custom)
         button.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
         button.setTitle("LOG IN", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -292,7 +292,7 @@ class BALoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: login
-    @objc private func login(_ sender: BALoadingButton?) {
+    @objc private func login(_ sender: LoadingButton?) {
         sender?.isLoading = true
         AuthenticationManager.shared.login(email: self.emailTextField.text!, password: self.passwordTextField.text!, success: { user in
             let homeBlock = {
