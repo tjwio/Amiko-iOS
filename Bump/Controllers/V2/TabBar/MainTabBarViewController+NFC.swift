@@ -12,7 +12,8 @@ import CoreNFC
 
 extension MainTabBarViewController: NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        
+        BumpManager.shared.stop()
+        nfcSession = nil
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {

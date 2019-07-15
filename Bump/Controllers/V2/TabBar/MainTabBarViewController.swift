@@ -19,6 +19,8 @@ protocol ShipViewTypeDelegate: class {
 }
 
 class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate {
+    let user: User
+    
     private var disposables = CompositeDisposable()
     
     private var listNavigationController: UINavigationController!
@@ -26,16 +28,27 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     private var bumpController: BumpViewController!
     private var profileController: ProfileTabViewController!
     
+    #if canImport(CoreNFC)
+    weak var nfcSession: NFCNDEFReaderSession?
+    #endif
+    
     deinit {
         disposables.dispose()
+    }
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         delegate = self
-        
-        let user = UserHolder.shared.user
         
         let shipListController = ShipListViewController(user: user, ships: user.ships)
         shipListController.delegate = self
@@ -69,10 +82,27 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         
         LocationManager.shared.initialize()
         
+        setupBumpCallbacks()
+        
         disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
             guard let id = notification.object as? String else { return }
             DispatchQueue.main.async {
                 self.openProfileController(id: id)
+            }
+        }
+    }
+    
+    private func setupBumpCallbacks() {
+        UserHolder.shared.bumpMatchCallback = { [unowned self] userToAdd in
+            DispatchQueue.main.async {
+                self.nfcSession?.invalidate()
+                self.openSyncController(userToAdd: userToAdd)
+            }
+        }
+        
+        BumpManager.shared.bumpHandler = { bump in
+            if let currentLocation = LocationManager.shared.currentLocation {
+                UserHolder.shared.sendBumpReceivedEvent(bump: bump, location: currentLocation)
             }
         }
     }
@@ -101,11 +131,21 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         self.present(viewController, animated: false, completion: nil)
     }
     
+    private func openSyncController(userToAdd: User) {
+        let viewController = SyncUserViewController(currUser: user, userToAdd: userToAdd, buttonTitle: "COMPLETE")
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    private func startBumpAndNFC() {
+        BumpManager.shared.start()
+        showNFCScanner()
+    }
+    
     // MARK: tab delegate
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController === bumpController {
-            showNFCScanner()
+            startBumpAndNFC()
             
             return false
         }
@@ -132,6 +172,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         let nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
         nfcSession.alertMessage = "Bump phones with another user or scan an Amiko Card"
         nfcSession.begin()
+        
+        self.nfcSession = nfcSession
         #endif
     }
 }
