@@ -13,11 +13,11 @@ class AppManager: NSObject {
         case development, staging, production
         
         var apiUrl: String {
-            return "http://localhost:4000/api/v1"
+            return "http://192.168.0.107:4000/api/v1"
         }
         
         var streamUrl: String {
-            return "ws://localhost:4000/socket/websocket"
+            return "ws://192.168.0.107:4000/socket/websocket"
         }
     }
     

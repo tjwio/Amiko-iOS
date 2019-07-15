@@ -15,12 +15,15 @@ protocol ShipViewTypeDelegate: class {
     func shipControllerDidSwitchToMapView(_ controller: ShipController)
 }
 
-class MainTabBarViewController: UITabBarController, ShipViewTypeDelegate {
+class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate, BumpViewControllerDelegate {
     private var disposables = CompositeDisposable()
     
     private var listNavigationController: UINavigationController!
     private var mapNavigationController: UINavigationController!
+    private var bumpController: BumpViewController!
     private var profileController: ProfileTabViewController!
+    
+    private var lastSelectedController: UIViewController?
     
     deinit {
         disposables.dispose()
@@ -28,6 +31,8 @@ class MainTabBarViewController: UITabBarController, ShipViewTypeDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        delegate = self
         
         let user = UserHolder.shared.user
         
@@ -39,22 +44,32 @@ class MainTabBarViewController: UITabBarController, ShipViewTypeDelegate {
         shipMapController.delegate = self
         mapNavigationController = UINavigationController(rootViewController: shipMapController)
         
+        bumpController = BumpViewController()
+        bumpController.delegate = self
+        
         profileController = ProfileTabViewController(user: user)
         
         let homeTabBarItem = UITabBarItem(title: nil, image: .homeTabInactive, selectedImage: .homeTabActive)
+        let bumpTabBarItem = UITabBarItem(title: nil, image: .logoTabInactive, selectedImage: .logoTabActive)
         let profileTabBarItem = UITabBarItem(title: nil, image: .profileTabInactive, selectedImage: .profileTabActive)
         
         let offset: CGFloat = DeviceUtil.IS_IPHONE_X ? 12.0 : 6.0
         
         homeTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
+        bumpTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
         profileTabBarItem.imageInsets = UIEdgeInsets(top: offset, left: 0.0, bottom: -offset, right: 0.0)
         
         shipListController.tabBarItem = homeTabBarItem
         shipMapController.tabBarItem = homeTabBarItem
+        bumpController.tabBarItem = bumpTabBarItem
         profileController.tabBarItem = profileTabBarItem
         
-        viewControllers = [listNavigationController, profileController]
+        lastSelectedController = listNavigationController
+        
+        viewControllers = [listNavigationController, bumpController, profileController]
         tabBar.tintColor = .black
+        
+        LocationManager.shared.initialize()
         
         disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
             guard let id = notification.object as? String else { return }
@@ -88,13 +103,33 @@ class MainTabBarViewController: UITabBarController, ShipViewTypeDelegate {
         self.present(viewController, animated: false, completion: nil)
     }
     
+    // MARK: tab delegate
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController === bumpController {
+            lastSelectedController = tabBarController.selectedViewController
+        }
+        
+        return true
+    }
+    
     // MARK: ship delegate
     
     func shipControllerDidSwitchToListView(_ controller: ShipController) {
-        viewControllers = [listNavigationController, profileController]
+        viewControllers = [listNavigationController, bumpController, profileController]
+        lastSelectedController = listNavigationController
     }
     
     func shipControllerDidSwitchToMapView(_ controller: ShipController) {
-        viewControllers = [mapNavigationController, profileController]
+        viewControllers = [mapNavigationController, bumpController, profileController]
+        lastSelectedController = mapNavigationController
+    }
+    
+    // MARK: bump delegate
+    
+    func bumpControllerDidDismissScanner(_ viewController: BumpViewController) {
+        if selectedViewController === viewController {
+            selectedViewController = lastSelectedController
+        }
     }
 }

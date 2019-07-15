@@ -15,10 +15,6 @@ import ReactiveSwift
 import SnapKit
 import SDWebImage
 
-#if canImport(CoreNFC)
-import CoreNFC
-#endif
-
 class BAHomeViewController: UIViewController {
     private struct Constants {
         static let instructionsHold = "Hold anywhere to bump"
@@ -197,7 +193,6 @@ class BAHomeViewController: UIViewController {
         
         cameraButton.addTarget(self, action: #selector(self.showCamera(_:)), for: .touchUpInside)
         accountButton.addTarget(self, action: #selector(self.showAccount(_:)), for: .touchUpInside)
-        scanButton.addTarget(self, action: #selector(self.showNFCScanner(_:)), for: .touchUpInside)
         
         let userHolder = UserHolder.shared
         let locationManager = LocationManager.shared
@@ -324,18 +319,6 @@ class BAHomeViewController: UIViewController {
 //        viewController.modalPresentationStyle = .overCurrentContext
 //        
 //        self.present(viewController, animated: false, completion: nil)
-    }
-    
-    // MARK: nfc
-    
-    @objc private func showNFCScanner(_ sender: UIButton?) {
-        #if canImport(CoreNFC)
-        guard NFCNDEFReaderSession.readingAvailable else { return }
-        
-        let nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
-        nfcSession.alertMessage = "Please scan an Amiko Card"
-        nfcSession.begin()
-        #endif
     }
     
     //MARK: hold gesture

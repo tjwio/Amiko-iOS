@@ -10,9 +10,9 @@ import UIKit
 #if canImport(CoreNFC)
 import CoreNFC
 
-extension BAHomeViewController: NFCNDEFReaderSessionDelegate {
+extension BumpViewController: NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        self.showLeftMessage("Failed to scan NFC card, please try again", type: .error)
+        delegate?.bumpControllerDidDismissScanner(self)
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
@@ -31,21 +31,6 @@ extension BAHomeViewController: NFCNDEFReaderSessionDelegate {
             session.invalidate()
             UIApplication.shared.open(url)
         }
-    }
-    
-    func openProfileController(id: String) {
-//        let viewController = LoadProfileViewController(id: id)
-//        viewController.successCallback = { [weak self] message in
-//            DispatchQueue.main.async {
-//                self?.showLeftMessage(message, type: .success)
-//            }
-//        }
-//        
-//        viewController.providesPresentationContextTransitionStyle = true
-//        viewController.definesPresentationContext = true
-//        viewController.modalPresentationStyle = .overCurrentContext
-//        
-//        self.present(viewController, animated: false, completion: nil)
     }
 }
 

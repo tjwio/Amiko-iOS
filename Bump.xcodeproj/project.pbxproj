@@ -24,12 +24,13 @@
 		221F152A22DADD5A00EE8567 /* ShipDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152922DADD5A00EE8567 /* ShipDetailViewController.swift */; };
 		221F152C22DAE35A00EE8567 /* ShipDetailViewController+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152B22DAE35A00EE8567 /* ShipDetailViewController+Views.swift */; };
 		221F152E22DAF4E200EE8567 /* ShipManageSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152D22DAF4E200EE8567 /* ShipManageSyncViewController.swift */; };
+		221F153122DBCAE900EE8567 /* BumpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F153022DBCAE900EE8567 /* BumpViewController.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
 		2248BFAB22B3B96100979398 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA622B3B96000979398 /* AppCenterCrashes.framework */; };
 		2248BFAC22B3B96100979398 /* AppCenterDistribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA722B3B96100979398 /* AppCenterDistribute.framework */; };
-		2248BFB422B49EE500979398 /* HomeViewController+NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248BFB322B49EE500979398 /* HomeViewController+NFC.swift */; };
+		2248BFB422B49EE500979398 /* BumpViewController+NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248BFB322B49EE500979398 /* BumpViewController+NFC.swift */; };
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
 		22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C409D0225D72AC00475C19 /* UIViewController+Message.swift */; };
@@ -164,12 +165,13 @@
 		221F152922DADD5A00EE8567 /* ShipDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailViewController.swift; sourceTree = "<group>"; };
 		221F152B22DAE35A00EE8567 /* ShipDetailViewController+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShipDetailViewController+Views.swift"; sourceTree = "<group>"; };
 		221F152D22DAF4E200EE8567 /* ShipManageSyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipManageSyncViewController.swift; sourceTree = "<group>"; };
+		221F153022DBCAE900EE8567 /* BumpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpViewController.swift; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
 		2248BFA622B3B96000979398 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		2248BFA722B3B96100979398 /* AppCenterDistribute.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterDistribute.framework; sourceTree = "<group>"; };
-		2248BFB322B49EE500979398 /* HomeViewController+NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+NFC.swift"; sourceTree = "<group>"; };
+		2248BFB322B49EE500979398 /* BumpViewController+NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BumpViewController+NFC.swift"; sourceTree = "<group>"; };
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		2210BECC22D137050053F8A8 /* V2 */ = {
 			isa = PBXGroup;
 			children = (
+				221F152F22DBCACA00EE8567 /* Bump */,
 				2FD4B913214254B400E0E570 /* Loading */,
 				2F6E51EC20830F4A00E8D8CA /* Login */,
 				221F152022DA989100EE8567 /* Profile */,
@@ -437,6 +440,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		221F152F22DBCACA00EE8567 /* Bump */ = {
+			isa = PBXGroup;
+			children = (
+				221F153022DBCAE900EE8567 /* BumpViewController.swift */,
+				2248BFB322B49EE500979398 /* BumpViewController+NFC.swift */,
+			);
+			path = Bump;
+			sourceTree = "<group>";
+		};
 		2248BFA222B3B94B00979398 /* CustomFrameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,7 +496,6 @@
 			isa = PBXGroup;
 			children = (
 				2F1312042081AF2600D462F8 /* BAHomeViewController.swift */,
-				2248BFB322B49EE500979398 /* HomeViewController+NFC.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1107,9 +1118,10 @@
 				2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */,
 				2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */,
 				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,
+				221F153122DBCAE900EE8567 /* BumpViewController.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */,
-				2248BFB422B49EE500979398 /* HomeViewController+NFC.swift in Sources */,
+				2248BFB422B49EE500979398 /* BumpViewController+NFC.swift in Sources */,
 				2210BEE722D6DBE00053F8A8 /* Ship.swift in Sources */,
 				2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
