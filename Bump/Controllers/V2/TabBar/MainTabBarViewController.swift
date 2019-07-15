@@ -87,7 +87,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
             guard let id = notification.object as? String else { return }
             DispatchQueue.main.async {
-                self.openProfileController(id: id)
+                self.openProfileController(id: id, animated: true)
             }
         }
     }
@@ -111,15 +111,15 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         super.viewDidAppear(animated)
         
         if let id = AppManager.shared.deepLinkId {
-            openProfileController(id: id)
+            openProfileController(id: id, animated: false)
             AppManager.shared.deepLinkId = nil
         }
     }
     
-    private func openProfileController(id: String) {
+    private func openProfileController(id: String, animated: Bool) {
         let viewController = SyncUserLoadViewController(currUser: user, cardId: id, buttonTitle: "COMPLETE")
         
-        self.present(viewController, animated: false, completion: nil)
+        self.present(viewController, animated: animated, completion: nil)
     }
     
     private func openSyncController(userToAdd: User) {
@@ -130,6 +130,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     private func startBumpAndNFC() {
         BumpManager.shared.start()
         showNFCScanner()
+//        openProfileController(id: "340ef668-b36a-4920-a59f-f67a0dea5145", animated: true)
     }
     
     // MARK: tab delegate

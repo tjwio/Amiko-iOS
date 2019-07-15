@@ -30,7 +30,7 @@ enum URLRouter: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .loadUser, .loadSpecificUser, .loadUserFromCard .loadHistory, .loadSpecificUserShip:
+        case .loadUser, .loadSpecificUser, .loadUserFromCard, .loadHistory, .loadSpecificUserShip:
             return .get
         case .signup, .login, .addConnection, .uploadImage:
             return .post
