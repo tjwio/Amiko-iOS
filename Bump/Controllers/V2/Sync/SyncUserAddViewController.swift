@@ -10,8 +10,8 @@ import UIKit
 import FeatherIcon
 import SnapKit
 
-class SyncUserViewController: UIViewController {
-    let userToAdd: User
+class SyncUserBaseViewController: UIViewController {
+    var userToAdd: User!
     let accountsView: SyncUserAccountsView
     let buttonTitle: String
     
@@ -79,8 +79,7 @@ class SyncUserViewController: UIViewController {
         return view
     }()
     
-    init(currUser: User, userToAdd: User, buttonTitle: String) {
-        self.userToAdd = userToAdd
+    init(currUser: User, buttonTitle: String) {
         accountsView = SyncUserAccountsView(user: currUser)
         self.buttonTitle = buttonTitle
         super.init(nibName: nil, bundle: nil)
@@ -99,16 +98,6 @@ class SyncUserViewController: UIViewController {
         accountsView.translatesAutoresizingMaskIntoConstraints = false
         
         cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed(_:)), for: .touchUpInside)
-        
-        if let imageUrl = userToAdd.imageUrl {
-            headerView.infoView.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
-        } else {
-            headerView.infoView.avatarImageView.image = UIImage.blankAvatar
-        }
-        
-        headerView.infoView.nameLabel.text = userToAdd.fullName
-        headerView.infoView.bioLabel.text  = userToAdd.publicBio
-        headerView.mutualUsersView.mutualImageUrls = userToAdd.mutualFriends.compactMap { $0.imageUrl }
         
         view.addSubview(headerView)
         view.addSubview(fullView)
@@ -163,6 +152,23 @@ class SyncUserViewController: UIViewController {
         }
     }
     
+    // MARK: user info
+    
+    func setupUserToAddInfo() {
+        headerView.infoView.isHidden = false
+        headerView.mutualUsersView.isHidden = false
+        
+        if let imageUrl = userToAdd.imageUrl {
+            headerView.infoView.avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
+        } else {
+            headerView.infoView.avatarImageView.image = UIImage.blankAvatar
+        }
+        
+        headerView.infoView.nameLabel.text = userToAdd.fullName
+        headerView.infoView.bioLabel.text  = userToAdd.publicBio
+        headerView.mutualUsersView.mutualImageUrls = userToAdd.mutualFriends.compactMap { $0.imageUrl }
+    }
+    
     // MARK: buttons
     
     @objc func cancelButtonPressed(_ sender: UIButton?) {
@@ -171,5 +177,22 @@ class SyncUserViewController: UIViewController {
     
     @objc func confirmButtonPressed(_ sender: UIButton?) {
         
+    }
+}
+
+class SyncUserAddViewController: SyncUserBaseViewController {
+    init(currUser: User, userToAdd: User, buttonTitle: String) {
+        super.init(currUser: currUser, buttonTitle: buttonTitle)
+        self.userToAdd = userToAdd
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupUserToAddInfo()
     }
 }

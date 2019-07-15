@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2210BECA22CC5F630053F8A8 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2210BEC922CC5F630053F8A8 /* CoreNFC.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED722D443750053F8A8 /* SyncUserViewController.swift */; };
+		2210BED822D443750053F8A8 /* SyncUserAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED722D443750053F8A8 /* SyncUserAddViewController.swift */; };
 		2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */; };
 		2210BEDE22D590560053F8A8 /* DetailButtonHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */; };
 		2210BEE022D594E40053F8A8 /* SyncUserAccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BEDF22D594E40053F8A8 /* SyncUserAccountsView.swift */; };
@@ -25,6 +25,7 @@
 		221F152C22DAE35A00EE8567 /* ShipDetailViewController+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152B22DAE35A00EE8567 /* ShipDetailViewController+Views.swift */; };
 		221F152E22DAF4E200EE8567 /* ShipManageSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F152D22DAF4E200EE8567 /* ShipManageSyncViewController.swift */; };
 		221F153122DBCAE900EE8567 /* BumpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F153022DBCAE900EE8567 /* BumpViewController.swift */; };
+		221F153322DC21BD00EE8567 /* SyncUserLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221F153222DC21BD00EE8567 /* SyncUserLoadViewController.swift */; };
 		2248BFA822B3B96100979398 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA322B3B96000979398 /* AppCenter.framework */; };
 		2248BFA922B3B96100979398 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */; };
 		2248BFAA22B3B96100979398 /* AppCenterDistributeResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */; };
@@ -149,7 +150,7 @@
 
 /* Begin PBXFileReference section */
 		2210BEC922CC5F630053F8A8 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
-		2210BED722D443750053F8A8 /* SyncUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserViewController.swift; sourceTree = "<group>"; };
+		2210BED722D443750053F8A8 /* SyncUserAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserAddViewController.swift; sourceTree = "<group>"; };
 		2210BED922D443C10053F8A8 /* SyncUserHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserHeaderView.swift; sourceTree = "<group>"; };
 		2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonHeaderView.swift; sourceTree = "<group>"; };
 		2210BEDF22D594E40053F8A8 /* SyncUserAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserAccountsView.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		221F152B22DAE35A00EE8567 /* ShipDetailViewController+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShipDetailViewController+Views.swift"; sourceTree = "<group>"; };
 		221F152D22DAF4E200EE8567 /* ShipManageSyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipManageSyncViewController.swift; sourceTree = "<group>"; };
 		221F153022DBCAE900EE8567 /* BumpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpViewController.swift; sourceTree = "<group>"; };
+		221F153222DC21BD00EE8567 /* SyncUserLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserLoadViewController.swift; sourceTree = "<group>"; };
 		2248BFA322B3B96000979398 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenter.framework; sourceTree = "<group>"; };
 		2248BFA422B3B96000979398 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
@@ -381,7 +383,8 @@
 		2210BED622D443510053F8A8 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				2210BED722D443750053F8A8 /* SyncUserViewController.swift */,
+				2210BED722D443750053F8A8 /* SyncUserAddViewController.swift */,
+				221F153222DC21BD00EE8567 /* SyncUserLoadViewController.swift */,
 			);
 			path = Sync;
 			sourceTree = "<group>";
@@ -1067,7 +1070,7 @@
 				2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */,
 				2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */,
 				221F152C22DAE35A00EE8567 /* ShipDetailViewController+Views.swift in Sources */,
-				2210BED822D443750053F8A8 /* SyncUserViewController.swift in Sources */,
+				2210BED822D443750053F8A8 /* SyncUserAddViewController.swift in Sources */,
 				2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */,
 				2210BEEA22D6E4C30053F8A8 /* ShipTableViewCell.swift in Sources */,
 				221F152A22DADD5A00EE8567 /* ShipDetailViewController.swift in Sources */,
@@ -1113,6 +1116,7 @@
 				2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */,
 				2F31CFB92137CEA300308702 /* BAProfileBaseViewController.swift in Sources */,
 				22D3F12722D81420007CFA36 /* ShipListViewController.swift in Sources */,
+				221F153322DC21BD00EE8567 /* SyncUserLoadViewController.swift in Sources */,
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
 				22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */,
 				2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */,

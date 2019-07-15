@@ -29,6 +29,15 @@ extension NetworkHandler {
         }
     }
     
+    public func loadUserFromCard(id: String, success: UserHandler?, failure: ErrorHandler?) {
+        sessionManager.request(URLRouter.loadUserFromCard(id: id)).validate().responseDecodable { (response: DataResponse<User>) in
+            switch response.result {
+            case .success(let value): success?(value)
+            case .failure(let error): failure?(error)
+            }
+        }
+    }
+    
     public func loadHistory(success: ShipListHandler?, failure: ErrorHandler?) {
         sessionManager.request(URLRouter.loadHistory).validate().responseDecodable(decoder: JSONDecoder.iso8601DateDeocder) { (response: DataResponse<[Ship]>) in
             switch response.result {

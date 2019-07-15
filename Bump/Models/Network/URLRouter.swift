@@ -12,6 +12,7 @@ enum URLRouter: URLRequestConvertible {
     //MARK: GET
     case loadUser
     case loadSpecificUser(id: String)
+    case loadUserFromCard(id: String)
     case loadHistory
     case loadSpecificUserShip(userId: String)
     
@@ -29,7 +30,7 @@ enum URLRouter: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .loadUser, .loadSpecificUser, .loadHistory, .loadSpecificUserShip:
+        case .loadUser, .loadSpecificUser, .loadUserFromCard .loadHistory, .loadSpecificUserShip:
             return .get
         case .signup, .login, .addConnection, .uploadImage:
             return .post
@@ -46,6 +47,8 @@ enum URLRouter: URLRequestConvertible {
             return "/users/me"
         case .loadSpecificUser(let id):
             return "/users/profile/\(id)"
+        case .loadUserFromCard(let id):
+            return "/cards/public/\(id)"
         case .loadHistory:
             return "/ships"
         case .loadSpecificUserShip(let userId):

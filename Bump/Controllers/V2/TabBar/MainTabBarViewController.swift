@@ -117,22 +117,13 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     }
     
     private func openProfileController(id: String) {
-        let viewController = LoadProfileViewController(userId: id)
-        viewController.successCallback = { [weak self] message in
-            DispatchQueue.main.async {
-                self?.showLeftMessage(message, type: .success)
-            }
-        }
-        
-        viewController.providesPresentationContextTransitionStyle = true
-        viewController.definesPresentationContext = true
-        viewController.modalPresentationStyle = .overCurrentContext
+        let viewController = SyncUserLoadViewController(currUser: user, cardId: id, buttonTitle: "COMPLETE")
         
         self.present(viewController, animated: false, completion: nil)
     }
     
     private func openSyncController(userToAdd: User) {
-        let viewController = SyncUserViewController(currUser: user, userToAdd: userToAdd, buttonTitle: "COMPLETE")
+        let viewController = SyncUserAddViewController(currUser: user, userToAdd: userToAdd, buttonTitle: "COMPLETE")
         present(viewController, animated: true, completion: nil)
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShipManageSyncViewController: SyncUserViewController {
+class ShipManageSyncViewController: SyncUserAddViewController {
     let ship: Ship
     var headerHeight: CGFloat = 247.0
     
