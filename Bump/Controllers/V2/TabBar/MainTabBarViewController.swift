@@ -7,6 +7,9 @@
 //
 
 import UIKit
+#if canImport(CoreNFC)
+import CoreNFC
+#endif
 import ReactiveCocoa
 import ReactiveSwift
 
@@ -15,15 +18,13 @@ protocol ShipViewTypeDelegate: class {
     func shipControllerDidSwitchToMapView(_ controller: ShipController)
 }
 
-class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate, BumpViewControllerDelegate {
+class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate {
     private var disposables = CompositeDisposable()
     
     private var listNavigationController: UINavigationController!
     private var mapNavigationController: UINavigationController!
     private var bumpController: BumpViewController!
     private var profileController: ProfileTabViewController!
-    
-    private var lastSelectedController: UIViewController?
     
     deinit {
         disposables.dispose()
@@ -45,7 +46,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         mapNavigationController = UINavigationController(rootViewController: shipMapController)
         
         bumpController = BumpViewController()
-        bumpController.delegate = self
         
         profileController = ProfileTabViewController(user: user)
         
@@ -63,8 +63,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         shipMapController.tabBarItem = homeTabBarItem
         bumpController.tabBarItem = bumpTabBarItem
         profileController.tabBarItem = profileTabBarItem
-        
-        lastSelectedController = listNavigationController
         
         viewControllers = [listNavigationController, bumpController, profileController]
         tabBar.tintColor = .black
@@ -107,7 +105,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController === bumpController {
-            lastSelectedController = tabBarController.selectedViewController
+            showNFCScanner()
+            
+            return false
         }
         
         return true
@@ -117,19 +117,21 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     
     func shipControllerDidSwitchToListView(_ controller: ShipController) {
         viewControllers = [listNavigationController, bumpController, profileController]
-        lastSelectedController = listNavigationController
     }
     
     func shipControllerDidSwitchToMapView(_ controller: ShipController) {
         viewControllers = [mapNavigationController, bumpController, profileController]
-        lastSelectedController = mapNavigationController
     }
     
-    // MARK: bump delegate
+    // MARK: nfc
     
-    func bumpControllerDidDismissScanner(_ viewController: BumpViewController) {
-        if selectedViewController === viewController {
-            selectedViewController = lastSelectedController
-        }
+    private func showNFCScanner() {
+        #if canImport(CoreNFC)
+        guard NFCNDEFReaderSession.readingAvailable else { return }
+        
+        let nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
+        nfcSession.alertMessage = "Bump phones with another user or scan an Amiko Card"
+        nfcSession.begin()
+        #endif
     }
 }

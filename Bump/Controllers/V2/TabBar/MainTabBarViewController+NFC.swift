@@ -10,9 +10,9 @@ import UIKit
 #if canImport(CoreNFC)
 import CoreNFC
 
-extension BumpViewController: NFCNDEFReaderSessionDelegate {
+extension MainTabBarViewController: NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        delegate?.bumpControllerDidDismissScanner(self)
+        
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
