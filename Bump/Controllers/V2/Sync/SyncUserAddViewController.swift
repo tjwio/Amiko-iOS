@@ -46,6 +46,16 @@ class SyncUserBaseViewController: UIViewController {
         return view
     }()
     
+    let messageBanner: MessageBannerView = {
+        let banner = MessageBannerView()
+        banner.backgroundColor = UIColor.Matcha.sky
+        banner.iconLabel.text = .featherIcon(name: .loader)
+        banner.textColor = UIColor.Matcha.dusk
+        banner.translatesAutoresizingMaskIntoConstraints = false
+        
+        return banner
+    }()
+    
     lazy var confirmButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = UIColor.Matcha.dusk
@@ -133,6 +143,23 @@ class SyncUserBaseViewController: UIViewController {
         confirmButton.snp.makeConstraints { make in
             make.height.equalTo(64.0)
         }
+        
+        setupFullViewConstraints()
+    }
+    
+    func setupFullViewConstraints() {
+        view.addSubview(messageBanner)
+        
+        messageBanner.snp.makeConstraints { make in
+            make.top.equalTo(self.headerView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40.0)
+        }
+        
+        fullView.snp.makeConstraints { make in
+            make.top.equalTo(self.messageBanner.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -158,6 +185,8 @@ class SyncUserBaseViewController: UIViewController {
         headerView.infoView.nameLabel.text = userToAdd.fullName
         headerView.infoView.bioLabel.text  = userToAdd.publicBio
         headerView.mutualUsersView.mutualImageUrls = userToAdd.mutualFriends.compactMap { $0.imageUrl }
+        
+        messageBanner.messageLabel.text = "\(userToAdd.fullName) is picking what to share..."
     }
     
     // MARK: buttons
@@ -172,14 +201,6 @@ class SyncUserBaseViewController: UIViewController {
 }
 
 class SyncUserAddViewController: SyncUserBaseViewController {
-    let messageBanner: MessageBannerView = {
-        let banner = MessageBannerView()
-        banner.textColor = .white
-        banner.translatesAutoresizingMaskIntoConstraints = false
-        
-        return banner
-    }()
-    
     init(currUser: User, userToAdd: User, buttonTitle: String) {
         super.init(currUser: currUser, buttonTitle: buttonTitle)
         self.userToAdd = userToAdd
@@ -193,18 +214,5 @@ class SyncUserAddViewController: SyncUserBaseViewController {
         super.viewDidLoad()
         
         setupUserToAddInfo()
-        
-        view.addSubview(messageBanner)
-        
-        messageBanner.snp.makeConstraints { make in
-            make.top.equalTo(self.headerView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(40.0)
-        }
-        
-        fullView.snp.makeConstraints { make in
-            make.top.equalTo(self.messageBanner.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
     }
 }

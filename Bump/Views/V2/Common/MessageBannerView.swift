@@ -58,13 +58,13 @@ class MessageBannerView: UIView {
     
     override func updateConstraints() {
         iconLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(40.0)
+            make.leading.equalToSuperview().offset(32.0)
             make.centerY.equalToSuperview()
         }
         
         messageLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.iconLabel.snp.trailing).offset(6.0)
-            make.trailing.lessThanOrEqualToSuperview().offset(-40.0)
+            make.trailing.lessThanOrEqualToSuperview().offset(-32.0)
             make.centerY.equalToSuperview()
         }
         
