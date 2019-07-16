@@ -9,8 +9,14 @@
 import UIKit
 import MapKit
 
+protocol SyncUserLoadViewControllerDelegate: class {
+    func syncCardController(_ viewController: SyncUserLoadViewController, didAdd ship: Ship, userToAdd: User)
+}
+
 class SyncUserLoadViewController: SyncUserBaseViewController {
     let cardId: String
+    
+    weak var delegate: SyncUserLoadViewControllerDelegate?
     
     let activityIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .gray)
@@ -51,6 +57,22 @@ class SyncUserLoadViewController: SyncUserBaseViewController {
         
         activityIndicator.snp.makeConstraints { make in
             make.center.equalTo(self.headerView)
+        }
+    }
+    
+    override func setupFullViewConstraints() {
+        fullView.snp.makeConstraints { make in
+            make.top.equalTo(self.headerView.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    override func confirmButtonPressed(_ sender: LoadingButton) {
+        currUser.addConnection(toUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, accounts: accountsView.accounts.filter { $0.2 }.map { $0.0 }, success: { ship in
+            self.delegate?.syncCardController(self, didAdd: ship, userToAdd: self.userToAdd)
+        }) { _ in
+            sender.isLoading = false
+            self.showLeftMessage("Failed to add connection, please try again", type: .error)
         }
     }
 }

@@ -19,7 +19,7 @@ protocol ShipViewTypeDelegate: class {
     func shipControllerDidSwitchToMapView(_ controller: ShipController)
 }
 
-class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate {
+class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate, SyncUserLoadViewControllerDelegate {
     let user: User
     
     private var disposables = CompositeDisposable()
@@ -121,6 +121,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
         
         let viewController = SyncUserLoadViewController(currUser: user, cardId: id, coordinate: coordinate, buttonTitle: "COMPLETE")
+        viewController.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
         self.present(navigationController, animated: animated, completion: nil)
     }
@@ -136,8 +137,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     private func startBumpAndNFC() {
 //        BumpManager.shared.start()
 //        showNFCScanner()
-//        openProfileController(id: "340ef668-b36a-4920-a59f-f67a0dea5145", animated: true)
-        UserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
+        openProfileController(id: "ec40d042-9f99-11e9-a2a3-2a2ae2dbcce4", animated: true)
+//        UserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
     }
     
     // MARK: tab delegate
@@ -160,6 +161,13 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     
     func shipControllerDidSwitchToMapView(_ controller: ShipController) {
         viewControllers = [mapNavigationController, bumpController, profileController]
+    }
+    
+    // MARK: sync delegate
+    
+    func syncCardController(_ viewController: SyncUserLoadViewController, didAdd ship: Ship, userToAdd: User) {
+        self.showLeftMessage("Successfully sent request to \(userToAdd.fullName)!", type: .success)
+        viewController.dismiss(animated: true, completion: nil)
     }
     
     // MARK: nfc
