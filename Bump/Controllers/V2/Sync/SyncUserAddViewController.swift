@@ -145,6 +145,8 @@ class SyncUserBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.isNavigationBarHidden = true
+        
         view.backgroundColor = .white
         
         accountsView.backgroundColor = .white
@@ -175,14 +177,17 @@ class SyncUserBaseViewController: UIViewController {
         disposables += Signal.combineLatest(userToAddShip.signal, ownShip.signal).observeValues { (userToAddShip, ownShip) in
             guard let userToAddShip = userToAddShip, ownShip != nil else { return }
             
+            self.currUser.ships.append(userToAddShip)
+            NotificationCenter.default.post(name: .connectionAdded, object: userToAddShip)
+            
+            let manageController = ShipDetailViewController(user: self.currUser, ship: userToAddShip)
+            self.navigationController?.setViewControllers([manageController], animated: true)
+            
             let successController = SyncSuccessViewController(name: self.userToAdd.fullName, imageUrl: self.userToAdd.imageUrl)
             successController.providesPresentationContextTransitionStyle = true
             successController.definesPresentationContext = true
             successController.modalPresentationStyle = .overCurrentContext
             self.present(successController, animated: false, completion: nil)
-            
-            let manageController = ShipDetailViewController(user: self.currUser, ship: userToAddShip)
-            self.navigationController?.setViewControllers([manageController], animated: true)
         }
     }
     
@@ -281,10 +286,6 @@ class SyncUserBaseViewController: UIViewController {
             self.overlayView.isHidden = false
             
             self.ownShip.value = ship
-            
-            self.currUser.ships.append(ship)
-            
-            NotificationCenter.default.post(name: .connectionAdded, object: ship)
         }) { _ in
             sender.isLoading = false
             self.showLeftMessage("Failed to add connection, please try again", type: .error)

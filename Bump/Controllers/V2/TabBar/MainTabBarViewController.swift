@@ -121,14 +121,16 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
         
         let viewController = SyncUserLoadViewController(currUser: user, cardId: id, coordinate: coordinate, buttonTitle: "COMPLETE")
-        self.present(viewController, animated: animated, completion: nil)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.present(navigationController, animated: animated, completion: nil)
     }
     
     private func openSyncController(userToAdd: User) {
         guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
         
         let viewController = SyncUserAddViewController(currUser: user, userToAdd: userToAdd, coordinate: coordinate, buttonTitle: "COMPLETE")
-        present(viewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        present(navigationController, animated: true, completion: nil)
     }
     
     private func startBumpAndNFC() {
