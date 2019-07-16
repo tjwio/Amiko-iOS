@@ -59,10 +59,6 @@ class ShipManageSyncViewController: SyncUserAddViewController {
         }
     }
     
-    override func setupFullViewConstraints() {
-        // pass thru
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         

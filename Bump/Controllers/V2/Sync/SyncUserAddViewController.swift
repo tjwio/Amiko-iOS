@@ -133,15 +133,6 @@ class SyncUserBaseViewController: UIViewController {
         confirmButton.snp.makeConstraints { make in
             make.height.equalTo(64.0)
         }
-        
-        setupFullViewConstraints()
-    }
-    
-    func setupFullViewConstraints() {
-        fullView.snp.makeConstraints { make in
-            make.top.equalTo(self.headerView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -181,6 +172,14 @@ class SyncUserBaseViewController: UIViewController {
 }
 
 class SyncUserAddViewController: SyncUserBaseViewController {
+    let messageBanner: MessageBannerView = {
+        let banner = MessageBannerView()
+        banner.textColor = .white
+        banner.translatesAutoresizingMaskIntoConstraints = false
+        
+        return banner
+    }()
+    
     init(currUser: User, userToAdd: User, buttonTitle: String) {
         super.init(currUser: currUser, buttonTitle: buttonTitle)
         self.userToAdd = userToAdd
@@ -194,5 +193,18 @@ class SyncUserAddViewController: SyncUserBaseViewController {
         super.viewDidLoad()
         
         setupUserToAddInfo()
+        
+        view.addSubview(messageBanner)
+        
+        messageBanner.snp.makeConstraints { make in
+            make.top.equalTo(self.headerView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40.0)
+        }
+        
+        fullView.snp.makeConstraints { make in
+            make.top.equalTo(self.messageBanner.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }

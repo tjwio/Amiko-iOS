@@ -128,9 +128,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     }
     
     private func startBumpAndNFC() {
-        BumpManager.shared.start()
-        showNFCScanner()
-//        openProfileController(id: "340ef668-b36a-4920-a59f-f67a0dea5145", animated: true)
+//        BumpManager.shared.start()
+//        showNFCScanner()
+        openProfileController(id: "340ef668-b36a-4920-a59f-f67a0dea5145", animated: true)
     }
     
     // MARK: tab delegate
