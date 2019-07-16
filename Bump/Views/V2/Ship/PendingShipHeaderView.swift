@@ -10,10 +10,17 @@ import UIKit
 import SDWebImage
 import SnapKit
 
+protocol PendingShipHeaderViewDelegate: class {
+    func pendingHeaderView(_ view: PendingShipHeaderView, didSelect ship: Ship)
+}
+
 class PendingShipHeaderView: UIView {
+    weak var delegate: PendingShipHeaderViewDelegate?
+    
     class AvatarView: UIView {
-        let avatarImageView: UIImageView = {
-            let imageView = UIImageView(image: .blankAvatar)
+        let avatarButton: UIButton = {
+            let imageView = UIButton(type: .custom)
+            imageView.setImage(.blankAvatar, for: .normal)
             imageView.layer.cornerRadius = 30.0
             imageView.clipsToBounds = true
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +46,7 @@ class PendingShipHeaderView: UIView {
             super.init(frame: .zero)
             
             if let imageUrl = imageUrl {
-                avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
+                avatarButton.sd_setImage(with: URL(string: imageUrl), for: .normal, placeholderImage: .blankAvatar)
             }
             
             nameLabel.text = name
@@ -57,20 +64,20 @@ class PendingShipHeaderView: UIView {
         }
         
         private func commonInit() {
-            addSubview(avatarImageView)
+            addSubview(avatarButton)
             addSubview(nameLabel)
             
             setNeedsUpdateConstraints()
         }
         
         override func updateConstraints() {
-            avatarImageView.snp.makeConstraints { make in
+            avatarButton.snp.makeConstraints { make in
                 make.top.leading.trailing.equalToSuperview()
                 make.height.width.equalTo(60.0)
             }
             
             nameLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.avatarImageView.snp.bottom).offset(8.0)
+                make.top.equalTo(self.avatarButton.snp.bottom).offset(8.0)
                 make.bottom.centerX.equalToSuperview()
             }
             
@@ -177,6 +184,8 @@ class PendingShipHeaderView: UIView {
         var previousAvatarView: AvatarView?
         
         avatarViews.forEach { avatarView in
+            avatarView.avatarButton.addTarget(self, action: #selector(self.avatarButtonTapped(_:)), for: .touchUpInside)
+            
             scrollView.addSubview(avatarView)
             
             avatarView.snp.makeConstraints { make in
@@ -195,5 +204,12 @@ class PendingShipHeaderView: UIView {
         previousAvatarView?.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
         }
+    }
+    
+    @objc private func avatarButtonTapped(_ sender: UIButton) {
+        let temp = avatarViews.map { $0.avatarButton }.firstIndex(of: sender)
+        guard let index = temp else { return }
+        
+        delegate?.pendingHeaderView(self, didSelect: pendingShips[index])
     }
 }

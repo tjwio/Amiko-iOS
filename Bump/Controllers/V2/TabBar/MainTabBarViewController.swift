@@ -19,7 +19,7 @@ protocol ShipViewTypeDelegate: class {
     func shipControllerDidSwitchToMapView(_ controller: ShipController)
 }
 
-class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate, SyncUserLoadViewControllerDelegate, SyncUserPendingViewControllerDelegate {
+class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, ShipViewTypeDelegate, SyncUserLoadViewControllerDelegate {
     let user: User
     
     private var disposables = CompositeDisposable()
@@ -167,11 +167,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     
     func syncCardController(_ viewController: SyncUserLoadViewController, didAdd ship: Ship, userToAdd: User) {
         self.showLeftMessage("Successfully sent request to \(userToAdd.fullName)!", type: .success)
-        viewController.dismiss(animated: true, completion: nil)
-    }
-    
-    func syncPendingController(_ viewController: SyncUserPendingViewController, didConfirm ship: Ship) {
-        self.showLeftMessage("Successfully confirmed \(ship.user.fullName)'s request!", type: .success)
         viewController.dismiss(animated: true, completion: nil)
     }
     

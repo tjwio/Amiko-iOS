@@ -14,7 +14,7 @@ protocol ShipController: UIViewController {
     var ships: [Ship] { get }
 }
 
-class ShipListViewController: UIViewController, ShipController, ShipTableViewCellDelegate, UITableViewDelegate, UITableViewDataSource {
+class ShipListViewController: UIViewController, ShipController, ShipTableViewCellDelegate, PendingShipHeaderViewDelegate, SyncUserPendingViewControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let cellIdentifier = "ShipListTableViewCellIdentifier"
     }
@@ -72,7 +72,9 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         tableView.dataSource = self
         
         if !pendingShips.isEmpty {
-            tableView.tableHeaderView = PendingShipHeaderView(pendingShips: pendingShips)
+            let header = PendingShipHeaderView(pendingShips: pendingShips)
+            header.delegate = self
+            tableView.tableHeaderView = header
         }
         
         view.addSubview(tableView)
@@ -175,5 +177,21 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         } else if let urlStr = account.webUrl(id: value), let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
+    }
+    
+    // MARK: pending delegate
+    
+    func pendingHeaderView(_ view: PendingShipHeaderView, didSelect ship: Ship) {
+        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
+        
+        let viewController = SyncUserPendingViewController(currUser: user, ship: ship, coordinate: coordinate, buttonTitle: "CONFIRM")
+        viewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    func syncPendingController(_ viewController: SyncUserPendingViewController, didConfirm ship: Ship) {
+        self.showLeftMessage("Successfully confirmed \(ship.user.fullName)'s request!", type: .success)
+        viewController.dismiss(animated: true, completion: nil)
     }
 }
