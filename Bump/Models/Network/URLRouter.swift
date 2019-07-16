@@ -58,7 +58,7 @@ enum URLRouter: URLRequestConvertible {
         case .login:
             return "/login"
         case .addConnection:
-            return "/users/connections"
+            return "/ships"
         case .uploadImage:
             return "/upload/image"
         case .deleteConnection(let historyId):

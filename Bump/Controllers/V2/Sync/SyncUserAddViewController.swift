@@ -27,6 +27,21 @@ class SyncUserBaseViewController: UIViewController {
     
     private var disposables = CompositeDisposable()
     
+    var isWaiting = false {
+        didSet {
+            if isWaiting {
+                cancelButton.backgroundColor = .clear
+                let attributedTitle = NSMutableAttributedString(string: "\(String.featherIcon(name: .x)) CANCEL", attributes: [.foregroundColor: UIColor.white])
+                attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(0, 1))
+                attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(1, attributedTitle.length-1))
+                attributedTitle.addAttribute(.baselineOffset, value: 2.0, range: NSMakeRange(1, attributedTitle.length-1))
+                cancelButton.setAttributedTitle(attributedTitle, for: .normal)
+                
+                confirmButton.isHidden = true
+            }
+        }
+    }
+    
     let headerView: SyncUserHeaderView = {
         let view = SyncUserHeaderView()
         view.backgroundColor = UIColor.Grayscale.background
@@ -136,6 +151,7 @@ class SyncUserBaseViewController: UIViewController {
         accountsView.translatesAutoresizingMaskIntoConstraints = false
         
         cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed(_:)), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(self.confirmButtonPressed(_:)), for: .touchUpInside)
         
         view.addSubview(headerView)
         view.addSubview(fullView)
@@ -254,7 +270,8 @@ class SyncUserBaseViewController: UIViewController {
     @objc func confirmButtonPressed(_ sender: LoadingButton) {
         currUser.addConnection(toUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, accounts: accountsView.accounts.filter { $0.2 }.map { $0.0 }, success: { ship in
             sender.isLoading = false
-            sender.isHidden = false
+            
+            self.isWaiting = true
             
             self.messageBanner.iconLabel.text = .featherIcon(name: .checkCircle)
             self.messageBanner.messageLabel.text = "Done! Just waiting for \(self.userToAdd.firstName) to finish"
@@ -262,10 +279,12 @@ class SyncUserBaseViewController: UIViewController {
             self.messageBanner.backgroundColor = UIColor.Matcha.dusk
             
             self.overlayView.isHidden = false
-            self.cancelButton.backgroundColor = .clear
-            self.cancelButton.setTitleColor(.white, for: .normal)
             
             self.ownShip.value = ship
+            
+            self.currUser.ships.append(ship)
+            
+            NotificationCenter.default.post(name: .connectionAdded, object: ship)
         }) { _ in
             sender.isLoading = false
             self.showLeftMessage("Failed to add connection, please try again", type: .error)

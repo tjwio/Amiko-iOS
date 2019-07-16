@@ -13,4 +13,6 @@ extension Notification.Name {
     static let bumpOpenProfile = Notification.Name("BABumpOpenProfile")
     
     static let shipAdded = Notification.Name("BABumpShipAdded")
+    
+    static let connectionAdded = Notification.Name("ConnectionAdded")
 }

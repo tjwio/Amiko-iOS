@@ -17,7 +17,7 @@ extension JSONDecoder {
 
 extension Dictionary where Key == String {
     public func decodeJson<T>(_ type: T.Type) -> T? where T: Decodable {
-        if let response = try? JSONDecoder().decode(type, from: self) {
+        if let response = try? JSONDecoder.iso8601DateDeocder.decode(type, from: self) {
             return response
         }
         return nil
@@ -26,7 +26,7 @@ extension Dictionary where Key == String {
 
 extension Array where Element == [String: Any] {
     public func decodeJsonList<T>(_ type: T.Type) -> [T]? where T: Decodable {
-        if let response = try? JSONDecoder().decode([T].self, from: self) {
+        if let response = try? JSONDecoder.iso8601DateDeocder.decode([T].self, from: self) {
             return response
         }
         

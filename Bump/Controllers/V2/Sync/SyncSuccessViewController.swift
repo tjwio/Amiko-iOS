@@ -70,7 +70,7 @@ class SyncSuccessViewController: UIViewController {
         }
         
         avatarImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(50.0)
+            make.height.width.equalTo(100.0)
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 #if canImport(CoreNFC)
 import CoreNFC
 #endif
@@ -133,7 +134,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     private func startBumpAndNFC() {
 //        BumpManager.shared.start()
 //        showNFCScanner()
-        openProfileController(id: "340ef668-b36a-4920-a59f-f67a0dea5145", animated: true)
+//        openProfileController(id: "340ef668-b36a-4920-a59f-f67a0dea5145", animated: true)
+        UserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
     }
     
     // MARK: tab delegate

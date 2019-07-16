@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ReactiveCocoa
+import ReactiveSwift
 
 protocol ShipController: UIViewController {
     var ships: [Ship] { get }
@@ -25,6 +27,8 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
     var ships: [Ship] { return connectedShips }
     
     weak var delegate: ShipViewTypeDelegate?
+    
+    private var disposables = CompositeDisposable()
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -50,6 +54,11 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        disposables.dispose()
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +77,10 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         
         view.addSubview(tableView)
         setupConstraints()
+        
+        NotificationCenter.default.reactive.notifications(forName: .connectionAdded).observeValues { [unowned self] notification in
+            self.tableView.reloadData()
+        }
     }
     
     private func setupConstraints() {
