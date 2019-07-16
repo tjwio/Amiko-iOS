@@ -15,4 +15,5 @@ extension Notification.Name {
     static let shipAdded = Notification.Name("BABumpShipAdded")
     
     static let connectionAdded = Notification.Name("ConnectionAdded")
+    static let connectionConfirmed = Notification.Name("ConnectionConfirmed")
 }

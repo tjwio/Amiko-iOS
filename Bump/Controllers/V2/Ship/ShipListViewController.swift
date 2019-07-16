@@ -21,8 +21,8 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
     
     let user: User
     
-    let connectedShips: [Ship]
-    let pendingShips: [Ship]
+    var connectedShips: [Ship]
+    var pendingShips: [Ship]
     
     var ships: [Ship] { return connectedShips }
     
@@ -79,6 +79,8 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         setupConstraints()
         
         NotificationCenter.default.reactive.notifications(forName: .connectionAdded).observeValues { [unowned self] notification in
+            self.connectedShips = self.user.ships.filter { !$0.pending }
+            self.pendingShips = self.user.ships.filter { $0.pending }
             self.tableView.reloadData()
         }
     }

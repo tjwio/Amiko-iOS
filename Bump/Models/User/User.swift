@@ -215,7 +215,7 @@ public class User: NSObject, Codable {
         ]
     }
     
-    //MARK: load/get
+    // MARK: load/get
     
     func loadShips(success: ShipListHandler?, failure: ErrorHandler?) {
         NetworkHandler.shared.loadHistory(success: { ships in
@@ -256,7 +256,7 @@ public class User: NSObject, Codable {
         }
     }
     
-    //MARK: add/post
+    // MARK: add/post
     
     func addConnection(toUserId: String, latitude: Double, longitude: Double, accounts: [AccountContact], success: ShipHandler?, failure: ErrorHandler?) {
         let parameters: JSON = [
@@ -301,7 +301,7 @@ public class User: NSObject, Codable {
         }
     }
     
-    //MARK: delete
+    // MARK: delete
     
     func deleteConnection(ship: Ship, success: EmptyHandler?, failure: ErrorHandler?) {
         NetworkHandler.shared.deleteConnection(id: ship.id, success: {
@@ -312,5 +312,18 @@ public class User: NSObject, Codable {
             print("failed to delete connection: \(ship.id) with error: \(error)")
             failure?(error)
         }
+    }
+    
+    // MARK: ship helper
+    
+    func confirmPendingShip(_ ship: Ship) -> Ship {
+        ships.remove { $0.id == ship.id }
+        
+        var confirmedShip = ship
+        confirmedShip.pending = false
+        ships.append(confirmedShip)
+        NotificationCenter.default.post(name: .connectionConfirmed, object: confirmedShip)
+        
+        return confirmedShip
     }
 }
