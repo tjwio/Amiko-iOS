@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class SyncUserLoadViewController: SyncUserBaseViewController {
     let cardId: String
@@ -18,9 +19,9 @@ class SyncUserLoadViewController: SyncUserBaseViewController {
         return view
     }()
     
-    init(currUser: User, cardId: String, buttonTitle: String) {
+    init(currUser: User, cardId: String, coordinate: CLLocationCoordinate2D, buttonTitle: String) {
         self.cardId = cardId
-        super.init(currUser: currUser, buttonTitle: buttonTitle)
+        super.init(currUser: currUser, coordinate: coordinate, buttonTitle: buttonTitle)
         
         NetworkHandler.shared.loadUserFromCard(id: cardId, success: { user in
             self.userToAdd = user

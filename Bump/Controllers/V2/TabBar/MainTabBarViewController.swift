@@ -117,13 +117,16 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     }
     
     private func openProfileController(id: String, animated: Bool) {
-        let viewController = SyncUserLoadViewController(currUser: user, cardId: id, buttonTitle: "COMPLETE")
+        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
         
+        let viewController = SyncUserLoadViewController(currUser: user, cardId: id, coordinate: coordinate, buttonTitle: "COMPLETE")
         self.present(viewController, animated: animated, completion: nil)
     }
     
     private func openSyncController(userToAdd: User) {
-        let viewController = SyncUserAddViewController(currUser: user, userToAdd: userToAdd, buttonTitle: "COMPLETE")
+        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
+        
+        let viewController = SyncUserAddViewController(currUser: user, userToAdd: userToAdd, coordinate: coordinate, buttonTitle: "COMPLETE")
         present(viewController, animated: true, completion: nil)
     }
     

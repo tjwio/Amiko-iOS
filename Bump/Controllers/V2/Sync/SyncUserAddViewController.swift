@@ -58,6 +58,15 @@ class SyncUserBaseViewController: UIViewController {
         return view
     }()
     
+    let overlayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     let messageBanner: MessageBannerView = {
         let banner = MessageBannerView()
         banner.backgroundColor = UIColor.Matcha.sky
@@ -132,6 +141,7 @@ class SyncUserBaseViewController: UIViewController {
         view.addSubview(fullView)
         fullView.addSubview(accountsView)
         fullView.addSubview(backgroundFooterView)
+        fullView.addSubview(overlayView)
         fullView.addSubview(buttonStackView)
         
         setupConstraints()
@@ -184,6 +194,10 @@ class SyncUserBaseViewController: UIViewController {
         
         confirmButton.snp.makeConstraints { make in
             make.height.equalTo(64.0)
+        }
+        
+        overlayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         setupFullViewConstraints()
@@ -240,11 +254,16 @@ class SyncUserBaseViewController: UIViewController {
     @objc func confirmButtonPressed(_ sender: LoadingButton) {
         currUser.addConnection(toUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, accounts: accountsView.accounts.filter { $0.2 }.map { $0.0 }, success: { ship in
             sender.isLoading = false
+            sender.isHidden = false
             
             self.messageBanner.iconLabel.text = .featherIcon(name: .checkCircle)
             self.messageBanner.messageLabel.text = "Done! Just waiting for \(self.userToAdd.firstName) to finish"
             self.messageBanner.textColor = .white
             self.messageBanner.backgroundColor = UIColor.Matcha.dusk
+            
+            self.overlayView.isHidden = false
+            self.cancelButton.backgroundColor = .clear
+            self.cancelButton.setTitleColor(.white, for: .normal)
             
             self.ownShip.value = ship
         }) { _ in
