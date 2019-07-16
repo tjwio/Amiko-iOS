@@ -55,6 +55,7 @@ struct AppConstants {
     struct Events {
         static let bumped = "bumped"
         static let matched = "bump_matched"
+        static let added = "ship_added"
         static let test = "bump_test"
     }
     

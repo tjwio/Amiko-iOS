@@ -85,6 +85,12 @@ class UserHolder: NSObject {
             }
         }
         
+        privateRoom.on(AppConstants.Events.added) { message in
+            guard let ship = message.payload.decodeJson(Ship.self) else { return }
+            
+            NotificationCenter.default.post(name: .shipAdded, object: ship)
+        }
+        
         socket.connect()
         _ = lobby.join()
             .receive("ok", callback: { _ in

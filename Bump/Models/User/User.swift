@@ -268,10 +268,6 @@ public class User: NSObject, Codable {
         ]
         
         NetworkHandler.shared.addConnection(parameters: parameters, success: { ship in
-            if ship.user.id != self.id, !ship.pending {
-                self.ships.append(ship)
-            }
-            
             success?(ship)
         }) { error in
             print("failed to add connection with error: \(error)")

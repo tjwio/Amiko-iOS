@@ -8,12 +8,24 @@
 
 import UIKit
 import FeatherIcon
+import MapKit
+import ReactiveCocoa
+import ReactiveSwift
 import SnapKit
 
 class SyncUserBaseViewController: UIViewController {
+    let currUser: User
     var userToAdd: User!
+    
+    let coordinate: CLLocationCoordinate2D
+    
     let accountsView: SyncUserAccountsView
     let buttonTitle: String
+    
+    let userToAddShip = MutableProperty<Ship?>(nil)
+    let ownShip = MutableProperty<Ship?>(nil)
+    
+    private var disposables = CompositeDisposable()
     
     let headerView: SyncUserHeaderView = {
         let view = SyncUserHeaderView()
@@ -56,8 +68,8 @@ class SyncUserBaseViewController: UIViewController {
         return banner
     }()
     
-    lazy var confirmButton: UIButton = {
-        let button = UIButton(type: .custom)
+    lazy var confirmButton: LoadingButton = {
+        let button = LoadingButton(type: .custom)
         button.backgroundColor = UIColor.Matcha.dusk
         
         let attributedTitle = NSMutableAttributedString(string: "\(buttonTitle) \(String.featherIcon(name: .arrowRight))", attributes: [.foregroundColor: UIColor.white])
@@ -89,14 +101,21 @@ class SyncUserBaseViewController: UIViewController {
         return view
     }()
     
-    init(currUser: User, buttonTitle: String) {
+    init(currUser: User, coordinate: CLLocationCoordinate2D, buttonTitle: String) {
+        self.currUser = currUser
         accountsView = SyncUserAccountsView(user: currUser)
+        self.coordinate = coordinate
         self.buttonTitle = buttonTitle
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        disposables.dispose()
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -116,6 +135,29 @@ class SyncUserBaseViewController: UIViewController {
         fullView.addSubview(buttonStackView)
         
         setupConstraints()
+        
+        disposables += NotificationCenter.default.reactive.notifications(forName: .shipAdded).observeValues { [unowned self] notification in
+            guard let ship = notification.object as? Ship else { return }
+            self.userToAddShip.value = ship
+            
+            self.messageBanner.iconLabel.text = .featherIcon(name: .checkCircle)
+            self.messageBanner.messageLabel.text = "Done! \(self.userToAdd.firstName) is waiting to be your Amiko!"
+            self.messageBanner.textColor = .white
+            self.messageBanner.backgroundColor = UIColor.Matcha.dusk
+        }
+        
+        disposables += Signal.combineLatest(userToAddShip.signal, ownShip.signal).observeValues { (userToAddShip, ownShip) in
+            guard let userToAddShip = userToAddShip, ownShip != nil else { return }
+            
+            let successController = SyncSuccessViewController(name: self.userToAdd.fullName, imageUrl: self.userToAdd.imageUrl)
+            successController.providesPresentationContextTransitionStyle = true
+            successController.definesPresentationContext = true
+            successController.modalPresentationStyle = .overCurrentContext
+            self.present(successController, animated: false, completion: nil)
+            
+            let manageController = ShipDetailViewController(user: self.currUser, ship: userToAddShip)
+            self.navigationController?.setViewControllers([manageController], animated: true)
+        }
     }
     
     private func setupConstraints() {
@@ -195,14 +237,26 @@ class SyncUserBaseViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func confirmButtonPressed(_ sender: UIButton?) {
-        
+    @objc func confirmButtonPressed(_ sender: LoadingButton) {
+        currUser.addConnection(toUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, accounts: accountsView.accounts.filter { $0.2 }.map { $0.0 }, success: { ship in
+            sender.isLoading = false
+            
+            self.messageBanner.iconLabel.text = .featherIcon(name: .checkCircle)
+            self.messageBanner.messageLabel.text = "Done! Just waiting for \(self.userToAdd.firstName) to finish"
+            self.messageBanner.textColor = .white
+            self.messageBanner.backgroundColor = UIColor.Matcha.dusk
+            
+            self.ownShip.value = ship
+        }) { _ in
+            sender.isLoading = false
+            self.showLeftMessage("Failed to add connection, please try again", type: .error)
+        }
     }
 }
 
 class SyncUserAddViewController: SyncUserBaseViewController {
-    init(currUser: User, userToAdd: User, buttonTitle: String) {
-        super.init(currUser: currUser, buttonTitle: buttonTitle)
+    init(currUser: User, userToAdd: User, coordinate: CLLocationCoordinate2D, buttonTitle: String) {
+        super.init(currUser: currUser, coordinate: coordinate, buttonTitle: buttonTitle)
         self.userToAdd = userToAdd
     }
     

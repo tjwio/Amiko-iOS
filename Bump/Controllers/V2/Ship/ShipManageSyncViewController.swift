@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class ShipManageSyncViewController: SyncUserAddViewController {
     let ship: Ship
@@ -20,9 +21,9 @@ class ShipManageSyncViewController: SyncUserAddViewController {
         return view
     }()
     
-    init(ship: Ship, currUser: User, userToAdd: User, buttonTitle: String) {
+    init(ship: Ship, currUser: User, userToAdd: User, coordinate: CLLocationCoordinate2D, buttonTitle: String) {
         self.ship = ship
-        super.init(currUser: currUser, userToAdd: userToAdd, buttonTitle: buttonTitle)
+        super.init(currUser: currUser, userToAdd: userToAdd, coordinate: coordinate, buttonTitle: buttonTitle)
         accountsView.accounts = currUser.allAccounts.map { ($0.0, $0.1, ship.sharedInfo.contains($0.0)) }
     }
     

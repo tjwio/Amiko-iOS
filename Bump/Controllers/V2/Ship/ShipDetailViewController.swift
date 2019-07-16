@@ -121,7 +121,9 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func showManageAccountsController(currShip: Ship) {
-        let viewController = ShipManageSyncViewController(ship: currShip, currUser: user, userToAdd: ship.user, buttonTitle: "COMPLETE")
+        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
+        
+        let viewController = ShipManageSyncViewController(ship: currShip, currUser: user, userToAdd: ship.user, coordinate: coordinate, buttonTitle: "COMPLETE")
         viewController.headerHeight = headerView.frame.size.height
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
