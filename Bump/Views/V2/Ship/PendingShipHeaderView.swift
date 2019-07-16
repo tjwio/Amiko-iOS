@@ -71,7 +71,7 @@ class PendingShipHeaderView: UIView {
             
             nameLabel.snp.makeConstraints { make in
                 make.top.equalTo(self.avatarImageView.snp.bottom).offset(8.0)
-                make.bottom.centerY.equalToSuperview()
+                make.bottom.centerX.equalToSuperview()
             }
             
             super.updateConstraints()
@@ -80,7 +80,7 @@ class PendingShipHeaderView: UIView {
     
     var pendingShips = [Ship]() {
         didSet {
-            
+            setupAvatarViews(ships: pendingShips)
         }
     }
     
@@ -88,7 +88,7 @@ class PendingShipHeaderView: UIView {
     
     let pendingLabel: UILabel = {
         let label = UILabel()
-        label.font = .avenirDemi(size: 14.0)
+        label.font = .avenirDemi(size: 16.0)
         label.text = "PENDING"
         label.textColor = UIColor.Grayscale.dark
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -145,12 +145,14 @@ class PendingShipHeaderView: UIView {
     
     override func updateConstraints() {
         pendingLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
+            make.top.equalToSuperview().offset(16.0)
+            make.leading.equalToSuperview()
         }
         
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.pendingLabel.snp.bottom).offset(12.0)
             make.leading.trailing.equalToSuperview()
+            make.height.equalTo(91.0)
         }
         
         separatorView.snp.makeConstraints { make in
@@ -166,7 +168,7 @@ class PendingShipHeaderView: UIView {
         avatarViews = []
         
         avatarViews = ships.map { ship in
-            let view = AvatarView(name: ship.user.fullName, imageUrl: ship.user.imageUrl)
+            let view = AvatarView(name: ship.user.firstName, imageUrl: ship.user.imageUrl)
             view.translatesAutoresizingMaskIntoConstraints = false
             
             return view
