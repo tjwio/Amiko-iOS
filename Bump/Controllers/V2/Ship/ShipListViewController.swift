@@ -221,6 +221,7 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
     }
     
     func syncPendingController(_ viewController: SyncUserPendingViewController, didConfirm ship: Ship) {
+        refreshShipList()
         self.showLeftMessage("Successfully confirmed \(ship.user.fullName)'s request!", type: .success)
         viewController.dismiss(animated: true, completion: nil)
     }
