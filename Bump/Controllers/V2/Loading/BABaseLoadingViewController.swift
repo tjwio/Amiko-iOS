@@ -15,29 +15,15 @@ import SnapKit
 class BABaseLoadingViewController: UIViewController {
     
     private struct Constants {
-        static let logoAnimation = "ciao_logo"
-        static let spinner = "spinner"
+        static let logoAnimation = "amiko"
     }
     
     let animationComplete = MutableProperty<Bool>(false)
     
-    let bumpAnimation: AnimationView = {
+    let spinnerAnimation: AnimationView = {
         let animation = AnimationView(name: Constants.logoAnimation)
         animation.contentMode = .scaleAspectFit
         animation.loopMode = .playOnce
-        animation.isHidden = false
-        animation.animationSpeed = 1.0
-        animation.translatesAutoresizingMaskIntoConstraints = false
-        
-        return animation
-    }()
-    
-    let spinnerAnimation: AnimationView = {
-        let animation = AnimationView(name: Constants.spinner)
-        animation.contentMode = .scaleAspectFit
-        animation.loopMode = .loop
-        animation.isHidden = true
-        animation.animationSpeed = 1.0
         animation.translatesAutoresizingMaskIntoConstraints = false
         
         return animation
@@ -50,27 +36,19 @@ class BABaseLoadingViewController: UIViewController {
         
         view.backgroundColor = UIColor(hexColor: 0xFAFAFA)
         
-        bumpAnimation.play { [weak self] _ in
-            self?.animationComplete.value = true
-            self?.onAnimationFinished?()
+        spinnerAnimation.play { [unowned self] _ in
+            self.animationComplete.value = true
+            self.onAnimationFinished?()
             
-            self?.spinnerAnimation.isHidden = false
-            self?.spinnerAnimation.play()
-            
-            self?.bumpAnimation.isHidden = true
+            self.spinnerAnimation.loopMode = .loop
+            self.spinnerAnimation.play()
         }
         
-        view.addSubview(bumpAnimation)
         view.addSubview(spinnerAnimation)
-        
-        bumpAnimation.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.width.equalTo(64.0)
-        }
         
         spinnerAnimation.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.height.width.equalTo(64.0)
+            make.height.width.equalTo(400.0)
         }
     }
 }
