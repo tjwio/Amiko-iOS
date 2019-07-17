@@ -23,20 +23,6 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
     
     let mapView = MKMapView()
     
-    var bottomOffset: CGFloat = 600.0 {
-        didSet {
-            if viewIfLoaded?.window != nil {
-                let delta = oldValue - bottomOffset
-                if delta > 0 {
-                    zoomMapOut(top: delta * 0.8)
-                }
-                else {
-                    zoomMapOut(bottom: abs(delta * 1.8))
-                }
-            }
-        }
-    }
-    
     init(user: User, ships: [Ship]) {
         self.user = user
         self.ships = ships.filter { !$0.pending }
@@ -65,11 +51,6 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
         view.addSubview(mapView)
         
         setupConstraints()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        zoomMapOut(bottom: bottomOffset)
     }
     
     private func setupConstraints() {
@@ -105,7 +86,6 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? UserPinAnnotation {
             showAnnotations([annotation], animated: false)
-            zoomMapOut(bottom: bottomOffset)
         }
     }
     
@@ -114,7 +94,6 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
     func showEntry(_ entry: Ship) {
         if let annotation = getAnnotation(forEntry: entry) {
             showAnnotations([annotation], animated: false)
-            zoomMapOut(bottom: bottomOffset)
         }
     }
     
@@ -150,10 +129,6 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
                 annotation.isShowing = true
             }
         }
-    }
-    
-    private func zoomMapOut(top: CGFloat = 0.0, bottom: CGFloat = 0.0, animated: Bool = true) {
-        mapView.setVisibleMapRect(mapView.visibleMapRect, edgePadding: UIEdgeInsets(top: top, left: 0.0, bottom: bottom, right: 0.0), animated: true)
     }
     
     private func getAnnotation(forEntry entry: Ship) -> MKAnnotation? {
