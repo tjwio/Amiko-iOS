@@ -9,17 +9,6 @@
 import UIKit
 
 class BAProfileViewController: ProfileBaseViewController {
-    let logOutButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("LOG OUT", for: .normal)
-        button.setTitleColor(UIColor.Red.normal, for: .normal)
-        button.setTitleColor(UIColor.Red.darker, for: .normal)
-        button.titleLabel?.font = UIFont.avenirDemi(size: 15.0)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
     private let dummyHeaderView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -38,12 +27,9 @@ class BAProfileViewController: ProfileBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        logOutButton.addTarget(self, action: #selector(self.logOut(_:)), for: .touchUpInside)
-        
         profileView.isHidden = false
         profileView.transform = CGAffineTransform(translationX: 0.0, y: view.frame.size.height)
         profileView.cancelButton.addTarget(self, action: #selector(self.cancelProfileView(_:)), for: .touchUpInside)
-        profileView.tableView.tableFooterView = getTableFooterView()
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.panGestureRecognized(_:)))
         panGestureRecognizer.delegate = self
@@ -97,35 +83,6 @@ class BAProfileViewController: ProfileBaseViewController {
     
     @objc private func cancelProfileView(_ sender: UIButton?) {
         dismissViewController()
-    }
-    
-    //MARK: log out
-    
-    @objc private func logOut(_ sender: UIButton?) {
-        let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let logOut = UIAlertAction(title: "Log Out", style: .destructive) { _ in
-            DispatchQueue.main.async {
-                AppManager.shared.logOut()
-            }
-        }
-        
-        alertController.addAction(cancel)
-        alertController.addAction(logOut)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    private func getTableFooterView() -> UIView {
-        let footerView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: profileView.tableView.bounds.size.width, height: 100.0))
-        
-        footerView.addSubview(logOutButton)
-        
-        logOutButton.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
-        
-        return footerView
     }
     
     // MARK: pan gesture recognizer
