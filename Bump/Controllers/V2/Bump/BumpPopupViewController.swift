@@ -51,12 +51,13 @@ class BumpPopupViewController: UIViewController {
         }
     }
     
-    @objc func dismissViewController() {
+    @objc func dismissViewController(completion: ((Bool) -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
             self.view.backgroundColor = .clear
             self.bumpView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
         }) { completed in
             self.dismiss(animated: false, completion: nil)
+            completion?(completed)
         }
     }
 }

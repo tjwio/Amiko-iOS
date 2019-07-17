@@ -99,14 +99,22 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         UserHolder.shared.bumpMatchCallback = { [unowned self] userToAdd in
             DispatchQueue.main.async {
                 #if canImport(CoreNFC)
-                self.nfcSession?.invalidate()
-                self.nfcSession = nil
+                if NFCNDEFReaderSession.readingAvailable {
+                    self.nfcSession?.invalidate()
+                    self.nfcSession = nil
+                    self.openSyncController(userToAdd: userToAdd)
+                } else {
+                    self.activeBumpPopupController?.dismissViewController { [unowned self] completed in
+                        self.openSyncController(userToAdd: userToAdd)
+                        self.activeBumpPopupController = nil
+                    }
+                }
+                #else
+                self.activeBumpPopupController?.dismissViewController { [unowned self] completed in
+                    self.openSyncController(userToAdd: userToAdd)
+                    self.activeBumpPopupController = nil
+                }
                 #endif
-                
-                self.activeBumpPopupController?.dismissViewController()
-                self.activeBumpPopupController = nil
-                
-                self.openSyncController(userToAdd: userToAdd)
             }
         }
         
@@ -213,5 +221,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         viewController.modalPresentationStyle = .overCurrentContext
         
         present(viewController, animated: false, completion: nil)
+        self.activeBumpPopupController = viewController
     }
 }
