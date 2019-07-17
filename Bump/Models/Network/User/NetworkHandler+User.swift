@@ -78,6 +78,15 @@ extension NetworkHandler {
         }
     }
     
+    public func updateConnection(id: String, parameters: Parameters, success: ShipHandler?, failure: ErrorHandler?) {
+        sessionManager.request(URLRouter.updateConnection(id: id, parameters: parameters)).validate().responseDecodable(decoder: JSONDecoder.iso8601DateDeocder) { (response: DataResponse<Ship>) in
+            switch response.result {
+            case .success(let value): success?(value)
+            case .failure(let error): failure?(error)
+            }
+        }
+    }
+    
     //MARK: DELETE
     
     public func deleteConnection(id: String, success: EmptyHandler?, failure: ErrorHandler?) {

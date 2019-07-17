@@ -9,8 +9,13 @@
 import UIKit
 import MapKit
 
+protocol ShipManageSyncViewControllerDelegate: class {
+    func shipManageController(_ viewController: ShipManageSyncViewController, didUpdate ship: Ship)
+}
+
 class ShipManageSyncViewController: SyncUserAddViewController {
     let ship: Ship
+    weak var delegate: ShipManageSyncViewControllerDelegate?
     var headerHeight: CGFloat = 247.0
     
     let blankHeader: UIView = {
@@ -74,6 +79,18 @@ class ShipManageSyncViewController: SyncUserAddViewController {
             
             self.fullView.transform = .identity
         }, completion: nil)
+    }
+    
+    // MARK: override
+    
+    override func confirmButtonPressed(_ sender: LoadingButton) {
+        currUser.updateConnection(ship: ship, toUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, accounts: accountsView.accounts.filter { $0.2 }.map { $0.0 }, success: { ship in
+            sender.isLoading = false
+            self.delegate?.shipManageController(self, didUpdate: ship)
+        }) { _ in
+            sender.isLoading = false
+            self.showLeftMessage("Failed to add connection, please try again", type: .error)
+        }
     }
     
     override func cancelButtonPressed(_ sender: UIButton?) {

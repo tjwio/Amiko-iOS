@@ -24,6 +24,7 @@ enum URLRouter: URLRequestConvertible {
     
     //MARK: PUT
     case updateUser(parameters: Parameters)
+    case updateConnection(id: String, parameters: Parameters)
     
     //MARK: DELETE
     case deleteConnection(historyId: String)
@@ -34,7 +35,7 @@ enum URLRouter: URLRequestConvertible {
             return .get
         case .signup, .login, .addConnection, .uploadImage:
             return .post
-        case .updateUser:
+        case .updateUser, .updateConnection:
             return .put
         case .deleteConnection:
             return .delete
@@ -59,6 +60,8 @@ enum URLRouter: URLRequestConvertible {
             return "/login"
         case .addConnection:
             return "/ships"
+        case .updateConnection(let id, _):
+            return "/ships/\(id)"
         case .uploadImage:
             return "/upload/image"
         case .deleteConnection(let historyId):
@@ -76,7 +79,7 @@ enum URLRouter: URLRequestConvertible {
         }
         
         switch self {
-        case .signup(let parameters), .login(let parameters), .addConnection(let parameters), .updateUser(let parameters):
+        case .signup(let parameters), .login(let parameters), .addConnection(let parameters), .updateUser(let parameters), .updateConnection(_, let parameters):
             urlRequest = try JSONEncoding.default.encode(urlRequest, withJSONObject: parameters)
         default: break
         }

@@ -301,6 +301,23 @@ public class User: NSObject, Codable {
         }
     }
     
+    func updateConnection(ship: Ship, toUserId: String, latitude: Double, longitude: Double, accounts: [AccountContact], success: ShipHandler?, failure: ErrorHandler?) {
+        let parameters: JSON = [
+            "from_user_id": id,
+            "to_user_id": toUserId,
+            Ship.CodingKeys.latitude.rawValue: latitude,
+            Ship.CodingKeys.longitude.rawValue : longitude,
+            "shared_info": accounts.map { $0.rawValue }
+        ]
+        
+        NetworkHandler.shared.updateConnection(id: ship.id, parameters: parameters, success: { newShip in
+            success?(newShip)
+        }) { error in
+            print("failed to update connection id \(ship.id) with error: \(error)")
+            failure?(error)
+        }
+    }
+    
     // MARK: delete
     
     func deleteConnection(ship: Ship, success: EmptyHandler?, failure: ErrorHandler?) {

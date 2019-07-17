@@ -13,11 +13,11 @@ class AppManager: NSObject {
         case development, staging, production
         
         var apiUrl: String {
-            return "https://amiko.herokuapp.com/api/v1"
+            return "http://localhost:4000/api/v1"
         }
         
         var streamUrl: String {
-            return "wss://amiko.herokuapp.com/socket/websocket"
+            return "ws://localhost:4000/socket/websocket"
         }
     }
     

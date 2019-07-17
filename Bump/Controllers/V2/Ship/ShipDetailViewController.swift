@@ -10,7 +10,7 @@ import UIKit
 import FeatherIcon
 import SnapKit
 
-class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShipDetailViewController: UIViewController, ShipManageSyncViewControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let cellIdentifier = "ShipDetailTableViewCellIdentifier"
     }
@@ -124,6 +124,7 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
         
         let viewController = ShipManageSyncViewController(ship: currShip, currUser: user, userToAdd: ship.user, coordinate: coordinate, buttonTitle: "COMPLETE")
+        viewController.delegate = self
         viewController.headerHeight = headerView.frame.size.height
         viewController.providesPresentationContextTransitionStyle = true
         viewController.definesPresentationContext = true
@@ -203,5 +204,12 @@ class ShipDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         header.frame.size.height = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         tableView.tableHeaderView = header
         tableView.layoutIfNeeded()
+    }
+    
+    // MARK: ship delegate
+    
+    func shipManageController(_ viewController: ShipManageSyncViewController, didUpdate ship: Ship) {
+        showLeftMessage("Successfully updated shared info!", type: .success)
+        viewController.dismissViewController(completion: nil)
     }
 }
