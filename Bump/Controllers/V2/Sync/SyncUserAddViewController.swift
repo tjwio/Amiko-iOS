@@ -175,8 +175,9 @@ class SyncUserBaseViewController: UIViewController {
         }
         
         disposables += Signal.combineLatest(userToAddShip.signal, ownShip.signal).observeValues { (userToAddShip, ownShip) in
-            guard let userToAddShip = userToAddShip, ownShip != nil else { return }
+            guard var userToAddShip = userToAddShip, ownShip != nil else { return }
             
+            userToAddShip.pending = false
             self.currUser.ships.append(userToAddShip)
             NotificationCenter.default.post(name: .connectionAdded, object: userToAddShip)
             

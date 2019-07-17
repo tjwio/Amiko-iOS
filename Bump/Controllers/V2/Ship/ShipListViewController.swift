@@ -80,9 +80,18 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         view.addSubview(tableView)
         setupConstraints()
         
-        NotificationCenter.default.reactive.notifications(forName: .connectionAdded).observeValues { [unowned self] notification in
+        disposables += NotificationCenter.default.reactive.notifications(forName: .connectionAdded).observeValues { [unowned self] notification in
             self.connectedShips = self.user.ships.filter { !$0.pending }
             self.pendingShips = self.user.ships.filter { $0.pending }
+            
+            self.tableView.tableHeaderView = nil
+            
+            if !self.pendingShips.isEmpty {
+                let header = PendingShipHeaderView(pendingShips: pendingShips)
+                header.delegate = self
+                self.tableView.tableHeaderView = header
+            }
+            
             self.tableView.reloadData()
         }
     }
