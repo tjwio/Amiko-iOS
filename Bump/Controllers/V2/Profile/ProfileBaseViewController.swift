@@ -136,6 +136,7 @@ class ProfileBaseViewController: UIViewController, UITableViewDelegate, UITableV
                     sender?.isLoading = false
                     self.showLeftMessage("Successfully updated user info!", type: .success)
                     self.successCallback?()
+                    self.dismissViewController()
                 }, failure: { error in
                     self.showLeftMessage("Failed to update user image, please try again.", type: .error)
                 })
@@ -143,6 +144,7 @@ class ProfileBaseViewController: UIViewController, UITableViewDelegate, UITableV
                 sender?.isLoading = false
                 self.showLeftMessage("Successfully updated user info!", type: .success)
                 self.successCallback?()
+                self.dismissViewController()
             }
             
             NotificationCenter.default.post(name: .bumpDidUpdateUser, object: nil)
