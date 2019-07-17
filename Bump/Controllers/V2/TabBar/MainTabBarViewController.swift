@@ -29,6 +29,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     private var bumpController: BumpViewController!
     private var profileController: ProfileTabViewController!
     
+    private var activeBumpPopupController: BumpPopupViewController?
+    
     #if canImport(CoreNFC)
     weak var nfcSession: NFCNDEFReaderSession?
     #endif
@@ -96,7 +98,14 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     private func setupBumpCallbacks() {
         UserHolder.shared.bumpMatchCallback = { [unowned self] userToAdd in
             DispatchQueue.main.async {
+                #if canImport(CoreNFC)
                 self.nfcSession?.invalidate()
+                self.nfcSession = nil
+                #endif
+                
+                self.activeBumpPopupController?.dismissViewController()
+                self.activeBumpPopupController = nil
+                
                 self.openSyncController(userToAdd: userToAdd)
             }
         }
@@ -135,9 +144,20 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     }
     
     private func startBumpAndNFC() {
-//        BumpManager.shared.start()
-//        showNFCScanner()
-        openProfileController(id: "ec40d042-9f99-11e9-a2a3-2a2ae2dbcce4", animated: true)
+        BumpManager.shared.start()
+        
+        #if canImport(CoreNFC)
+        if NFCNDEFReaderSession.readingAvailable {
+            showNFCScanner()
+        } else {
+            showBumpPopup()
+        }
+        #else
+        showBumpPopup()
+        #endif
+        
+        
+//        openProfileController(id: "ec40d042-9f99-11e9-a2a3-2a2ae2dbcce4", animated: true)
 //        UserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
     }
     
@@ -182,5 +202,16 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         
         self.nfcSession = nfcSession
         #endif
+    }
+    
+    // MARK: bump popup
+    
+    private func showBumpPopup() {
+        let viewController = BumpPopupViewController()
+        viewController.providesPresentationContextTransitionStyle = true
+        viewController.definesPresentationContext = true
+        viewController.modalPresentationStyle = .overCurrentContext
+        
+        present(viewController, animated: false, completion: nil)
     }
 }
