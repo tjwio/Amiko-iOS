@@ -71,6 +71,13 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         tableView.delegate = self
         tableView.dataSource = self
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = .gray
+        refreshControl.addTarget(self, action: #selector(self.reloadAll(_:)), for: .valueChanged)
+        
+        tableView.refreshControl = refreshControl
+        
         if !pendingShips.isEmpty {
             let header = PendingShipHeaderView(pendingShips: pendingShips)
             header.delegate = self
@@ -81,24 +88,38 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         setupConstraints()
         
         disposables += NotificationCenter.default.reactive.notifications(forName: .connectionAdded).observeValues { [unowned self] notification in
-            self.connectedShips = self.user.ships.filter { !$0.pending }
-            self.pendingShips = self.user.ships.filter { $0.pending }
-            
-            self.tableView.tableHeaderView = nil
-            
-            if !self.pendingShips.isEmpty {
-                let header = PendingShipHeaderView(pendingShips: pendingShips)
-                header.delegate = self
-                self.tableView.tableHeaderView = header
-            }
-            
-            self.tableView.reloadData()
+            self.refreshShipList()
         }
     }
     
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0.0, left: 24.0, bottom: 0.0, right: 24.0))
+        }
+    }
+    
+    private func refreshShipList() {
+        self.connectedShips = self.user.ships.filter { !$0.pending }
+        self.pendingShips = self.user.ships.filter { $0.pending }
+        
+        self.tableView.tableHeaderView = nil
+        
+        if !self.pendingShips.isEmpty {
+            let header = PendingShipHeaderView(pendingShips: self.pendingShips)
+            header.delegate = self
+            self.tableView.tableHeaderView = header
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    @objc private func reloadAll(_ sender: UIRefreshControl) {
+        user.loadShips(success: { _ in
+            self.refreshShipList()
+            sender.endRefreshing()
+        }) { _ in
+            self.showLeftMessage("Failed to reload ships, please try again.", type: .error)
+            sender.endRefreshing()
         }
     }
     
