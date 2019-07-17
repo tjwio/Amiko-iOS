@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ProfileTabViewController: BAProfileBaseViewController {
+class ProfileTabViewController: ProfileBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

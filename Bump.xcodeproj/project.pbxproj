@@ -75,7 +75,7 @@
 		2F262EFD2134FF3500138D4D /* Array+RemoveObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F262EFC2134FF3500138D4D /* Array+RemoveObject.swift */; };
 		2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F27363D2086BA7900D05238 /* Double+Round.swift */; };
 		2F29454221337D1000A22C62 /* FeatherIcon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F29454121337D1000A22C62 /* FeatherIcon.framework */; };
-		2F31CFB92137CEA300308702 /* BAProfileBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F31CFB82137CEA300308702 /* BAProfileBaseViewController.swift */; };
+		2F31CFB92137CEA300308702 /* ProfileBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F31CFB82137CEA300308702 /* ProfileBaseViewController.swift */; };
 		2F3432C421243F5800B9ED45 /* BANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C321243F5800B9ED45 /* BANavigationController.swift */; };
 		2F3432C621243F7E00B9ED45 /* BANavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3432C521243F7E00B9ED45 /* BANavigationBar.swift */; };
 		2F4BBB2320522A3700AAFE1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BBB2220522A3700AAFE1A /* AppDelegate.swift */; };
@@ -215,7 +215,7 @@
 		2F262EFC2134FF3500138D4D /* Array+RemoveObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+RemoveObject.swift"; sourceTree = "<group>"; };
 		2F27363D2086BA7900D05238 /* Double+Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Round.swift"; sourceTree = "<group>"; };
 		2F29454121337D1000A22C62 /* FeatherIcon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FeatherIcon.framework; path = Carthage/Build/iOS/FeatherIcon.framework; sourceTree = "<group>"; };
-		2F31CFB82137CEA300308702 /* BAProfileBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAProfileBaseViewController.swift; sourceTree = "<group>"; };
+		2F31CFB82137CEA300308702 /* ProfileBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseViewController.swift; sourceTree = "<group>"; };
 		2F3432C321243F5800B9ED45 /* BANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANavigationController.swift; sourceTree = "<group>"; };
 		2F3432C521243F7E00B9ED45 /* BANavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BANavigationBar.swift; sourceTree = "<group>"; };
 		2F48E52920B5C232008A970F /* SwiftPhoenixClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftPhoenixClient.framework; path = Carthage/Build/iOS/SwiftPhoenixClient.framework; sourceTree = "<group>"; };
@@ -455,6 +455,7 @@
 		221F152022DA989100EE8567 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				2F31CFB82137CEA300308702 /* ProfileBaseViewController.swift */,
 				221F152122DA98B200EE8567 /* ProfileTabViewController.swift */,
 			);
 			path = Profile;
@@ -562,7 +563,6 @@
 		2F31CFB72137CE7C00308702 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				2F31CFB82137CEA300308702 /* BAProfileBaseViewController.swift */,
 				2FF2EDAD215CAC4100550366 /* BAProfileViewController.swift */,
 			);
 			path = Profile;
@@ -1146,7 +1146,7 @@
 				2F6E51D32082BD5800E8D8CA /* NetworkHandler+User.swift in Sources */,
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */,
-				2F31CFB92137CEA300308702 /* BAProfileBaseViewController.swift in Sources */,
+				2F31CFB92137CEA300308702 /* ProfileBaseViewController.swift in Sources */,
 				22D3F12722D81420007CFA36 /* ShipListViewController.swift in Sources */,
 				221F153322DC21BD00EE8567 /* SyncUserLoadViewController.swift in Sources */,
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
@@ -1332,7 +1332,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 59;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1359,7 +1359,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 59;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

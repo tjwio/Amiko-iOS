@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BAProfileViewController: BAProfileBaseViewController {
+class BAProfileViewController: ProfileBaseViewController {
     let logOutButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("LOG OUT", for: .normal)

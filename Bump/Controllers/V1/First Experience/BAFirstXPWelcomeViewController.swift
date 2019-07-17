@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class BAFirstXPWelcomeViewController: BAProfileBaseViewController {
+class BAFirstXPWelcomeViewController: ProfileBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         

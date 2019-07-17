@@ -12,7 +12,7 @@ import Photos
 import ReactiveCocoa
 import ReactiveSwift
 
-class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileBaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     struct Constants {
         static let cellIdentifier = "BAProfileDetailValueTableViewCellIdentifier"
         static let headers = [2, 4, 7]
@@ -133,14 +133,15 @@ class BAProfileBaseViewController: UIViewController, UITableViewDelegate, UITabl
         user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", bio: bio.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
             if self.imageDidUpdate.value, let newImage = self.image.value {
                 self.user.updateImage(newImage, success: {
-                    self.dismissViewController()
+                    sender?.isLoading = false
+                    self.showLeftMessage("Successfully updated user info!", type: .success)
                     self.successCallback?()
                 }, failure: { error in
                     self.showLeftMessage("Failed to update user image, please try again.", type: .error)
                 })
-            }
-            else {
-                self.dismissViewController()
+            } else {
+                sender?.isLoading = false
+                self.showLeftMessage("Successfully updated user info!", type: .success)
                 self.successCallback?()
             }
             
