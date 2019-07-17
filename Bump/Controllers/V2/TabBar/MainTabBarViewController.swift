@@ -11,6 +11,7 @@ import CoreMotion
 #if canImport(CoreNFC)
 import CoreNFC
 #endif
+import MapKit
 import ReactiveCocoa
 import ReactiveSwift
 
@@ -89,9 +90,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         
         disposables += NotificationCenter.default.reactive.notifications(forName: .bumpOpenProfile).observeValues { [unowned self] notification in
             guard let id = notification.object as? String else { return }
-            DispatchQueue.main.async {
-                self.openProfileController(id: id, animated: true)
-            }
+            AppManager.shared.deepLinkId = nil
+            self.openProfileController(id: id, animated: true)
         }
     }
     
@@ -119,7 +119,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         }
         
         BumpManager.shared.bumpHandler = { bump in
-            if let currentLocation = LocationManager.shared.currentLocation {
+            if let currentLocation = LocationManager.shared.currentLocation.value {
                 UserHolder.shared.sendBumpReceivedEvent(bump: bump, location: currentLocation)
             }
         }
@@ -135,8 +135,16 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     }
     
     private func openProfileController(id: String, animated: Bool) {
-        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
-        
+        if let coordinate = LocationManager.shared.currentLocation.value?.coordinate {
+            openProfileControllerLocation(id: id, coordinate: coordinate, animated: animated)
+        } else {
+            LocationManager.shared.currentLocation.signal.filter { $0 != nil }.take(first: 1).observeValues { [unowned self] location in
+                self.openProfileControllerLocation(id: id, coordinate: location!.coordinate, animated: animated)
+            }
+        }
+    }
+    
+    private func openProfileControllerLocation(id: String, coordinate: CLLocationCoordinate2D, animated: Bool) {
         let viewController = SyncUserLoadViewController(currUser: user, cardId: id, coordinate: coordinate, buttonTitle: "COMPLETE")
         viewController.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -144,7 +152,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     }
     
     private func openSyncController(userToAdd: User) {
-        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
+        guard let coordinate = LocationManager.shared.currentLocation.value?.coordinate else { return }
         
         let viewController = SyncUserAddViewController(currUser: user, userToAdd: userToAdd, coordinate: coordinate, buttonTitle: "COMPLETE")
         let navigationController = UINavigationController(rootViewController: viewController)

@@ -98,7 +98,7 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
     }
     
     private func resetCenter(animated: Bool = false) {
-        if let coordinate = user.ships.first?.coordinate ?? LocationManager.shared.currentLocation?.coordinate {
+        if let coordinate = user.ships.first?.coordinate ?? LocationManager.shared.currentLocation.value?.coordinate {
             mapView.setRegion(MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 10.0, longitudinalMeters: 10.0), animated: animated)
             mapView.setCenter(coordinate, animated: animated)
         }

@@ -121,7 +121,7 @@ class ShipDetailViewController: UIViewController, ShipManageSyncViewControllerDe
     }
     
     private func showManageAccountsController(currShip: Ship) {
-        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
+        guard let coordinate = LocationManager.shared.currentLocation.value?.coordinate else { return }
         
         let viewController = ShipManageSyncViewController(ship: currShip, currUser: user, userToAdd: ship.user, coordinate: coordinate, buttonTitle: "COMPLETE")
         viewController.delegate = self

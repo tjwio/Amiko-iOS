@@ -212,7 +212,7 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
     // MARK: pending delegate
     
     func pendingHeaderView(_ view: PendingShipHeaderView, didSelect ship: Ship) {
-        guard let coordinate = LocationManager.shared.currentLocation?.coordinate else { return }
+        guard let coordinate = LocationManager.shared.currentLocation.value?.coordinate else { return }
         
         let viewController = SyncUserPendingViewController(currUser: user, ship: ship, coordinate: coordinate, buttonTitle: "CONFIRM")
         viewController.delegate = self

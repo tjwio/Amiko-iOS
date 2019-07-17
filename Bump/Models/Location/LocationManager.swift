@@ -8,19 +8,17 @@
 
 import Foundation
 import MapKit
+import ReactiveCocoa
 import ReactiveSwift
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
     static let shared = LocationManager()
     
     private let locationManager = CLLocationManager()
-    private(set) var currentLocation: CLLocation? {
-        didSet {
-            if !didReceiveFirstLocation.value {
-                didReceiveFirstLocation.value = true
-            }
-        }
-    }
+    
+    let currentLocation = MutableProperty<CLLocation?>(nil)
+    
+    private var disposables = CompositeDisposable()
     
     private var didInitialize = false
     
@@ -30,8 +28,20 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         return CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways
     }
     
+    deinit {
+        disposables.dispose()
+    }
+    
     func initialize() {
         guard !didInitialize else { return }
+        
+        disposables += currentLocation.signal.observeValues { [unowned self] location in
+            guard location != nil else { return }
+            
+            if !self.didReceiveFirstLocation.value {
+                self.didReceiveFirstLocation.value = true
+            }
+        }
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -53,17 +63,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let newLoc = manager.location {
-            if let curr = currentLocation {
+            if let curr = currentLocation.value {
                 print("distance: \(curr.distance(from: newLoc))")
                 if shouldUpdateLocation(curr: curr, next: newLoc) {
-                    currentLocation = newLoc
+                    currentLocation.value = newLoc
                 }
                 else {
                     print("not updating location")
                 }
             }
             else {
-                currentLocation = newLoc
+                currentLocation.value = newLoc
             }
             
             print("latitude: \(newLoc.coordinate.latitude), longitude: \(newLoc.coordinate.longitude), horizontal accuracy: \(newLoc.horizontalAccuracy), timestamp: \(newLoc.timestamp.timeIntervalSinceNow)\n")
@@ -86,7 +96,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func stopUpdatingLocation() {
-        currentLocation = nil
+        currentLocation.value = nil
         didReceiveFirstLocation.value = false
         locationManager.stopUpdatingLocation()
     }

@@ -195,7 +195,7 @@ class MutualUsersView: UIView {
             
             imageView.snp.makeConstraints { make in
                 if let previous = previousImageView {
-                    make.leading.equalTo(previous).offset(8.0)
+                    make.leading.equalTo(previous.snp.trailing).offset(8.0)
                 } else {
                     make.leading.equalToSuperview()
                 }

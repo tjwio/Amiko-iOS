@@ -205,7 +205,7 @@ class BAHomeViewController: UIViewController {
         }
         
         BumpManager.shared.bumpHandler = { [weak userHolder, weak locationManager, weak self]  bump in
-            if self?.isHoldingToBump ?? false, let currentLocation = locationManager?.currentLocation {
+            if self?.isHoldingToBump ?? false, let currentLocation = locationManager?.currentLocation.value {
                 userHolder?.sendBumpReceivedEvent(bump: bump, location: currentLocation)
             }
         }
@@ -375,7 +375,7 @@ class BAHomeViewController: UIViewController {
     @objc private func showCamera(_ sender: UIButton?) {
 //        let mockLocation = CLLocation(latitude: 34.029526415497742, longitude: -118.28915680636308)
         
-        UserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation!)
+        UserHolder.shared.sendBumpReceivedEvent(bump: BumpEvent(acceleration: CMAcceleration(x: 0.0, y: 2.0, z: 27.0)), location: LocationManager.shared.currentLocation.value!)
         
 //        let viewController = BACameraViewController()
 //        self.present(viewController, animated: true, completion: nil)
