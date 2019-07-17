@@ -26,7 +26,7 @@ class BumpPopupViewController: UIViewController {
         
         view.backgroundColor = .clear
         
-        bumpView.cancelButton.addTarget(self, action: #selector(self.dismissViewController), for: .touchUpInside)
+        bumpView.cancelButton.addTarget(self, action: #selector(self.dismissHelper(_:)), for: .touchUpInside)
         
         view.addSubview(bumpView)
         
@@ -51,7 +51,11 @@ class BumpPopupViewController: UIViewController {
         }
     }
     
-    @objc func dismissViewController(completion: ((Bool) -> Void)?) {
+    @objc private func dismissHelper(_ sender: UIButton?) {
+        dismissViewController(completion: nil)
+    }
+ 
+    func dismissViewController(completion: ((Bool) -> Void)?) {
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
             self.view.backgroundColor = .clear
             self.bumpView.transform = CGAffineTransform(translationX: 0.0, y: self.view.frame.size.height)
