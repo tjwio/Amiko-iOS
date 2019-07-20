@@ -32,6 +32,7 @@
 		2248BFAB22B3B96100979398 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA622B3B96000979398 /* AppCenterCrashes.framework */; };
 		2248BFAC22B3B96100979398 /* AppCenterDistribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA722B3B96100979398 /* AppCenterDistribute.framework */; };
 		2248BFB422B49EE500979398 /* MainTabBarViewController+NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248BFB322B49EE500979398 /* MainTabBarViewController+NFC.swift */; };
+		229D2F7922E2DD18000BF969 /* ActionToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D2F7822E2DD18000BF969 /* ActionToolbar.swift */; };
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
 		22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C409D0225D72AC00475C19 /* UIViewController+Message.swift */; };
@@ -180,6 +181,7 @@
 		2248BFA622B3B96000979398 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterCrashes.framework; sourceTree = "<group>"; };
 		2248BFA722B3B96100979398 /* AppCenterDistribute.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterDistribute.framework; sourceTree = "<group>"; };
 		2248BFB322B49EE500979398 /* MainTabBarViewController+NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabBarViewController+NFC.swift"; sourceTree = "<group>"; };
+		229D2F7822E2DD18000BF969 /* ActionToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionToolbar.swift; sourceTree = "<group>"; };
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 		2210BEDC22D58FF80053F8A8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				229D2F7822E2DD18000BF969 /* ActionToolbar.swift */,
 				2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */,
 				221F152722DAC2D700EE8567 /* ListMapNavigationView.swift */,
 				22FC9F6122DD47010061B122 /* MessageBannerView.swift */,
@@ -1105,6 +1108,7 @@
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
 				2210BEE022D594E40053F8A8 /* SyncUserAccountsView.swift in Sources */,
 				2210BEE222D598870053F8A8 /* SyncUserAccountsView+Cell.swift in Sources */,
+				229D2F7922E2DD18000BF969 /* ActionToolbar.swift in Sources */,
 				2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */,
 				2F18D3A82106F7D400C97E3A /* DateFormatter+Constants.swift in Sources */,
 				2F063578208539A000D655E7 /* BASelectAccountTableViewCell.swift in Sources */,
