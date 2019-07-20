@@ -43,7 +43,7 @@ extension ShipDetailViewController {
         }()
         
         let actionToolbar: ActionToolbar = {
-            let toolbar = ActionToolbar(icons: [.featherIcon(name: .trash2), .featherIcon(name: .moreHorizontal)])
+            let toolbar = ActionToolbar(icons: [.featherIcon(name: .trash2), .featherIcon(name: .minus)])
             toolbar.backgroundColor = UIColor.Matcha.sky
             toolbar.isHidden = true
             toolbar.translatesAutoresizingMaskIntoConstraints = false

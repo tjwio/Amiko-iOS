@@ -81,7 +81,7 @@ class ActionToolbar: UIView {
     private func setupStackView() {
         buttons.forEach { $0.removeFromSuperview(); stackView.removeArrangedSubview($0) }
         
-        buttons = icons.map { icon in
+        buttons = icons.enumerated().map { (index, icon) in
             let button = LoadingButton(type: .custom)
             button.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
             button.setTitle(icon, for: .normal)
@@ -89,10 +89,22 @@ class ActionToolbar: UIView {
             button.titleLabel?.font = .featherFont(size: 24.0)
             button.translatesAutoresizingMaskIntoConstraints = false
             
+            if index == icons.count-1 {
+                button.backgroundColor = UIColor.Matcha.dusk
+                button.setTitleColor(UIColor.Matcha.sky, for: .normal)
+                button.layer.cornerRadius = 14.0
+            }
+            
             return button
         }
         
         buttons.forEach { stackView.addArrangedSubview($0) }
+        
+        if let button = buttons.last {
+            button.snp.makeConstraints { make in
+                make.height.width.equalTo(28.0)
+            }
+        }
     }
     
     @objc private func buttonTapped(_ sender: LoadingButton) {
