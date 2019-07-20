@@ -112,11 +112,13 @@ extension ShipDetailViewController {
             
             actionToolbar.transform = t0.concatenating(ts).concatenating(t1)
             actionToolbar.isHidden = false
+            actionToolbar.alpha = 0.0
             
             UIView.animate(withDuration: 0.50, animations: {
+                self.actionToolbar.alpha = 1.0
                 self.actionToolbar.transform = .identity
                 self.menuButton.alpha = 0.0
-                self.menuButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
+                self.menuButton.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/2))
             }) { _ in
                 self.menuButton.isHidden = true
                 self.menuButton.alpha = 1.0

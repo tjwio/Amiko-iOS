@@ -10,7 +10,7 @@ import UIKit
 import FeatherIcon
 import SnapKit
 
-class ShipDetailViewController: UIViewController, ShipManageSyncViewControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class ShipDetailViewController: UIViewController, ActionToolbarDelegate, ShipManageSyncViewControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let cellIdentifier = "ShipDetailTableViewCellIdentifier"
     }
@@ -72,6 +72,7 @@ class ShipDetailViewController: UIViewController, ShipManageSyncViewControllerDe
         
         view.backgroundColor = .white
         
+        headerView.actionToolbar.delegate = self
         headerView.closeButton.addTarget(self, action: #selector(self.close(_:)), for: .touchUpInside)
         
         tableView.delegate = self
@@ -204,6 +205,26 @@ class ShipDetailViewController: UIViewController, ShipManageSyncViewControllerDe
         header.frame.size.height = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         tableView.tableHeaderView = header
         tableView.layoutIfNeeded()
+    }
+    
+    // MARK: action delegate
+    
+    func actionToolbar(_ actionToolbar: ActionToolbar, didTap button: LoadingButton, at index: Int) {
+        if index == actionToolbar.icons.count - 1 {
+            button.isLoading = false
+            self.headerView.menuButton.isHidden = false
+            
+            UIView.animate(withDuration: 0.50, animations: {
+                actionToolbar.alpha = 0.0
+                self.headerView.menuButton.alpha = 1.0
+                self.headerView.menuButton.transform = .identity
+            }) { _ in
+                actionToolbar.isHidden = true
+                actionToolbar.alpha = 1.0
+            }
+        } else {
+            
+        }
     }
     
     // MARK: ship delegate
