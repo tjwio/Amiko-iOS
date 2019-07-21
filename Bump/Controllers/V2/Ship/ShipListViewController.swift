@@ -90,6 +90,11 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         disposables += NotificationCenter.default.reactive.notifications(forName: .connectionAdded).observeValues { [unowned self] notification in
             self.refreshShipList()
         }
+        
+        disposables += NotificationCenter.default.reactive.notifications(forName: .connectionDeleted).observeValues { [unowned self] notification in
+            self.showLeftMessage("Successfully deleted connection!", type: .success)
+            self.refreshShipList()
+        }
     }
     
     private func setupConstraints() {

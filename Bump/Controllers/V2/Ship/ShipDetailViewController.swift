@@ -210,7 +210,15 @@ class ShipDetailViewController: UIViewController, ActionToolbarDelegate, ShipMan
     // MARK: action delegate
     
     func actionToolbar(_ actionToolbar: ActionToolbar, didTap button: LoadingButton, at index: Int) {
-        if index == actionToolbar.icons.count - 1 {
+        switch index {
+        case 0:
+            user.deleteConnection(ship: ship, success: {
+                self.dismiss(animated: true, completion: nil)
+            }) { _ in
+                button.isLoading = false
+                self.showLeftMessage("Failed to delete ship, please try again.", type: .error)
+            }
+        case 1:
             button.isLoading = false
             self.headerView.menuButton.isHidden = false
             
@@ -222,8 +230,7 @@ class ShipDetailViewController: UIViewController, ActionToolbarDelegate, ShipMan
                 actionToolbar.isHidden = true
                 actionToolbar.alpha = 1.0
             }
-        } else {
-            
+        default: break
         }
     }
     

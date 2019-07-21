@@ -16,4 +16,5 @@ extension Notification.Name {
     
     static let connectionAdded = Notification.Name("ConnectionAdded")
     static let connectionConfirmed = Notification.Name("ConnectionConfirmed")
+    static let connectionDeleted = Notification.Name("ConnectionRemoved")
 }

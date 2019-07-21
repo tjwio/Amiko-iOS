@@ -324,6 +324,8 @@ public class User: NSObject, Codable {
         NetworkHandler.shared.deleteConnection(id: ship.id, success: {
             self.ships.remove { $0.id == ship.id }
             
+            NotificationCenter.default.post(name: .connectionDeleted, object: ship)
+            
             success?()
         }) { error in
             print("failed to delete connection: \(ship.id) with error: \(error)")
