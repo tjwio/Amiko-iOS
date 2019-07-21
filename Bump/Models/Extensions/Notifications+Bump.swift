@@ -11,4 +11,10 @@ import Foundation
 extension Notification.Name {
     static let bumpDidUpdateUser = Notification.Name("BABumpDidUpdateUserNotification")
     static let bumpOpenProfile = Notification.Name("BABumpOpenProfile")
+    
+    static let shipAdded = Notification.Name("BABumpShipAdded")
+    
+    static let connectionAdded = Notification.Name("ConnectionAdded")
+    static let connectionConfirmed = Notification.Name("ConnectionConfirmed")
+    static let connectionDeleted = Notification.Name("ConnectionRemoved")
 }

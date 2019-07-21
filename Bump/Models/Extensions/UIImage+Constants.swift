@@ -9,14 +9,6 @@
 import UIKit
 
 extension UIImage {
-    class var activityTabActive: UIImage? {
-        return UIImage(named: "activity_tab_active")
-    }
-    
-    class var activityTabGray: UIImage? {
-        return UIImage(named: "activity_tab_gray")
-    }
-    
     class var backArrowDark: UIImage? {
         return UIImage(named: "back_arrow_dark")
     }
@@ -45,8 +37,8 @@ extension UIImage {
         return UIImage(named: "home_tab_active")
     }
     
-    class var homeTabGray: UIImage? {
-        return UIImage(named: "home_tab_gray")
+    class var homeTabInactive: UIImage? {
+        return UIImage(named: "home_tab_inactive")
     }
     
     class var launchImageBg: UIImage? {
@@ -55,6 +47,22 @@ extension UIImage {
     
     class var launchImageGuy: UIImage? {
         return UIImage(named: "launch_image_guy")
+    }
+    
+    class var logoTabActive: UIImage? {
+        return UIImage(named: "logo_tab_active")
+    }
+    
+    class var logoTabInactive: UIImage? {
+        return UIImage(named: "logo_tab_inactive")
+    }
+    
+    class var profileTabActive: UIImage? {
+        return UIImage(named: "profile_tab_active")
+    }
+    
+    class var profileTabInactive: UIImage? {
+        return UIImage(named: "profile_tab_inactive")
     }
     
     class var upwardDoubleArrow: UIImage? {

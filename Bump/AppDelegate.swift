@@ -35,10 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureAppCenter()
         
-        BACommonUtility.configureMessages()
+        CommonUtility.configureMessages()
         
-        if BALocationManager.shared.isAuthorized {
-            BALocationManager.shared.initialize()
+        if LocationManager.shared.isAuthorized {
+            LocationManager.shared.initialize()
         }
         
         self.loadInitialViewController()
@@ -53,16 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        BALocationManager.shared.stopUpdatingLocation()
+        LocationManager.shared.stopUpdatingLocation()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if BAUserHolder.initialized {
-            BAUserHolder.shared.reconnect()
+        if UserHolder.initialized {
+            UserHolder.shared.reconnect()
         }
         
-        if BALocationManager.shared.isAuthorized && !BALocationManager.shared.didReceiveFirstLocation.value {
-            BALocationManager.shared.startUpdatingLocation()
+        if LocationManager.shared.isAuthorized && !LocationManager.shared.didReceiveFirstLocation.value {
+            LocationManager.shared.startUpdatingLocation()
         }
     }
 
@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if let scheme = url.scheme, let host = url.host, scheme.lowercased() == Constants.scheme, host.lowercased() == Constants.user,
             let id = url.paramaters[Constants.id] {
-            BAAppManager.shared.deepLinkId = id
+            AppManager.shared.deepLinkId = id
             NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
         }
         
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if let url = userActivity.webpageURL, url.lastPathComponent == Constants.user, let id = url.paramaters[Constants.id] {
-            BAAppManager.shared.deepLinkId = id
+            AppManager.shared.deepLinkId = id
             NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
         }
         
@@ -98,18 +98,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigationController
     }
     
-    func loadHomeViewController(user: BAUser, shouldInitialize: Bool = true) {
+    func loadHomeViewController(user: User, shouldInitialize: Bool = true) {
         if shouldInitialize {
-            _ = BAUserHolder.initialize(user: user)
+            _ = UserHolder.initialize(user: user)
         }
         
-        self.window?.rootViewController = BAMainTabBarViewController()
+        self.window?.rootViewController = MainTabBarViewController(user: user)
     }
     
     func loadInitialViewController() {
         var viewController: BABaseLoadingViewController
         
-        if let userId = BAAuthenticationManager.shared.userId, userId.count > 0 {
+        if let userId = AuthenticationManager.shared.userId, userId.count > 0 {
             viewController = BAUserLoadingViewController(userId: userId)
         }
         else {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,18 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="first_spinner_dot" translatesAutoresizingMaskIntoConstraints="NO" id="XlU-US-RLP">
-                                <rect key="frame" x="155.5" y="301.5" width="64" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="8Do-MN-WgS"/>
-                                    <constraint firstAttribute="height" constant="64" id="zLa-0o-ci0"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-9E-noW">
+                                <rect key="frame" x="101.5" y="275.5" width="172" height="116"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XlU-US-RLP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bLZ-N1-qjd"/>
-                            <constraint firstItem="XlU-US-RLP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pQr-gR-Gyf"/>
+                            <constraint firstItem="L6e-9E-noW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="O3B-ZA-sb3"/>
+                            <constraint firstItem="L6e-9E-noW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="m9c-bk-n6k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -40,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first_spinner_dot" width="512" height="512"/>
+        <image name="logo" width="171.5" height="116"/>
     </resources>
 </document>
