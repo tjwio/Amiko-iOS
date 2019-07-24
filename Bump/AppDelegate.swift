@@ -131,13 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: App Center
     
     private func configureAppCenter() {
-        let isDebug = Bundle.main.object(forInfoDictionaryKey: Constants.configuration) as? String == Constants.debug
-        
-        if isDebug {
-            MSAppCenter.start(Constants.AppCenter.appSecret, withServices: [MSAnalytics.self, MSCrashes.self])
-        } else {
-            MSAppCenter.start(Constants.AppCenter.appSecret, withServices: [MSAnalytics.self, MSCrashes.self, MSDistribute.self])
-        }
+        MSAppCenter.start(Constants.AppCenter.appSecret, withServices: [MSAnalytics.self, MSCrashes.self, MSDistribute.self])
     }
 }
 
