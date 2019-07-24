@@ -78,6 +78,14 @@ class ShipListViewController: UIViewController, ShipController, ShipTableViewCel
         
         tableView.refreshControl = refreshControl
         
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Amikos"
+        searchController.searchBar.tintColor = UIColor.Matcha.dusk
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
         if !pendingShips.isEmpty {
             let header = PendingShipHeaderView(pendingShips: pendingShips)
             header.delegate = self

@@ -35,6 +35,7 @@
 		229D2F7922E2DD18000BF969 /* ActionToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D2F7822E2DD18000BF969 /* ActionToolbar.swift */; };
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
+		22BE55DF22E7FB66000D6900 /* ShipListViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */; };
 		22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C409D0225D72AC00475C19 /* UIViewController+Message.swift */; };
 		22D3F12722D81420007CFA36 /* ShipListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F12622D81420007CFA36 /* ShipListViewController.swift */; };
 		22FC9F6222DD47010061B122 /* MessageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6122DD47010061B122 /* MessageBannerView.swift */; };
@@ -185,6 +186,7 @@
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
+		22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShipListViewController+Search.swift"; sourceTree = "<group>"; };
 		22C409D0225D72AC00475C19 /* UIViewController+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Message.swift"; sourceTree = "<group>"; };
 		22D3F12622D81420007CFA36 /* ShipListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipListViewController.swift; sourceTree = "<group>"; };
 		22FC9F6122DD47010061B122 /* MessageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBannerView.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				22D3F12622D81420007CFA36 /* ShipListViewController.swift */,
+				22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */,
 				2F1E73CC2119975100B83501 /* ShipMapViewController.swift */,
 				221F152922DADD5A00EE8567 /* ShipDetailViewController.swift */,
 				221F152D22DAF4E200EE8567 /* ShipManageSyncViewController.swift */,
@@ -1151,6 +1154,7 @@
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */,
 				2F31CFB92137CEA300308702 /* ProfileBaseViewController.swift in Sources */,
+				22BE55DF22E7FB66000D6900 /* ShipListViewController+Search.swift in Sources */,
 				22D3F12722D81420007CFA36 /* ShipListViewController.swift in Sources */,
 				221F153322DC21BD00EE8567 /* SyncUserLoadViewController.swift in Sources */,
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
@@ -1336,7 +1340,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1363,7 +1367,7 @@
 				CODE_SIGN_ENTITLEMENTS = Bump/Bump.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 66;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_TEAM = 9JBA7R48SP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
