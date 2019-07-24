@@ -43,7 +43,7 @@ class SyncUserPendingViewController: SyncUserBaseViewController {
     
     override func confirmButtonPressed(_ sender: LoadingButton) {
         currUser.addConnection(toUserId: userToAdd.id, latitude: coordinate.latitude, longitude: coordinate.longitude, accounts: accountsView.accounts.filter { $0.2 }.map { $0.0 }, success: { ship in
-            let confirmedShip = self.currUser.confirmPendingShip(ship)
+            let confirmedShip = self.currUser.confirmPendingShip(self.ship)
             self.delegate?.syncPendingController(self, didConfirm: confirmedShip)
         }) { _ in
             sender.isLoading = false

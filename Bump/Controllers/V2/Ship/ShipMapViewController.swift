@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import ReactiveCocoa
+import ReactiveSwift
 import SDWebImage
 import SnapKit
 
@@ -17,11 +19,13 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
     }
     
     let user: User
-    let ships: [Ship]
+    var ships: [Ship]
     
     weak var delegate: ShipViewTypeDelegate?
     
     let mapView = MKMapView()
+    
+    private var disposables = CompositeDisposable()
     
     init(user: User, ships: [Ship]) {
         self.user = user
@@ -31,6 +35,11 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        disposables.dispose()
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -51,6 +60,18 @@ class ShipMapViewController: UIViewController, ShipController, MKMapViewDelegate
         view.addSubview(mapView)
         
         setupConstraints()
+        
+        disposables += NotificationCenter.default.reactive.notifications(forName: .connectionAdded).observeValues { [unowned self] notification in
+            self.ships = self.user.ships.filter { !$0.pending }
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.addAnnotations()
+        }
+        
+        disposables += NotificationCenter.default.reactive.notifications(forName: .connectionDeleted).observeValues { [unowned self] notification in
+            self.ships = self.user.ships.filter { !$0.pending }
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.addAnnotations()
+        }
     }
     
     private func setupConstraints() {
