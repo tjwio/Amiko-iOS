@@ -41,6 +41,8 @@
 		22E1004722ED18DD008C139D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004622ED18DD008C139D /* ProfileViewController.swift */; };
 		22E1004922ED1A8F008C139D /* ProfileViewController+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004822ED1A8F008C139D /* ProfileViewController+Header.swift */; };
 		22E1004C22ED253D008C139D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004B22ED253D008C139D /* CardView.swift */; };
+		22E1004E22ED30FE008C139D /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004D22ED30FE008C139D /* CardTableViewCell.swift */; };
+		22E1005122ED32DF008C139D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1005022ED32DF008C139D /* Card.swift */; };
 		22FC9F6222DD47010061B122 /* MessageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6122DD47010061B122 /* MessageBannerView.swift */; };
 		22FC9F6422DD83EB0061B122 /* SyncSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6322DD83EB0061B122 /* SyncSuccessViewController.swift */; };
 		22FC9F6622DDA0EF0061B122 /* SyncUserPendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6522DDA0EF0061B122 /* SyncUserPendingViewController.swift */; };
@@ -120,13 +122,13 @@
 		2F6E52042083DE8100E8D8CA /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52032083DE8100E8D8CA /* CommonUtility.swift */; };
 		2F6E52062083DEBF00E8D8CA /* UIViewController+Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */; };
 		2F6E520B2083EBE300E8D8CA /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E520A2083EBE300E8D8CA /* LoadingButton.swift */; };
-		2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */; };
+		2F6E5212208462F100E8D8CA /* UserLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E5211208462F100E8D8CA /* UserLoadingViewController.swift */; };
 		2F7A3A5921447AE900AA260D /* Notifications+Bump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */; };
 		2FC7B1B4212DDF7700FA3099 /* UIImageView+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */; };
-		2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */; };
+		2FD3BEE7214255F9002DB435 /* WelcomeLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEE6214255F9002DB435 /* WelcomeLoadingViewController.swift */; };
 		2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEED2142698C002DB435 /* NetworkHandler+Image.swift */; };
 		2FD3BEF021426B3E002DB435 /* User+ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3BEEF21426B3E002DB435 /* User+ImageName.swift */; };
-		2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */; };
+		2FD4B912214254AC00E0E570 /* BaseLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4B911214254AC00E0E570 /* BaseLoadingViewController.swift */; };
 		2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */; };
 		2FE36BF820F84A7B0012F1AB /* Global.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF720F84A7B0012F1AB /* Global.strings */; };
 		2FE36BFA20F84AB00012F1AB /* FirstExp.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE36BF920F84AB00012F1AB /* FirstExp.strings */; };
@@ -195,6 +197,8 @@
 		22E1004622ED18DD008C139D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		22E1004822ED1A8F008C139D /* ProfileViewController+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Header.swift"; sourceTree = "<group>"; };
 		22E1004B22ED253D008C139D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		22E1004D22ED30FE008C139D /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		22E1005022ED32DF008C139D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		22FC9F6122DD47010061B122 /* MessageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBannerView.swift; sourceTree = "<group>"; };
 		22FC9F6322DD83EB0061B122 /* SyncSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncSuccessViewController.swift; sourceTree = "<group>"; };
 		22FC9F6522DDA0EF0061B122 /* SyncUserPendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserPendingViewController.swift; sourceTree = "<group>"; };
@@ -282,15 +286,15 @@
 		2F6E52052083DEBF00E8D8CA /* UIViewController+Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Back.swift"; sourceTree = "<group>"; };
 		2F6E520A2083EBE300E8D8CA /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		2F6E520E2084040E00E8D8CA /* GSMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSMessages.framework; path = Carthage/Build/iOS/GSMessages.framework; sourceTree = "<group>"; };
-		2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAUserLoadingViewController.swift; sourceTree = "<group>"; };
+		2F6E5211208462F100E8D8CA /* UserLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoadingViewController.swift; sourceTree = "<group>"; };
 		2F7A3A5821447AE900AA260D /* Notifications+Bump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Bump.swift"; sourceTree = "<group>"; };
 		2FC7B1B3212DDF7700FA3099 /* UIImageView+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Alignment.swift"; sourceTree = "<group>"; };
-		2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAWelcomeLoadingViewController.swift; sourceTree = "<group>"; };
+		2FD3BEE6214255F9002DB435 /* WelcomeLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeLoadingViewController.swift; sourceTree = "<group>"; };
 		2FD3BEE821425EDA002DB435 /* MMSCameraViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSCameraViewController.framework; path = Carthage/Build/iOS/MMSCameraViewController.framework; sourceTree = "<group>"; };
 		2FD3BEE921425EDA002DB435 /* MMSProfileImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMSProfileImagePicker.framework; path = Carthage/Build/iOS/MMSProfileImagePicker.framework; sourceTree = "<group>"; };
 		2FD3BEED2142698C002DB435 /* NetworkHandler+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkHandler+Image.swift"; sourceTree = "<group>"; };
 		2FD3BEEF21426B3E002DB435 /* User+ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+ImageName.swift"; sourceTree = "<group>"; };
-		2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BABaseLoadingViewController.swift; sourceTree = "<group>"; };
+		2FD4B911214254AC00E0E570 /* BaseLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoadingViewController.swift; sourceTree = "<group>"; };
 		2FE36BF520F849650012F1AB /* BALocalizationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BALocalizationStrings.swift; sourceTree = "<group>"; };
 		2FE36BF720F84A7B0012F1AB /* Global.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Global.strings; sourceTree = "<group>"; };
 		2FE36BF920F84AB00012F1AB /* FirstExp.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = FirstExp.strings; sourceTree = "<group>"; };
@@ -512,6 +516,15 @@
 			isa = PBXGroup;
 			children = (
 				22E1004B22ED253D008C139D /* CardView.swift */,
+				22E1004D22ED30FE008C139D /* CardTableViewCell.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		22E1004F22ED32D0008C139D /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				22E1005022ED32DF008C139D /* Card.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -690,6 +703,7 @@
 			children = (
 				2F6E51D42082BE2800E8D8CA /* Authentication */,
 				2F6E51AF2082AD2A00E8D8CA /* Bump */,
+				22E1004F22ED32D0008C139D /* Card */,
 				2F6E51B22082AF7D00E8D8CA /* Constants */,
 				2F6E51DA2082C2A400E8D8CA /* Error */,
 				2F4BBB6220522B1900AAFE1A /* Extensions */,
@@ -882,9 +896,9 @@
 		2FD4B913214254B400E0E570 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
-				2FD4B911214254AC00E0E570 /* BABaseLoadingViewController.swift */,
-				2F6E5211208462F100E8D8CA /* BAUserLoadingViewController.swift */,
-				2FD3BEE6214255F9002DB435 /* BAWelcomeLoadingViewController.swift */,
+				2FD4B911214254AC00E0E570 /* BaseLoadingViewController.swift */,
+				2F6E5211208462F100E8D8CA /* UserLoadingViewController.swift */,
+				2FD3BEE6214255F9002DB435 /* WelcomeLoadingViewController.swift */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -1103,7 +1117,7 @@
 			files = (
 				2F6E520B2083EBE300E8D8CA /* LoadingButton.swift in Sources */,
 				22E1004922ED1A8F008C139D /* ProfileViewController+Header.swift in Sources */,
-				2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */,
+				2FD4B912214254AC00E0E570 /* BaseLoadingViewController.swift in Sources */,
 				2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */,
 				2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */,
 				2F27363E2086BA7900D05238 /* Double+Round.swift in Sources */,
@@ -1119,7 +1133,7 @@
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F1E73D02119987E00B83501 /* UserPinAnnotation.swift in Sources */,
 				2F6E51B42082AF8800E8D8CA /* AppConstants.swift in Sources */,
-				2F6E5212208462F100E8D8CA /* BAUserLoadingViewController.swift in Sources */,
+				2F6E5212208462F100E8D8CA /* UserLoadingViewController.swift in Sources */,
 				2FD3BEEE2142698C002DB435 /* NetworkHandler+Image.swift in Sources */,
 				221F152C22DAE35A00EE8567 /* ShipDetailViewController+Views.swift in Sources */,
 				2210BED822D443750053F8A8 /* SyncUserAddViewController.swift in Sources */,
@@ -1180,15 +1194,17 @@
 				2F18D39A210539C000C97E3A /* BAAvatarView.swift in Sources */,
 				22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */,
 				2F1E73D22119C4A300B83501 /* UIImage+Resize.swift in Sources */,
+				22E1004E22ED30FE008C139D /* CardTableViewCell.swift in Sources */,
 				2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */,
 				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,
 				221F153122DBCAE900EE8567 /* BumpViewController.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
-				2FD3BEE7214255F9002DB435 /* BAWelcomeLoadingViewController.swift in Sources */,
+				2FD3BEE7214255F9002DB435 /* WelcomeLoadingViewController.swift in Sources */,
 				2248BFB422B49EE500979398 /* MainTabBarViewController+NFC.swift in Sources */,
 				2210BEE722D6DBE00053F8A8 /* Ship.swift in Sources */,
 				2FFAE3EF2131FACF0045B75E /* BASocialDrawerTableViewCell.swift in Sources */,
 				2F6E51DC2082C2C000E8D8CA /* BAError.swift in Sources */,
+				22E1005122ED32DF008C139D /* Card.swift in Sources */,
 				2F6E52022083DA2400E8D8CA /* UITextField+Toolbar.swift in Sources */,
 				221F152222DA98B200EE8567 /* ProfileTabViewController.swift in Sources */,
 				221F152822DAC2D700EE8567 /* ListMapNavigationView.swift in Sources */,

@@ -8,8 +8,7 @@
 
 import UIKit
 
-class BAWelcomeLoadingViewController: BABaseLoadingViewController {
-    
+class WelcomeLoadingViewController: BaseLoadingViewController {
     var goToWelcomeScreen: EmptyHandler = {
         DispatchQueue.main.async {
             (UIApplication.shared.delegate as? AppDelegate)?.loadWelcomeViewController()

@@ -12,8 +12,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import SnapKit
 
-class BAUserLoadingViewController: BABaseLoadingViewController {
-    
+class UserLoadingViewController: BaseLoadingViewController {
     let userComplete = MutableProperty<Bool>(false)
     
     var user: User!

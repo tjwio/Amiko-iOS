@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import Lottie
 import SnapKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let basicCellIdentifier = "ProfileBasicTableViewCellIdentifier"
         static let cardCellIdentifier = "ProfileCardTableViewCellIdentifier"
+        static let logoAnimation = "amiko"
     }
     
     let user: User
+    var cards: [Card]!
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -29,9 +32,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return tableView
     }()
     
+    let spinnerAnimation: AnimationView = {
+        let animation = AnimationView(name: Constants.logoAnimation)
+        animation.contentMode = .scaleAspectFit
+        animation.loopMode = .loop
+        animation.translatesAutoresizingMaskIntoConstraints = false
+        
+        return animation
+    }()
+    
     init(user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
+        
+        spinnerAnimation.play()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +63,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.tableHeaderView = HeaderView(user: user)
         
         view.addSubview(tableView)
+        view.addSubview(spinnerAnimation)
         
         setupConstraints()
     }
@@ -106,5 +122,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 182.0 : 56.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cardCellIdentifier) as? CardTableViewCell ?? CardTableViewCell(style: .default, reuseIdentifier: Constants.cardCellIdentifier)
+            
+            
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.basicCellIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: Constants.basicCellIdentifier)
+            
+            return cell
+        }
     }
 }

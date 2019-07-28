@@ -12,8 +12,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import SnapKit
 
-class BABaseLoadingViewController: UIViewController {
-    
+class BaseLoadingViewController: UIViewController {
     private struct Constants {
         static let logoAnimation = "amiko"
     }

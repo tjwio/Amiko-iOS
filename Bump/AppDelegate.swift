@@ -107,13 +107,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func loadInitialViewController() {
-        var viewController: BABaseLoadingViewController
+        var viewController: BaseLoadingViewController
         
         if let userId = AuthenticationManager.shared.userId, userId.count > 0 {
-            viewController = BAUserLoadingViewController(userId: userId)
+            viewController = UserLoadingViewController(userId: userId)
         }
         else {
-            viewController = BAWelcomeLoadingViewController()
+            viewController = WelcomeLoadingViewController()
         }
         
         self.window?.rootViewController = viewController
