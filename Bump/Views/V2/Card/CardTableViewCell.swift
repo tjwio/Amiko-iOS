@@ -73,7 +73,8 @@ class CardTableViewCell: UITableViewCell {
                     make.leading.equalToSuperview()
                 }
                 
-                make.top.bottom.width.equalToSuperview()
+                make.centerY.width.equalToSuperview()
+                make.height.equalTo(182.0)
             }
             
             previousView = cardView
