@@ -25,6 +25,14 @@ extension UIImage {
         return UIImage(named: "bump_gray")
     }
     
+    class var defaultCardDisabled: UIImage? {
+        return UIImage(named: "default_card_disabled")
+    }
+    
+    class var defaultCardEnabled: UIImage? {
+        return UIImage(named: "default_card_enabled")
+    }
+    
     class var drawerBar: UIImage? {
         return UIImage(named: "drawer_bar")
     }

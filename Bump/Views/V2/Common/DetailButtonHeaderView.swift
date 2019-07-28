@@ -12,7 +12,7 @@ class DetailButtonHeaderView: UIView {
     let detailLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.Matcha.dusk
-        label.font = .avenirDemi(size: 14.0)
+        label.font = .avenirDemi(size: 16.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -20,9 +20,10 @@ class DetailButtonHeaderView: UIView {
     
     let button: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitleColor(UIColor.Blue.normal, for: .normal)
-        button.setTitleColor(UIColor(hexColor: 0x1C77C4), for: .highlighted)
-        button.titleLabel?.font = .avenirDemi(size: 14.0)
+        button.setTitle(.featherIcon(name: .plus), for: .normal)
+        button.setTitleColor(UIColor.Matcha.dusk, for: .normal)
+        button.setTitleColor(UIColor.Matcha.sky, for: .highlighted)
+        button.titleLabel?.font = .featherFont(size: 16.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button

@@ -38,6 +38,9 @@
 		22BE55DF22E7FB66000D6900 /* ShipListViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */; };
 		22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C409D0225D72AC00475C19 /* UIViewController+Message.swift */; };
 		22D3F12722D81420007CFA36 /* ShipListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D3F12622D81420007CFA36 /* ShipListViewController.swift */; };
+		22E1004722ED18DD008C139D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004622ED18DD008C139D /* ProfileViewController.swift */; };
+		22E1004922ED1A8F008C139D /* ProfileViewController+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004822ED1A8F008C139D /* ProfileViewController+Header.swift */; };
+		22E1004C22ED253D008C139D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004B22ED253D008C139D /* CardView.swift */; };
 		22FC9F6222DD47010061B122 /* MessageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6122DD47010061B122 /* MessageBannerView.swift */; };
 		22FC9F6422DD83EB0061B122 /* SyncSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6322DD83EB0061B122 /* SyncSuccessViewController.swift */; };
 		22FC9F6622DDA0EF0061B122 /* SyncUserPendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6522DDA0EF0061B122 /* SyncUserPendingViewController.swift */; };
@@ -189,6 +192,9 @@
 		22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShipListViewController+Search.swift"; sourceTree = "<group>"; };
 		22C409D0225D72AC00475C19 /* UIViewController+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Message.swift"; sourceTree = "<group>"; };
 		22D3F12622D81420007CFA36 /* ShipListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipListViewController.swift; sourceTree = "<group>"; };
+		22E1004622ED18DD008C139D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		22E1004822ED1A8F008C139D /* ProfileViewController+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+Header.swift"; sourceTree = "<group>"; };
+		22E1004B22ED253D008C139D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22FC9F6122DD47010061B122 /* MessageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBannerView.swift; sourceTree = "<group>"; };
 		22FC9F6322DD83EB0061B122 /* SyncSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncSuccessViewController.swift; sourceTree = "<group>"; };
 		22FC9F6522DDA0EF0061B122 /* SyncUserPendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserPendingViewController.swift; sourceTree = "<group>"; };
@@ -390,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				22FC9F6722DF7BE20061B122 /* Bump */,
+				22E1004A22ED252F008C139D /* Card */,
 				2210BEDC22D58FF80053F8A8 /* Common */,
 				2210BEE822D6E4AF0053F8A8 /* Ship */,
 				2210BEDB22D58FE90053F8A8 /* Sync */,
@@ -462,6 +469,8 @@
 			children = (
 				2F31CFB82137CEA300308702 /* ProfileBaseViewController.swift */,
 				221F152122DA98B200EE8567 /* ProfileTabViewController.swift */,
+				22E1004622ED18DD008C139D /* ProfileViewController.swift */,
+				22E1004822ED1A8F008C139D /* ProfileViewController+Header.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -497,6 +506,14 @@
 				221F152D22DAF4E200EE8567 /* ShipManageSyncViewController.swift */,
 			);
 			path = Ship;
+			sourceTree = "<group>";
+		};
+		22E1004A22ED252F008C139D /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				22E1004B22ED253D008C139D /* CardView.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 		22FC9F6722DF7BE20061B122 /* Bump */ = {
@@ -1085,6 +1102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F6E520B2083EBE300E8D8CA /* LoadingButton.swift in Sources */,
+				22E1004922ED1A8F008C139D /* ProfileViewController+Header.swift in Sources */,
 				2FD4B912214254AC00E0E570 /* BABaseLoadingViewController.swift in Sources */,
 				2F552F3D213916C80074AB8B /* BAProfileView.swift in Sources */,
 				2210BEDA22D443C10053F8A8 /* SyncUserHeaderView.swift in Sources */,
@@ -1096,6 +1114,7 @@
 				2F06357F2085525800D655E7 /* CALayer+Shadow.swift in Sources */,
 				2210BEDE22D590560053F8A8 /* DetailButtonHeaderView.swift in Sources */,
 				2FF2EDAC215CA83A00550366 /* BAFirstXPWelcomeViewController.swift in Sources */,
+				22E1004722ED18DD008C139D /* ProfileViewController.swift in Sources */,
 				2F6E51B72082B10C00E8D8CA /* User.swift in Sources */,
 				2F1312052081AF2600D462F8 /* BAHomeViewController.swift in Sources */,
 				2F1E73D02119987E00B83501 /* UserPinAnnotation.swift in Sources */,
@@ -1146,6 +1165,7 @@
 				2F06357D20854AAF00D655E7 /* BAAddUserViewController.swift in Sources */,
 				22FC9F6422DD83EB0061B122 /* SyncSuccessViewController.swift in Sources */,
 				22FC9F6222DD47010061B122 /* MessageBannerView.swift in Sources */,
+				22E1004C22ED253D008C139D /* CardView.swift in Sources */,
 				221F151E22DA796D00EE8567 /* PendingShipHeaderView.swift in Sources */,
 				2F6E51C92082B86E00E8D8CA /* NetworkHandler.swift in Sources */,
 				2F6E51E12082FF3000E8D8CA /* LocationManager.swift in Sources */,
