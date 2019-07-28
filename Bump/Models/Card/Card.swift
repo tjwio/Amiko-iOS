@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Card: Codable {
+public struct Card: Codable {
     var id: String
     var name: String
     

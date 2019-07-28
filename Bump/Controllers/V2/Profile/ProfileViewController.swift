@@ -21,10 +21,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var cards: [Card]!
     
     let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.allowsSelection = true
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets.init(top: 32.0, left: 0.0, bottom: 16.0, right: 0.0)
+        tableView.contentInset = UIEdgeInsets(top: 32.0, left: 0.0, bottom: 16.0, right: 0.0)
+        tableView.separatorColor = UIColor.Grayscale.lighter
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +47,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.init(nibName: nil, bundle: nil)
         
         spinnerAnimation.play()
-        
+        NetworkHandler.shared.loadCards(success: { cards in
+            self.cards = cards
+            self.spinnerAnimation.stop()
+            self.spinnerAnimation.removeFromSuperview()
+            self.tableView.reloadData()
+        }, failure: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,10 +66,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableHeaderView = HeaderView(user: user)
+        
+        let headerView = HeaderView(user: user)
+        headerView.frame.size.height = 90.0
+        tableView.tableHeaderView = headerView
         
         view.addSubview(tableView)
-        view.addSubview(spinnerAnimation)
+        
+        if spinnerAnimation.isAnimationPlaying {
+            view.addSubview(spinnerAnimation)
+        }
         
         setupConstraints()
     }
@@ -72,12 +84,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0.0, left: 32.0, bottom: 0.0, right: 32.0))
         }
+        
+        if spinnerAnimation.isAnimationPlaying {
+            spinnerAnimation.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+                make.height.width.equalTo(150.0)
+            }
+        }
     }
     
     // MARK: table view
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return spinnerAnimation.isAnimationPlaying ? 0 : 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,6 +116,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = DetailButtonHeaderView()
+        header.backgroundColor = UIColor.Grayscale.background
         
         switch section {
         case 0:
@@ -128,11 +148,46 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cardCellIdentifier) as? CardTableViewCell ?? CardTableViewCell(style: .default, reuseIdentifier: Constants.cardCellIdentifier)
             
-            
+            cell.cards = cards
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 30.0
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.basicCellIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: Constants.basicCellIdentifier)
+            
+            cell.textLabel?.font = .avenirRegular(size: 14.0)
+            cell.textLabel?.textColor = UIColor.Grayscale.dark
+            
+            switch indexPath.section {
+            case 1:
+                switch indexPath.row {
+                case 0: cell.textLabel?.text = "Edit Info"
+                case 1: cell.textLabel?.text = "Manage Connected Accounts"
+                case 2: cell.textLabel?.text = "Change Theme"
+                default: break
+                }
+            case 2:
+                switch indexPath.row {
+                case 0: cell.textLabel?.text = "View Pending Requests"
+                default: break
+                }
+            case 3:
+                switch indexPath.row {
+                case 0: cell.textLabel?.text = "Get More Cards"
+                case 1: cell.textLabel?.text = "Amiko Merch"
+                default: break
+                }
+            case 4:
+                switch indexPath.row {
+                case 0: cell.textLabel?.text = "Change Password"
+                case 1:
+                    cell.textLabel?.text = "Log Out"
+                    cell.textLabel?.textColor = UIColor.Red.normal
+                default: break
+                }
+            default: break
+            }
             
             return cell
         }

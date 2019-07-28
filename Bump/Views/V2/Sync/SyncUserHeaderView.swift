@@ -76,7 +76,7 @@ class UserInfoView: UIView {
         }
         
         bioLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(12.0)
+            make.top.equalTo(self.nameLabel.snp.bottom)
             make.leading.equalTo(self.nameLabel)
             make.trailing.equalToSuperview()
         }

@@ -103,6 +103,10 @@ extension ProfileViewController {
                 make.height.width.equalTo(90.0)
             }
             
+            uploadLabel.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+            }
+            
             uploadHolderView.snp.makeConstraints { make in
                 make.trailing.bottom.equalTo(avatarImageView)
                 make.height.width.equalTo(20.0)
@@ -115,9 +119,9 @@ extension ProfileViewController {
             }
             
             bioLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.nameLabel.snp.bottom).offset(12.0)
+                make.top.equalTo(self.nameLabel.snp.bottom)
                 make.leading.equalTo(self.nameLabel)
-                make.trailing.bottom.lessThanOrEqualToSuperview()
+                make.trailing.lessThanOrEqualToSuperview()
             }
             
             super.updateConstraints()

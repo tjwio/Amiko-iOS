@@ -16,6 +16,9 @@ public typealias UserHandler = (User) -> Void
 public typealias ShipHandler = (Ship) -> Void
 public typealias ShipListHandler = ([Ship]) -> Void
 
+public typealias CardHandler = (Card) -> Void
+public typealias CardListHandler = ([Card]) -> Void
+
 public typealias ContactActionHandler = (AccountContact, String) -> Void
 
 public typealias SocialHandler = (AccountContact, String) -> Void

@@ -55,7 +55,7 @@ class CardTableViewCell: UITableViewCell {
         cardViews = cards.map { card in
             let view = CardView()
             view.nameLabel.text = card.name
-            view.numberLabel.text = String(card.id[card.id.index(card.id.endIndex, offsetBy: -4) ..< card.id.endIndex])
+            view.numberLabel.text = "#\(String(card.id[card.id.index(card.id.endIndex, offsetBy: -4) ..< card.id.endIndex]))"
             view.translatesAutoresizingMaskIntoConstraints = false
             
             return view

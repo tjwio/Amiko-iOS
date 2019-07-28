@@ -43,6 +43,7 @@
 		22E1004C22ED253D008C139D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004B22ED253D008C139D /* CardView.swift */; };
 		22E1004E22ED30FE008C139D /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1004D22ED30FE008C139D /* CardTableViewCell.swift */; };
 		22E1005122ED32DF008C139D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1005022ED32DF008C139D /* Card.swift */; };
+		22E1005322ED378B008C139D /* NetworkHandler+Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1005222ED378B008C139D /* NetworkHandler+Card.swift */; };
 		22FC9F6222DD47010061B122 /* MessageBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6122DD47010061B122 /* MessageBannerView.swift */; };
 		22FC9F6422DD83EB0061B122 /* SyncSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6322DD83EB0061B122 /* SyncSuccessViewController.swift */; };
 		22FC9F6622DDA0EF0061B122 /* SyncUserPendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC9F6522DDA0EF0061B122 /* SyncUserPendingViewController.swift */; };
@@ -199,6 +200,7 @@
 		22E1004B22ED253D008C139D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22E1004D22ED30FE008C139D /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		22E1005022ED32DF008C139D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		22E1005222ED378B008C139D /* NetworkHandler+Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkHandler+Card.swift"; sourceTree = "<group>"; };
 		22FC9F6122DD47010061B122 /* MessageBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBannerView.swift; sourceTree = "<group>"; };
 		22FC9F6322DD83EB0061B122 /* SyncSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncSuccessViewController.swift; sourceTree = "<group>"; };
 		22FC9F6522DDA0EF0061B122 /* SyncUserPendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncUserPendingViewController.swift; sourceTree = "<group>"; };
@@ -471,10 +473,10 @@
 		221F152022DA989100EE8567 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				2F31CFB82137CEA300308702 /* ProfileBaseViewController.swift */,
-				221F152122DA98B200EE8567 /* ProfileTabViewController.swift */,
 				22E1004622ED18DD008C139D /* ProfileViewController.swift */,
 				22E1004822ED1A8F008C139D /* ProfileViewController+Header.swift */,
+				2F31CFB82137CEA300308702 /* ProfileBaseViewController.swift */,
+				221F152122DA98B200EE8567 /* ProfileTabViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -830,6 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				2F6E51D22082BD5800E8D8CA /* NetworkHandler+User.swift */,
+				22E1005222ED378B008C139D /* NetworkHandler+Card.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1142,6 +1145,7 @@
 				221F152A22DADD5A00EE8567 /* ShipDetailViewController.swift in Sources */,
 				2F6E51CD2082B9CD00E8D8CA /* AppManager.swift in Sources */,
 				2F6E51EE20830F6000E8D8CA /* BAWelcomeViewController.swift in Sources */,
+				22E1005322ED378B008C139D /* NetworkHandler+Card.swift in Sources */,
 				2210BEE022D594E40053F8A8 /* SyncUserAccountsView.swift in Sources */,
 				2210BEE222D598870053F8A8 /* SyncUserAccountsView+Cell.swift in Sources */,
 				229D2F7922E2DD18000BF969 /* ActionToolbar.swift in Sources */,
