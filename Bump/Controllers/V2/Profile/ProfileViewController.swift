@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.allowsSelection = true
         tableView.backgroundColor = .clear
         tableView.contentInset = UIEdgeInsets(top: 32.0, left: 0.0, bottom: 16.0, right: 0.0)
-        tableView.separatorColor = UIColor.Grayscale.lighter
+        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -154,36 +154,63 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.basicCellIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: Constants.basicCellIdentifier)
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.basicCellIdentifier) as? CustomCornerTableViewCell ?? CustomCornerTableViewCell(style: .default, reuseIdentifier: Constants.basicCellIdentifier)
             
+            cell.accessoryType = .disclosureIndicator
+            cell.indentationLevel = 1
+            cell.indentationWidth = 12.0
             cell.textLabel?.font = .avenirRegular(size: 14.0)
             cell.textLabel?.textColor = UIColor.Grayscale.dark
+            
+            cell.layer.cornerRadius = 0.0
+            cell.layer.masksToBounds = true
+            
+            cell.separatorView.isHidden = false
             
             switch indexPath.section {
             case 1:
                 switch indexPath.row {
-                case 0: cell.textLabel?.text = "Edit Info"
-                case 1: cell.textLabel?.text = "Manage Connected Accounts"
-                case 2: cell.textLabel?.text = "Change Theme"
+                case 0:
+                    cell.textLabel?.text = "Edit Info"
+                    cell.corners = ([.topLeft, .topRight], 20.0)
+                case 1:
+                    cell.textLabel?.text = "Manage Connected Accounts"
+                    cell.corners = (.allCorners, 0.0)
+                case 2:
+                    cell.textLabel?.text = "Change Theme"
+                    cell.corners = ([.bottomLeft, .bottomRight], 20.0)
+                    cell.separatorView.isHidden = true
                 default: break
                 }
             case 2:
                 switch indexPath.row {
-                case 0: cell.textLabel?.text = "View Pending Requests"
+                case 0:
+                    cell.textLabel?.text = "View Pending Requests"
+                    cell.layer.cornerRadius = 20.0
+                    cell.separatorView.isHidden = true
                 default: break
                 }
             case 3:
                 switch indexPath.row {
-                case 0: cell.textLabel?.text = "Get More Cards"
-                case 1: cell.textLabel?.text = "Amiko Merch"
+                case 0:
+                    cell.textLabel?.text = "Get More Cards"
+                    cell.corners = ([.topLeft, .topRight], 20.0)
+                case 1:
+                    cell.textLabel?.text = "Amiko Merch"
+                    cell.corners = ([.bottomLeft, .bottomRight], 20.0)
+                    cell.separatorView.isHidden = true
                 default: break
                 }
             case 4:
                 switch indexPath.row {
-                case 0: cell.textLabel?.text = "Change Password"
+                case 0:
+                    cell.textLabel?.text = "Change Password"
+                    cell.corners = ([.topLeft, .topRight], 20.0)
                 case 1:
                     cell.textLabel?.text = "Log Out"
                     cell.textLabel?.textColor = UIColor.Red.normal
+                    cell.corners = ([.bottomLeft, .bottomRight], 20.0)
+                    cell.separatorView.isHidden = true
                 default: break
                 }
             default: break

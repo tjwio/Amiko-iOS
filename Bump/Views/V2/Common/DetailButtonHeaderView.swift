@@ -24,7 +24,7 @@ class DetailButtonHeaderView: UIView {
         button.setTitle(.featherIcon(name: .plus), for: .normal)
         button.setTitleColor(UIColor.Matcha.dusk, for: .normal)
         button.setTitleColor(UIColor.Matcha.sky, for: .highlighted)
-        button.titleLabel?.font = .featherFont(size: 20.0)
+        button.titleLabel?.font = .featherFont(size: 24.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
