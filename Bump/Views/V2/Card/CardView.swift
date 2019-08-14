@@ -17,16 +17,6 @@ class CardView: UIView, ActionToolbarDelegate {
         return view
     }()
     
-    let detailLabel: UILabel = {
-        let label = UILabel()
-        label.font = .avenirRegular(size: 14.0)
-        label.text = "Card Name"
-        label.textColor = UIColor.Grayscale.lighter
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .avenirDemi(size: 14.0)
@@ -86,7 +76,6 @@ class CardView: UIView, ActionToolbarDelegate {
         actionToolbar.delegate = self
         
         addSubview(imageView)
-        addSubview(detailLabel)
         addSubview(nameLabel)
         addSubview(numberLabel)
         addSubview(menuButton)
@@ -102,11 +91,6 @@ class CardView: UIView, ActionToolbarDelegate {
         nameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(24.0)
             make.bottom.equalToSuperview().offset(-16.0)
-        }
-        
-        detailLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.nameLabel)
-            make.bottom.equalTo(self.nameLabel.snp.top)
         }
         
         numberLabel.snp.makeConstraints { make in
