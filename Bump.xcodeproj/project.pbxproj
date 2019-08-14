@@ -36,6 +36,7 @@
 		229DA8A02303BD4200ACA663 /* DetailTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */; };
 		229DA8A22303C00D00ACA663 /* ProfileEditInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA8A12303C00D00ACA663 /* ProfileEditInfoViewController.swift */; };
 		229DA8A52303D18600ACA663 /* TextFieldTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA8A42303D18600ACA663 /* TextFieldTableViewViewController.swift */; };
+		229DA8A72303D6B200ACA663 /* UploadAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA8A62303D6B200ACA663 /* UploadAvatarImageView.swift */; };
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
 		22BE55DF22E7FB66000D6900 /* ShipListViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */; };
@@ -196,6 +197,7 @@
 		229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		229DA8A12303C00D00ACA663 /* ProfileEditInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditInfoViewController.swift; sourceTree = "<group>"; };
 		229DA8A42303D18600ACA663 /* TextFieldTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewViewController.swift; sourceTree = "<group>"; };
+		229DA8A62303D6B200ACA663 /* UploadAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarImageView.swift; sourceTree = "<group>"; };
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
@@ -446,10 +448,11 @@
 				229D2F7822E2DD18000BF969 /* ActionToolbar.swift */,
 				22E1005422ED4FEA008C139D /* CustomCornerTableViewCell.swift */,
 				2210BEDD22D590560053F8A8 /* DetailButtonHeaderView.swift */,
+				229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */,
 				221F152722DAC2D700EE8567 /* ListMapNavigationView.swift */,
 				22FC9F6122DD47010061B122 /* MessageBannerView.swift */,
 				2210BEE322D6D8070053F8A8 /* UIView+CornerRadius.swift */,
-				229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */,
+				229DA8A62303D6B200ACA663 /* UploadAvatarImageView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1192,6 +1195,7 @@
 				2F18D3AA2106FB9700C97E3A /* Date+Formatter.swift in Sources */,
 				22FC9F6622DDA0EF0061B122 /* SyncUserPendingViewController.swift in Sources */,
 				22E1005522ED4FEA008C139D /* CustomCornerTableViewCell.swift in Sources */,
+				229DA8A72303D6B200ACA663 /* UploadAvatarImageView.swift in Sources */,
 				2FE36BF620F849650012F1AB /* BALocalizationStrings.swift in Sources */,
 				2F6E51DE2082CB5000E8D8CA /* UserHolder.swift in Sources */,
 				2F1E73CD2119975100B83501 /* ShipMapViewController.swift in Sources */,

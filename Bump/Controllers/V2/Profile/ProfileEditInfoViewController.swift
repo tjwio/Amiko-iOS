@@ -110,19 +110,13 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
         if section == 0 {
             let headerView = UIView()
             
-            let avatarImageView: UIImageView = {
-                let imageView = UIImageView(image: .blankAvatar)
-                imageView.layer.cornerRadius = 48.0
-                imageView.clipsToBounds = true
-                imageView.translatesAutoresizingMaskIntoConstraints = false
-                
-                return imageView
-            }()
+            let avatarImageView = UploadAvatarImageView()
+            avatarImageView.translatesAutoresizingMaskIntoConstraints = false
             
             if let image = image.value {
-                avatarImageView.image = image
+                avatarImageView.imageView.image = image
             } else if let url = user.imageUrl {
-                avatarImageView.sd_setImage(with: URL(string: url), placeholderImage: .blankAvatar) { (image, _, _, _) in
+                avatarImageView.imageView.sd_setImage(with: URL(string: url), placeholderImage: .blankAvatar) { (image, _, _, _) in
                     self.image.value = image
                 }
             }

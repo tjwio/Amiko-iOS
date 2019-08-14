@@ -13,33 +13,11 @@ import SnapKit
 
 extension ProfileViewController {
     class HeaderView: UIView {
-        let avatarImageView: UIImageView = {
-            let imageView = UIImageView(image: .blankAvatar)
-            imageView.layer.cornerRadius = 45.0
-            imageView.clipsToBounds = true
+        let avatarImageView: UploadAvatarImageView = {
+            let imageView = UploadAvatarImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
             
             return imageView
-        }()
-        
-        let uploadLabel: UILabel = {
-            let label = UILabel()
-            label.font = .featherFont(size: 14.0)
-            label.text = .featherIcon(name: .arrowUp)
-            label.textColor = .white
-            label.translatesAutoresizingMaskIntoConstraints = false
-            
-            return label
-        }()
-        
-        let uploadHolderView: UIView = {
-            let view = UIView()
-            view.backgroundColor = UIColor.Matcha.dusk
-            view.clipsToBounds = true
-            view.layer.cornerRadius = 10.0
-            view.translatesAutoresizingMaskIntoConstraints = false
-            
-            return view
         }()
         
         let nameLabel: UILabel = {
@@ -70,7 +48,7 @@ extension ProfileViewController {
             self.init()
             
             if let imageUrl = user.imageUrl {
-                avatarImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
+                avatarImageView.imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: .blankAvatar)
             }
             
             nameLabel.text = user.fullName
@@ -88,9 +66,7 @@ extension ProfileViewController {
         }
         
         private func commonInit() {
-            uploadHolderView.addSubview(uploadLabel)
             addSubview(avatarImageView)
-            addSubview(uploadHolderView)
             addSubview(nameLabel)
             addSubview(bioLabel)
             
@@ -101,15 +77,6 @@ extension ProfileViewController {
             avatarImageView.snp.makeConstraints { make in
                 make.top.leading.bottom.equalToSuperview()
                 make.height.width.equalTo(90.0)
-            }
-            
-            uploadLabel.snp.makeConstraints { make in
-                make.center.equalToSuperview()
-            }
-            
-            uploadHolderView.snp.makeConstraints { make in
-                make.trailing.bottom.equalTo(avatarImageView)
-                make.height.width.equalTo(20.0)
             }
             
             nameLabel.snp.makeConstraints { make in
