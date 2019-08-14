@@ -28,7 +28,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
     private var listNavigationController: UINavigationController!
     private var mapNavigationController: UINavigationController!
     private var bumpController: BumpViewController!
-    private var profileController: ProfileViewController!
+    private var profileController: UINavigationController!
     
     private var activeBumpPopupController: BumpPopupViewController?
     
@@ -64,7 +64,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate, 
         
         bumpController = BumpViewController()
         
-        profileController = ProfileViewController(user: user)
+        let profileRootCont = ProfileViewController(user: user)
+        self.profileController = UINavigationController(rootViewController: profileRootCont)
         
         let homeTabBarItem = UITabBarItem(title: nil, image: .homeTabInactive, selectedImage: .homeTabActive)
         let bumpTabBarItem = UITabBarItem(title: nil, image: .logoTabInactive, selectedImage: .logoTabActive)

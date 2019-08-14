@@ -33,6 +33,8 @@
 		2248BFAC22B3B96100979398 /* AppCenterDistribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2248BFA722B3B96100979398 /* AppCenterDistribute.framework */; };
 		2248BFB422B49EE500979398 /* MainTabBarViewController+NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2248BFB322B49EE500979398 /* MainTabBarViewController+NFC.swift */; };
 		229D2F7922E2DD18000BF969 /* ActionToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D2F7822E2DD18000BF969 /* ActionToolbar.swift */; };
+		229DA8A02303BD4200ACA663 /* DetailTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */; };
+		229DA8A22303C00D00ACA663 /* ProfileEditInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA8A12303C00D00ACA663 /* ProfileEditInfoViewController.swift */; };
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
 		22BE55DF22E7FB66000D6900 /* ShipListViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */; };
@@ -190,6 +192,8 @@
 		2248BFA722B3B96100979398 /* AppCenterDistribute.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCenterDistribute.framework; sourceTree = "<group>"; };
 		2248BFB322B49EE500979398 /* MainTabBarViewController+NFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTabBarViewController+NFC.swift"; sourceTree = "<group>"; };
 		229D2F7822E2DD18000BF969 /* ActionToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionToolbar.swift; sourceTree = "<group>"; };
+		229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		229DA8A12303C00D00ACA663 /* ProfileEditInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditInfoViewController.swift; sourceTree = "<group>"; };
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
@@ -442,6 +446,7 @@
 				221F152722DAC2D700EE8567 /* ListMapNavigationView.swift */,
 				22FC9F6122DD47010061B122 /* MessageBannerView.swift */,
 				2210BEE322D6D8070053F8A8 /* UIView+CornerRadius.swift */,
+				229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 				22E1004822ED1A8F008C139D /* ProfileViewController+Header.swift */,
 				2F31CFB82137CEA300308702 /* ProfileBaseViewController.swift */,
 				221F152122DA98B200EE8567 /* ProfileTabViewController.swift */,
+				229DA8A12303C00D00ACA663 /* ProfileEditInfoViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1169,6 +1175,7 @@
 				2FFAE3F1213212060045B75E /* UIImageColors.swift in Sources */,
 				2F06357A20853E7F00D655E7 /* BAAddUserView.swift in Sources */,
 				2FFAE406213253C40045B75E /* MainTabBarViewController.swift in Sources */,
+				229DA8A22303C00D00ACA663 /* ProfileEditInfoViewController.swift in Sources */,
 				2F6E51FD2083D4AA00E8D8CA /* BALoginViewController.swift in Sources */,
 				2F6E51FB2083D4A300E8D8CA /* BASignupViewController.swift in Sources */,
 				2F18D3AA2106FB9700C97E3A /* Date+Formatter.swift in Sources */,
@@ -1193,6 +1200,7 @@
 				2F6E51E12082FF3000E8D8CA /* LocationManager.swift in Sources */,
 				22C409D1225D72AC00475C19 /* UIViewController+Message.swift in Sources */,
 				2F6E51D32082BD5800E8D8CA /* NetworkHandler+User.swift in Sources */,
+				229DA8A02303BD4200ACA663 /* DetailTextFieldTableViewCell.swift in Sources */,
 				2F6354D9208C5FC400429F72 /* BACameraViewController.swift in Sources */,
 				2F6E51CB2082B8D000E8D8CA /* URLRouter.swift in Sources */,
 				2F31CFB92137CEA300308702 /* ProfileBaseViewController.swift in Sources */,

@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.allowsSelection = true
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 32.0, left: 0.0, bottom: 16.0, right: 0.0)
+        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 16.0, right: 0.0)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.tableFooterView = UIView()
@@ -61,6 +61,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.isNavigationBarHidden = false
         
         view.backgroundColor = UIColor.Grayscale.background
         
@@ -217,6 +219,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch (indexPath.section, indexPath.row) {
+        case (1, 0):
+            let viewController = ProfileEditInfoViewController(user: user)
+            navigationController?.pushViewController(viewController, animated: true)
+        default: break
         }
     }
 }
