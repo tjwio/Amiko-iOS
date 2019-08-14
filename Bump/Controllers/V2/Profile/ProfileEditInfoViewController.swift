@@ -11,7 +11,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import SnapKit
 
-class ProfileEditInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
         static let cellIdentifier = "ProfileEditTextFieldTableViewCell"
     }
@@ -26,17 +26,14 @@ class ProfileEditInfoViewController: UIViewController, UITableViewDelegate, UITa
     let bio: MutableProperty<String>
     let image: MutableProperty<UIImage?>
     
-    let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.allowsSelection = true
-        tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 16.0, right: 0.0)
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
-        tableView.tableFooterView = UIView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .avenirDemi(size: 16.0)
+        label.text = "EDIT INFO"
+        label.textColor = UIColor.Grayscale.dark
+        label.translatesAutoresizingMaskIntoConstraints = false
         
-        return tableView
+        return label
     }()
     
     private var cellDisposables = [Int: Disposable]()
@@ -64,25 +61,30 @@ class ProfileEditInfoViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "EDIT INFO"
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.Matcha.dusk,
-            .font: .avenirDemi(size: 16.0) ?? UIFont.boldSystemFont(ofSize: 16.0)
-        ]
+        addBackButtonToView(dark: true)
         
         view.backgroundColor = .white
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        view.addSubview(titleLabel)
         view.addSubview(tableView)
         
         setupConstraints()
     }
     
     private func setupConstraints() {
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(44.0)
+            make.centerX.equalToSuperview()
+        }
+        
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 0.0, left: 32.0, bottom: 0.0, right: 32.0))
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(0.0)
+            make.leading.equalToSuperview().offset(32.0)
+            make.trailing.equalToSuperview().offset(-32.0)
+            make.bottom.equalToSuperview()
         }
     }
     
@@ -129,6 +131,7 @@ class ProfileEditInfoViewController: UIViewController, UITableViewDelegate, UITa
             
             avatarImageView.snp.makeConstraints { make in
                 make.center.equalToSuperview()
+                make.height.width.equalTo(95.0)
             }
             
             return headerView

@@ -26,6 +26,7 @@ extension UIViewController: UIGestureRecognizerDelegate {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     }
     
+    @discardableResult
     func addBackButtonToView(dark: Bool, shouldAddText: Bool = true) -> UIButton {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true;

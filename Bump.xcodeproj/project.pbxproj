@@ -35,6 +35,7 @@
 		229D2F7922E2DD18000BF969 /* ActionToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229D2F7822E2DD18000BF969 /* ActionToolbar.swift */; };
 		229DA8A02303BD4200ACA663 /* DetailTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */; };
 		229DA8A22303C00D00ACA663 /* ProfileEditInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA8A12303C00D00ACA663 /* ProfileEditInfoViewController.swift */; };
+		229DA8A52303D18600ACA663 /* TextFieldTableViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DA8A42303D18600ACA663 /* TextFieldTableViewViewController.swift */; };
 		22AD845722B216CF00BC7BDC /* URL+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845622B216CF00BC7BDC /* URL+Params.swift */; };
 		22AD845922B21E3600BC7BDC /* LoadProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */; };
 		22BE55DF22E7FB66000D6900 /* ShipListViewController+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BE55DE22E7FB66000D6900 /* ShipListViewController+Search.swift */; };
@@ -194,6 +195,7 @@
 		229D2F7822E2DD18000BF969 /* ActionToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionToolbar.swift; sourceTree = "<group>"; };
 		229DA89F2303BD4200ACA663 /* DetailTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		229DA8A12303C00D00ACA663 /* ProfileEditInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditInfoViewController.swift; sourceTree = "<group>"; };
+		229DA8A42303D18600ACA663 /* TextFieldTableViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewViewController.swift; sourceTree = "<group>"; };
 		22AD845622B216CF00BC7BDC /* URL+Params.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Params.swift"; sourceTree = "<group>"; };
 		22AD845822B21E3600BC7BDC /* LoadProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadProfileViewController.swift; sourceTree = "<group>"; };
 		22AD845A22B22BA400BC7BDC /* Bump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bump.entitlements; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				221F152F22DBCACA00EE8567 /* Bump */,
+				229DA8A32303D15300ACA663 /* Common */,
 				2FD4B913214254B400E0E570 /* Loading */,
 				2F6E51EC20830F4A00E8D8CA /* Login */,
 				221F152022DA989100EE8567 /* Profile */,
@@ -509,6 +512,14 @@
 				2248BFA522B3B96000979398 /* AppCenterDistributeResources.bundle */,
 			);
 			path = CustomFrameworks;
+			sourceTree = "<group>";
+		};
+		229DA8A32303D15300ACA663 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				229DA8A42303D18600ACA663 /* TextFieldTableViewViewController.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		22D3F12522D81408007CFA36 /* Ship */ = {
@@ -1213,6 +1224,7 @@
 				22E1004E22ED30FE008C139D /* CardTableViewCell.swift in Sources */,
 				2F1E73D5211B21F300B83501 /* BAUserAnnotationView.swift in Sources */,
 				2FFB89B72109914F006F8F94 /* UIBarItem+TextAttributes.swift in Sources */,
+				229DA8A52303D18600ACA663 /* TextFieldTableViewViewController.swift in Sources */,
 				221F153122DBCAE900EE8567 /* BumpViewController.swift in Sources */,
 				2F4BBB6420522B3100AAFE1A /* UIFont+CustomFonts.swift in Sources */,
 				2FD3BEE7214255F9002DB435 /* WelcomeLoadingViewController.swift in Sources */,
