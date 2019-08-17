@@ -71,13 +71,16 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
         
         view.backgroundColor = .white
         
+        buttonFooterView.cancelButton.addTarget(self, action: #selector(self.dismissViewController(_:)), for: .touchUpInside)
+        buttonFooterView.confirmButton.addTarget(self, action: #selector(self.save(_:)), for: .touchUpInside)
+        
         tableView.contentInset.bottom = 72.0
         tableView.delegate = self
         tableView.dataSource = self
         
         view.addSubview(titleLabel)
-        view.addSubview(buttonFooterView)
         view.addSubview(tableView)
+        view.addSubview(buttonFooterView)
         
         setupConstraints()
     }
@@ -106,6 +109,16 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
             make.trailing.equalToSuperview().offset(-32.0)
             make.bottom.equalToSuperview()
         }
+    }
+    
+    // MARK: button
+    
+    @objc private func dismissViewController(_ sender: UIButton?) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func save(_ sender: LoadingButton) {
+        
     }
     
     // MARK: table view
