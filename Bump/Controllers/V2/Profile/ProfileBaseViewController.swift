@@ -130,27 +130,27 @@ class ProfileBaseViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: save
     
     @objc private func saveProfileView(_ sender: LoadingButton?) {
-        user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", bio: bio.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
-            if self.imageDidUpdate.value, let newImage = self.image.value {
-                self.user.updateImage(newImage, success: {
-                    sender?.isLoading = false
-                    self.showLeftMessage("Successfully updated user info!", type: .success)
-                    self.successCallback?()
-                    self.dismissViewController()
-                }, failure: { error in
-                    self.showLeftMessage("Failed to update user image, please try again.", type: .error)
-                })
-            } else {
-                sender?.isLoading = false
-                self.showLeftMessage("Successfully updated user info!", type: .success)
-                self.successCallback?()
-                self.dismissViewController()
-            }
-            
-            NotificationCenter.default.post(name: .bumpDidUpdateUser, object: nil)
-        }) { _ in
-            self.showLeftMessage("Failed to update info", type: .error, view: self.profileView)
-        }
+//        user.updateUser(firstName: firstName.value ?? "", lastName: lastName.value ?? "", profession: jobTitle.value ?? "", company: company.value ?? "", bio: bio.value ?? "", phone: phone.value ?? "", email: email.value ?? "", website: website.value ?? "", facebook: facebook.value ?? "", linkedin: linkedin.value ?? "", instagram: instagram.value ?? "", twitter: twitter.value ?? "", success: {
+//            if self.imageDidUpdate.value, let newImage = self.image.value {
+//                self.user.updateImage(newImage, success: {
+//                    sender?.isLoading = false
+//                    self.showLeftMessage("Successfully updated user info!", type: .success)
+//                    self.successCallback?()
+//                    self.dismissViewController()
+//                }, failure: { error in
+//                    self.showLeftMessage("Failed to update user image, please try again.", type: .error)
+//                })
+//            } else {
+//                sender?.isLoading = false
+//                self.showLeftMessage("Successfully updated user info!", type: .success)
+//                self.successCallback?()
+//                self.dismissViewController()
+//            }
+//
+//            NotificationCenter.default.post(name: .bumpDidUpdateUser, object: nil)
+//        }) { _ in
+//            self.showLeftMessage("Failed to update info", type: .error, view: self.profileView)
+//        }
     }
     
     // MARK: table view

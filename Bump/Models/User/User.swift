@@ -198,7 +198,7 @@ public class User: NSObject, Codable {
         mutualFriends = try container.decodeIfPresent([User].self, forKey: .mutualFriends) ?? []
     }
     
-    public class func json(firstName: String, lastName: String, profession: String, company: String, bio: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String) -> JSON {
+    public class func json(firstName: String, lastName: String, profession: String, company: String, bio: String, phone: String, email: String) -> JSON {
         return [
             CodingKeys.firstName.rawValue: firstName,
             CodingKeys.lastName.rawValue: lastName,
@@ -206,12 +206,7 @@ public class User: NSObject, Codable {
             CodingKeys.company.rawValue: company,
             CodingKeys.bio.rawValue: bio,
             CodingKeys.phone.rawValue: phone,
-            CodingKeys.email.rawValue: email,
-            CodingKeys.website.rawValue: website,
-            CodingKeys.facebook.rawValue: facebook,
-            CodingKeys.linkedin.rawValue: linkedin,
-            CodingKeys.instagram.rawValue: instagram,
-            CodingKeys.twitter.rawValue: twitter
+            CodingKeys.email.rawValue: email
         ]
     }
     
@@ -277,8 +272,8 @@ public class User: NSObject, Codable {
     
     //MARK: update/put
     
-    func updateUser(firstName: String, lastName: String, profession: String, company: String, bio: String, phone: String, email: String, website: String, facebook: String, linkedin: String, instagram: String, twitter: String, success: EmptyHandler?, failure: ErrorHandler?) {
-        let parameters = User.json(firstName: firstName, lastName: lastName, profession: profession, company: company, bio: bio, phone: phone, email: email, website: website, facebook: facebook, linkedin: linkedin, instagram: instagram, twitter: twitter)
+    func updateUser(firstName: String, lastName: String, profession: String, company: String, bio: String, phone: String, email: String, success: EmptyHandler?, failure: ErrorHandler?) {
+        let parameters = User.json(firstName: firstName, lastName: lastName, profession: profession, company: company, bio: bio, phone: phone, email: email)
         
         NetworkHandler.shared.updateUser(parameters: parameters, success: { _ in
             self.firstName = firstName
@@ -288,12 +283,6 @@ public class User: NSObject, Codable {
             self.bio = bio
             self.phone = phone
             self.email = email
-            self.website = website
-            
-            self.facebook = facebook
-            self.linkedin = linkedin
-            self.instagram = instagram
-            self.twitter = twitter
             success?()
         }) { error in
             print("failed to update user with error: \(error)")

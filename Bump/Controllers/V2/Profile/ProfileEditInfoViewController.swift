@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Photos
 import ReactiveCocoa
 import ReactiveSwift
 import SnapKit
 
-class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private struct Constants {
         static let textFieldCellIdentifier = "ProfileEditTextFieldTableViewCell"
         static let textViewCellIdentifier = "ProfileEditTextViewTableViewCell"
@@ -22,10 +23,13 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
     let firstName: MutableProperty<String>
     let lastName: MutableProperty<String>
     let email: MutableProperty<String>
+    let phone: MutableProperty<String>
     let company: MutableProperty<String>
     let job: MutableProperty<String>
     let bio: MutableProperty<String>
     let image: MutableProperty<UIImage?>
+    
+    let imageDidUpdate = MutableProperty<Bool>(false)
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -51,6 +55,7 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
         firstName = MutableProperty(user.firstName)
         lastName = MutableProperty(user.lastName)
         email = MutableProperty(user.email ?? "")
+        phone = MutableProperty(user.phone ?? "")
         company = MutableProperty(user.company ?? "")
         job = MutableProperty(user.profession ?? "")
         bio = MutableProperty(user.bio ?? "")
@@ -118,13 +123,29 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
     }
     
     @objc private func save(_ sender: LoadingButton) {
-        
+        user.updateUser(firstName: firstName.value, lastName: lastName.value, profession: job.value, company: company.value, bio: bio.value, phone: phone.value, email: email.value, success: {
+            if self.imageDidUpdate.value, let newImage = self.image.value {
+                self.user.updateImage(newImage, success: {
+                    sender.isLoading = false
+                    self.showLeftMessage("Successfully updated user info!", type: .success)
+                }, failure: { error in
+                    self.showLeftMessage("Failed to update user image, please try again.", type: .error)
+                })
+            } else {
+                sender.isLoading = false
+                self.showLeftMessage("Successfully updated user info!", type: .success)
+            }
+            
+            NotificationCenter.default.post(name: .bumpDidUpdateUser, object: nil)
+        }) { _ in
+            self.showLeftMessage("Failed to update info", type: .error)
+        }
     }
     
     // MARK: table view
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -145,6 +166,9 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
             
             let avatarImageView = UploadAvatarImageView()
             avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.avatarPressed(_:)))
+            avatarImageView.addGestureRecognizer(tapGestureRecognizer)
             
             if let image = image.value {
                 avatarImageView.imageView.image = image
@@ -168,13 +192,13 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 5 ? 96.0 : 48.0
+        return indexPath.section == 6 ? 96.0 : 48.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cellDisposables[indexPath.section]?.dispose()
         
-        if indexPath.section == 5 {
+        if indexPath.section == 6 {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.textViewCellIdentifier) as? DetailTextViewTableViewCell ?? DetailTextViewTableViewCell(style: .default, reuseIdentifier: Constants.textViewCellIdentifier)
             
             cell.textView.text = bio.value
@@ -202,10 +226,14 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
                 cell.placeholderLabel.text = "Email"
                 cellDisposables[indexPath.section] = email <~ cell.textField.reactive.continuousTextValues
             case 3:
+                cell.textField.text = phone.value
+                cell.placeholderLabel.text = "Phone Number"
+                cellDisposables[indexPath.section] = phone <~ cell.textField.reactive.continuousTextValues
+            case 4:
                 cell.textField.text = company.value
                 cell.placeholderLabel.text = "Company"
                 cellDisposables[indexPath.section] = company <~ cell.textField.reactive.continuousTextValues
-            case 4:
+            case 5:
                 cell.textField.text = job.value
                 cell.placeholderLabel.text = "Job Title"
                 cellDisposables[indexPath.section] = job <~ cell.textField.reactive.continuousTextValues
@@ -217,5 +245,81 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
             
             return cell
         }
+    }
+    
+    //MARK: photo/camera delegate
+    
+    @objc private func avatarPressed(_ sender: UIGestureRecognizer?) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { _ in
+            let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+            
+            if authStatus == .authorized {
+                self.showCameraController()
+            }
+            else {
+                AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
+                    if granted {
+                        self.showCameraController()
+                    }
+                })
+            }
+        }
+        let choosePhoto = UIAlertAction(title: "Choose from Library", style: .default) { _ in
+            let authStatus = PHPhotoLibrary.authorizationStatus()
+            
+            if authStatus == .authorized {
+                self.showImageController()
+            }
+            else {
+                PHPhotoLibrary.requestAuthorization { newStatus in
+                    if newStatus == .authorized {
+                        self.showImageController()
+                    }
+                    else {
+                        self.showLeftMessage("Failed to gain access to photo library", type: .error)
+                    }
+                }
+            }
+        }
+        
+        alertController.addAction(cancel)
+        alertController.addAction(choosePhoto)
+        alertController.addAction(takePhoto)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = (info[.editedImage] ?? info[.originalImage]) as? UIImage {
+            self.image.value = image
+            imageDidUpdate.value = true
+            
+            picker.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func showCameraController() {
+        let cameraController = UIImagePickerController()
+        cameraController.allowsEditing = true
+        cameraController.delegate = self
+        cameraController.sourceType = .camera
+        
+        present(cameraController, animated: true, completion: nil)
+    }
+    
+    private func showImageController() {
+        let cameraController = UIImagePickerController()
+        cameraController.allowsEditing = true
+        cameraController.delegate = self
+        cameraController.sourceType = .photoLibrary
+        
+        present(cameraController, animated: true, completion: nil)
     }
 }
