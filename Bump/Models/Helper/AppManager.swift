@@ -13,15 +13,21 @@ class AppManager: NSObject {
         case development, staging, production
         
         var apiUrl: String {
-            return "https://amiko.herokuapp.com/api/v1"
+            switch self {
+            case .development: return "http://localhost:4000/api/v1"
+            default: return "https://amiko.herokuapp.com/api/v1"
+            }
         }
         
         var streamUrl: String {
-            return "wss://amiko.herokuapp.com/socket/websocket"
+            switch self {
+            case .development: return "ws://localhost:4000/socket/websocket"
+            default: return "wss://amiko.herokuapp.com/socket/websocket"
+            }
         }
     }
     
-    static private(set) var shared = AppManager(environment: .production)
+    static private(set) var shared = AppManager(environment: .development)
     
     private(set) var environment: Environment
     

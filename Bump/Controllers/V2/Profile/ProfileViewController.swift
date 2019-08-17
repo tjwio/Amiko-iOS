@@ -52,7 +52,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.spinnerAnimation.stop()
             self.spinnerAnimation.removeFromSuperview()
             self.tableView.reloadData()
-        }, failure: nil)
+        }) { error in
+            AppLogger.log("failed to load cards with error: \(error)")
+            self.cards = []
+            self.spinnerAnimation.stop()
+            self.spinnerAnimation.removeFromSuperview()
+            self.tableView.reloadData()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
