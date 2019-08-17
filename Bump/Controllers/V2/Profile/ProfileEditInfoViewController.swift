@@ -13,7 +13,8 @@ import SnapKit
 
 class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDelegate, UITableViewDataSource {
     private struct Constants {
-        static let cellIdentifier = "ProfileEditTextFieldTableViewCell"
+        static let textFieldCellIdentifier = "ProfileEditTextFieldTableViewCell"
+        static let textViewCellIdentifier = "ProfileEditTextViewTableViewCell"
     }
     
     let user: User
@@ -135,45 +136,54 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48.0
+        return indexPath.section == 5 ? 96.0 : 48.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier) as? DetailTextFieldTableViewCell ?? DetailTextFieldTableViewCell(style: .default, reuseIdentifier: Constants.cellIdentifier)
-        
         cellDisposables[indexPath.section]?.dispose()
         
-        switch indexPath.section {
-        case 0:
-            cell.textField.text = firstName.value
-            cell.placeholderLabel.text = "First Name"
-            cellDisposables[indexPath.section] = firstName <~ cell.textField.reactive.continuousTextValues
-        case 1:
-            cell.textField.text = lastName.value
-            cell.placeholderLabel.text = "Last Name"
-            cellDisposables[indexPath.section] = lastName <~ cell.textField.reactive.continuousTextValues
-        case 2:
-            cell.textField.text = email.value
-            cell.placeholderLabel.text = "Email"
-            cellDisposables[indexPath.section] = email <~ cell.textField.reactive.continuousTextValues
-        case 3:
-            cell.textField.text = company.value
-            cell.placeholderLabel.text = "Company"
-            cellDisposables[indexPath.section] = company <~ cell.textField.reactive.continuousTextValues
-        case 4:
-            cell.textField.text = job.value
-            cell.placeholderLabel.text = "Job Title"
-            cellDisposables[indexPath.section] = job <~ cell.textField.reactive.continuousTextValues
-        case 5:
-            cell.textField.text = bio.value
+        if indexPath.section == 5 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.textViewCellIdentifier) as? DetailTextViewTableViewCell ?? DetailTextViewTableViewCell(style: .default, reuseIdentifier: Constants.textViewCellIdentifier)
+            
+            cell.textView.text = bio.value
             cell.placeholderLabel.text = "Introduction"
-            cellDisposables[indexPath.section] = bio <~ cell.textField.reactive.continuousTextValues
-        default: break
+            cellDisposables[indexPath.section] = bio <~ cell.textView.reactive.continuousTextValues
+            
+            cell.backgroundColor = UIColor.Grayscale.background
+            cell.layer.cornerRadius = 10.0
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.textFieldCellIdentifier) as? DetailTextFieldTableViewCell ?? DetailTextFieldTableViewCell(style: .default, reuseIdentifier: Constants.textFieldCellIdentifier)
+            
+            switch indexPath.section {
+            case 0:
+                cell.textField.text = firstName.value
+                cell.placeholderLabel.text = "First Name"
+                cellDisposables[indexPath.section] = firstName <~ cell.textField.reactive.continuousTextValues
+            case 1:
+                cell.textField.text = lastName.value
+                cell.placeholderLabel.text = "Last Name"
+                cellDisposables[indexPath.section] = lastName <~ cell.textField.reactive.continuousTextValues
+            case 2:
+                cell.textField.text = email.value
+                cell.placeholderLabel.text = "Email"
+                cellDisposables[indexPath.section] = email <~ cell.textField.reactive.continuousTextValues
+            case 3:
+                cell.textField.text = company.value
+                cell.placeholderLabel.text = "Company"
+                cellDisposables[indexPath.section] = company <~ cell.textField.reactive.continuousTextValues
+            case 4:
+                cell.textField.text = job.value
+                cell.placeholderLabel.text = "Job Title"
+                cellDisposables[indexPath.section] = job <~ cell.textField.reactive.continuousTextValues
+            default: break
+            }
+            
+            cell.backgroundColor = UIColor.Grayscale.background
+            cell.layer.cornerRadius = 10.0
+            
+            return cell
         }
-        
-        cell.backgroundColor = UIColor.Grayscale.background
-        cell.layer.cornerRadius = 10.0
-        
-        return cell
     }
 }
