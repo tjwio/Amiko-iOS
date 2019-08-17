@@ -37,6 +37,13 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
         return label
     }()
     
+    let buttonFooterView: ButtonFooterView = {
+        let view = ButtonFooterView(confirmButtonTitle: "UPDATE")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
     private var cellDisposables = [Int: Disposable]()
     
     init(user: User) {
@@ -62,23 +69,35 @@ class ProfileEditInfoViewController: TextFieldTableViewController, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addBackButtonToView(dark: true)
-        
         view.backgroundColor = .white
         
+        tableView.contentInset.bottom = 72.0
         tableView.delegate = self
         tableView.dataSource = self
         
         view.addSubview(titleLabel)
+        view.addSubview(buttonFooterView)
         view.addSubview(tableView)
         
         setupConstraints()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if buttonFooterView.confirmButton.frame.size.height > 0.0 {
+            buttonFooterView.confirmButton.roundCorners(corners: [.topLeft], radius: 36.0)
+        }
     }
     
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(44.0)
             make.centerX.equalToSuperview()
+        }
+        
+        buttonFooterView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         tableView.snp.makeConstraints { make in

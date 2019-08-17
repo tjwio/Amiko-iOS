@@ -234,7 +234,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch (indexPath.section, indexPath.row) {
         case (1, 0):
             let viewController = ProfileEditInfoViewController(user: user)
-            navigationController?.pushViewController(viewController, animated: true)
+            present(viewController, animated: true, completion: nil)
         default: break
         }
     }

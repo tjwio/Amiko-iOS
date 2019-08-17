@@ -30,14 +30,14 @@ class SyncUserBaseViewController: UIViewController {
     var isWaiting = false {
         didSet {
             if isWaiting {
-                cancelButton.backgroundColor = .clear
+                buttonFooterView.cancelButton.backgroundColor = .clear
                 let attributedTitle = NSMutableAttributedString(string: "\(String.featherIcon(name: .x)) CANCEL", attributes: [.foregroundColor: UIColor.white])
                 attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(0, 1))
                 attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(1, attributedTitle.length-1))
                 attributedTitle.addAttribute(.baselineOffset, value: 2.0, range: NSMakeRange(1, attributedTitle.length-1))
-                cancelButton.setAttributedTitle(attributedTitle, for: .normal)
+                buttonFooterView.cancelButton.setAttributedTitle(attributedTitle, for: .normal)
                 
-                confirmButton.isHidden = true
+                buttonFooterView.confirmButton.isHidden = true
             }
         }
     }
@@ -50,19 +50,11 @@ class SyncUserBaseViewController: UIViewController {
         return view
     }()
     
-    let cancelButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .white
+    lazy var buttonFooterView: ButtonFooterView = {
+        let view = ButtonFooterView(confirmButtonTitle: buttonTitle)
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        let attributedTitle = NSMutableAttributedString(string: "\(String.featherIcon(name: .x)) CANCEL", attributes: [.foregroundColor: UIColor.Matcha.dusk])
-        attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(0, 1))
-        attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(1, attributedTitle.length-1))
-        attributedTitle.addAttribute(.baselineOffset, value: 2.0, range: NSMakeRange(1, attributedTitle.length-1))
-        
-        button.setAttributedTitle(attributedTitle, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
+        return view
     }()
     
     let fullView: UIView = {
@@ -90,32 +82,6 @@ class SyncUserBaseViewController: UIViewController {
         banner.translatesAutoresizingMaskIntoConstraints = false
         
         return banner
-    }()
-    
-    lazy var confirmButton: LoadingButton = {
-        let button = LoadingButton(type: .custom)
-        button.backgroundColor = UIColor.Matcha.dusk
-        
-        let attributedTitle = NSMutableAttributedString(string: "\(buttonTitle) \(String.featherIcon(name: .arrowRight))", attributes: [.foregroundColor: UIColor.white])
-        attributedTitle.addAttribute(.font, value: UIFont.featherFont(size: 20.0)!, range: NSMakeRange(attributedTitle.length-1, 1))
-        attributedTitle.addAttribute(.font, value: UIFont.avenirDemi(size: 14.0)!, range: NSMakeRange(0, attributedTitle.length-1))
-        attributedTitle.addAttribute(.baselineOffset, value: 2.0, range: NSMakeRange(0, attributedTitle.length-1))
-        
-        button.setAttributedTitle(attributedTitle, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
-    lazy var buttonStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cancelButton, confirmButton])
-        stackView.alignment = .center
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 0.0
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
     }()
     
     let backgroundFooterView: UIView = {
@@ -152,15 +118,15 @@ class SyncUserBaseViewController: UIViewController {
         accountsView.backgroundColor = .white
         accountsView.translatesAutoresizingMaskIntoConstraints = false
         
-        cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed(_:)), for: .touchUpInside)
-        confirmButton.addTarget(self, action: #selector(self.confirmButtonPressed(_:)), for: .touchUpInside)
+        buttonFooterView.cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed(_:)), for: .touchUpInside)
+        buttonFooterView.confirmButton.addTarget(self, action: #selector(self.confirmButtonPressed(_:)), for: .touchUpInside)
         
         view.addSubview(headerView)
         view.addSubview(fullView)
         fullView.addSubview(accountsView)
         fullView.addSubview(backgroundFooterView)
         fullView.addSubview(overlayView)
-        fullView.addSubview(buttonStackView)
+        fullView.addSubview(buttonFooterView)
         
         setupConstraints()
         
@@ -201,20 +167,12 @@ class SyncUserBaseViewController: UIViewController {
             make.top.leading.trailing.bottom.equalToSuperview()
         }
         
-        buttonStackView.snp.makeConstraints { make in
+        buttonFooterView.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview()
         }
         
         backgroundFooterView.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview()
-            make.height.equalTo(64.0)
-        }
-        
-        cancelButton.snp.makeConstraints { make in
-            make.height.equalTo(64.0)
-        }
-        
-        confirmButton.snp.makeConstraints { make in
             make.height.equalTo(64.0)
         }
         
@@ -243,8 +201,8 @@ class SyncUserBaseViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if confirmButton.frame.size.height > 0.0 {
-            confirmButton.roundCorners(corners: [.topLeft], radius: 36.0)
+        if buttonFooterView.confirmButton.frame.size.height > 0.0 {
+            buttonFooterView.confirmButton.roundCorners(corners: [.topLeft], radius: 36.0)
         }
     }
     
