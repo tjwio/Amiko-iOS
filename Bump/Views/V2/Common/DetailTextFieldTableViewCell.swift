@@ -15,6 +15,7 @@ class DetailTextFieldTableViewCell: UITableViewCell {
         textField.font = .avenirRegular(size: 14.0)
         textField.textColor = UIColor.Grayscale.light
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         return textField
     }()
@@ -24,6 +25,7 @@ class DetailTextFieldTableViewCell: UITableViewCell {
         label.font = .avenirRegular(size: 14.0)
         label.textColor = UIColor.Grayscale.light
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.required, for: .horizontal)
         
         return label
     }()
@@ -52,7 +54,7 @@ class DetailTextFieldTableViewCell: UITableViewCell {
         }
         
         placeholderLabel.snp.makeConstraints { make in
-            make.leading.greaterThanOrEqualTo(self.textField.snp.trailing).offset(16.0)
+            make.leading.equalTo(self.textField.snp.trailing).offset(16.0)
             make.trailing.equalToSuperview().offset(-24.0)
             make.centerY.equalToSuperview()
         }
