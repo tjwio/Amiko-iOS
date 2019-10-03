@@ -1,0 +1,17 @@
+language: objective-c
+osx_image: xcode10.2
+
+cache:
+  directories:
+  - Carthage
+
+before_install:
+  - brew update
+  - gem update --system
+  - gem install bundler
+  - gem install fastlane
+  - brew outdated carthage || brew upgrade carthage
+  - carthage bootstrap --no-use-binaries --platform iOS --cache-builds --use-ssh
+
+script:
+  - ./fastlane/travis.sh

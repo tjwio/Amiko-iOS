@@ -7,10 +7,25 @@
 //
 
 import UIKit
-import HockeySDK
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+import AppCenterDistribute
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    private struct Constants {
+        static let configuration = "Configuration"
+        static let debug = "Debug"
+        
+        static let scheme = "ciaohaus"
+        static let user = "user"
+        static let id = "id"
+        
+        struct AppCenter {
+            static let appSecret = "89a0b16e-c7df-40e7-98c9-dafc196235a1"
+        }
+    }
 
     var window: UIWindow?
 
@@ -18,14 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        BITHockeyManager.shared().configure(withIdentifier: BAConstants.HockeyApp.id)
-        BITHockeyManager.shared().start()
-        BITHockeyManager.shared().authenticator.authenticateInstallation()
+        configureAppCenter()
         
-        BACommonUtility.configureMessages()
+        CommonUtility.configureMessages()
         
-        if BALocationManager.shared.isAuthorized {
-            BALocationManager.shared.initialize()
+        if LocationManager.shared.isAuthorized {
+            LocationManager.shared.initialize()
         }
         
         self.loadInitialViewController()
@@ -40,16 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        BALocationManager.shared.stopUpdatingLocation()
+        LocationManager.shared.stopUpdatingLocation()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if BAUserHolder.initialized {
-            BAUserHolder.shared.reconnect()
+        if UserHolder.initialized {
+            UserHolder.shared.reconnect()
         }
         
-        if BALocationManager.shared.isAuthorized && !BALocationManager.shared.didReceiveFirstLocation.value {
-            BALocationManager.shared.startUpdatingLocation()
+        if LocationManager.shared.isAuthorized && !LocationManager.shared.didReceiveFirstLocation.value {
+            LocationManager.shared.startUpdatingLocation()
         }
     }
 
@@ -61,23 +74,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let scheme = url.scheme, let host = url.host, scheme.lowercased() == Constants.scheme, host.lowercased() == Constants.user,
+            let id = url.paramaters[Constants.id] {
+            AppManager.shared.deepLinkId = id
+            NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
+        }
+        
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if let url = userActivity.webpageURL, url.lastPathComponent == Constants.user, let id = url.paramaters[Constants.id] {
+            AppManager.shared.deepLinkId = id
+            NotificationCenter.default.post(name: .bumpOpenProfile, object: id)
+        }
+        
+        return true
+    }
+    
     func loadWelcomeViewController() {
         let navigationController = UINavigationController(rootViewController: BAWelcomeViewController())
         self.window?.rootViewController = navigationController
     }
     
-    func loadHomeViewController(user: BAUser, shouldInitialize: Bool = true) {
+    func loadHomeViewController(user: User, shouldInitialize: Bool = true) {
         if shouldInitialize {
-            _ = BAUserHolder.initialize(user: user)
+            _ = UserHolder.initialize(user: user)
         }
         
-        self.window?.rootViewController = BAMainTabBarViewController()
+        self.window?.rootViewController = MainTabBarViewController(user: user)
     }
     
     func loadInitialViewController() {
         var viewController: BABaseLoadingViewController
         
-        if let userId = BAAuthenticationManager.shared.userId, userId.count > 0 {
+        if let userId = AuthenticationManager.shared.userId, userId.count > 0 {
             viewController = BAUserLoadingViewController(userId: userId)
         }
         else {
@@ -94,6 +126,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(fontName)
             }
         }
+    }
+    
+    // MARK: App Center
+    
+    private func configureAppCenter() {
+        MSAppCenter.start(Constants.AppCenter.appSecret, withServices: [MSAnalytics.self, MSCrashes.self, MSDistribute.self])
     }
 }
 
